@@ -1,0 +1,38 @@
+
+@import "_common";
+
+.tutorial{
+  .container{
+    max-width: 800px;
+    background: #F5F5F4;
+    border: 1px solid #E3E3E2;
+  }
+  .group{
+    background: #3273AC;
+    font-size: 24px;
+    text-align: center;
+    color: #FFF;
+    padding: 0.8em;
+  }
+  .step{
+    display: block;
+    margin-bottom: 25px;
+    background-color: white;
+
+    .title-blk {
+      background: #CCCCCC;
+      font-size: 18px;
+      padding: 1em 0 0.3em 0;
+      margin-bottom: 25px;
+      text-align: center;
+      position: relative;
+    }
+    .content{
+      color: #00000F;
+      font-size: 14px;
+      margin-left: 3%;
+      margin-right: 3%;
+      line-height: 30px;
+    }
+  }
+}

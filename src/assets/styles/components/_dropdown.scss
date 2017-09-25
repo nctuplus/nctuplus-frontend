@@ -1,0 +1,47 @@
+
+@import "../_common";
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 600px) {
+}
+
+@media only screen and (min-device-width : 601px) and (max-device-width : 1024px) {
+}
+
+@media only screen and (min-device-width : 1025px){
+	.dropdown{
+		display: inline-block;
+		padding-left: 10px;
+		padding-right: 10px;
+		.list{
+			position: absolute;
+			transition: display 1s;
+			.links{
+				color: white;
+				text-decoration: none;
+				transition: color 0.5s;
+
+				&:hover {
+					color: #003469;
+				}
+			}
+			.item{
+				display: block;
+				min-width: 160px;
+				line-height: 28px;
+				background-color: rgba(0, 0, 0, 0.6);
+				color: white;
+				padding-left: 10px;
+				border-bottom: 1px solid white;
+				transition: background-color 0.5s;
+				&:hover{
+					background-color: #AAAAAA;
+					cursor: pointer;
+				}
+				a{
+					text-decoration: none;
+					color: white;
+				}
+			}
+		}
+	}
+}

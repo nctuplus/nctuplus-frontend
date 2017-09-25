@@ -1,0 +1,20 @@
+#!/bin/bash
+style_name=$1
+create_path="src/assets/styles/$2"
+template="
+@import \"_common\";
+
+.$style_name{
+
+}
+"
+file_name="$create_path/_$style_name.scss"
+if [ ! -d $create_path ];then 
+    echo "Error: directory $create_path does not exist.";
+    exit; 
+fi
+if [ -e $file_name ];then 
+    echo "Error: $file_name has been existed."
+    exit 
+fi
+echo "$template" > $file_name && echo "Create $file_name."
