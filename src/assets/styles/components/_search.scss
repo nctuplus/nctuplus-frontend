@@ -1,19 +1,14 @@
 
 @import "../_common";
 
-.search-bar{
+
+.search-course{
 	margin: auto;
-	width: 300px;
+	.search-bar{ width: 212px; }
 	.checkbox{
-		display: inline-block;
-		vertical-align: 10px;
-		margin-left: 5px;
+		margin-left: 10px;
+		vertical-align: 30px;
 	}
-}
-.search-wrapper{
-	padding: 18px;
-	width: 305px;
-	margin: auto;
 }
 .search-panel{
 	min-height: 20px;
@@ -27,7 +22,7 @@
   box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
   .college-group{
   	padding-bottom: 20px;
-  	.search-panel-college{
+  	.college{
 			width: 50%;
 			transition: background 0.5s;
 			color: #337AB7;
@@ -37,5 +32,6 @@
 			}
 		}
   }
+	.title{ margin-top: -5%; }
 }
-.search-panel-title{ margin-top: -5%; }
+

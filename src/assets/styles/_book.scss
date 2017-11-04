@@ -2,12 +2,14 @@
 @import "_common";
 
 
-.book {
-  .filter-group{
-    position: relative;
-    display: inline-block;
-    vertical-align: middle;
-    .sort-link{ color: #337ab7 !important; }
+.books {
+  .filter{
+    padding-bottom: 10px;
+    .filter-group{
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+    }
   }
   .supplemental-info{
     background: #f8f8f8;
@@ -17,7 +19,7 @@
     margin-left: -4px;
     margin-right: -4px;
     cursor: default;
-    font { color: #696969; }
+    .date { color: #696969; }
   }
   .table-item{
     height: 305px;

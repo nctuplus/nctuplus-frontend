@@ -1,77 +1,109 @@
 
 
-/* navbar */
+
 @import "_common";
 
+/* universal components stylesheet */
 @import "components/_dropdown";
 @import "components/_navbar";
 @import "components/_footer";
 
+/* stylesheet for seperate pages */
 @import "_index";
 @import "_tutorial";
-@import "_course";
 @import "_book";
+@import "_book_detail";
+@import "_course";
+@import "_course_detail";
+@import "_simulation";
+@import "_event";
+@import "_event_detail";
+@import "_edit_event";
+@import "_login";
+@import "_user";
+@import "_score";
 
-@import "components/_react_circular_progressbar";
-@import "components/_sidebar";
+.inline{ display: inline;}
+.block{ display: block;}
+.inline-block{ display: inline-block;}
+
+
+.relative{ position: relative; }
+.absolute{ position: absolute; }
+.fixed{ position: fixed; }
+
+
+.circle{ border-radius: 50%; }
+
+.text-white{ color: white !important;}
+.text-grey{ color: $color-grey !important;}
+.text-blue{ color: #4c66a4 !important;}
+.text-red{ color: red !important;}
+
+.vertical-center { vertical-align: middle; }
+
+.bg-white{ background-color: white !important;}
+.bg-grey{ background-color: $color-grey !important;}
+.bg-blue{ background-color: #4c66a4 !important; }
+
+.border-left-cyan{ border-left: 5px solid #25b0eb; }
+.border-left-grey{ border-left: 5px solid #999999; }
+.border-left-green{ border-left: 5px solid #5cb852; }
+.no-border{ border: none; }
+
+
+.bold{ font-weight: bold; }
+.normal{ font-weight: normal; }
+.lighter{ font-weight: lighter; }
+
+.italic{ font-style: italic; }
+.underlined{ text-decoration: underline; }
+
+
+.full-width { width: 100%; }
+
+.margin-auto{ margin: auto; }
+.no-padding { padding: 0;}
+.no-padding-left { padding-left: 0;}
+.no-padding-right { padding-right: 0;}
+
+.no-margin { margin: 0;}
+.no-margin-left { margin-left: 0;}
+.no-margin-right { margin-right: 0;}
+
+
+.clickable{ cursor: pointer; }
+.form-group{ margin: 15px; }
+
+.ellipsis{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+/* non-decoration links*/
+.flat-link{ &:hover, &:focus { text-decoration: none; }}
+.flex-center{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
 
 body{
 	font-family: 'Open Sans',"微軟正黑體", "Microsoft JhengHei",Merriweather,'Helvetica Neue',Arial,sans-serif;
 }
 
+
 .page-wrapper{ 
 	margin-top: $navbar-height; 
 	background-color: #e9eaed;
-	min-height: 105vh;
+	min-height: 100vh;
 }
 
-.courses-page-content{
-	margin: auto;
-	@include desktop-large{ width: 1000px; }
-  @include desktop{ width: 800px; }
-  @include tablet{ width: 600px; }
-  @include phone{ width: 90%;  }
-  @include phone-small{ width: 90%; }
-}
-
-.carousel-control{
-  background-image: none;
-  background-color: #a1a3a4;
-  width: 5%;
-  height: 20%;
-  position: absolute;
-  top: 40%;
-}
-
-.rating{
-	width: 120px; 
-	height: 120px; 
-	margin: 15px;
-  @include desktop{ width: 110px; height: 110px; margin: 10px; }
-	.rating-people{
-		width: 100%; 
-		color: #455A64;
-	}
-}
-
-.personal-rating{
-	background-color: white;
-	padding: 10px;
-	.rating-bar{
-		label{
-			margin-left: 20px;
-			margin-right: 20px;
-		}
-		span{
-			font-size: 20px;
-			padding-left: 10px;
-			letter-spacing: 5px;
-		}	
-	}
-}
-.course-table-invisible{
-	line-height: 40px;
-  width: 50%;
+textcontent{
+  white-space: pre;
+  font-size: 16px;
 }
 
 .chart-wrapper{
@@ -86,25 +118,14 @@ body{
   @include phone-small{ width: 90%; }
 }
 
-.course-statistic-block{
-	display: inline-block;
-	background-color: white;
-	padding-bottom: 20px;
-	margin: 15px 10px 15px 10px;
-}
-
-.course-section-title{
-	font-size: 26px;
-	font-weight: bold;
-	margin-top: 15px;
-	margin-bottom: 15px;
-
-}
 
 .btn-circle{
-	height: 40px;
-	width: 40px;
-	border-radius: 50%;
+	width: 30px;
+  height: 30px;
+  padding: 6px 0;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 12px;
 }
 	
 

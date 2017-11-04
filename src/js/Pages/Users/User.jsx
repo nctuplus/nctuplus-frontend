@@ -1,17 +1,12 @@
 
 import React from 'react'
 
-class Course extends React.Component {
-	constructor (props){
-		super(props)
-	}
-	render(){
-		return (
-			<div>
-				courses
-			</div>
-		)
-	}
-}
+const User = (props) => (
+  <div className='page-wrapper user'>
+    <div className='container'>
+      { props.children }
+    </div>
+  </div>
+)
 
-export default Course
+export default User

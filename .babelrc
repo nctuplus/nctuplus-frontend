@@ -10,7 +10,21 @@
               "imports": ["react"],
               "locals": ["module"]
             }]
-        }]
+        }],
+        "transform-object-rest-spread"
+      ]
+    },
+    "production": {
+      "plugins": [
+        ["react-transform", {
+          "transforms": [{
+              "transform": "react-transform-hmr",
+	      // change this to react-native if writing react-native
+              "imports": ["react"],
+              "locals": ["module"]
+            }]
+        }],
+        "transform-object-rest-spread"
       ]
     }
   }

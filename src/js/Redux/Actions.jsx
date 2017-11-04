@@ -1,5 +1,0 @@
-
-/*
- *	actions definition here. 
- **/
-

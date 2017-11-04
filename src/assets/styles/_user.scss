@@ -1,0 +1,34 @@
+
+@import "_common";
+
+.user{
+	.user-nav{
+		margin: 30px 0 30px 0;
+		font-size: 16px;
+		padding-left: 10px;
+		.tab{
+			padding: 10px;
+			color: #333333;
+			&.active{
+				border-bottom: 3px solid #00A6FF;
+				font-weight: bold;
+			}
+		}
+	}
+	.link-btn-group{
+		padding: 10px;
+		button{ margin: 3px; }
+	}
+	.schedule-header{
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+	.edit{
+		padding-top: 50px;
+		padding-bottom: 30px;
+	}
+	.fa-check.fa-2x{
+		color: #5cb85c;
+	}
+}
+

@@ -3,20 +3,20 @@ import { render } from 'react-dom'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import RootReducer from './js/Redux/Reducers'
-import RootRouter from './js/RootRouter'
-import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
-let store = createStore(RootReducer)
-
+import Router from './js/Router'
+import injectTapEventPlugin from 'react-tap-event-plugin'
 import './assets/styles/main.scss'
 
-if (typeof(document) !== 'undefined' && window) {
+injectTapEventPlugin()
+let store = createStore(RootReducer)
+
+if (typeof (document) !== 'undefined' && window) {
   window.onload = () => {
-    return render( 
+    return render(
       <Provider store={store}>
-        <RootRouter/>
+        <Router />
       </Provider>,
-      document.getElementById('app') 
-    );
-  };
+      document.getElementById('app')
+    )
+  }
 }

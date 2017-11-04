@@ -34,32 +34,5 @@ $navbar-height: 52px;
 $theme-color: #00A6FF;
 $color-grey: #DDDDDD;
 
-.text-center{ text-align: center; }
-.text-left{ text-align: left; }
-.text-right{ text-align: right; }
-.inline{ display: inline;}
-.block{ display: block;}
-.inline-block{ display: inline-block;}
-.margin-auto{ margin: auto; }
-.no-border{ border: none; }
-.circle{ border-radius: 50%; }
-.bg-white{ background-color: white;}
-.bg-grey{ background-color: $color-grey;}
 
-
-.ellipsis{
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-}
-/* non-decoration links*/
-.flat-link{ &:hover, &:focus { text-decoration: none; }}
-.clickable{ cursor: pointer; }
-.flex-center{
-	display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-hr { border-color: #CCCCCC; }
 

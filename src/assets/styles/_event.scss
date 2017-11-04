@@ -1,0 +1,23 @@
+
+
+/* slick-carousel */
+@import "~slick-carousel/slick/slick.css";
+@import "_common";
+
+@import "components/_event_block";
+@import "components/_custom_slick";
+
+
+
+.event{
+	.slider-wrapper{ margin: 10px; }
+	.form-wrapper{
+		padding: 20px;
+		background-color: rgba(100, 100, 100, 0.7);
+	}
+	h3 {
+		position: relative;
+		bottom: 100px;
+	}
+}
+

@@ -1,35 +1,37 @@
 
 import React from 'react'
 
-class Pagination extends React.Component{
-	constructor(props){
-		super(props)
-	}
-	render(){
-		return (
-			<ul className="pagination" style={{ display:'inline-block' }}>
-				﻿<li>
-					<a href="/courses"><span className="translation_missing" title="translation missing: zh-TW.views.pagination.first">First</span></a>
-				</li>
-				<li className="prev">
-				  <a href="/courses?page=1547" rel="prev"><span className="translation_missing" title="translation missing: zh-TW.views.pagination.prev">Prev</span></a>
-				</li>
-				<li className="disabled">
-				  <a href="#">...</a>
-				</li>
-				<li className="">
-				  <a href="/courses?page=1546">1546</a>
-				</li>
-				<li className="">
-				  <a href="/courses?page=1547" rel="prev">1547</a>
-				</li>
-				<li className="active">
-				  <a href="#">1548</a>
-				</li>			
-			</ul>
-		)
-	}
-}
+const Pagination = ({ page, max_page, to }) => (
+  <ul className='pagination inline-block'>
+    { page > 1 ? <li onClick={ () => to(1) }><span>First</span></li> : '' }
+    { page > 1 ? <li onClick={ () => to(page - 1) }><span>Prev</span></li> : '' }
+
+    { page > 3 ? <li className='disabled'><span>...</span></li> : '' }
+    
+    { 
+      page > 2 
+      ? <li onClick={ () => to(page - 2) }><span>{ page - 2 }</span></li> : '' 
+    }
+    { 
+      page > 1 
+      ? <li onClick={ () => to(page - 1) }><span>{ page - 1 }</span></li> : '' 
+    }
+    <li className='active'><span>{ page }</span></li> 
+    { 
+      page < max_page 
+      ? <li onClick={ () => to(page + 1) }><span>{ page + 1 }</span></li> : '' 
+    }
+    { 
+      page < max_page - 1
+      ? <li onClick={ () => to(page + 1) }><span>{ page + 2 }</span></li> : '' 
+    }
+    
+    { page < max_page - 2 ? <li className='disabled'><span>...</span></li> : '' }
+    
+    { page < max_page ? <li onClick={ () => to(page + 1) }><span>Next</span></li> : '' }
+    { page < max_page ? <li onClick={ () => to(max_page) }><span>Last</span></li> : '' }
+  </ul>
+)
+
 
 export default Pagination
-
