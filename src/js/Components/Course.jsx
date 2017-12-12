@@ -12,6 +12,7 @@ import {
   Legend,
   Bar
 } from 'recharts'
+import Pagination from './Pagination'
 
 const CourseStatisticBlock = (props) => (
   <Col md={2} className="statistic-block text-center">
@@ -197,7 +198,7 @@ const CourseSection = (props) => (
   </Row>
 )
 
-const _CoursesTableRow = (props) => (
+const CoursesTableRow = withRouter((props) => (
   <tr
     id={props.id}
     className="clickable"
@@ -212,30 +213,42 @@ const _CoursesTableRow = (props) => (
     <td>{props.grade}</td>
     <td className="hidden-xs">
       <span>
-        <i className="fa fa-check-square-o fa-2x" />
+        <i className="fa fa-square-o fa-2x" />
       </span>
     </td>
   </tr>
-)
+))
 
 const CoursesTable = (props) => (
-  <table className="table table-hover bg-white">
-    <thead>
-      <tr>
-        <th className="hidden-xs">學期</th>
-        <th className="hidden-xs">系所/摘要</th>
-        <th>課名</th>
-        <th>老師</th>
-        <th>學分</th>
-        <th>時間</th>
-        <th>年級</th>
-        <th className="hidden-xs">收藏</th>
-      </tr>
-    </thead>
-    <tbody>
-      {props.children}
-    </tbody>
-  </table>
+  <div>
+    <table className="table table-hover bg-white">
+      <thead>
+        <tr>
+          <th className="hidden-xs">學期</th>
+          <th className="hidden-xs">系所/摘要</th>
+          <th>課名</th>
+          <th>老師</th>
+          <th>學分</th>
+          <th>時間</th>
+          <th>年級</th>
+          <th className="hidden-xs">收藏</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          props.data.map((value, index) => (
+            <CoursesTableRow
+              key = { index }
+              { ...value }
+            />)
+          )
+        } 
+      </tbody>
+    </table>
+    <div className='text-center'>
+      <Pagination page={ props.page } max_page={ props.max_page } to={ props.update_page } />
+    </div>
+  </div>
 )
 
 const CoursesListItem = (props) => (
@@ -276,8 +289,6 @@ const CoursesList = (props) => (
     <tbody>{ props.children }</tbody>
   </table>
 )
-
-const CoursesTableRow = withRouter(_CoursesTableRow)
 
 export {
   CoursesTable,

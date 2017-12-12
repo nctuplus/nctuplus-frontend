@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { Col } from 'react-bootstrap'
-import { Pagination } from './Pagination'
+import Pagination from './Pagination'
 
 const PastExamsTableRow = (props) => (
   <tr className='clickable' href={props.href}>
@@ -30,7 +30,7 @@ const PastExamsTable = (props) => (
       </tbody>
     </table>
     <div className='text-center'>
-      <PastExamsPagination/>
+      <Pagination/>
     </div>
   </Col>
 )

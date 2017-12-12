@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { Col } from 'react-bootstrap'
-import { Pagination } from './Pagination'
+import Pagination from './Pagination'
 
 
 const DiscussesTableRow = (props) => (
@@ -26,11 +26,18 @@ const DiscussesTable = (props) => (
         </tr>
       </thead>
       <tbody>
-        { props.children }
+        {
+          props.data.map((value, index) => (
+            <DiscussesTableRow
+              key={index}
+              { ...value }
+            />)
+          )
+        }
       </tbody>
     </table>
     <div className='text-center'>
-      <Pagination/>
+      <Pagination page={ props.page } max_page={ props.max_page } to={ props.update_page } />
     </div>
   </Col>
 )

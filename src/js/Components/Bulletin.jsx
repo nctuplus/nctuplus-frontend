@@ -3,7 +3,7 @@ import React from 'react'
 const Bulletin = (props) => (
   <span>
     <span className='inline-block ellipsis title'>{ props.title }</span>
-    <span className='inline-block date'>{ props.date }</span>
+    <span className='inline-block date'>{ props.updated_at.substr(0, 10) }</span>
     <br />
   </span>
 )
@@ -36,7 +36,7 @@ class BulletinBoard extends React.Component {
         </div>
         <div className='bulletins'>
           { 
-            this.props.bulletin 
+            this.props.bulletins 
             ? this.props.bulletins.map((bulletin, index) => {
               if(bulletin.type === this.state.tab)
                 return <Bulletin { ...bulletin } key={index} />

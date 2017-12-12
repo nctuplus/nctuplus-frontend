@@ -1,43 +1,28 @@
 
 import React from 'react'
 import { SearchCourse } from '../../Components/Search'
-import { CoursesTable, CoursesTableRow } from '../../Components/Course'
+import { CoursesTable } from '../../Components/Course'
 
-import { Pagination } from './Components/Pagination'
+import { connect } from 'react-redux'
+import { fetch_courses, fetch_courses_done, update_courses_page } from '../../Redux/Actions/Courses'
 
-class Course extends React.Component {
-  render () {
-    return (
-      <div className='course page-wrapper'>
-        <div className='container'>
-          <div className='search-wrapper'>
-            <SearchCourse show_semester={true} />
-          </div>
-          <CoursesTable>
-            {
-              new Array(25).fill(0).map((value, index) => (
-                <CoursesTableRow
-                  id={36861}
-                  key={index}
-                  semester='106上'
-                  department='電工系'
-                  name='電子學（一）'
-                  teachers='陳龍英'
-                  credit='3'
-                  course_time='1GH4CD'
-                  grade='2'
-                />
-                )
-              )
-            }
-          </CoursesTable>
-          <div className='text-center'>
-            <Pagination />
-          </div>
-        </div>
+const Course = (props) => (
+  <div className='course page-wrapper'>
+    <div className='container'>
+      <div className='search-wrapper'>
+        <SearchCourse show_semester={true} />
       </div>
-    )
-  }
-}
+      <CoursesTable { ...props.courses_table } update_page={ props.update_page } />
+    </div>
+  </div>
+)
 
-export default Course
+const mapStateToProps = (state) => ({
+  courses_table: state.courses,
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  update_page: (page) => dispatch(update_courses_page(page))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Course)

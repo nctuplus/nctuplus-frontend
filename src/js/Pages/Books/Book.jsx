@@ -13,119 +13,9 @@ import { BooksTable, BooksTableItem } from '../../Components/BooksTable'
 import { InputWithButton } from '../../Components/FormUtils'
 
 import { connect } from 'react-redux'
-import { applyBooksFilter } from '../../Redux/Actions'
+import { update_books_page, apply_books_filters } from '../../Redux/Actions/Books'
 
-const sold_books = [
-  {
-    id: 123,
-    name: 'Pathways (3A): Listening, speaking & critical thinking',
-    sold_time: '1小時前'
-  },
-  {
-    id: 123,
-    name: 'Pathways (3A): Listening, speaking & critical thinking',
-    sold_time: '1小時前'
-  },
-  {
-    id: 123,
-    name: 'Pathways (3A): Listening, speaking & critical thinking',
-    sold_time: '1小時前'
-  },
-  {
-    id: 123,
-    name: 'Pathways (3A): Listening, speaking & critical thinking',
-    sold_time: '1小時前'
-  },
-  {
-    id: 123,
-    name: 'Pathways (3A): Listening, speaking & critical thinking',
-    sold_time: '1小時前'
-  },
-  {
-    id: 123,
-    name: 'Pathways (3A): Listening, speaking & critical thinking',
-    sold_time: '1小時前'
-  },
-  {
-    id: 123,
-    name: 'Pathways (3A): Listening, speaking & critical thinking',
-    sold_time: '1小時前'
-  },
-  {
-    id: 123,
-    name: 'Pathways (3A): Listening, speaking & critical thinking',
-    sold_time: '1小時前'
-  },
-  {
-    id: 123,
-    name: 'Pathways (3A): Listening, speaking & critical thinking',
-    sold_time: '1小時前'
-  }
-]
-const books = [
-  {
-    id: 123,
-    book_name: 'University Chemistry',
-    author: 'Brian B.Liard',
-    course: '化學 (一)',
-    teacher: '李大偉',
-    date: '2017/09/20 16:59',
-    preview_img: 'https://plus.nctu.edu.tw/file_upload/book_covers/000/001/425/41B0GFp5UTL._SX397_BO1_204_203_200_.jpg?1505897988',
-    price: 800
-  },
-  {
-    id: 123,
-    book_name: 'University Chemistry',
-    author: 'Brian B.Liard',
-    course: '化學 (一)',
-    teacher: '李大偉',
-    date: '2017/09/20 16:59',
-    preview_img: 'https://plus.nctu.edu.tw/file_upload/book_covers/000/001/425/41B0GFp5UTL._SX397_BO1_204_203_200_.jpg?1505897988',
-    price: 800
-  },
-  {
-    id: 123,
-    book_name: 'University Chemistry',
-    author: 'Brian B.Liard',
-    course: '化學 (一)',
-    teacher: '李大偉',
-    date: '2017/09/20 16:59',
-    preview_img: 'https://plus.nctu.edu.tw/file_upload/book_covers/000/001/425/41B0GFp5UTL._SX397_BO1_204_203_200_.jpg?1505897988',
-    price: 800
-  },
-  {
-    id: 123,
-    book_name: 'University Chemistry',
-    author: 'Brian B.Liard',
-    course: '化學 (一)',
-    teacher: '李大偉',
-    date: '2017/09/20 16:59',
-    preview_img: 'https://plus.nctu.edu.tw/file_upload/book_covers/000/001/425/41B0GFp5UTL._SX397_BO1_204_203_200_.jpg?1505897988',
-    price: 800
-  },
-  {
-    id: 123,
-    book_name: 'University Chemistry',
-    author: 'Brian B.Liard',
-    course: '化學 (一)',
-    teacher: '李大偉',
-    date: '2017/09/20 16:59',
-    preview_img: 'https://plus.nctu.edu.tw/file_upload/book_covers/000/001/425/41B0GFp5UTL._SX397_BO1_204_203_200_.jpg?1505897988',
-    price: 800
-  },
-  {
-    id: 123,
-    book_name: 'University Chemistry',
-    author: 'Brian B.Liard',
-    course: '化學 (一)',
-    teacher: '李大偉',
-    date: '2017/09/20 16:59',
-    preview_img: 'https://plus.nctu.edu.tw/file_upload/book_covers/000/001/425/41B0GFp5UTL._SX397_BO1_204_203_200_.jpg?1505897988',
-    price: 800
-  },
-]
-
-const _Book = (props) => (
+const Book = (props) => ( 
   <div className='page-wrapper books'>
     <div className='container'>
       <SearchPanel>
@@ -146,27 +36,29 @@ const _Book = (props) => (
           <h4 className='text-center search-panel-title'>排序</h4>
           <ButtonGroup className='filter-group' >
             <Button 
-              onClick={ () => props.applyFilter({sort_by: 'price'}) }
-              bsStyle={ props.filter.sort_by === 'price' ? 'primary' : 'default'}
+              onClick={ () => props.apply_filters({ sort_by: 'price' }) }
+              bsStyle={ props.filters.sort_by === 'price' ? 'primary' : 'default'}
             >
               價錢 
               { 
-                props.filter.sort_by === 'price' 
-                ? <span onClick={() => props.applyFilter({'descend': !props.filter.descend})}>
-                    { props.filter.descend ? '▼' : '▲' }
-                  </span> : '' 
+                props.filters.sort_by === 'price' 
+                ? <span onClick={() => props.apply_filters({ descend: !props.filters.descend })}>
+                    { props.filters.descend ? '▼' : '▲' }
+                  </span> 
+                : '' 
               }
             </Button>
             <Button 
-              onClick={ () => props.applyFilter({'sort_by': 'date'}) }
-              bsStyle={ props.filter.sort_by === 'date' ? 'primary' : 'default'}
+              onClick={ () => props.apply_filters({ sort_by: 'date' }) }
+              bsStyle={ props.filters.sort_by === 'date' ? 'primary' : 'default'}
             >
               日期 
               { 
-                props.filter.sort_by === 'date' 
-                ? <span onClick={() => props.applyFilter({'descend': !props.filter.descend})}>
-                    { props.filter.descend ? '▼' : '▲' }
-                  </span> : '' 
+                props.filters.sort_by === 'date' 
+                ? <span onClick={() => props.apply_filters({ descend: !props.filters.descend })}>
+                    { props.filters.descend ? '▼' : '▲' }
+                  </span> 
+                : '' 
               }
             </Button>
           </ButtonGroup>
@@ -174,24 +66,32 @@ const _Book = (props) => (
         <SearchPanelCollegeList />
         <SearchPanelNewsFeed >
           {
-            sold_books.map((book, index) => (
-              <SearchPanelNews href={'/books/' + book.id} key={index}>
+            props.sold_books.map((book, index) => (
+              <SearchPanelNews href={ `/books/${book.id}` } key={ index }>
                 { book.sold_time } 售出了 { book.name }
               </SearchPanelNews>
             ))
           }
         </SearchPanelNewsFeed>
       </SearchPanel>
-      <BooksTable books={ books } />
+      <BooksTable {...props.books_table} update_page = {props.update_page} />
     </div>
   </div>
 )
 
-const mapStateToProps = (state) => ({ filter: state.book.filter })
+const mapStateToProps = (state) => ({ 
+  filters: state.books.filters, 
+  status: state.books.status,
+  sold_books: state.books.data.sold_books,
+  books_table: {
+    page: state.books.page,
+    max_page: state.books.max_page,
+    books: state.books.data.books,
+  }
+})
 const mapDispatchToProps = (dispatch) => ({ 
-  applyFilter: (filt) => dispatch(applyBooksFilter(filt)) 
+  apply_filters: (filters) => dispatch(apply_books_filters(filters)),
+  update_page: (page) => dispatch(update_books_page(page)) 
 })
 
-const Book = connect(mapStateToProps, mapDispatchToProps)(_Book)
-
-export default Book
+export default connect(mapStateToProps, mapDispatchToProps)(Book)

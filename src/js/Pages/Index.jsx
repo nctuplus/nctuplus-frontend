@@ -5,9 +5,10 @@ import FullWidthCover from '../Components/FullWidthCover'
 import { Intro, IntroItem } from '../Components/Intro'
 import About from '../Components/About'
 import { CoverWrapper, CoverSlogan } from '../Components/Cover'
-import { BulletinBoardContainer } from '../Containers/BulletinBoardContainer'
-import { Actions } from '../Redux/Actions'
+import BulletinBoard from '../Components/Bulletin'
 
+import { connect } from 'react-redux'
+import { async_fetch_bulletins } from '../Redux/Asyncs/Bulletins'
 
 const CoverImageUrls = [
   'https://plus.nctu.edu.tw/backgrounds/%E8%95%AD%E7%AB%8B%E5%93%81-1.jpg',
@@ -16,39 +17,12 @@ const CoverImageUrls = [
   'https://plus.nctu.edu.tw/backgrounds/%E9%99%B3%E6%A3%95%E7%A5%88-1.jpg'
 ]
 
-const IntroItems = [
-  {
-    image: 'https://plus.nctu.edu.tw/assets/new-index/discuss-intro-ef6b3b595b441e1124d39fbac28936a6.png',
-    title: '全校課程心得',
-    content: '選課前的好幫手，包羅歷年交大所有課程心得，舊文新文一次找齊，也包含課堂評價與歷屆成績，也歡迎同學一起討論。',
-    is_new: false,
-    to: '/discusses'
-  },
-  {
-    image: 'https://plus.nctu.edu.tw/assets/new-index/book-intro-b4d6cf076e7390ec242d2d0881df2c92.png',
-    title: '二手書拍賣',
-    content: '原文書太貴買不下手？二手書難找又麻煩？NCTU+提供二手書交易平台，歡迎加入二手書買賣的行列',
-    is_new: false,
-    to: '/books'
-  },
-  {
-    image: 'https://plus.nctu.edu.tw/assets/new-index/score-stat-intro-43382d8d1c5bbd18993c49a2f6e472c5.png',
-    title: '畢業學分計算',
-    content: '今年可以畢業嗎？令人苦惱的畢業學分計算一次完成，把握大學最後的時間！',
-    is_new: false,
-    to: '/user'
-  },
-  {
-    image: 'https://plus.nctu.edu.tw/assets/new-index/event-intro-68738fcde6cdc672dd4c40a446bf0367.png',
-    title: '活動bar',
-    content: '學校最近有什麼新活動？快來加入活動！建立屬於自己的活動BAR!',
-    is_new: true,
-    to: '/events'
+class Index extends React.Component{
+  constructor(props){
+    super(props)
+    props.fetch_data()
   }
-]
-
-class Index extends React.Component {
-  render () {
+  render(){
     return (
       <div className='index'>
         <FullWidthCover images={CoverImageUrls} />
@@ -63,7 +37,7 @@ class Index extends React.Component {
                 </h4>
               </Col>
               <Col md={6} sm={12}>
-                <BulletinBoardContainer/>
+                <BulletinBoard bulletins={this.props.bulletins}/>
               </Col>
               <Col md={6} smHidden>
                 <CoverSlogan >{ '手邊有用不到的教科書嗎？<br/>快登入使用二手書平台！' }</CoverSlogan>
@@ -110,5 +84,13 @@ class Index extends React.Component {
     )
   }
 }
+const mapStateToProps = (state) => ({ 
+  bulletins: state.bulletins.data,
+  fetching_status: state.bulletins.status 
+})
+const mapDispatchToProps = (dispatch) => ({
+  fetch_data: () => dispatch(async_fetch_bulletins())
+})
 
-export default Index
+
+export default connect(mapStateToProps, mapDispatchToProps)(Index)

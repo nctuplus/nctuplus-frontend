@@ -1,20 +1,29 @@
 
-import { combineReducers } from 'redux'
 import { handleActions } from 'redux-actions'
 import { createSelector } from 'reselect'
 import { HOST, FETCHING_STATUS } from '../../constants'
 
 const initialState = {
-  data: null,
   status: FETCHING_STATUS.IDLE,
-  filter: {},
+  data: new Array(25).fill(0).map((value, index) => ({
+    id: 36861,
+    key: index,
+    semester: '106上',
+    department: '電工系',
+    name: '電子學（一）',
+    teachers: '陳龍英',
+    credit: '3',
+    course_time: '1GH4CD',
+    grade: '2'
+  })),
   page: 1,
-  maxPage: 1024,
+  max_page: 1024,
 }
 
-const CoursesReducer = handleActions({
-  UPDATE_PAGE: (state, action) => ({ ...state, page: action.payload }), 
+export default handleActions({
+  FETCH_COURSES: (state) => ({ ...state, status: FETCHING_STATUS.FETCHING }),
+  FETCH_COURSES_DONE: (state) => ({ ...state, status: FETCHING_STATUS.DONE }),  
+  UPDATE_COURSES_PAGE: (state, action) => ({ ...state, page: action.payload }), 
+
 }, initialState)
 
-
-export default RootReducer

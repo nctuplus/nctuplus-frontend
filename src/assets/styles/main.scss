@@ -80,6 +80,8 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+
 /* non-decoration links*/
 .flat-link{ &:hover, &:focus { text-decoration: none; }}
 .flex-center{
