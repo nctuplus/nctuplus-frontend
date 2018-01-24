@@ -13,7 +13,6 @@ import { InputWithButton } from '../../Components/FormUtils'
 import { connect } from 'react-redux'
 import { fetch_discusses, fetch_discusses_done, update_discusses_page } from '../../Redux/Actions/Discusses'
 
-
 const Discuss = (props) => (
   <div className='page-wrapper'>
     <div className='container'>
@@ -35,8 +34,8 @@ const Discuss = (props) => (
         <SearchPanelNewsFeed>
           {
             props.recent_discusses.map((value, index) => (
-              <SearchPanelNews href={ `/discusses/${value.id}` } key={ index }>
-                { value.date }天前 { value.user } 新增了 
+              <SearchPanelNews href={`/discusses/${value.id}`} key={index}>
+                { value.date }天前 { value.user } 新增了
                 <strong>{ value.course }</strong>
                 的文章-{ value.content }
               </SearchPanelNews>
@@ -45,19 +44,18 @@ const Discuss = (props) => (
           }
         </SearchPanelNewsFeed>
       </SearchPanel>
-      <DiscussesTable { ...props.discusses } update_page={props.update_page}/>
+      <DiscussesTable {...props.discusses} update_page={props.update_page} />
     </div>
   </div>
 )
 
-
-const mapStateToProps = (state) => ({ 
+const mapStateToProps = (state) => ({
   status: state.discusses.status,
   recent_discusses: state.discusses.recent_discusses,
   discusses: state.discusses.discusses
 })
-const mapDispatchToProps = (dispatch) => ({ 
-  update_page: (page) => dispatch(update_discusses_page(page)) 
+const mapDispatchToProps = (dispatch) => ({
+  update_page: (page) => dispatch(update_discusses_page(page))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Discuss)

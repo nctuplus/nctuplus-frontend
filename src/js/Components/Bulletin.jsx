@@ -8,11 +8,11 @@ const Bulletin = (props) => (
   </span>
 )
 
-const TAB_UPDATE_LOG = 0;
-const TAB_NEWS = 1;
+const TAB_UPDATE_LOG = 0
+const TAB_NEWS = 1
 
 class BulletinBoard extends React.Component {
-  constructor(props){
+  constructor (props) {
     super(props)
     this.state = { tab: TAB_UPDATE_LOG }
   }
@@ -21,26 +21,25 @@ class BulletinBoard extends React.Component {
       <div className='bulletin-board'>
         <hr />
         <div className='tabs'>
-          <button 
-            className={ this.state.tab === TAB_UPDATE_LOG ? 'active' : '' }
-            onClick={() => this.setState({ tab: TAB_UPDATE_LOG })} 
+          <button
+            className={this.state.tab === TAB_UPDATE_LOG ? 'active' : ''}
+            onClick={() => this.setState({ tab: TAB_UPDATE_LOG })}
           >
             網站改版
           </button>
-          <button 
-            className={ this.state.tab === TAB_NEWS ? 'active' : '' }
-            onClick={() => this.setState({ tab: TAB_NEWS }) }
+          <button
+            className={this.state.tab === TAB_NEWS ? 'active' : ''}
+            onClick={() => this.setState({ tab: TAB_NEWS })}
           >
             最新消息
           </button>
         </div>
         <div className='bulletins'>
-          { 
-            this.props.bulletins 
+          {
+            this.props.bulletins
             ? this.props.bulletins.map((bulletin, index) => {
-              if(bulletin.type === this.state.tab)
-                return <Bulletin { ...bulletin } key={index} />
-            }) : '' 
+              if (bulletin.type === this.state.tab) { return <Bulletin {...bulletin} key={index} /> }
+            }) : ''
           }
         </div>
       </div>

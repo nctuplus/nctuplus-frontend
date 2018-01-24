@@ -11,9 +11,9 @@ const initialState = {
     user: '匿名',
     date: 6,
     course: '組合語言與系統程式',
-    conent: '老師很認真' 
+    conent: '老師很認真'
   })),
-  discusses:{
+  discusses: {
     data: new Array(25).fill(0).map((value, index) => ({
       id: 777,
       key: index,
@@ -25,13 +25,13 @@ const initialState = {
       update_time: '2017-09-13 19:54'
     })),
     page: 1,
-    max_page: 1024,
+    max_page: 1024
   }
 }
 
 export default handleActions({
   FETCH_DISCUSSES: (state) => ({ ...state, status: FETCHING_STATUS.FETCHING }),
-  FETCH_DISCUSSES_DONE: (state) => ({ ...state, status: FETCHING_STATUS.DONE }),  
-  UPDATE_DISCUSSES_PAGE: (state, action) => ({ ...state, discusses:{ ...state.discusses, page: action.payload } }), 
+  FETCH_DISCUSSES_DONE: (state) => ({ ...state, status: FETCHING_STATUS.DONE }),
+  UPDATE_DISCUSSES_PAGE: (state, action) => ({ ...state, discusses: { ...state.discusses, page: action.payload } })
 
 }, initialState)

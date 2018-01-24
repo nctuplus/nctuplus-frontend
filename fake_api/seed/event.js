@@ -1,6 +1,6 @@
 
 let faker = require('faker')
-faker.locale = 'zh_TW';
+faker.locale = 'zh_TW'
 
 const events_seeder = (amount) => (
   new Array(amount).fill(0).map((value, index) => ({

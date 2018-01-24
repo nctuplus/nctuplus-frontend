@@ -62,8 +62,8 @@ class CourseDetail extends React.Component {
           {
             Items.map((value, index) => (
               <SidebarItem
-                active={ value.active }
-                key={ index }
+                active={value.active}
+                key={index}
               >
                 { value.title }
               </SidebarItem>

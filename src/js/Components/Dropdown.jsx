@@ -40,12 +40,10 @@ class Dropdown extends React.Component {
   }
 }
 
-const _DropdownLink = (props) => (
+const DropdownLink = withRouter((props) => (
   <span className='item' onClick={() => props.history.push(props.to)}>
     { props.children }
   </span>
-)
-
-const DropdownLink = withRouter(_DropdownLink)
+))
 
 export { Dropdown, DropdownLink }

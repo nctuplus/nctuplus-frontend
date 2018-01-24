@@ -1,6 +1,6 @@
 L
 let faker = require('faker')
-faker.locale = 'zh_TW';
+faker.locale = 'zh_TW'
 
 const bulletins_seeder = (amount) => (
   new Array(amount).fill(0).map((value, index) => ({

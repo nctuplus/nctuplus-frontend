@@ -8,10 +8,9 @@ const initialState = {
   status: FETCHING_STATUS.IDLE,
   filter: {},
   page: 1,
-  maxPage: 1024,
+  maxPage: 1024
 }
 
 export const PastExamReducer = handleActions({
-  UPDATE_PAGE: (state, action) => ({ ...state, page: action.payload }), 
+  UPDATE_PAGE: (state, action) => ({ ...state, page: action.payload })
 }, initialState)
-

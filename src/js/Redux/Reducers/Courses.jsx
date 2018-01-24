@@ -17,13 +17,12 @@ const initialState = {
     grade: '2'
   })),
   page: 1,
-  max_page: 1024,
+  max_page: 1024
 }
 
 export default handleActions({
   FETCH_COURSES: (state) => ({ ...state, status: FETCHING_STATUS.FETCHING }),
-  FETCH_COURSES_DONE: (state) => ({ ...state, status: FETCHING_STATUS.DONE }),  
-  UPDATE_COURSES_PAGE: (state, action) => ({ ...state, page: action.payload }), 
+  FETCH_COURSES_DONE: (state) => ({ ...state, status: FETCHING_STATUS.DONE }),
+  UPDATE_COURSES_PAGE: (state, action) => ({ ...state, page: action.payload })
 
 }, initialState)
-

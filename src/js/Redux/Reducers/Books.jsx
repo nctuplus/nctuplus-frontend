@@ -65,7 +65,7 @@ const initialState = {
         date: '2017/09/20 16:59',
         preview_img: 'https://plus.nctu.edu.tw/file_upload/book_covers/000/001/425/41B0GFp5UTL._SX397_BO1_204_203_200_.jpg?1505897988',
         price: 800
-      },
+      }
     ],
     sold_books: [
       {

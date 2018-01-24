@@ -30,7 +30,7 @@ const PastExamsTable = (props) => (
       </tbody>
     </table>
     <div className='text-center'>
-      <Pagination/>
+      <Pagination />
     </div>
   </Col>
 )

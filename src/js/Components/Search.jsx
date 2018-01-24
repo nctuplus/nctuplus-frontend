@@ -5,13 +5,13 @@ import { Col, Row, Button } from 'react-bootstrap'
 import { InputWithButton } from './FormUtils'
 
 class SearchCourse extends React.Component {
-  constructor(props){
+  constructor (props) {
     super(props)
     this.state = {
       advanced: false,
       type: null,
       department: null
-    } 
+    }
   }
   render () {
     return (
@@ -27,17 +27,17 @@ class SearchCourse extends React.Component {
         <div className='inline-block vertical-center'>
           <div className='hidden-xs checkbox'>
             <label>
-              <input 
-                type='checkbox' 
-                checked={ this.state.advanced }
-                onChange={ (e) => this.setState({ advanced: e.target.checked }) }
+              <input
+                type='checkbox'
+                checked={this.state.advanced}
+                onChange={(e) => this.setState({ advanced: e.target.checked })}
               />進階搜尋
             </label>
           </div>
         </div>
-        <Row className={ this.state.advanced ? '' : 'hidden' } >
+        <Row className={this.state.advanced ? '' : 'hidden'} >
           {
-            this.props.show_semester 
+            this.props.show_semester
             ? <Col md={4} className='text-center no-padding-right'>
               <select className='form-control'>
                 <option value=''>所有學期</option>
@@ -63,12 +63,12 @@ class SearchCourse extends React.Component {
                 <option value='3'>99暑</option>
                 <option value='2'>99下</option>
                 <option value='1'>99上</option>
-              </select> 
-            </Col>: ''
+              </select>
+            </Col> : ''
           }
-          <Col 
-            md={ this.props.show_semester ? 8 : 3 } 
-            className={ `text-center ${this.props.show_semester ? 'no-padding-left' : 'no-padding-right'}` }
+          <Col
+            md={this.props.show_semester ? 8 : 3}
+            className={`text-center ${this.props.show_semester ? 'no-padding-left' : 'no-padding-right'}`}
           >
             <select className='form-control'>
               <option value=''>分類</option>
@@ -77,8 +77,8 @@ class SearchCourse extends React.Component {
               <option value='3'>研究所</option>
             </select>
           </Col>
-          <Col 
-            md={ this.props.show_semester ? 12 : 9 } 
+          <Col
+            md={this.props.show_semester ? 12 : 9}
             className='text-center'
           >
             <select className='form-control' >

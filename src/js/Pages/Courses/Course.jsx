@@ -10,15 +10,15 @@ const Course = (props) => (
   <div className='course page-wrapper'>
     <div className='container'>
       <div className='search-wrapper'>
-        <SearchCourse show_semester={true} />
+        <SearchCourse show_semester />
       </div>
-      <CoursesTable { ...props.courses_table } update_page={ props.update_page } />
+      <CoursesTable {...props.courses_table} update_page={props.update_page} />
     </div>
   </div>
 )
 
 const mapStateToProps = (state) => ({
-  courses_table: state.courses,
+  courses_table: state.courses
 })
 
 const mapDispatchToProps = (dispatch) => ({
