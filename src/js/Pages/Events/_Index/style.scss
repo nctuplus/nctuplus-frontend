@@ -1,0 +1,70 @@
+
+
+/* slick-carousel */
+@import "~slick-carousel/slick/slick.css";
+
+.event{
+	.slider-wrapper{ margin: 10px; }
+	.form-wrapper{
+		padding: 20px;
+		background-color: rgba(100, 100, 100, 0.7);
+	}
+	h3 {
+		position: relative;
+		bottom: 100px;
+	}
+}
+.event-block{
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+	background-image: url('https://plus.nctu.edu.tw/assets/events/bg_symphony-d25b030449a0be7f00703cf16a587f72.png');
+	.wrapper{ padding: 10px; }
+	.event-preview{
+		padding: 10px;
+		.date{
+			color: grey;
+			font-size: 16px;
+		}
+		.title{
+			font-size: 18px;
+			padding-bottom: 30px;
+			border-bottom: 1px solid #CCC;
+		}
+		.info{
+			color: #555;
+			margin-top: 5px;
+	
+			.info-item{
+				line-height: 2.0;
+				padding-left: 2.5em;
+		    text-indent: -2.1em;
+		  }
+		}
+	}
+}
+
+.custom-arrow{
+	background-color: rgba(161, 163, 164, 0.6);
+  	width: 5%;
+  	height: 60px;
+  	position: absolute;
+  	top: 40%;
+  	font-size: 40px;
+	text-align: center;
+	line-height: 65px;
+	text-shadow: 0 1px 2px rgba(0,0,0,0.6); 
+	cursor: pointer;
+
+	&:hover{
+		background-color: rgba(161, 163, 164, 0.9);
+	}
+}
+.custom-arrow-left{
+	left: 5%;
+	z-index: 2;
+}
+.custom-arrow-right{
+	right: 5%;
+}
+
+

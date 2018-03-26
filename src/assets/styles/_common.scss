@@ -1,5 +1,4 @@
 
-// Extra small devices (portrait phones, less than 576px)
 @mixin phone-small{
 	@media (max-width: 575px) { 
 		@content;

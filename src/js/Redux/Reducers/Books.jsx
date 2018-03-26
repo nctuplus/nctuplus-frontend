@@ -1,6 +1,5 @@
 
 import { handleActions } from 'redux-actions'
-import { createSelector } from 'reselect'
 import { HOST, FETCHING_STATUS } from '../../constants'
 
 const initialState = {

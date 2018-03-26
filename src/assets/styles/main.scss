@@ -3,35 +3,13 @@
 
 @import "_common";
 
-/* universal components stylesheet */
-@import "components/_dropdown";
-@import "components/_navbar";
-@import "components/_footer";
-
-/* stylesheet for seperate pages */
-@import "_index";
-@import "_tutorial";
-@import "_book";
-@import "_book_detail";
-@import "_course";
-@import "_course_detail";
-@import "_simulation";
-@import "_event";
-@import "_event_detail";
-@import "_edit_event";
-@import "_login";
-@import "_user";
-@import "_score";
-
 .inline{ display: inline;}
-.block{ display: block;}
 .inline-block{ display: inline-block;}
-
+.block{ display: block;}
 
 .relative{ position: relative; }
 .absolute{ position: absolute; }
 .fixed{ position: fixed; }
-
 
 .circle{ border-radius: 50%; }
 
@@ -90,8 +68,6 @@
   justify-content: center;
 }
 
-
-
 body{
 	font-family: 'Open Sans',"微軟正黑體", "Microsoft JhengHei",Merriweather,'Helvetica Neue',Arial,sans-serif;
 }
@@ -103,21 +79,16 @@ body{
 	min-height: 100vh;
 }
 
-textcontent{
-  white-space: pre;
-  font-size: 16px;
-}
-
 .chart-wrapper{
 	background-color: white;
 	padding: 50px;
 	margin: auto;
 
 	@include desktop-large{ width: 100%; height: 500px;}
-  @include desktop{ width: 90%; height: 450px; }
-  @include tablet{ width: 90%; height: 380px; }
-  @include phone{ width: 90%;  }
-  @include phone-small{ width: 90%; }
+    @include desktop{ width: 90%; height: 450px; }
+    @include tablet{ width: 90%; height: 380px; }
+    @include phone{ width: 90%;  }
+    @include phone-small{ width: 90%; }
 }
 
 
