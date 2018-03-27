@@ -7,7 +7,7 @@ import { InputWithButton } from '../../../Components/FormUtils'
 import { EventBlock, EventPreview, EVENT_STATUS } from '../../../Components/Event'
 import './style.scss'
 
-const carousel_events = [
+const carouselEvents = [
   {
     image: 'https://plus.nctu.edu.tw/file_upload/event_covers/000/000/098/banner_with_text.jpg?1506697033',
     id: 98,
@@ -54,7 +54,7 @@ class Index extends React.Component {
 
             >
               {
-                carousel_events.map((event, index) =>
+                carouselEvents.map((event, index) =>
                   <div key={index}>
                     <Link to={/events/ + event.id}>
                       <img

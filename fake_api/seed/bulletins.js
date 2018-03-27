@@ -1,8 +1,8 @@
-L
+
 let faker = require('faker')
 faker.locale = 'zh_TW'
 
-const bulletins_seeder = (amount) => (
+const bulletinsSeeder = (amount) => (
   new Array(amount).fill(0).map((value, index) => ({
     id: index + 1,
     title: faker.random.words(3),
@@ -12,4 +12,4 @@ const bulletins_seeder = (amount) => (
   }))
 )
 
-module.exports = bulletins_seeder
+module.exports = bulletinsSeeder

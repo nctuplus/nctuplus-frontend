@@ -1,6 +1,5 @@
 
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { Row, Button, ButtonGroup } from 'react-bootstrap'
 import {
   SearchPanel,
@@ -9,12 +8,12 @@ import {
   SearchPanelNews,
   SearchPanelNewsFeed
 } from '../../../Components/Search'
-import { BooksTable, BooksTableItem } from '../../../Components/BooksTable'
+import { BooksTable } from '../../../Components/BooksTable'
 import { InputWithButton } from '../../../Components/FormUtils'
 import './style.scss'
 
 import { connect } from 'react-redux'
-import { update_books_page, apply_books_filters } from '../../../Redux/Actions/Books'
+import { updateBooksPage, applyBooksFilters } from '../../../Redux/Actions/Books'
 
 const Index = (props) => (
   <div className='page-wrapper books'>
@@ -23,7 +22,7 @@ const Index = (props) => (
         <InputWithButton
           placeholder='書名/作者/課名'
           button_style='primary'
-          button_content={ <i className='fa fa-search' /> }
+          button_content={<i className='fa fa-search' />}
         />
         <SearchPanelButtonGroup
           new_title='新增商品'
@@ -91,8 +90,8 @@ const mapStateToProps = (state) => ({
   }
 })
 const mapDispatchToProps = (dispatch) => ({
-  apply_filters: (filters) => dispatch(apply_books_filters(filters)),
-  update_page: (page) => dispatch(update_books_page(page))
+  apply_filters: (filters) => dispatch(applyBooksFilters(filters)),
+  update_page: (page) => dispatch(updateBooksPage(page))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index)

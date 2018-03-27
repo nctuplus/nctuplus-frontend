@@ -1,16 +1,11 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-
-import { withRouter } from 'react-router-dom'
-
+import { withRouter, Link } from 'react-router-dom'
 import { Grid, Row, Col } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
 import MediaQuery from 'react-responsive'
 import { EntypoMenu } from 'react-entypo'
-import { Transition } from 'react-transition-group'
 import './style.scss'
-
 
 class Dropdown extends React.Component {
   constructor (props) {
@@ -108,25 +103,25 @@ const NavbarSmUp = (props) => (
   </Grid>
 )
 
-class NavbarSmDown extends React.Component{
-  constructor(props){
+class NavbarSmDown extends React.Component {
+  constructor (props) {
     super(props)
     this.state = { open: false }
     this.toggleDropdown = this.toggleDropdown.bind(this)
   }
-  toggleDropdown(){
+  toggleDropdown () {
     this.setState({ open: !this.state.open })
   }
-  render(){
+  render () {
     return (
       <div>
         <div className='title inline-block'>
           <Link to='/'>NCTU+</Link>
         </div>
-        <div className='menu inline-block' onClick={ () => this.toggleDropdown() }>
+        <div className='menu inline-block' onClick={() => this.toggleDropdown()}>
           <EntypoMenu />
         </div>
-        <div hidden={ !this.state.open } >
+        <div hidden={!this.state.open} >
           <NavLink to='/login'>登入</NavLink>
           <NavItem>
             <Dropdown title='全校課程'>
@@ -153,8 +148,7 @@ class NavbarSmDown extends React.Component{
       </div>
     )
   }
-} 
-
+}
 
 const Navbar = (props) => (
   <div className='container navbar'>

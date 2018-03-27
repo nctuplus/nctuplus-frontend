@@ -7,11 +7,11 @@ import {
   SearchPanelNews,
   SearchPanelNewsFeed
 } from '../../../Components/Search'
-import { DiscussesTable, DiscussesTableRow } from '../../../Components/DiscussesTable'
+import { DiscussesTable } from '../../../Components/DiscussesTable'
 import { InputWithButton } from '../../../Components/FormUtils'
 
 import { connect } from 'react-redux'
-import { fetch_discusses, fetch_discusses_done, update_discusses_page } from '../../../Redux/Actions/Discusses'
+import { updateDiscussesPage } from '../../../Redux/Actions/Discusses'
 
 const Index = (props) => (
   <div className='page-wrapper'>
@@ -55,7 +55,7 @@ const mapStateToProps = (state) => ({
   discusses: state.discusses.discusses
 })
 const mapDispatchToProps = (dispatch) => ({
-  update_page: (page) => dispatch(update_discusses_page(page))
+  update_page: (page) => dispatch(updateDiscussesPage(page))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index)

@@ -8,7 +8,7 @@ import { CoverWrapper, CoverSlogan } from '../../Components/Cover'
 import BulletinBoard from '../../Components/Bulletin'
 
 import { connect } from 'react-redux'
-import { async_fetch_bulletins } from '../../Redux/Asyncs/Bulletins'
+import { asyncFetchBulletins } from '../../Redux/Asyncs/Bulletins'
 import './style.scss'
 
 const CoverImageUrls = [
@@ -90,7 +90,7 @@ const mapStateToProps = (state) => ({
   fetching_status: state.bulletins.status
 })
 const mapDispatchToProps = (dispatch) => ({
-  fetch_data: () => dispatch(async_fetch_bulletins())
+  fetch_data: () => dispatch(asyncFetchBulletins())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index)

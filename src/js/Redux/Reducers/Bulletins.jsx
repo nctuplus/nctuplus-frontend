@@ -1,6 +1,6 @@
 
 import { handleActions } from 'redux-actions'
-import { HOST, FETCHING_STATUS } from '../../constants'
+import { FETCHING_STATUS } from '../../constants'
 
 const initialState = {
   data: [],
@@ -9,6 +9,6 @@ const initialState = {
 
 export default handleActions({
   FETCH_BULLETINS: (state) => ({ ...state, status: FETCHING_STATUS.FETCHING }),
-  UPDATE_BULLETINS: (state, action) => ({ ...state, data: action.payload}),
+  UPDATE_BULLETINS: (state, action) => ({ ...state, data: action.payload }),
   FETCH_BULLETINS_DONE: (state) => ({ ...state, status: FETCHING_STATUS.DONE })
 }, initialState)

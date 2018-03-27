@@ -6,7 +6,7 @@ import { CoursesList, CoursesListItem } from '../../../Components/Course'
 import Schedule from '../../../Components/Schedule'
 import './style.scss'
 
-const required_courses = [
+const requiredCourses = [
   {
     id: 36789,
     course_name: '編譯器設計概論',
@@ -68,9 +68,9 @@ const required_courses = [
     max_enroll: 99
   }
 ]
-const general_courses = [
+const generalCourses = [
 ]
-const foreign_courses = [
+const foreignCourses = [
 ]
 
 class Simulation extends React.Component {
@@ -120,21 +120,21 @@ class Simulation extends React.Component {
                   <div className='scrollable'>
                     <CoursesList title='必修' type='required'>
                       {
-                        required_courses.map((course, index) =>
+                        requiredCourses.map((course, index) =>
                           <CoursesListItem key={index} {...course} />
                         )
                       }
                     </CoursesList>
                     <CoursesList title='通識' type='general'>
                       {
-                        general_courses.map((course, index) =>
+                        generalCourses.map((course, index) =>
                           <CoursesListItem key={index} {...course} />
                         )
                       }
                     </CoursesList>
                     <CoursesList title='外語' type='foreign'>
                       {
-                        foreign_courses.map((course, index) =>
+                        foreignCourses.map((course, index) =>
                           <CoursesListItem key={index} {...course} />
                         )
                       }

@@ -84,4 +84,4 @@ class New extends React.Component {
   }
 }
 
-export default New 
+export default New

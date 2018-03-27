@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { Row, Col, Button } from 'react-bootstrap'
+import { Row, Button } from 'react-bootstrap'
 
 const CourseMap = (props) => (
   <div className='page-wrapper'>

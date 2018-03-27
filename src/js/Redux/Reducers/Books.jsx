@@ -1,6 +1,6 @@
 
 import { handleActions } from 'redux-actions'
-import { HOST, FETCHING_STATUS } from '../../constants'
+import { FETCHING_STATUS } from '../../constants'
 
 const initialState = {
   data: {

@@ -1,6 +1,6 @@
 
-import { createAction, createActions, combineActions } from 'redux-actions'
+import { createAction } from 'redux-actions'
 
-export const fetch_courses = createAction('FETCH_COURSES')
-export const fetch_courses_done = createAction('FETCH_COURSES_DONE')
-export const update_courses_page = createAction('UPDATE_COURSES_PAGE')
+export const fetchCourses = createAction('FETCH_COURSES')
+export const fetchCoursesDone = createAction('FETCH_COURSES_DONE')
+export const updateCoursesPage = createAction('UPDATE_COURSES_PAGE')

@@ -1,15 +1,14 @@
 
-import 'isomorphic-fetch'
-import { dispatch } from 'redux'
-import { fetch_bulletins, fetch_bulletins_done, update_bulletins } from '../Actions/Bulletins'
+import fetch from 'isomorphic-fetch'
+import { fetchBulletins, fetchBulletinsDone, updateBulletins } from '../Actions/Bulletins'
 
-export const async_fetch_bulletins = () => dispatch => {
-  dispatch(fetch_bulletins)
+export const asyncFetchBulletins = () => dispatch => {
+  dispatch(fetchBulletins)
   fetch(`${SERVER_URL}/bulletins`)
   .then(response => response.json())
   .then(json => {
-    dispatch(update_bulletins(json))
-    dispatch(fetch_bulletins_done())
+    dispatch(updateBulletins(json))
+    dispatch(fetchBulletinsDone())
   })
   .catch(error => console.log(error))
 }

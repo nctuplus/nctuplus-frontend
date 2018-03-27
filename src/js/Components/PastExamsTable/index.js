@@ -4,7 +4,7 @@ import { Col } from 'react-bootstrap'
 import Pagination from '../Pagination'
 
 const PastExamsTableRow = (props) => (
-  <tr className='clickable' href={ props.href} >
+  <tr className='clickable' href={props.href} >
     <td className='col-md-3'>{ `${props.course}/${props.teacher}` }</td>
     <td className='col-md-1'>{ props.semester }</td>
     <td className='col-md-2'>{ props.filename }</td>

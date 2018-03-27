@@ -1,6 +1,5 @@
 var Path = require('path')
 var webpack = require('webpack')
-var WebpackNotifierPlugin = require('webpack-notifier')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
@@ -42,19 +41,12 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx']
   },
-  devServer: {
-    inline: true,
-    hot: true,
-    historyApiFallback: true
-  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"',
       SERVER_URL: '"https://plus.nctu.edu.tw/api"'
     }),
     new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new WebpackNotifierPlugin(),
     new HtmlWebpackPlugin({
       template: 'src/index.ejs',
       inject: 'body'

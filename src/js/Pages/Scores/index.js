@@ -4,5 +4,5 @@ import Import from './Import'
 
 export {
   GPA,
-  Import 
+  Import
 }

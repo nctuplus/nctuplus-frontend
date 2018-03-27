@@ -1,8 +1,8 @@
 
-let bulletins_seeder = require('./bulletins')
+let bulletinsSeeder = require('./bulletins')
 
 const seeder = () => ({
-  bulletins: bulletins_seeder(100)
+  bulletins: bulletinsSeeder(100)
 })
 console.log(JSON.stringify(seeder()))
 module.exports = seeder

@@ -2,7 +2,7 @@
 let faker = require('faker')
 faker.locale = 'zh_TW'
 
-const events_seeder = (amount) => (
+const eventsSeeder = (amount) => (
   new Array(amount).fill(0).map((value, index) => ({
     id: index + 1,
     title: faker.lorem.sentence(),
@@ -11,4 +11,4 @@ const events_seeder = (amount) => (
   }))
 )
 
-module.exports = events_seeder
+module.exports = eventsSeeder
