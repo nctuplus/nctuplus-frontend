@@ -1,11 +1,10 @@
 
 import React from 'react'
-import { Row, Col } from 'react-bootstrap'
 
 const Courses = (props) => (
   <div className='bg-white'>
-    <Row className='no-margin'>
-      <Col md={4} className='inline-block'>
+    <div className='row no-margin'>
+      <div className='col-4 d-inline-block'>
         <h4 className='text-center'>103</h4>
         <table className='table table-bordered border-thick-gray'>
           <thead>
@@ -34,8 +33,8 @@ const Courses = (props) => (
             </tr>
           </tbody>
         </table>
-      </Col>
-    </Row>
+      </div>
+    </div>
   </div>
 )
 

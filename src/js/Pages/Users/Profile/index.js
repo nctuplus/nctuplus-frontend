@@ -1,18 +1,17 @@
 
 import React from 'react'
-import { Row, Col, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Schedule from '../../../Components/Schedule'
 
 const Profile = (props) => (
-  <Row>
-    <Col md={6}>
-      <Row className='no-margin'>
-        <Col md={4} className='text-center'>
+  <div className='row'>
+    <div className='col-6'>
+      <div className='row no-margin'>
+        <div className='col-4 text-center'>
           <img className='circle' src='https://graph.facebook.com/1898906487000541/picture?type=large&amp;redirect=true&amp;width=140&amp;height=140' />
           <h4>學號:0416304</h4>
-        </Col>
-        <Col md={8} className='bg-white'>
+        </div>
+        <div className='col-8 bg-white'>
           <br />
           系級：資工系(資工組) 108 級 <br />
           學號：0416304<br />
@@ -22,57 +21,57 @@ const Profile = (props) => (
           註冊日期：2015-09-04
           <hr />
           <div className='link-btn-group'>
-            <Button bsStyle='primary' bsSize='xs'>
+            <button className='btn btn-primary btn-xs'>
               <Link className='flat-link text-white' to='/user/edit'><i className='fa fa-pencil' />編輯檔案</Link>
-            </Button>
-            <Button bsStyle='warning' bsSize='xs'>
+            </button>
+            <button className='btn btn-warning btn-xs'>
               <Link className='flat-link text-white' to='/scores/import'><i className='fa fa-refresh' />匯入成績</Link>
-            </Button>
-            <Button bsStyle='warning' bsSize='xs'>
+            </button>
+            <button className='btn btn-warning btn-xs'>
               <Link className='flat-link text-white' to='/scores/gpa'><i className='fa fa-check' />GPA計算</Link>
-            </Button>
-            <Button bsStyle='warning' bsSize='xs'>
+            </button>
+            <button className='btn btn-warning btn-xs'>
               <Link className='flat-link text-white' to='/course_maps/198'><i className='fa fa-book' />課程地圖</Link>
-            </Button>
+            </button>
           </div>
-        </Col>
-      </Row>
+        </div>
+      </div>
 
       <br />
 
-      <Row className='bg-white no-margin'>
-        <Col md={4} className='text-center'>
+      <div className='row bg-white no-margin'>
+        <div md={4} className='text-center'>
           歷年平均分數
           <h4 className='bold'>81.8</h4>
-        </Col>
-        <Col md={4} className='text-center'>
+        </div>
+        <div md={4} className='text-center'>
           總排名
           <h4 className='bold'>Not Yet</h4>
-        </Col>
-        <Col md={4} className='text-center'>
+        </div>
+        <div md={4} className='text-center'>
           距離畢業
           <h4 className='bold'>
             612天
           </h4>
-        </Col>
-        <Col md={4} className='text-center'>
+        </div>
+        <div md={4} className='text-center'>
           本學期學分
           <h4 className='bold'>0</h4>
-        </Col>
-        <Col md={4} className='text-center'>
+        </div>
+        <div md={4} className='text-center'>
           已修學分
           <h4 className='bold'>75</h4>
-        </Col>
-        <Col md={4} className='text-center'>
+        </div>
+        <div md={4} className='text-center'>
           畢業學分
           <h4 className='bold'>128</h4>
-        </Col>
-      </Row>
+        </div>
+      </div>
 
       <br />
 
-      <Row className='bg-white no-margin'>
-        <Col md={12}>
+      <div className='row bg-white no-margin'>
+        <div md={12}>
           <table className='table table-bordered '>
             <tbody>
               <tr>
@@ -178,8 +177,8 @@ const Profile = (props) => (
             註：外語學分目前不會計算第二外語及進修英文(因無法得知是否通過中高級初試)<br />
             需請同學自行計算！
           </p>
-        </Col>
-        <Col md={12}>
+        </div>
+        <div className='col-12'>
           <table className='table table-bordered '>
             <tbody>
               <tr>
@@ -205,25 +204,25 @@ const Profile = (props) => (
           <p>
             註：計算錯誤可能原因如下 (1)系統缺少抵免/免修課程  (2)使用者未選擇該課所屬學程/領域
           </p>
-        </Col>
-      </Row>
-    </Col>
-    <Col md={6} className='bg-white'>
-      <Row className='schedule-header'>
-        <Col md={3} sm={3} xs={3}>
+        </div>
+      </div>
+    </div>
+    <div className='col-md-6 bg-white'>
+      <div className='row schedule-header'>
+        <div className='col-3'>
           <select className='form-control'>
             <option value='16'>104上</option>
           </select>
-        </Col>
-        <Button bsStyle='info'>
+        </div>
+        <button className='btn btn-info'>
           <i className='fa fa-share-square-o' />
-        </Button>
-      </Row>
-      <Row className='no-margin'>
+        </button>
+      </div>
+      <div className='row no-margin'>
         <Schedule />
-      </Row>
-    </Col>
-  </Row>
+      </div>
+    </div>
+  </div>
 )
 
 export default Profile

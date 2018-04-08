@@ -1,6 +1,5 @@
 
 import React from 'react'
-import { Row, Col } from 'react-bootstrap'
 
 const EVENT_STATUS = {
   IN_PROGRESS: 0,
@@ -8,7 +7,7 @@ const EVENT_STATUS = {
 }
 
 const EventPreview = (props) => (
-  <Col md={3} sm={6} xs={12} className='wrapper'>
+  <div className='col-12 col-sm-6 col-md-3 wrapper'>
     <div className='event-preview bg-white'>
       <div className='pull-right'>
         <span className={'bold date' + (props.status === EVENT_STATUS.IN_PROGRESS ? ' text-red' : '')}>
@@ -26,18 +25,18 @@ const EventPreview = (props) => (
         </div>
       </div>
     </div>
-  </Col>
+  </div>
 
 )
 
 const EventBlock = (props) => (
-  <Row>
-    <Col xs={12} className='event-block'>
+  <div className='row'>
+    <div className='col-12 event-block'>
       <h1>{ props.title }</h1>
       { props.children }
-    </Col>
+    </div>
 
-  </Row>
+  </div>
 )
 
 export { EventBlock, EventPreview, EVENT_STATUS }

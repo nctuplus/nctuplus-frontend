@@ -2,15 +2,6 @@
 @import "../../../../assets/styles/_common";
 
 .course-detail{
-	.page-content{
-		margin: auto;
-		@include desktop-large{ width: 1000px; }
-	  	@include desktop{ width: 800px; }
-	  	@include tablet{ width: 600px; }
-	  	@include phone{ width: 90%;  }
-	  	@include phone-small{ width: 90%; }
-	}
-
 	.table-invisible{
 		line-height: 40px;
 	  	width: 50%;

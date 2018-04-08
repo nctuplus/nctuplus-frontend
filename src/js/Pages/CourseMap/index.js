@@ -1,11 +1,10 @@
 
 import React from 'react'
-import { Row, Button } from 'react-bootstrap'
 
 const CourseMap = (props) => (
   <div className='page-wrapper'>
     <div className='container'>
-      <Row>
+      <div className='row'>
         <div className='col-md-12 text-center'>
           <div>
             <select className='form-control'>
@@ -52,10 +51,10 @@ const CourseMap = (props) => (
               <option value='106'>106</option>
             </select>
           </div>
-          <Button bsStyle='success'>送出</Button>
+          <button className='btn btn-success'>送出</button>
         </div>
-      </Row>
-      <Row>
+      </div>
+      <div className='row'>
         <div className='col-md-10 col-md-offset-1 panel panel-default'>
           <div className='panel-body'>
             <h3>
@@ -267,7 +266,7 @@ const CourseMap = (props) => (
             </div>
           </div>
         </div>
-      </Row>
+      </div>
     </div>
   </div>
 )

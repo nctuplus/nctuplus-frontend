@@ -1,6 +1,5 @@
 
 import React from 'react'
-import { Row, Col, Button } from 'react-bootstrap'
 import { SearchCourse } from '../../../Components/Search'
 import { CoursesList, CoursesListItem } from '../../../Components/Course'
 import Schedule from '../../../Components/Schedule'
@@ -78,45 +77,45 @@ class Simulation extends React.Component {
     return (
       <div className='page-wrapper simulation'>
         <div className='container'>
-          <Row>
-            <Col xs={12}>
+          <div className='row'>
+            <div className='col-12'>
               <div className='alert alert-warning com-cour-error'>
                 <span className='bold'>Warning!</span> 因為學校真的很煩, 很抱歉目前識別新制通識的功能正在努力趕工中, 並且106學年度暫時無法搜尋通識的一當代五向度資料, 造成不便, 敬請見諒!
               </div>
-            </Col>
-            <Col md={6}>
+            </div>
+            <div className='col-6'>
               <div className='panel'>
                 <div className='panel-heading bg-blue text-white'>
                   <h4 className='text-center'>
                     <span className='pull-left'>
-                      <Button bsStyle='info' className='btn-circle panel-btn' >
+                      <button className='btn btn-info btn-circle panel-btn' >
                         <i className='fa fa-check' />
-                      </Button>
-                      <Button bsStyle='info' className='btn-circle panel-btn' >
+                      </button>
+                      <button className='btn btn-info btn-circle panel-btn' >
                         <i className='fa fa-star' />
-                      </Button>
+                      </button>
                     </span>
                     課程查詢
                     <span className='pull-right'>
-                      <Button bsStyle='info' className='btn-circle panel-btn' >
+                      <button className='btn btn-info btn-circle panel-btn' >
                         <i className='fa fa-question' />
-                      </Button>
+                      </button>
                     </span>
                   </h4>
                 </div>
                 <div className='panel-body'>
-                  <Row className='courses-list-utils'>
-                    <Col md={4} className='text-center no-padding'>
+                  <div className='row courses-list-utils'>
+                    <div md={4} className='text-center no-padding'>
                       <div>
-                        <Button className='inline-block'><i className='fa fa-book' /></Button>
-                        <Button className='inline-block'><i className='fa fa-calendar' /></Button>
-                        <Button className='inline-block'><i className='fa fa-graduation-cap' /></Button>
+                        <button className='d-inline-block'><i className='fa fa-book' /></button>
+                        <button className='d-inline-block'><i className='fa fa-calendar' /></button>
+                        <button className='d-inline-block'><i className='fa fa-graduation-cap' /></button>
                       </div>
-                    </Col>
-                    <Col md={8} className='text-left no-padding'>
+                    </div>
+                    <div md={8} className='text-left no-padding'>
                       <SearchCourse />
-                    </Col>
-                  </Row>
+                    </div>
+                  </div>
                   <div className='scrollable'>
                     <CoursesList title='必修' type='required'>
                       {
@@ -142,19 +141,19 @@ class Simulation extends React.Component {
                   </div>
                 </div>
               </div>
-            </Col>
-            <Col md={6}>
+            </div>
+            <div className='col-6'>
               <div className='panel schedule'>
                 <div className='panel-heading bg-blue text-white'>
                   <h4 className='text-center'>
-                    <Button bsStyle='info' className='btn-circle pull-left header-button'>
-                      <span className='glyphicon glyphicon-share' />
-                    </Button>
+                    <button className='btn btn-info btn-circle pull-left header-button'>
+                      <i className='glyphicon glyphicon-share' />
+                    </button>
                     106上
                     <div className='pull-right header-button pop-over'>
-                      <Button bsStyle='info' className='btn-circle dropdown-toggle'>
+                      <button className='btn btn-info btn-circle dropdown-toggle'>
                         <i className='fa fa-download' />
-                      </Button>
+                      </button>
                       <ul className='dropdown-menu'>
                         <li><a href='/courses/export_timetable.xls?sem_id=22'>Excel</a></li>
                         <li />
@@ -164,8 +163,8 @@ class Simulation extends React.Component {
                 </div>
                 <Schedule />
               </div>
-            </Col>
-          </Row>
+            </div>
+          </div>
         </div>
       </div>
     )

@@ -3,10 +3,6 @@
 @import "bootstrap-v4/bootstrap";
 @import "common";
 
-.relative{ position: relative; }
-.absolute{ position: absolute; }
-.fixed{ position: fixed; }
-
 .circle{ border-radius: 50%; }
 
 .text-white{ color: white !important;}
@@ -70,6 +66,7 @@ body{
 
 
 .page-wrapper{ 
+  margin-top: $navbar-height;
 	background-color: #e9eaed;
 	min-height: 100vh;
 }

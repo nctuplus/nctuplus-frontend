@@ -1,6 +1,5 @@
 
 import React from 'react'
-import { Row, Col, Button } from 'react-bootstrap'
 import { LabeledInput } from '../../../Components/FormUtils'
 
 const Edit = (props) => (
@@ -13,42 +12,42 @@ const Edit = (props) => (
       <input className='form-control' />
     </LabeledInput>
     <div className='form-group'>
-      <Row>
-        <label className='col-sm-2 text-right'><h4>入學年度</h4></label>
-        <Col md={2}>
+      <div className='row'>
+        <label className='col-2 text-right'><h4>入學年度</h4></label>
+        <div className='col-2'>
           <select className='form-control'>
             <option value=''>請選擇</option>
             <option value='99'>99</option>
           </select>
-        </Col>
-      </Row>
+        </div>
+      </div>
     </div>
 
     <div className='form-group'>
-      <Row>
-        <label className='col-sm-2 text-right'><h4>系所</h4></label>
-        <Col md={2} className='no-margin'>
+      <div className='row'>
+        <label className='col-2 text-right'><h4>系所</h4></label>
+        <div className='col-2 no-margin'>
           <select className='form-control' >
             <option value='3'>大學部</option>
           </select>
-        </Col>
-        <Col md={5}>
+        </div>
+        <div className='col-5'>
           <select className='form-control' >
             <option value=''>請選擇</option>
             <option value='260'>奈米學士班</option>
           </select>
-          <select className='form-control hidden' >
+          <select className='form-control d-none' >
             <option value=''>請選擇</option>
             <option value='73'>加速器光源科技與應用碩士學位學程</option>
           </select>
-        </Col>
-      </Row>
+        </div>
+      </div>
     </div>
 
     <div className='form-group'>
-      <Col md={1} mdOffset={10}>
-        <Button bsStyle='primary' className='pull-right'>送出</Button>
-      </Col>
+      <div className='col-1 offset-10'>
+        <button className='btn btn-primary pull-right'>送出</button>
+      </div>
     </div>
   </div>
 )

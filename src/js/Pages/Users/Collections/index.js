@@ -1,13 +1,12 @@
 
 import React from 'react'
-import { Button } from 'react-bootstrap'
 
 class Collections extends React.Component {
   render () {
     return (
       <div>
         <p className='text-center'>
-          <Button bsStyle='info'>使用說明</Button>
+          <button className='btn btn-info'>使用說明</button>
         </p>
         <table className='table table-hover text-center bg-white'>
           <thead>

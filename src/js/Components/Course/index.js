@@ -1,7 +1,6 @@
 
 import React from 'react'
-import { Link, withRouter } from 'react-router-dom'
-import { Row, Col, Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import {
   ResponsiveContainer,
   BarChart,
@@ -12,13 +11,12 @@ import {
   Legend,
   Bar
 } from 'recharts'
-import Pagination from '../Pagination'
 
 const CourseStatisticBlock = (props) => (
-  <Col md={2} className='statistic-block text-center'>
+  <div className='col-md-2 statistic-block text-center'>
     <h1><strong>{props.value}</strong></h1>
     <span>{ props.children }</span>
-  </Col>
+  </div>
 )
 
 const CourseStatistics = (props) => (
@@ -52,11 +50,11 @@ const CourseStatistics = (props) => (
         </BarChart>
       </ResponsiveContainer>
     </div>
-    <Row>
+    <div className='row'>
       <CourseStatisticBlock value={props.avg_score}>本課程平均成績</CourseStatisticBlock>
       <CourseStatisticBlock value={props.highest_score}>同類課程最高成績</CourseStatisticBlock>
       <CourseStatisticBlock value={props.teacher}>同類課程最高分老師</CourseStatisticBlock>
-    </Row>
+    </div>
   </div>
 )
 
@@ -70,7 +68,9 @@ class CourseTips extends React.Component {
           <div className='btn-group'>
             {
               new Array(18).fill(0).map((value, index) =>
-                <Button className='no-border' key={index}>{ index + 1 }</Button>
+                <button className='btn btn-default no-border' key={index}>
+                  { index + 1 }
+                </button>
               )
             }
           </div>
@@ -79,7 +79,9 @@ class CourseTips extends React.Component {
           <div className='btn-group'>
             {
               new Array(18).fill(0).map((value, index) =>
-                <Button className='no-border' key={index}>{ index + 1 }</Button>
+                <button className='btn btn-default no-border' key={index}>
+                  { index + 1 }
+                </button>
               )
             }
           </div>
@@ -90,24 +92,24 @@ class CourseTips extends React.Component {
         <hr />
         <i className='fa fa-cube' />其他內容：
         <a className='edit-lists'>編輯</a>
-        <Row className='hidden'>
-          <Col md={4}>
+        <div className='row d-none'>
+          <div className='col-4'>
             <select className='form-control'>
               <option value='1'>[考試]</option>
               <option value='2'>[作業]</option>
               <option value='3'>[上課]</option>
               <option value='4'>[其他]</option>
             </select>
-          </Col>
-          <Col md={7}>
+          </div>
+          <div className='col-7'>
             <input className='form-control' maxLength='32' type='text' />
-          </Col>
-          <Col md={1}>
-            <Button bsStyle='success' className='btn-circle'>
+          </div>
+          <div className='col-1'>
+            <button className='btn btn-success btn-circle'>
               <i className='fa fa-check' />
-            </Button>
-          </Col>
-        </Row>
+            </button>
+          </div>
+        </div>
         <p className='text-center no-data'><strong>尚無資料</strong></p>
       </div>
     )
@@ -189,68 +191,6 @@ const CourseForum = (props) => (
   </div>
 )
 
-const CourseSection = (props) => (
-  <Row>
-    <div className='panel-heading'>
-      <div className='section-title'>{ props.title }</div>
-      { props.children }
-    </div>
-  </Row>
-)
-
-const CoursesTableRow = withRouter((props) => (
-  <tr
-    id={props.id}
-    className='clickable'
-    onClick={(e) => props.history.push(`/courses/${props.id}`)}
-  >
-    <td className='hidden-xs'>{props.semester}</td>
-    <td className='hidden-xs'>{props.department}</td>
-    <td>{props.name}</td>
-    <td>{props.teachers}</td>
-    <td>{props.credit}</td>
-    <td>{props.course_time}</td>
-    <td>{props.grade}</td>
-    <td className='hidden-xs'>
-      <span>
-        <i className='fa fa-square-o fa-2x' />
-      </span>
-    </td>
-  </tr>
-))
-
-const CoursesTable = (props) => (
-  <div>
-    <table className='table table-hover bg-white'>
-      <thead>
-        <tr>
-          <th className='hidden-xs'>學期</th>
-          <th className='hidden-xs'>系所/摘要</th>
-          <th>課名</th>
-          <th>老師</th>
-          <th>學分</th>
-          <th>時間</th>
-          <th>年級</th>
-          <th className='hidden-xs'>收藏</th>
-        </tr>
-      </thead>
-      <tbody>
-        {
-          props.data.map((value, index) => (
-            <CoursesTableRow
-              key={index}
-              {...value}
-            />)
-          )
-        }
-      </tbody>
-    </table>
-    <div className='text-center'>
-      <Pagination page={props.page} max_page={props.max_page} to={props.update_page} />
-    </div>
-  </div>
-)
-
 const CoursesListItem = (props) => (
   <tr>
     <td>
@@ -258,27 +198,33 @@ const CoursesListItem = (props) => (
         <Link to={`/courses/${props.id}`} >{ props.course_name }</Link>
         { props.category } { props.teacher }
         <span className='pull-right'>
-          <Button bsStyle='info' className='btn-circle'>
+          <button className='btn btn-info btn-circle'>
             <i className='glyphicon glyphicon-star' />
-          </Button>
-          <Button bsStyle='warning' className='btn-circle'>
+          </button>
+          <button className='btn btn-warning btn-circle'>
             <i className='glyphicon glyphicon-minus' />
-          </Button>
+          </button>
         </span>
       </p>
       <p className='text-right course-property'>
-        <span className='inline-block'>{ props.requirement }</span>
-        <span className='inline-block'>年級: { props.grade } </span>
-        <span className='inline-block bold'>{ `${props.class_time}/${props.classroom}` }</span>
-        <span className='inline-block bold'><i className='fa fa-user' />
-          { `${props.current_enroll}/${props.max_enroll}` }</span>
-        <span className='inline-block bold'><i className='fa fa-graduation-cap' />
+        <span className='d-inline-block'>{ props.requirement }</span>
+        <span className='d-inline-block'>年級: { props.grade } </span>
+        <span className='d-inline-block bold'>
+          { `${props.class_time}/${props.classroom}` }
+        </span>
+        <span className='d-inline-block bold'>
+          <i className='fa fa-user' />
+          { `${props.current_enroll}/${props.max_enroll}` }
+        </span>
+        <span className='d-inline-block bold'>
+          <i className='fa fa-graduation-cap' />
           { props.credit }
         </span>
       </p>
     </td>
   </tr>
 )
+
 const CoursesList = (props) => (
   <table className='table table-hover courses-list'>
     <thead>
@@ -290,15 +236,14 @@ const CoursesList = (props) => (
   </table>
 )
 
+export { CourseTable, CourseTableRow } from './CourseTable'
+
 export {
-  CoursesTable,
-  CoursesTableRow,
   CourseIntroTable,
   CourseIntro,
   CourseInfo,
   CourseTips,
   CourseStatistics,
-  CourseSection,
   CourseForum,
   CoursesList,
   CoursesListItem

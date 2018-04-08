@@ -1,4 +1,7 @@
 
+/* breakpoints */
+@import "bootstrap-v4/bootstrap-grid";
+
 @mixin phone-small{
 	@media (max-width: 575px) { 
 		@content;
@@ -29,7 +32,7 @@
 	}
 }
 
-$navbar-height: 52px;
+$navbar-height: 56px;
 $theme-color: #00A6FF;
 $color-grey: #DDDDDD;
 

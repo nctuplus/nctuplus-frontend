@@ -4,33 +4,29 @@
 .sidebar {
   background: #222d3f;
   height: 100%;
-  padding: 50px 0 0 0 ;
-  margin-bottom: 0px;
   position: fixed;
   bottom: 0px;
-  @include desktop-large{ width: 16%; }
-  @include desktop{ width: 16%; }
-  @include tablet{ width: 16%; }
-  @include phone{ display:none;  }
-  @include phone-small{ display:none; }
+  width: 16%;
+  padding-top: $navbar-height;
 
   .item{
     border-bottom: 1px #3e4d64 solid;
     width: 100%;
+    line-height: 52px;
     cursor: pointer;
+    color: #8db4c5;
 
     a{
-      color: #8db4c5;
+      color: #337ab7;
       text-decoration: none;
       transition: background 0.2s;
       transition: color 0.2s;
-
-      &:hover, &.active{
-        border-left: 5px solid #25b0eb;
-        color: #fff;
-        font-weight: 500;
-        background: #1e2538;
-      }
+    }
+    &.active, &:hover {
+      border-left: 5px solid #25b0eb;
+      color: #fff;
+      font-weight: 500;
+      background: #1e2538;
     }
   }
 }

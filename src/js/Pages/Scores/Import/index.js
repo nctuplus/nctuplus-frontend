@@ -1,13 +1,12 @@
 
 import React from 'react'
-import { Row, Col, Button } from 'react-bootstrap'
 import './style.scss'
 
 const Import = (props) => (
   <div className='page-wrapper score'>
     <div className='container'>
-      <Row>
-        <Col sm={8} smOffset={2}>
+      <div className='row'>
+        <div className='col-8 offset-2'>
           <div className='border-left-cyan well'>
             <h2><strong>匯入歷年課程</strong></h2>
             <p className='lead'>
@@ -22,11 +21,11 @@ const Import = (props) => (
           <div>
             <textarea className='form-control' placeholder='請將複製內容貼於此...' rows='10' />
             <div className='submit-btn pull-right'>
-              <Button bsStyle='primary'>立即匯入</Button>
+              <button className='btn btn-primary'>立即匯入</button>
             </div>
           </div>
-        </Col>
-      </Row>
+        </div>
+      </div>
     </div>
   </div>
 )

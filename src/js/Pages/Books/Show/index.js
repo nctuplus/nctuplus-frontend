@@ -1,18 +1,17 @@
 
 import React from 'react'
-import { Row, Col } from 'react-bootstrap'
 import './style.scss'
 
 const Show = (props) => (
   <div className='page-wrapper book-detail'>
     <div className='container'>
-      <Row className='bg-white'>
-        <Col md={11} mdOffset={1} xs={12} sm={12}>
-          <Row>
-            <Col md={3} xs={12} sm={12}>
+      <div className='row bg-white'>
+        <div className='col-12 col-md-11 offset-md-1'>
+          <div className='row'>
+            <div className='col-12 col-md-3 offset-md-1'>
               <img className='img-preview' alt='尚無圖片!' src='https://plus.nctu.edu.tw/file_upload/book_covers/000/001/432/IMG_20170921_151626.jpg?1506278647' />
-            </Col>
-            <Col md={8}>
+            </div>
+            <div className='col-8'>
               <table className='table'>
                 <tbody>
                   <tr>
@@ -38,9 +37,9 @@ const Show = (props) => (
                   <tr>
                     <td>書況</td>
                     <td className='line-break'>
-                      【2017交大資工系學會二手書合作計畫】{'\n'}
-      如欲購買二手書請連絡交大資工系學會粉專，請勿直接私訊賣家，感謝配合。{'\n'}
-      交大資工系學會粉絲專頁：https://www.facebook.com/nctucs.assoc/{'\n'}
+                      【2017交大資工系學會二手書合作計畫】<br />
+      如欲購買二手書請連絡交大資工系學會粉專，請勿直接私訊賣家，感謝配合。 <br />
+      交大資工系學會粉絲專頁：https://www.facebook.com/nctucs.assoc/ <br />
       ———書況：基本上沒什麼筆記在上面
                     </td>
                   </tr>
@@ -58,10 +57,10 @@ const Show = (props) => (
                   </tr>
                 </tbody>
               </table>
-            </Col>
-          </Row>
-        </Col>
-      </Row>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 )

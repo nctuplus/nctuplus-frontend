@@ -1,6 +1,5 @@
 
 import React from 'react'
-import { Row, Col, Button } from 'react-bootstrap'
 import './style.scss'
 
 const content = {
@@ -22,19 +21,19 @@ class Show extends React.Component {
           </div>
           <span className='event-title'>[其他] 2018交大藝趣節徵才面試報名</span>
           <div className='event-info-wrapper bg-white'>
-            <Row>
-              <Col md={8}>
+            <div className='row'>
+              <div className='col-8'>
                 <p><i className='fa fa-calendar' /> 時間: <strong>2017-09-28 22:15 ~ 2017-10-06 23:59</strong></p>
                 <p><i className='fa fa-cubes' /> 主辦單位: 藝趣節團隊</p>
                 <p><i className='fa fa-location-arrow' /> 地點: 交通大學綜合一館</p>
                 <p><i className='fa fa-share-alt' /> 活動網址: <a href='https://goo.gl/aLgb1f' target='blank'>點這裡</a></p>
-              </Col>
-              <Col md={4}>
+              </div>
+              <div className='col-4'>
                 <p className='info-box'><i className='fa fa-eye' /> 觀看次數: <strong>5</strong></p>
                 <p className='info-box'><i className='fa fa-sign-in' /> 參加人數: <strong>0</strong></p>
                 <p className='info-box'><i className='fa fa-rss' /> 關注人數: <strong>0</strong></p>
-              </Col>
-            </Row>
+              </div>
+            </div>
             <div className='divide-horizontal'>
               <span>活動介紹</span>
             </div>
@@ -45,12 +44,12 @@ class Show extends React.Component {
         <div className='fixed-menu fixed'>
           <div className='container'>
             <div className='pull-right'>
-              <Button bsStyle='info' className='nav-button'>
+              <button className='btn btn-info nav-button'>
                 關注
-              </Button>
-              <Button bsStyle='success' className='nav-button' >
+              </button>
+              <button className='btn btn-success nav-button' >
                 參加
-              </Button>
+              </button>
             </div>
           </div>
         </div>

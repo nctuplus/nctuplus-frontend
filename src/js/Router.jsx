@@ -52,20 +52,20 @@ class Router extends React.Component {
 
             {/* past exam route group */}
             <Route exact path='/past_exams' component={PastExams.Index} />
-            <Route path='/past_exams/upload' component={PastExams.Upload} />
-            <Route path='/past_exams/:id' component={PastExams.Index} />
+            <Route exact path='/past_exams/upload' component={PastExams.Upload} />
+            <Route exact path='/past_exams/:id' component={PastExams.Index} />
 
             {/* book route group */}
             <Route exact path='/books' component={Books.Index} />
             <Route path='/books/new' component={Books.New} />
-            <Route path='/books/:id' component={Books.Show} />
-            <Route path='/books/:id/edit' component={Books.Edit} />
+            <Route exact path='/books/:id' component={Books.Show} />
+            <Route exact path='/books/:id/edit' component={Books.Edit} />
 
             {/* event route group */}
             <Route exact path='/events' component={Events.Index} />
             <Route path='/events/new' component={Events.New} />
-            <Route path='/events/:id' component={Events.Show} />
-            <Route path='/events/:id/edit' component={Events.Edit} />
+            <Route exact path='/events/:id' component={Events.Show} />
+            <Route exact path='/events/:id/edit' component={Events.Edit} />
 
             {/* course map */}
             <Route path='/course_maps/:id' component={CourseMap} />

@@ -1,11 +1,9 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Row, Col, Button } from 'react-bootstrap'
 import { Sidebar, SidebarItem } from '../../../Components/Sidebar'
 import ShareButton from '../../../Components/ShareButton'
 import {
-  CourseSection,
   CourseInfo,
   CourseIntro,
   CourseTips,
@@ -24,69 +22,42 @@ const chartData = [
   {name: '105上', '胡正光': 0, 'N/A': 0, '洪意凌': 48}
 ]
 
-const Items = [
-  {
-    title: '課程資訊',
-    active: false
-  },
-  {
-    title: '課程攻略',
-    active: true
-  },
-  {
-    title: '歷年統計',
-    active: false
-  },
-  {
-    title: '留言板',
-    active: false
-  },
-  {
-    title: '教授比一比',
-    active: false
-  },
-  {
-    title: '課程(心得)討論區',
-    active: false
-  },
-  {
-    title: '考古題',
-    active: false
-  }
-]
+const CourseSection = (props) => (
+  <div className='row py-4'>
+    <h4 className='my-4'>{ props.title }</h4>
+    { props.children }
+  </div>
+)
 
 class Show extends React.Component {
   render () {
     return (
       <div className='page-wrapper course-detail'>
         <Sidebar >
-          {
-            Items.map((value, index) => (
-              <SidebarItem
-                active={value.active}
-                key={index}
-              >
-                { value.title }
-              </SidebarItem>
-            ))
-          }
+          <SidebarItem active>課程資訊</SidebarItem>
+          <SidebarItem active={false}>課程攻略</SidebarItem>
+          <SidebarItem active={false}>歷年統計</SidebarItem>
+          <SidebarItem active={false}>留言板</SidebarItem>
+          <SidebarItem active={false}>課程資訊</SidebarItem>
+          <SidebarItem active={false}>教授比一比</SidebarItem>
+          <SidebarItem active={false}>考古題</SidebarItem>
         </Sidebar>
-        <Col mdOffset={2}>
-          <div className='page-content'>
-            <Row>
-              <Col md={10}>
+        <div className='container'>
+          <div className='offset-2 py-4'>
+            <div className='row'>
+              <div className='col-md-10'>
                 <h1>電子學（一）－陳龍英</h1>
                 <small>最後同步時間 2017-09-23 09:08</small>
-              </Col>
-              <Col md={2} className='pull-right' style={{ marginTop: 35 }}>
+              </div>
+              <div className='col-md-2 pull-right mt-5'>
                 <ShareButton />
-              </Col>
-            </Row>
+              </div>
+            </div>
 
             <hr />
 
             <CourseSection>
-              <Col md={7} sm={12}>
+              <div className='col-12 col-md-7'>
                 <Ratings
                   loading={50}
                   easiness={27}
@@ -95,15 +66,15 @@ class Show extends React.Component {
                   easiness_people={8}
                   depth_people={9}
                 />
-              </Col>
-              <Col md={5} sm={12}>
+              </div>
+              <div className='col-12 col-md-5'>
                 <PersonalRating />
-              </Col>
+              </div>
             </CourseSection>
 
             <hr />
 
-            <CourseSection title={<span><i className='fa fa-book' />課程資訊</span>}>
+            <CourseSection title={<span><i className='fa fa-book mx-2' />課程資訊</span>}>
               <CourseInfo permanent_id='DEE2320' credit={3} href='123'>
                 <CourseIntro
                   semester='106上'
@@ -123,7 +94,7 @@ class Show extends React.Component {
 
             <hr />
 
-            <CourseSection title={<span><i className='fa fa-cube' />修了這堂課的人，也修了...</span>}>
+            <CourseSection title={<span><i className='fa fa-cube mx-2' />修了這堂課的人，也修了...</span>}>
               <Link to='/courses/36771'>微分方程</Link>
               <Link to='/courses/38811'>當代世界</Link>
               <Link to='/courses/20764'>電子實驗（一）</Link>
@@ -133,13 +104,13 @@ class Show extends React.Component {
 
             <hr />
 
-            <CourseSection title={<span><i className='fa fa-gamepad' />課程攻略</span>}>
+            <CourseSection title={<span><i className='fa fa-gamepad mx-2' />課程攻略</span>}>
               <CourseTips />
             </CourseSection>
 
             <hr />
 
-            <CourseSection title={<span><i className='fa fa-align-left' />歷年統計</span>}>
+            <CourseSection title={<span><i className='fa fa-align-left mx-2' />歷年統計</span>}>
               <CourseStatistics
                 chart_data={chartData}
                 avg_score='79.00'
@@ -150,27 +121,27 @@ class Show extends React.Component {
 
             <hr />
 
-            <CourseSection title={<span><i className='fa fa-weixin' />留言板</span>}>
+            <CourseSection title={<span><i className='fa fa-weixin mx-2' />留言板</span>}>
               <div className='well' style={{ backgroundColor: '#BDBDBD' }}>
                 <p className='text-center'>
                   <strong>尚無討論</strong>
                 </p>
               </div>
-              <Row className='comment-form'>
-                <Col smOffset={1} sm={2} >
+              <div className='row comment-form'>
+                <div className='offset-1 col-2' >
                   <select className='form-control'>
                     <option value='1'>推</option>
                     <option value='2'>→</option>
                     <option value='3'>噓</option>
                   </select>
-                </Col>
-                <Col sm={6}>
-                  <input className='form-control' maxLength='32' type='text' value='' />
-                </Col>
-                <Col sm={1}>
-                  <Button bsStyle='success' className='form-control comment-submit'>確定</Button>
-                </Col>
-              </Row>
+                </div>
+                <div className='col-6' >
+                  <input className='form-control' maxLength='32' type='text' value=' mx-2' />
+                </div>
+                <div className='col-1'>
+                  <button className='btn btn-success form-control comment-submit'>確定</button>
+                </div>
+              </div>
             </CourseSection>
 
             <hr />
@@ -206,9 +177,8 @@ class Show extends React.Component {
               <PastExamTable />
               <PastExamUpload />
             </CourseSection>
-
           </div>
-        </Col>
+        </div>
       </div>
     )
   }

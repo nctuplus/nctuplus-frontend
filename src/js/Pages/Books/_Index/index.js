@@ -1,6 +1,5 @@
 
 import React from 'react'
-import { Row, Button, ButtonGroup } from 'react-bootstrap'
 import {
   SearchPanel,
   SearchPanelButtonGroup,
@@ -18,63 +17,67 @@ import { updateBooksPage, applyBooksFilters } from '../../../Redux/Actions/Books
 const Index = (props) => (
   <div className='page-wrapper books'>
     <div className='container'>
-      <SearchPanel>
-        <InputWithButton
-          placeholder='書名/作者/課名'
-          button_style='primary'
-          button_content={<i className='fa fa-search' />}
-        />
-        <SearchPanelButtonGroup
-          new_title='新增商品'
-          new_link='/books/new'
-          new_btn_type='success'
-          mine_title='我的商品'
-          mine_link='/books/?mine=true'
-          mine_btn_type='info'
-        />
-        <Row className='text-center filter' >
-          <h4 className='text-center search-panel-title'>排序</h4>
-          <ButtonGroup className='filter-group' >
-            <Button
-              onClick={() => props.apply_filters({ sort_by: 'price' })}
-              bsStyle={props.filters.sort_by === 'price' ? 'primary' : 'default'}
-            >
-              價錢
+      <div className='row'>
+        <div className='col-12 col-md-3'>
+          <SearchPanel>
+            <InputWithButton
+              placeholder='書名/作者/課名'
+              button_style='primary'
+              button_content={<i className='fa fa-search' />}
+            />
+            <SearchPanelButtonGroup
+              new_title='新增商品'
+              new_link='/books/new'
+              new_btn_type='success'
+              mine_title='我的商品'
+              mine_link='/books/?mine=true'
+              mine_btn_type='info'
+            />
+            <div className='text-center filter' >
+              <h4 className='text-center search-panel-title'>排序</h4>
+              <div className='btn-group filter-group' >
+                <button
+                  onClick={() => props.apply_filters({ sort_by: 'price' })}
+                  className={props.filters.sort_by === 'price' ? 'btn btn-primary' : 'btn btn-default'}
+                >
+                  價錢
+                  {
+                    props.filters.sort_by === 'price' &&
+                    <span onClick={() => props.apply_filters({ descend: !props.filters.descend })}>
+                      { props.filters.descend ? '▼' : '▲' }
+                    </span>
+                  }
+                </button>
+                <button
+                  onClick={() => props.apply_filters({ sort_by: 'date' })}
+                  className={props.filters.sort_by === 'date' ? 'btn btn-primary' : 'btn btn-default'}
+                >
+                  日期
+                  {
+                    props.filters.sort_by === 'date' &&
+                    <span onClick={() => props.apply_filters({ descend: !props.filters.descend })}>
+                      { props.filters.descend ? '▼' : '▲' }
+                    </span>
+                  }
+                </button>
+              </div>
+            </div>
+            <SearchPanelCollegeList />
+            <SearchPanelNewsFeed >
               {
-                props.filters.sort_by === 'price'
-                ? <span onClick={() => props.apply_filters({ descend: !props.filters.descend })}>
-                  { props.filters.descend ? '▼' : '▲' }
-                </span>
-                : ''
+                props.sold_books.map((book, index) => (
+                  <SearchPanelNews href={`/books/${book.id}`} key={index}>
+                    { book.sold_time } 售出了 { book.name }
+                  </SearchPanelNews>
+                ))
               }
-            </Button>
-            <Button
-              onClick={() => props.apply_filters({ sort_by: 'date' })}
-              bsStyle={props.filters.sort_by === 'date' ? 'primary' : 'default'}
-            >
-              日期
-              {
-                props.filters.sort_by === 'date'
-                ? <span onClick={() => props.apply_filters({ descend: !props.filters.descend })}>
-                  { props.filters.descend ? '▼' : '▲' }
-                </span>
-                : ''
-              }
-            </Button>
-          </ButtonGroup>
-        </Row>
-        <SearchPanelCollegeList />
-        <SearchPanelNewsFeed >
-          {
-            props.sold_books.map((book, index) => (
-              <SearchPanelNews href={`/books/${book.id}`} key={index}>
-                { book.sold_time } 售出了 { book.name }
-              </SearchPanelNews>
-            ))
-          }
-        </SearchPanelNewsFeed>
-      </SearchPanel>
-      <BooksTable {...props.books_table} update_page={props.update_page} />
+            </SearchPanelNewsFeed>
+          </SearchPanel>
+        </div>
+        <div className='col-12 col-md-9'>
+          <BooksTable {...props.books_table} update_page={props.update_page} />
+        </div>
+      </div>
     </div>
   </div>
 )

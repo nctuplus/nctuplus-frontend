@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { SearchCourse } from '../../../Components/Search'
-import { CoursesTable } from '../../../Components/Course'
+import { CourseTable } from '../../../Components/Course'
 import './style.scss'
 
 import { connect } from 'react-redux'
@@ -13,7 +13,7 @@ const Index = (props) => (
       <div className='search-wrapper'>
         <SearchCourse show_semester />
       </div>
-      <CoursesTable {...props.courses_table} update_page={props.update_page} />
+      <CourseTable {...props.courses_table} update_page={props.update_page} />
     </div>
   </div>
 )

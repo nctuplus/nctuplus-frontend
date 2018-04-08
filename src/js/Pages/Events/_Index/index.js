@@ -2,7 +2,6 @@
 import React from 'react'
 import Slider from 'react-slick'
 import { Link } from 'react-router-dom'
-import { Row, Col, Button } from 'react-bootstrap'
 import { InputWithButton } from '../../../Components/FormUtils'
 import { EventBlock, EventPreview, EVENT_STATUS } from '../../../Components/Event'
 import './style.scss'
@@ -72,27 +71,27 @@ class Index extends React.Component {
               }
             </Slider>
           </div>
-          <Row>
+          <div className='row'>
             <div className='form-wrapper'>
-              <Row>
-                <Col md={2} sm={3} xs={6} className='control-wrapper'>
+              <div className='row'>
+                <div className='control-wrapper col-6 col-sm-3 col-md-2'>
                   <Link to='/events/new' className='flat-link'>
-                    <Button bsStyle='info' className='block full-width'>新增活動</Button>
+                    <button className='btn btn-info full-width'>新增活動</button>
                   </Link>
-                </Col>
-                <Col md={2} sm={3} xs={6} className='control-wrapper'>
-                  <Button bsStyle='success' className='block full-width'>我的活動</Button>
-                </Col>
-                <Col md={8} sm={6} xs={12} className='control-wrapper'>
+                </div>
+                <div className='control-wrapper col-6 col-sm-3 col-md-2'>
+                  <button className='btn btn-info full-width'>我的活動</button>
+                </div>
+                <div className='control-wrapper col-12 col-sm-6 col-md-8'>
                   <InputWithButton
                     placeholder='輸入活動名稱/地點/組織'
                     button_style='primary'
                     button_content={<i className='fa fa-search' />}
                   />
-                </Col>
-              </Row>
+                </div>
+              </div>
             </div>
-          </Row>
+          </div>
           <EventBlock title='近期活動'>
             <EventPreview
               date='進行中'

@@ -1,6 +1,6 @@
 
 import React from 'react'
-import FullWidthCover from '../../Components/FullWidthCover'
+import Cover from '../../Components/Cover'
 import './style.scss'
 
 const image = [
@@ -11,7 +11,7 @@ class Login extends React.Component {
   render () {
     return (
       <div className='login'>
-        <FullWidthCover images={image} />
+        <Cover images={image} />
         <div className='login-area container'>
           <div className='text-center'>
             <h1 className='text-white'>NCTU+</h1>

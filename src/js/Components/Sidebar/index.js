@@ -1,22 +1,18 @@
 
 import React from 'react'
+import classNames from 'classnames'
 import './style.scss'
 
-class SidebarItem extends React.Component {
-  render () {
-    let className = 'flat-link' + (this.props.active ? ' active' : '')
-    return (
-      <li className='item text-center'>
-        <a className={className}>{this.props.children}</a>
-      </li>
-    )
-  }
-}
+const SidebarItem = (props) => (
+  <li className={classNames('item', 'text-center', props.active && 'active')}>
+    <a >{ props.children }</a>
+  </li>
+)
 
 class Sidebar extends React.Component {
   render () {
     return (
-      <div className='sidebar'>
+      <div className='sidebar d-none d-md-block'>
         <ul className='nav'>
           { this.props.children }
         </ul>

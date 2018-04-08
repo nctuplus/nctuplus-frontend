@@ -1,25 +1,27 @@
 
 import React from 'react'
-import { Row, Col, Button, FormGroup, FormControl, InputGroup } from 'react-bootstrap'
+import classNames from 'classnames'
 
 const InputWithButton = (props) => (
-  <InputGroup className={props.className}>
-    <FormControl placeholder={props.placeholder} type='text' />
-    <span className='input-group-btn'>
-      <Button bsStyle={props.button_style} >{ props.button_content }</Button>
+  <div className={classNames('input-group', props.className)}>
+    <input className='form-control' placeholder={props.placeholder} type='text' />
+    <span className='input-group-addon'>
+      <button className={`btn btn-${props.button_style}`} >
+        { props.button_content }
+      </button>
     </span>
-  </InputGroup>
+  </div>
 )
 
 const LabeledInput = (props) => (
-  <FormGroup>
-    <Row>
-      <label className='col-sm-2 control-label text-right'>{ props.label }</label>
-      <Col sm={10}>
+  <div className='form-group'>
+    <div className='row'>
+      <label className='col-2 text-right'>{ props.label }</label>
+      <div className='col-10'>
         {props.children}
-      </Col>
-    </Row>
-  </FormGroup>
+      </div>
+    </div>
+  </div>
 )
 
 export { LabeledInput, InputWithButton }

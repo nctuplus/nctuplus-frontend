@@ -1,6 +1,5 @@
 
 import React from 'react'
-import { Button } from 'react-bootstrap'
 import {
   EntypoExport,
   EntypoPinterest,
@@ -16,8 +15,8 @@ class ShareButton extends React.Component {
     return (
       <div>
         <div className='share-button'>
-          <Button bsStyle='primary'><EntypoExport />分享</Button>
-          <div className='hidden'>
+          <button className='btn btn-primary'><EntypoExport />分享</button>
+          <div className='d-none'>
             <EntypoPinterest />
             <EntypoFacebook />
             <EntypoGoogleplus />

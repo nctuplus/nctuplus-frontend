@@ -1,61 +1,60 @@
 
 import React from 'react'
 import { PersonalRatingBar } from '../../../Components/Ratings'
-import { Row, Col, Button } from 'react-bootstrap'
 
 class New extends React.Component {
   render () {
     return (
       <div className='discuss-detail page-wrapper'>
         <div className='container bg-white'>
-          <Row>
-            <Col md={9} mdOffset={1}>
+          <div className='row'>
+            <div className='col-9 offset-1'>
               <h1>新增文章</h1>
 
               <h4>Step1.選擇適用課程 - <span className='text-center' >/</span></h4>
-              <Row className='form-group'>
-                <label className='col-sm-2 text-right'>適用課程</label>
-                <Col md={10}>
+              <div className='form-group'>
+                <label className='col-2 text-right'>適用課程</label>
+                <div className='col-10'>
                   <div className='input-group'>
                     <input className='form-control' placeholder='搜尋課名（交大專用）' />
                     <span className='input-group-btn'>
-                      <Button>搜尋</Button>
+                      <button className='btn btn-default'>搜尋</button>
                     </span>
                   </div>
-                </Col>
-              </Row>
+                </div>
+              </div>
 
               <hr />
 
               <h4>Step2.輸入標題以及內容</h4>
-              <Row className='form-group'>
-                <label className='col-sm-2 text-right'>標題</label>
-                <Col sm={10}>
+              <div className='row form-group'>
+                <label className='col-2 text-right'>標題</label>
+                <div className='col-10'>
                   <input className='form-control' type='text' />
-                </Col>
-              </Row>
-              <Row className='form-group'>
-                <label className='col-sm-2 text-right'>內容</label>
-                <Col sm={10}>
+                </div>
+              </div>
+              <div className='row form-group'>
+                <label className='col-2 text-right'>內容</label>
+                <div className='col-10'>
                   <textarea className='form-control' rows='10' />
-                </Col>
-              </Row>
-              <Col mdOffset={2}>
+                </div>
+              </div>
+              <div className='offset-2'>
                 <PersonalRatingBar>涼度</PersonalRatingBar>
                 <PersonalRatingBar>甜度</PersonalRatingBar>
                 <PersonalRatingBar>深度</PersonalRatingBar>
-              </Col>
-              <Col md={12} className='text-right'>
+              </div>
+              <div className='col-md-12 text-right'>
                 <div className='checkbox inline-block'>
                   <label>
                     <input type='checkbox' /> 匿名
                   </label>
                 </div>
-                <Button bsStyle='success' bsSize='large'>預覽</Button>
-                <Button bsStyle='primary' bsSize='large'>送出</Button>
-              </Col>
-            </Col>
-          </Row>
+                <button className='btn btn-success btn-large'>預覽</button>
+                <button className='btn btn-primary btn-large'>送出</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     )

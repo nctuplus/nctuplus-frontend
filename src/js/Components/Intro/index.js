@@ -1,19 +1,20 @@
 
 import React from 'react'
 import { withRouter } from 'react-router-dom'
+import './style.scss'
 
 const Intro = withRouter((props) => (
-  <div className='intro block text-center'>
+  <div className='intro d-block text-center py-5'>
     <h2>{ props.title }</h2>
     { props.children }
   </div>
 ))
 
 const IntroItem = withRouter((props) => (
-  <div className='item inline-block clickable' onClick={() => props.history.push(props.to)}>
+  <div className='item d-inline-block clickable' onClick={() => props.history.push(props.to)}>
     <img src={props.image} />
-    <h3>{ props.title }</h3>
-    { props.is_new ? <h5>NCTU+新功能!</h5> : '' }
+    <h4 className='mt-3'>{ props.title }</h4>
+    { props.is_new && <span className='new-feature'>NCTU+新功能!</span> }
     <p>{ props.children }</p>
   </div>
 ))

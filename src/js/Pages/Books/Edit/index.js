@@ -1,16 +1,15 @@
 
 import React from 'react'
-import { Row, Col, Button, Glyphicon } from 'react-bootstrap'
 import { LabeledInput, InputWithButton } from '../../../Components/FormUtils'
 
 class Edit extends React.Component {
   render () {
     return (
       <div className='page-wrapper edit-book'>
-        <div className='container bg-white'>
-          <Row>
-            <Col md={6} mdOffset={3}>
-              <h2><Glyphicon glyph='tree-deciduous' />我要賣書</h2>
+        <div className='container bg-white p-5'>
+          <div className='row'>
+            <div className='col-md-8 offset-md-2'>
+              <h2><i className='fa fa-book mx-3' />我要賣書</h2>
 
               <hr />
 
@@ -18,7 +17,7 @@ class Edit extends React.Component {
                 <div className='input-group'>
                   <input className='form-control' placeholder='利用搜尋可快速填入其他資訊' type='text' />
                   <div className='input-group-btn'>
-                    <Button bsStyle='success' >搜尋</Button>
+                    <button className='btn btn-success' >搜尋</button>
                   </div>
                 </div>
               </LabeledInput>
@@ -68,16 +67,15 @@ class Edit extends React.Component {
                   />
                 </LabeledInput>
               </div>
-              <Row>
-                <Col sm={10}>
-                  <a className='hidden'>展開</a>
-                  <ul />
-                </Col>
-              </Row>
+              <div className='row'>
+                <div className='col-md-10'>
+                  <a hidden>展開</a>
+                </div>
+              </div>
               <hr />
-              <Button bsStyle='primary' className='pull-right'>立即刊登</Button>
-            </Col>
-          </Row>
+              <button className='btn btn-primary pull-right'>立即刊登</button>
+            </div>
+          </div>
         </div>
       </div>
     )

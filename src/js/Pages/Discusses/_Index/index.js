@@ -16,35 +16,41 @@ import { updateDiscussesPage } from '../../../Redux/Actions/Discusses'
 const Index = (props) => (
   <div className='page-wrapper'>
     <div className='container'>
-      <SearchPanel>
-        <InputWithButton
-          placeholder='課名/老師/標題'
-          button_style='primary'
-          button_content={<i className='fa fa-search' />}
-        />
-        <SearchPanelButtonGroup
-          new_title='新增文章'
-          new_link='/discusses/new'
-          new_btn_type='info'
-          mine_title='我的文章'
-          mine_link='/discusses/?mine=true'
-          mine_btn_type='primary'
-        />
-        <SearchPanelCollegeList />
-        <SearchPanelNewsFeed>
-          {
-            props.recent_discusses.map((value, index) => (
-              <SearchPanelNews href={`/discusses/${value.id}`} key={index}>
-                { value.date }天前 { value.user } 新增了
-                <strong>{ value.course }</strong>
-                的文章-{ value.content }
-              </SearchPanelNews>
-              )
-            )
-          }
-        </SearchPanelNewsFeed>
-      </SearchPanel>
-      <DiscussesTable {...props.discusses} update_page={props.update_page} />
+      <div className='row'>
+        <div className='col-12 col-md-3'>
+          <SearchPanel>
+            <InputWithButton
+              placeholder='課名/老師/標題'
+              button_style='primary'
+              button_content={<i className='fa fa-search' />}
+            />
+            <SearchPanelButtonGroup
+              new_title='新增文章'
+              new_link='/discusses/new'
+              new_btn_type='info'
+              mine_title='我的文章'
+              mine_link='/discusses/?mine=true'
+              mine_btn_type='primary'
+            />
+            <SearchPanelCollegeList />
+            <SearchPanelNewsFeed>
+              {
+                props.recent_discusses.map((value, index) => (
+                  <SearchPanelNews href={`/discusses/${value.id}`} key={index}>
+                    { value.date }天前 { value.user } 新增了
+                    <strong>{ value.course }</strong>
+                    的文章-{ value.content }
+                  </SearchPanelNews>
+                  )
+                )
+              }
+            </SearchPanelNewsFeed>
+          </SearchPanel>
+        </div>
+        <div className='col-12 col-md-9'>
+          <DiscussesTable {...props.discusses} update_page={props.update_page} />
+        </div>
+      </div>
     </div>
   </div>
 )

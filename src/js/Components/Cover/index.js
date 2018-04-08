@@ -2,18 +2,20 @@
 import React from 'react'
 import './style.scss'
 
-const CoverSlogan = (props) => (
-  <div className='slogan'>
-    <h2 className='text-center' dangerouslySetInnerHTML={{ __html: props.children }} />
-  </div>
-)
+class Cover extends React.Component {
+  render () {
+    return (
+      <div
+        className='cover'
+        style={{
+          background: `url("${this.props.images[0]}") no-repeat`,
+          backgroundSize: 'cover'
+        }}
+      >
+        { this.props.children }
+      </div>
+    )
+  }
+}
 
-const CoverWrapper = (props) => (
-  <div className='cover-wrapper'>
-    <div className='container'>
-      { props.children }
-    </div>
-  </div>
-)
-
-export { CoverWrapper, CoverSlogan }
+export default Cover

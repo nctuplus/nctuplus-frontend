@@ -1,13 +1,12 @@
 
 import React from 'react'
-import { Row } from 'react-bootstrap'
 import TutorialStep from '../../../Components/TutorialStep'
 import './style.scss'
 
 const Tutorial = (props) => (
   <div className='page-wrapper tutorial'>
     <div className='container'>
-      <Row>
+      <div className='row'>
         <div className='group'>模擬排課</div>
         <TutorialStep title='進入NCTU+首頁，進行登入動作'>
           NCTU+可同時挷定單一入口、Facebook、Google+帳號。
@@ -36,8 +35,8 @@ const Tutorial = (props) => (
           <img alt='6' className='img-responsive' src='https://plus.nctu.edu.tw/assets/courses-tutorial/6-58d1ac24e25d01f2758f9ba37bf9d863.png' />
           <img alt='7' className='img-responsive' src='https://plus.nctu.edu.tw/assets/courses-tutorial/7-1641f90c789f5324ec0c9fcc63d4f41e.png' />
         </TutorialStep>
-      </Row>
-      <Row>
+      </div>
+      <div className='row'>
         <TutorialStep title='正式排課'>
           <img alt='8' className='img-responsive' src='https://plus.nctu.edu.tw/assets/courses-tutorial/8-6a5e120d669b6a39a783ff53ff72a859.png' />
           <img alt='9' className='img-responsive' src='https://plus.nctu.edu.tw/assets/courses-tutorial/9-8ac1206ed28835d2109c0ec331d29602.png' />
@@ -50,7 +49,7 @@ const Tutorial = (props) => (
           選課後可以點選「確認選課狀況」→「查詢選課狀況」來查詢。
           <img alt='12' className='img-responsive' src='https://plus.nctu.edu.tw/assets/courses-tutorial/12-451701559108ac1ac3f5227fcc397508.png' />
         </TutorialStep>
-      </Row>
+      </div>
     </div>
   </div>
 )

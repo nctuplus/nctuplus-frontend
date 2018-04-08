@@ -1,6 +1,5 @@
 
 import React from 'react'
-import { Col } from 'react-bootstrap'
 import { Comment, CommentReply } from '../../../Components/Comment'
 
 class Show extends React.Component {
@@ -8,7 +7,7 @@ class Show extends React.Component {
     return (
       <div className='page-wrapper discuss-detail' >
         <div className='container'>
-          <Col md={10} mdOffset={1} className='bg-white'>
+          <div className='col-10 offset-1 bg-white'>
             <Comment
               enable_reply
               title='社會學'
@@ -28,7 +27,7 @@ class Show extends React.Component {
               老師本人上課很有趣，也很有自己的看法
               考試出題很活，分數不容易拿，上課要認真的才有機會全部都會寫
             </Comment>
-          </Col>
+          </div>
         </div>
       </div>
     )

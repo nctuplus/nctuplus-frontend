@@ -1,19 +1,19 @@
 
 import React from 'react'
-import { Row, Col, Button, FormGroup } from 'react-bootstrap'
 import { LabeledInput } from '../../../Components/FormUtils'
 import CKEditor from 'react-ckeditor-component'
+import './style.scss'
 
 class New extends React.Component {
   render () {
     return (
       <div className='page-wrapper edit-event'>
         <div className='container bg-white'>
-          <Row>
-            <Col md={9} mdOffset={1}>
-              <Col mdOffset={1} className='title'>
+          <div className='row'>
+            <div className='col-md-9 offset-1'>
+              <div className='title offset-1'>
                 新增活動
-              </Col>
+              </div>
               <LabeledInput label='圖片'>
                 <input accept='image/*' className='hidden' type='file' />
                 <div className='text-center clickable upload-picture' >
@@ -39,38 +39,38 @@ class New extends React.Component {
               <LabeledInput label='活動網址'>
                 <input className='form-control' placeholder='選填' type='text' />
               </LabeledInput>
-              <FormGroup>
-                <Row>
+              <div className='form-group'>
+                <div className='row'>
                   <label className='col-sm-2 control-label text-right'>主辦單位</label>
-                  <Col sm={4}>
+                  <div className='col-4'>
                     <input className='form-control' placeholder='選填' type='text' />
-                  </Col>
+                  </div>
                   <label className='col-sm-2 control-label text-right'>地點</label>
-                  <Col sm={4}>
+                  <div className='col-4'>
                     <input className='form-control' placeholder='選填' type='text' />
-                  </Col>
-                </Row>
-              </FormGroup>
-              <FormGroup>
-                <Row>
+                  </div>
+                </div>
+              </div>
+              <div className='form-group'>
+                <div className='row'>
                   <label className='col-sm-2 control-label text-right'>開始時間</label>
-                  <Col sm={4}>
+                  <div className='col-4'>
                     <input className='form-control' placeholder='選填' type='text' />
-                  </Col>
+                  </div>
                   <label className='col-sm-2 control-label text-right'>結束時間</label>
-                  <Col sm={4}>
+                  <div className='col-4'>
                     <input className='form-control' placeholder='選填' type='text' />
-                  </Col>
-                </Row>
-              </FormGroup>
+                  </div>
+                </div>
+              </div>
               <LabeledInput label='內容'>
                 <CKEditor activeClass='p10' />
               </LabeledInput>
-              <Col md={12} className='text-right'>
-                <Button bsSize='large' bsStyle='success'>送出</Button>
-              </Col>
-            </Col>
-          </Row>
+              <div className='col-12 text-right'>
+                <button className='btn btn-success btn-large'>送出</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     )

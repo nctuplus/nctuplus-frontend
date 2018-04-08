@@ -1,0 +1,21 @@
+.supplemental-info{
+  background: #f8f8f8;
+  border-top: 1px solid #ccc;
+  .date { color: #696969; }
+}
+.book-table-item{
+  background-color: white;
+  height: 305px;
+  min-height: 50px;
+  margin-top: 3px; 
+  padding-left: 4px; 
+  .intro{
+    max-height: 72px;
+    .title{ font-weight: bold; }
+  }
+  &:hover{
+    border-color: #66afe9;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  }
+}
+.price{ font-size: 18px; }

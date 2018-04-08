@@ -1,6 +1,5 @@
 
 import React from 'react'
-import { ButtonToolbar, Button, Glyphicon } from 'react-bootstrap'
 
 const PastExamTable = (props) => (
   <table className='table well'>
@@ -41,21 +40,21 @@ const PastExamUpload = (props) => (
           <input type='checkbox' /> 匿名上傳
         </label>
       </div>
-      <ButtonToolbar>
-        <Button bsStyle='success'>
-          <Glyphicon glyph='plus' />
+      <div className='btn-toolbar'>
+        <button className='btn btn-success'>
+          <i className='glyphicon glyphicon-plus' />
           <span>新增檔案</span>
           <input type='file' className='hidden' />
-        </Button>
-        <Button bsStyle='primary' >
-          <Glyphicon glyph='arrow-up' />
+        </button>
+        <button className='btn btn-primary' >
+          <i className='glyphicon glyphicon-arrow-up' />
           <span>開始上傳</span>
-        </Button>
-        <Button bsStyle='warning' >
-          <Glyphicon glyph='remove' />
+        </button>
+        <button className='btn btn-warning' >
+          <i className='glyphicon glyphicon-remove' />
           <span>取消上傳</span>
-        </Button>
-      </ButtonToolbar>
+        </button>
+      </div>
     </div>
   </div>
 )
