@@ -22,12 +22,10 @@ if [[ $? -ne 0 ]]; then
   exit 1
 fi
 ```
-:::info
-pre-commit hooks 會在 commit 前用 standard 這個套件修正 coding style，請確定有安裝
-:::
-:::danger
-沒有通過 linter 測試的 code 不會被 merge ˋ˙
-:::
+`
+pre-commit hooks 會在 commit 前用 standard 這個套件修正 coding style。
+沒有通過 linter 測試的 code 不會被 merge ˋˊ
+`
 ### 套件
 - npm install
 
