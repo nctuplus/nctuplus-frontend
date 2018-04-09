@@ -6,12 +6,12 @@ const Schedule = (props) => (
     <tbody>
       <tr>
         <th><i className='fa fa-bars clickable-hover' /></th>
-        <th className='col-md-2'><p className='text-center'>Mon</p></th>
-        <th className='col-md-2'><p className='text-center'>Tue</p></th>
-        <th className='col-md-2'><p className='text-center'>Wed</p></th>
-        <th className='col-md-2'><p className='text-center'>Thu</p></th>
-        <th className='col-md-2'><p className='text-center'>Fri</p></th>
-        <th className='col-md-2'><p className='text-center'>Sat</p></th>
+        <th><p className='text-center'>Mon</p></th>
+        <th><p className='text-center'>Tue</p></th>
+        <th><p className='text-center'>Wed</p></th>
+        <th><p className='text-center'>Thu</p></th>
+        <th><p className='text-center'>Fri</p></th>
+        <th><p className='text-center'>Sat</p></th>
       </tr>
       <tr>
         <td className='schedule-grid'>

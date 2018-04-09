@@ -2,7 +2,6 @@
 import React from 'react'
 import { LabeledInput } from '../../../Components/FormUtils'
 import CKEditor from 'react-ckeditor-component'
-import './style.scss'
 
 class New extends React.Component {
   render () {
@@ -15,15 +14,15 @@ class New extends React.Component {
                 新增活動
               </div>
               <LabeledInput label='圖片'>
-                <input accept='image/*' className='hidden' type='file' />
+                <input accept='image/*' type='file' hidden/>
                 <div className='text-center clickable upload-picture' >
                     點選以上傳,建議800x400以達最佳效果(需小於2MB)
                 </div>
               </LabeledInput>
               <LabeledInput label='類型/名稱'>
                 <div className='input-group'>
-                  <div className='input-group-btn'>
-                    <select className='btn' >
+                  <div className='input-group-prepend'>
+                    <select >
                       <option value=''>類型</option>
                       <option value='校友週'>校友週</option>
                       <option value='講座'>講座</option>

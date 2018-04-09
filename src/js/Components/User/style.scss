@@ -1,0 +1,10 @@
+.user-nav{
+	font-size: 16px;
+	.tab{
+		color: #333333;
+		&.active{
+			border-bottom: 3px solid #00A6FF;
+			font-weight: bold;
+		}
+	}
+}

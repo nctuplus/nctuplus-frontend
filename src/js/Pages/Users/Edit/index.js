@@ -44,10 +44,8 @@ const Edit = (props) => (
       </div>
     </div>
 
-    <div className='form-group'>
-      <div className='col-1 offset-10'>
-        <button className='btn btn-primary pull-right'>送出</button>
-      </div>
+    <div className='form-group text-center' >
+      <button className='btn btn-primary'>送出</button>
     </div>
   </div>
 )

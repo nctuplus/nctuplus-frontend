@@ -26,7 +26,7 @@ class SearchCourse extends React.Component {
           />
         </div>
         <div className='d-inline-block vertical-center'>
-          <div className='d-none d-inline-block checkbox'>
+          <div className='d-none d-inline-block mx-2'>
             <label>
               <input
                 type='checkbox'

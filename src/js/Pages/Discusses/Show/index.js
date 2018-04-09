@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { Comment, CommentReply } from '../../../Components/Comment'
+import { Comment, SubComment } from '../../../Components/Comment'
 
 class Show extends React.Component {
   render () {
@@ -15,13 +15,13 @@ class Show extends React.Component {
               user_link='https://www.facebook.com/463545620515814'
               user_image='https://graph.facebook.com/463545620515814/picture?type=large&amp;redirect=true&amp;width=140&amp;height=140'
               reply={
-                <CommentReply
+                <SubComment
                   date='2015/11/19 19:42'
                   user_link='https://www.facebook.com/923934061033151'
                   user_image='https://graph.facebook.com/923934061033151/picture?type=large&redirect=true&width=140&height=140'
                 >
                   hi~
-                </CommentReply>
+                </SubComment>
               }
             >
               老師本人上課很有趣，也很有自己的看法

@@ -4,8 +4,8 @@ import { withRouter } from 'react-router-dom'
 import './style.scss'
 
 const Intro = withRouter((props) => (
-  <div className='intro d-block text-center py-5'>
-    <h2>{ props.title }</h2>
+  <div className='intro d-block text-center bg-white'>
+    <h2 className='m-5'>{ props.title }</h2>
     { props.children }
   </div>
 ))

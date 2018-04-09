@@ -5,11 +5,11 @@ import classNames from 'classnames'
 const InputWithButton = (props) => (
   <div className={classNames('input-group', props.className)}>
     <input className='form-control' placeholder={props.placeholder} type='text' />
-    <span className='input-group-addon'>
+    <div className='input-group-append'>
       <button className={`btn btn-${props.button_style}`} >
         { props.button_content }
       </button>
-    </span>
+    </div>
   </div>
 )
 

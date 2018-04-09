@@ -1,32 +1,56 @@
 
 import React from 'react'
+import classNames from 'classnames'
 import ShareButton from '../ShareButton'
 import './style.scss'
 
-const CommentReply = (props) => (
-  <div className='row'>
-    <div className={'col-md-12 reply' + (props.decorate ? ' border-left-green' : '')}>
-      <div className='col-md-1'>
-        <a href={props.user_link}>
-          <img
-            src={props.user_image}
-            alt='Picture?type=large&amp;redirect=true&amp;width=140&amp;height=140'
-            width='45'
-          />
-        </a>
+const CommentReply = (props) => ( 
+  <div className='row justify-content-end'>
+    <div className='col-1 text-center'>
+      <img 
+        src='http://placeimg.com/45/45/any'
+        alt='Picture?type=large&amp;redirect=true&amp;width=140&amp;height=140' 
+        height='45' 
+        width='45' 
+        className='d-inline-block'
+      />
+    </div>
+    <div className='col-11'>
+      <textarea className='form-control' placeholder='內容...' rows='5' />
+    </div>
+    <div className='m-3 text-center'>
+      <div className='d-inline-block m-1' >
+        <label>
+          <input type='checkbox' /> 匿名
+        </label>
       </div>
-      <div className='col-md-8'>
-        <p>{ props.date }</p>
-        <p>{props.children}</p>
-      </div>
+      <button className='btn btn-primary m-1'>送出</button>
+    </div>
+  </div>
+)
+
+const SubComment = (props) => (
+  <div className={ classNames('row', props.decorate && 'border-left-green') }>
+    <div className='col-1'>
+      <a href={props.user_link}>
+        <img
+          src={props.user_image}
+          alt='Picture?type=large&amp;redirect=true&amp;width=140&amp;height=140'
+          width='45'
+        />
+      </a>
+    </div>
+    <div className='col-8'>
+      <p>{ props.date }</p>
+      <p>{props.children}</p>
     </div>
   </div>
 )
 
 const Comment = (props) => (
-  <div className={'panel comment' + (props.decorate ? ' border-left-cyan' : '')}>
-    <div className='row panel-heading'>
-      <div className='col-md-1 user-profile'>
+  <div className={ classNames('bg-white', props.decorate && ' border-left-cyan') }>
+    <div className='row p-4'>
+      <div className='col-md-1'>
         <a href={props.user_link} target='_blank'>
           <img alt='Picture?type=large&amp;redirect=true&amp;width=140&amp;height=140' src={props.user_image} height='50' width='50' />
         </a>
@@ -35,7 +59,7 @@ const Comment = (props) => (
         <h4>{ props.title }</h4>
         <p>{ props.date }</p>
       </div>
-      <div className='col-md-5 panel-body'>
+      <div className='col-md-5'>
         <div className='pull-right share'>
           <ShareButton />
         </div>
@@ -46,35 +70,23 @@ const Comment = (props) => (
 
     <div className='row'>
       <div className='col-md-12'>
-        <p className='block content'>
+        <p className='p-3'>
           { props.children }
         </p>
       </div>
     </div>
 
     <hr />
-
-    { props.reply }
-    {
-      typeof props.enable_reply !== 'undefined'
-      ? <div className='row'>
-        <div className='col-1'>
-          <img alt='Picture?type=large&amp;redirect=true&amp;width=140&amp;height=140' height='45' id='social-avatar' src='https://graph.facebook.com/1898906487000541/picture?type=large&amp;redirect=true&amp;width=140&amp;height=140' width='45' />
-          <img alt='Anonymous' className='d-none' height='45' src='/assets/anonymous-bfbb219640bb7de2c9cb7fc1a7f4960e.jpg' width='45' />
+    <div className='py-3 pl-5'>
+      { props.reply }
+    </div>
+    { 
+      props.enable_reply && (
+        <div className='py-3 pl-5'>
+          <CommentReply />
         </div>
-        <div className='col-10'>
-          <textarea className='form-control' placeholder='內容...' rows='5' />
-        </div>
-        <div className='col-1'>
-          <div className='checkbox d-inline-block' >
-            <label>
-              <input type='checkbox' /> 匿名
-            </label>
-          </div>
-          <button className='btn btn-primary'>送出</button>
-        </div>
-      </div> : ''
+      ) 
     }
   </div>
 )
-export { Comment, CommentReply }
+export { Comment, SubComment }

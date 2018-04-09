@@ -3,12 +3,12 @@ import React from 'react'
 import Pagination from '../Pagination'
 
 const PastExamsTableRow = (props) => (
-  <tr className='clickable' href={props.href} >
-    <td>{ `${props.course}/${props.teacher}` }</td>
-    <td>{ props.semester }</td>
-    <td>{ props.filename }</td>
-    <td className='title'>{ props.title }</td>
-    <td className='user_name'>{ props.user }</td>
+  <tr className='clickable' href={props.href}>
+    <td>{`${props.course}/${props.teacher}`}</td>
+    <td>{props.semester}</td>
+    <td>{props.filename}</td>
+    <td className='title'>{props.title}</td>
+    <td className='user_name'>{props.user}</td>
   </tr>
 )
 

@@ -22,13 +22,13 @@ class Show extends React.Component {
           <span className='event-title'>[其他] 2018交大藝趣節徵才面試報名</span>
           <div className='event-info-wrapper bg-white'>
             <div className='row'>
-              <div className='col-8'>
+              <div className='col-7'>
                 <p><i className='fa fa-calendar' /> 時間: <strong>2017-09-28 22:15 ~ 2017-10-06 23:59</strong></p>
                 <p><i className='fa fa-cubes' /> 主辦單位: 藝趣節團隊</p>
                 <p><i className='fa fa-location-arrow' /> 地點: 交通大學綜合一館</p>
                 <p><i className='fa fa-share-alt' /> 活動網址: <a href='https://goo.gl/aLgb1f' target='blank'>點這裡</a></p>
               </div>
-              <div className='col-4'>
+              <div className='col-5'>
                 <p className='info-box'><i className='fa fa-eye' /> 觀看次數: <strong>5</strong></p>
                 <p className='info-box'><i className='fa fa-sign-in' /> 參加人數: <strong>0</strong></p>
                 <p className='info-box'><i className='fa fa-rss' /> 關注人數: <strong>0</strong></p>

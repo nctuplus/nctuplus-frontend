@@ -26,12 +26,12 @@ const carouselEvents = [
 
 const CustomArrowLeft = (props) => (
   <div className='custom-arrow custom-arrow-left text-white' onClick={props.onClick}>
-    <span className='glyphicon glyphicon-chevron-left' />
+    <span className='fa fa-chevron-left' />
   </div>
 )
 const CustomArrowRight = (props) => (
   <div className='custom-arrow custom-arrow-right text-white' onClick={props.onClick}>
-    <span className='glyphicon glyphicon-chevron-right' />
+    <span className='fa fa-chevron-right' />
   </div>
 )
 
@@ -39,7 +39,7 @@ class Index extends React.Component {
   render () {
     return (
       <div className='page-wrapper event'>
-        <div className='container'>
+        <div className='container pt-3'>
           <div className='slider-wrapper'>
             <Slider
               infinite
@@ -71,25 +71,21 @@ class Index extends React.Component {
               }
             </Slider>
           </div>
-          <div className='row'>
-            <div className='form-wrapper'>
-              <div className='row'>
-                <div className='control-wrapper col-6 col-sm-3 col-md-2'>
-                  <Link to='/events/new' className='flat-link'>
-                    <button className='btn btn-info full-width'>新增活動</button>
-                  </Link>
-                </div>
-                <div className='control-wrapper col-6 col-sm-3 col-md-2'>
-                  <button className='btn btn-info full-width'>我的活動</button>
-                </div>
-                <div className='control-wrapper col-12 col-sm-6 col-md-8'>
-                  <InputWithButton
-                    placeholder='輸入活動名稱/地點/組織'
-                    button_style='primary'
-                    button_content={<i className='fa fa-search' />}
-                  />
-                </div>
-              </div>
+          <div className='row form-wrapper p-3'>
+            <div className='control-wrapper col-6 col-sm-3 col-md-2'>
+              <Link to='/events/new' className='flat-link'>
+                <button className='btn btn-info full-width'>新增活動</button>
+              </Link>
+            </div>
+            <div className='control-wrapper col-6 col-sm-3 col-md-2'>
+              <button className='btn btn-info full-width'>我的活動</button>
+            </div>
+            <div className='control-wrapper col-12 col-sm-6 col-md-8'>
+              <InputWithButton
+                placeholder='輸入活動名稱/地點/組織'
+                button_style='primary'
+                button_content={<i className='fa fa-search' />}
+              />
             </div>
           </div>
           <EventBlock title='近期活動'>

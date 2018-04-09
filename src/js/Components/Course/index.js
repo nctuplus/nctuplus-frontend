@@ -13,7 +13,7 @@ import {
 } from 'recharts'
 
 const CourseStatisticBlock = (props) => (
-  <div className='col-md-2 statistic-block text-center'>
+  <div className='col-md-2 text-center bg-white p-3 m-3 '>
     <h1><strong>{props.value}</strong></h1>
     <span>{ props.children }</span>
   </div>
@@ -116,45 +116,9 @@ class CourseTips extends React.Component {
   }
 }
 
-const CourseIntro = (props) => (
-  <tr>
-    <td>{props.semester}</td>
-    <td>{props.department}</td>
-    <td>
-      <a href={props.href} target='_blank'>{props.course_id}</a>
-    </td>
-    <td>{props.course_type}</td>
-    <td className='text-center'>{props.current_enroll}/{props.max_enroll}</td>
-    <td>{props.course_time}</td>
-    <td>{props.classroom}</td>
-    <td>{props.grade}</td>
-    <td>{props.remark}</td>
-  </tr>
-)
-
-const CourseIntroTable = (props) => (
-  <h2 className='panel-title'>
-    <table className='table'>
-      <tbody>
-        <tr>
-          <td>學期</td>
-          <td>單位</td>
-          <td>課號</td>
-          <td>選別</td>
-          <td>修課人數/上限</td>
-          <td>時間</td>
-          <td>教室</td>
-          <td>年級</td>
-          <td className='col-md-4'>備註</td>
-        </tr>
-        { props.children }
-      </tbody>
-    </table>
-  </h2>
-)
 
 const CourseInfo = (props) => (
-  <div>
+  <div className='row p-4'>
     <table className='table-invisible'>
       <tbody>
         <tr>
@@ -171,17 +135,46 @@ const CourseInfo = (props) => (
         </tr>
       </tbody>
     </table>
-    <CourseIntroTable>{props.children}</CourseIntroTable>
+    <table className='table'>
+      <thead>
+        <tr>
+          <th>學期</th>
+          <th>單位</th>
+          <th>課號</th>
+          <th>選別</th>
+          <th>修課人數/上限</th>
+          <th>時間</th>
+          <th>教室</th>
+          <th>年級</th>
+          <th>備註</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{props.semester}</td>
+          <td>{props.department}</td>
+          <td>
+            <a href={props.href} target='_blank'>{props.course_id}</a>
+          </td>
+          <td>{props.course_type}</td>
+          <td className='text-center'>{props.current_enroll}/{props.max_enroll}</td>
+          <td>{props.course_time}</td>
+          <td>{props.classroom}</td>
+          <td>{props.grade}</td>
+          <td>{props.remark}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 )
 
 const CourseForum = (props) => (
-  <div className='panel-body'>
-    <div className='well border-left-grey' >
-      <h3 className='inline-block'>
+  <div >
+    <div className='border-left-grey bg-white p-5 my-5'>
+      <h4 className='d-inline-block'>
         <i className='fa fa-comment-o' />課程心得/討論
-      </h3>
-      <h4 className='inline-block'>
+      </h4>
+      <h4 className='d-inline-block'>
         <Link to='/discuss/new'>我要發文</Link>
       </h4>
     </div>
@@ -199,10 +192,10 @@ const CoursesListItem = (props) => (
         { props.category } { props.teacher }
         <span className='pull-right'>
           <button className='btn btn-info btn-circle'>
-            <i className='glyphicon glyphicon-star' />
+            <i className='fa fa-star' />
           </button>
           <button className='btn btn-warning btn-circle'>
-            <i className='glyphicon glyphicon-minus' />
+            <i className='fa fa-minus' />
           </button>
         </span>
       </p>
@@ -239,8 +232,6 @@ const CoursesList = (props) => (
 export { CourseTable, CourseTableRow } from './CourseTable'
 
 export {
-  CourseIntroTable,
-  CourseIntro,
   CourseInfo,
   CourseTips,
   CourseStatistics,

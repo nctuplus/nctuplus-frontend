@@ -16,7 +16,7 @@ import { updateBooksPage, applyBooksFilters } from '../../../Redux/Actions/Books
 
 const Index = (props) => (
   <div className='page-wrapper books'>
-    <div className='container'>
+    <div className='container pt-3'>
       <div className='row'>
         <div className='col-12 col-md-3'>
           <SearchPanel>

@@ -5,13 +5,12 @@ import { Sidebar, SidebarItem } from '../../../Components/Sidebar'
 import ShareButton from '../../../Components/ShareButton'
 import {
   CourseInfo,
-  CourseIntro,
   CourseTips,
   CourseStatistics,
   CourseForum
 } from '../../../Components/Course'
 import { Ratings, PersonalRating } from '../../../Components/Ratings'
-import { Comment, CommentReply } from '../../../Components/Comment'
+import { Comment, SubComment } from '../../../Components/Comment'
 import { PastExamTable, PastExamUpload } from '../../../Components/PastExamUpload'
 import './style.scss'
 
@@ -22,10 +21,10 @@ const chartData = [
   {name: '105上', '胡正光': 0, 'N/A': 0, '洪意凌': 48}
 ]
 
-const CourseSection = (props) => (
-  <div className='row py-4'>
-    <h4 className='my-4'>{ props.title }</h4>
-    { props.children }
+const Section = (props) => (
+  <div className='py-4'>
+    { props.title && <h4 className='my-4'>{ props.title }</h4> }
+    <div>{ props.children }</div>
   </div>
 )
 
@@ -56,97 +55,98 @@ class Show extends React.Component {
 
             <hr />
 
-            <CourseSection>
-              <div className='col-12 col-md-7'>
-                <Ratings
-                  loading={50}
-                  easiness={27}
-                  depth={34}
-                  loading_people={7}
-                  easiness_people={8}
-                  depth_people={9}
-                />
+            <Section>
+              <div className='row'>
+                <div className='col-12 col-md-7'>
+                  <Ratings
+                    loading={50}
+                    easiness={27}
+                    depth={34}
+                    loading_people={7}
+                    easiness_people={8}
+                    depth_people={9}
+                  />
+                </div>
+                <div className='col-12 col-md-5'>
+                  <PersonalRating />
+                </div>
               </div>
-              <div className='col-12 col-md-5'>
-                <PersonalRating />
-              </div>
-            </CourseSection>
+            </Section>
 
             <hr />
 
-            <CourseSection title={<span><i className='fa fa-book mx-2' />課程資訊</span>}>
-              <CourseInfo permanent_id='DEE2320' credit={3} href='123'>
-                <CourseIntro
-                  semester='106上'
-                  department='電工系'
-                  href='https://cos.adm.nctu.edu.tw/Course/CrsOutline/show.asp?Acy=106&amp;Sem=1&amp;CrsNo=1029'
-                  course_id={1029}
-                  course_type='必修'
-                  current_enroll={179}
-                  max_enroll={200}
-                  course_time='1GH4CD'
-                  classroom='EC123'
-                  grade='2'
-                  remark='電子系及電資學士班優先,地點:合勤講堂'
-                />
-              </CourseInfo>
-            </CourseSection>
+            <Section title={<span><i className='fa fa-book mx-2' />課程資訊</span>}>
+              <CourseInfo 
+                permanent_id='DEE2320' 
+                credit={3} 
+                id='123'
+                semester='106上'
+                department='電工系'
+                href='https://cos.adm.nctu.edu.tw/Course/CrsOutline/show.asp?Acy=106&amp;Sem=1&amp;CrsNo=1029'
+                course_id={1029}
+                course_type='必修'
+                current_enroll={179}
+                max_enroll={200}
+                course_time='1GH4CD'
+                classroom='EC123'
+                grade='2'
+                remark='電子系及電資學士班優先,地點:合勤講堂'
+              />
+            </Section>
 
             <hr />
 
-            <CourseSection title={<span><i className='fa fa-cube mx-2' />修了這堂課的人，也修了...</span>}>
-              <Link to='/courses/36771'>微分方程</Link>
-              <Link to='/courses/38811'>當代世界</Link>
-              <Link to='/courses/20764'>電子實驗（一）</Link>
-              <Link to='/courses/20751'>電路學</Link>
-              <Link to='/courses/36890'>導師時間暨電子與生活</Link>
-            </CourseSection>
+            <Section title={<span><i className='fa fa-cube mx-2' />修了這堂課的人，也修了...</span>}>
+              <span className='mx-2'><Link to='/courses/36771'>微分方程</Link></span>
+              <span className='mx-2'><Link to='/courses/38811'>當代世界</Link></span>
+              <span className='mx-2'><Link to='/courses/20764'>電子實驗（一）</Link></span>
+              <span className='mx-2'><Link to='/courses/20751'>電路學</Link></span>
+              <span className='mx-2'><Link to='/courses/36890'>導師時間暨電子與生活</Link></span>
+            </Section>
 
             <hr />
 
-            <CourseSection title={<span><i className='fa fa-gamepad mx-2' />課程攻略</span>}>
+            <Section title={<span><i className='fa fa-gamepad mx-2' />課程攻略</span>}>
               <CourseTips />
-            </CourseSection>
+            </Section>
 
             <hr />
 
-            <CourseSection title={<span><i className='fa fa-align-left mx-2' />歷年統計</span>}>
+            <Section title={<span><i className='fa fa-align-left mx-2' />歷年統計</span>}>
               <CourseStatistics
                 chart_data={chartData}
                 avg_score='79.00'
                 highest_score='82.00'
                 teacher='N/A'
               />
-            </CourseSection>
+            </Section>
 
             <hr />
 
-            <CourseSection title={<span><i className='fa fa-weixin mx-2' />留言板</span>}>
-              <div className='well' style={{ backgroundColor: '#BDBDBD' }}>
+            <Section title={<span><i className='fa fa-weixin mx-2' />留言板</span>}>
+              <div className='well bg-grey p-4'>
                 <p className='text-center'>
                   <strong>尚無討論</strong>
                 </p>
               </div>
-              <div className='row comment-form'>
-                <div className='offset-1 col-2' >
+              <div className='input-group'>
+                <div>
                   <select className='form-control'>
                     <option value='1'>推</option>
                     <option value='2'>→</option>
                     <option value='3'>噓</option>
                   </select>
                 </div>
-                <div className='col-6' >
-                  <input className='form-control' maxLength='32' type='text' value=' mx-2' />
-                </div>
-                <div className='col-1'>
-                  <button className='btn btn-success form-control comment-submit'>確定</button>
+                <input className='form-control' maxLength='32' type='text' />
+                <div className="input-group-append">
+                  <button className="btn btn-outline-success" type="button">確定</button>
                 </div>
               </div>
-            </CourseSection>
+            </Section>
 
             <hr />
 
-            <CourseSection>
+            <Section>
               <CourseForum>
                 <Comment
                   title='社會學'
@@ -156,7 +156,7 @@ class Show extends React.Component {
                   decorate
                   reply={
                     new Array(3).fill(0).map((v, idx) =>
-                      <CommentReply
+                      <SubComment
                         date='2015/11/19 19:42'
                         user_link='https://www.facebook.com/923934061033151'
                         user_image='https://graph.facebook.com/923934061033151/picture?type=large&redirect=true&width=140&height=140'
@@ -164,19 +164,19 @@ class Show extends React.Component {
                         key={idx}
                       >
                         hi~
-                      </CommentReply>
+                      </SubComment>
                     )
                   }
                 >
                   {'老師本人上課很有趣，也很有自己的看法\n考試出題很活，分數不容易拿，上課要認真的才有機會全部都會寫'}
                 </Comment>
               </CourseForum>
-            </CourseSection>
+            </Section>
 
-            <CourseSection title='考古題區'>
+            <Section title='考古題區'>
               <PastExamTable />
               <PastExamUpload />
-            </CourseSection>
+            </Section>
           </div>
         </div>
       </div>

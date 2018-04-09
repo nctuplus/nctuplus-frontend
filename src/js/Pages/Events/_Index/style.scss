@@ -5,41 +5,10 @@
 
 .event{
 	.slider-wrapper{ margin: 10px; }
-	.form-wrapper{
-		padding: 20px;
-		background-color: rgba(100, 100, 100, 0.7);
-	}
+	.form-wrapper{ background-color: rgba(100, 100, 100, 0.7); }
 	h3 {
 		position: relative;
 		bottom: 100px;
-	}
-}
-.event-block{
-	margin-bottom: 20px;
-	padding-bottom: 20px;
-	background-image: url('https://plus.nctu.edu.tw/assets/events/bg_symphony-d25b030449a0be7f00703cf16a587f72.png');
-	.wrapper{ padding: 10px; }
-	.event-preview{
-		padding: 10px;
-		.date{
-			color: grey;
-			font-size: 16px;
-		}
-		.title{
-			font-size: 18px;
-			padding-bottom: 30px;
-			border-bottom: 1px solid #CCC;
-		}
-		.info{
-			color: #555;
-			margin-top: 5px;
-	
-			.info-item{
-				line-height: 2.0;
-				padding-left: 2.5em;
-		    text-indent: -2.1em;
-		  }
-		}
 	}
 }
 

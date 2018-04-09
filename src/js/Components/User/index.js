@@ -1,21 +1,23 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
+import classNames from 'classnames'
+import './style.scss'
 
 const checkMatch = (url, match) =>
-  'tab flat-link inline-block' + (url === match ? ' active' : '')
+  classNames('tab', ' p-2', 'flat-link', 'd-inline-block', url === match && ' active')
 
 const UserNavigation = (props) => (
-  <div>
-    <div className='user-nav bg-white'>
+  <div className='m-2'>
+    <div className='user-nav bg-white pl-3'>
       <Link className={checkMatch(props.match.params.url, 'profile')} to='/user/profile'>
-        <i className='glyphicon glyphicon-user' />個人檔案
+        <i className='fa fa-user mx-1' />個人檔案
       </Link>
       <Link className={checkMatch(props.match.params.url, 'courses')} to='/user/courses'>
-        <i className='glyphicon glyphicon-time' />歷年課程
+        <i className='fa fa-calendar mx-1' />歷年課程
       </Link>
       <Link className={checkMatch(props.match.params.url, 'collections')} to='/user/collections'>
-        <i className='glyphicon glyphicon-heart' />收藏課表
+        <i className='fa fa-heart mx-1' />收藏課表
       </Link>
     </div>
   </div>

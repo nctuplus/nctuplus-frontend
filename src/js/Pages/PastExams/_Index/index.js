@@ -14,7 +14,7 @@ class Index extends React.Component {
   render () {
     return (
       <div className='page-wrapper'>
-        <div className='container'>
+        <div className='container pt-3'>
           <div className='row'>
             <div className='col-12 col-md-3'>
               <SearchPanel>
