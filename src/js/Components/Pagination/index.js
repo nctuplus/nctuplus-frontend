@@ -20,12 +20,12 @@ const Pagination = ({ page, maxPage, to }) => (
     { /* if page > 1: display omit button ('...' button) */}
     { page > 3 && <PageItemLink disabled>...</PageItemLink> }
     { /* display [page -2, page + 2] buttons */}
-    
+
     { page > 2 && <PageItemLink onClick={() => to(page - 2)}>{ page - 2 }</PageItemLink>}
     { page > 1 && <PageItemLink onClick={() => to(page - 1)}>{ page - 1 }</PageItemLink> }
 
     <PageItemLink active>{ page }</PageItemLink>
-    
+
     { page < maxPage && <PageItemLink onClick={() => to(page + 1)}>{ page + 1 }</PageItemLink> }
     { page < maxPage - 1 && <PageItemLink onClick={() => to(page + 2)}>{ page + 2 }</PageItemLink> }
 
