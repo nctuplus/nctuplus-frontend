@@ -14,7 +14,7 @@ const DiscussesTableRow = (props) => (
 
 const DiscussesTable = (props) => (
   <div>
-    <table className='table table-hover bg-white'>
+    <table className='table table-sm table-hover bg-white'>
       <thead>
         <tr className='clickable'>
           <th>課程</th>

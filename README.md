@@ -35,9 +35,3 @@ pre-commit hooks 會在 commit 前用 standard 這個套件修正 coding style�
 - npm run dev
 - 打開瀏覽器到 [http://localhost:8080](http://localhost:8080)
 
-### fake json api server
-#### 產生假資料
-- npm run seed
-#### 執行 server
-- npm run api-server
-- 打開瀏覽器到 [http://localhost:9487](http://localhost:9487)

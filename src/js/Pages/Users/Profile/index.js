@@ -7,7 +7,7 @@ const UserCard = (props) => (
   <div className='card'>
     <div className='text-center pt-3'>
       <img className='circle' width='128' height='128' src='https://graph.facebook.com/1898906487000541/picture?type=large&amp;redirect=true&amp;width=140&amp;height=140' />
-      <h4 class='mt-3'>學號:0416304</h4>
+      <h4 className='mt-3'>學號:0416304</h4>
     </div>
     <div className='card-body mx-auto'>
       系級：資工系(資工組) 108 級 <br />

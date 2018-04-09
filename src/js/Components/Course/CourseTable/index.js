@@ -26,7 +26,7 @@ const CourseTableRow = withRouter((props) => (
 
 const CourseTable = (props) => (
   <div>
-    <table className='table table-hover bg-white'>
+    <table className='table table-sm table-hover bg-white'>
       <thead>
         <tr>
           <th className='c'>學期</th>
