@@ -3,9 +3,9 @@ import React from 'react'
 import classNames from 'classnames'
 
 const PageItemLink = ({ onClick, children, active, disabled }) => (
-  <li 
-    className={ classNames('page-item', active && 'active', disabled && 'disabled') } 
-    onClick={ onClick }
+  <li
+    className={classNames('page-item', active && 'active', disabled && 'disabled')}
+    onClick={onClick}
   >
     <a className='page-link'>{ children }</a>
   </li>
@@ -15,7 +15,7 @@ const Pagination = ({ page, maxPage, to }) => (
 
   <ul className='pagination justify-content-center'>
     { /* if page > 1: display 'First' and 'Prev' button */}
-    { 
+    {
       page > 1 && <PageItemLink onClick={() => to(1)} >First</PageItemLink> }
     { page > 1 && <PageItemLink onClick={() => to(page - 1)}>Prev</PageItemLink> }
 

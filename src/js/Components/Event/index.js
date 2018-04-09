@@ -11,12 +11,12 @@ const EVENT_STATUS = {
 const EventPreview = (props) => (
   <div className='col-12 col-sm-6 col-md-3 mb-3'>
     <div className='card bg-white'>
-      
+
       <img alt='poster' className='card-img-top clickable' src={props.poster} />
 
       <div className='card-text p-2'>
         <div className='pull-right'>
-          <span className={ classNames('bold', 'date', props.status === EVENT_STATUS.IN_PROGRESS && ' text-red') }>
+          <span className={classNames('bold', 'date', props.status === EVENT_STATUS.IN_PROGRESS && ' text-red')}>
             { props.date }
           </span>
         </div>

@@ -12,7 +12,7 @@ class PageNotFound extends React.Component {
           </span>
           <br />
           <span style={{ fontSize: 32 }}>
-            找不到這個頁面喔！<br/>
+            找不到這個頁面喔！<br />
             <Link to='/'>點此</Link>回到首頁
           </span>
 

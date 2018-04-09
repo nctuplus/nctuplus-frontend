@@ -116,7 +116,6 @@ class CourseTips extends React.Component {
   }
 }
 
-
 const CourseInfo = (props) => (
   <div className='row p-4'>
     <table className='table-invisible'>

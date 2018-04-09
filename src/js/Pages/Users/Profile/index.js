@@ -3,10 +3,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Schedule from '../../../Components/Schedule'
 
-const UserCard = (props) => ( 
+const UserCard = (props) => (
   <div className='card'>
     <div className='text-center pt-3'>
-      <img className='circle' width='128' height='128' src='https://graph.facebook.com/1898906487000541/picture?type=large&amp;redirect=true&amp;width=140&amp;height=140'/>
+      <img className='circle' width='128' height='128' src='https://graph.facebook.com/1898906487000541/picture?type=large&amp;redirect=true&amp;width=140&amp;height=140' />
       <h4 class='mt-3'>學號:0416304</h4>
     </div>
     <div className='card-body mx-auto'>
@@ -43,7 +43,7 @@ const UserCard = (props) => (
 )
 
 const UserAnalysis = (props) => (
- <div className='row bg-white'>
+  <div className='row bg-white'>
     <div className='col-4 p-1 text-center'>
       歷年平均分數
       <h4 className='bold'>81.8</h4>
@@ -195,7 +195,7 @@ const UserCreditTable = (props) => (
 const Profile = (props) => (
   <div className='row mt-2'>
     <div className='col-12 col-lg-6'>
-      
+
       <div className='m-0 m-md-2'>
         <UserCard />
       </div>

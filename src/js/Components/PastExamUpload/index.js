@@ -42,16 +42,16 @@ const PastExamUpload = (props) => (
           </label>
         </div>
         <div className='btn-toolbar'>
-          <button className={ classNames('btn', 'btn-sm', 'btn-success', props.disabled && 'disabled') }>
+          <button className={classNames('btn', 'btn-sm', 'btn-success', props.disabled && 'disabled')}>
             <i className='fa fa-plus mx-1' />
             <span>新增檔案</span>
             <input type='file' hidden />
           </button>
-          <button className={ classNames('btn', 'btn-sm', 'btn-primary', props.disabled && 'disabled') }>
+          <button className={classNames('btn', 'btn-sm', 'btn-primary', props.disabled && 'disabled')}>
             <i className='fa fa-arrow-up mx-1' />
             <span>開始上傳</span>
           </button>
-          <button className={ classNames('btn', 'btn-sm', 'btn-warning', 'text-white', props.disabled && 'disabled') }>
+          <button className={classNames('btn', 'btn-sm', 'btn-warning', 'text-white', props.disabled && 'disabled')}>
             <i className='fa fa-remove mx-1' />
             <span>取消上傳</span>
           </button>

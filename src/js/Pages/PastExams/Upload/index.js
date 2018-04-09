@@ -21,7 +21,7 @@ class Upload extends React.Component {
           <h5>Step2.上傳檔案及填寫說明</h5>
           <PastExamTable />
           <hr />
-          <PastExamUpload disabled/>
+          <PastExamUpload disabled />
         </div>
       </div>
     )

@@ -4,14 +4,14 @@ import classNames from 'classnames'
 import ShareButton from '../ShareButton'
 import './style.scss'
 
-const CommentReply = (props) => ( 
+const CommentReply = (props) => (
   <div className='row justify-content-end'>
     <div className='col-1 text-center'>
-      <img 
+      <img
         src='http://placeimg.com/45/45/any'
-        alt='Picture?type=large&amp;redirect=true&amp;width=140&amp;height=140' 
-        height='45' 
-        width='45' 
+        alt='Picture?type=large&amp;redirect=true&amp;width=140&amp;height=140'
+        height='45'
+        width='45'
         className='d-inline-block'
       />
     </div>
@@ -30,7 +30,7 @@ const CommentReply = (props) => (
 )
 
 const SubComment = (props) => (
-  <div className={ classNames('row', props.decorate && 'border-left-green') }>
+  <div className={classNames('row', props.decorate && 'border-left-green')}>
     <div className='col-1'>
       <a href={props.user_link}>
         <img
@@ -48,7 +48,7 @@ const SubComment = (props) => (
 )
 
 const Comment = (props) => (
-  <div className={ classNames('bg-white', props.decorate && ' border-left-cyan') }>
+  <div className={classNames('bg-white', props.decorate && ' border-left-cyan')}>
     <div className='row p-4'>
       <div className='col-md-1'>
         <a href={props.user_link} target='_blank'>
@@ -80,12 +80,12 @@ const Comment = (props) => (
     <div className='py-3 pl-5'>
       { props.reply }
     </div>
-    { 
+    {
       props.enable_reply && (
         <div className='py-3 pl-5'>
           <CommentReply />
         </div>
-      ) 
+      )
     }
   </div>
 )

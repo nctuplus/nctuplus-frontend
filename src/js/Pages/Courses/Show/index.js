@@ -76,9 +76,9 @@ class Show extends React.Component {
             <hr />
 
             <Section title={<span><i className='fa fa-book mx-2' />課程資訊</span>}>
-              <CourseInfo 
-                permanent_id='DEE2320' 
-                credit={3} 
+              <CourseInfo
+                permanent_id='DEE2320'
+                credit={3}
                 id='123'
                 semester='106上'
                 department='電工系'
@@ -138,8 +138,8 @@ class Show extends React.Component {
                   </select>
                 </div>
                 <input className='form-control' maxLength='32' type='text' />
-                <div className="input-group-append">
-                  <button className="btn btn-outline-success" type="button">確定</button>
+                <div className='input-group-append'>
+                  <button className='btn btn-outline-success' type='button'>確定</button>
                 </div>
               </div>
             </Section>
