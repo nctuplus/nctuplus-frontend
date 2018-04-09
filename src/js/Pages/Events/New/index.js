@@ -14,7 +14,7 @@ class New extends React.Component {
                 新增活動
               </div>
               <LabeledInput label='圖片'>
-                <input accept='image/*' type='file' hidden/>
+                <input accept='image/*' type='file' hidden />
                 <div className='text-center clickable upload-picture' >
                     點選以上傳,建議800x400以達最佳效果(需小於2MB)
                 </div>
