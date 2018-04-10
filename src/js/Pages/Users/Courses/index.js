@@ -46,10 +46,10 @@ const CoursesYearlyStatistic = (props) => (
 const Courses = (props) => (
   <div className='bg-white'>
     <div className='row no-margin' >
-      { 
+      {
         props.yearlyStatistics &&
         props.yearlyStatistics.map((data, index) => (
-          <CoursesYearlyStatistic {...data} key={index}/>
+          <CoursesYearlyStatistic {...data} key={index} />
         ))
       }
     </div>

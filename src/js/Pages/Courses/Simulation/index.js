@@ -2,7 +2,7 @@
 import React from 'react'
 import { SearchCourse } from '../../../Components/Search'
 import { CoursesList, CoursesListItem } from '../../../Components/Course'
-import Schedule from '../../../Components/Schedule'
+import Timetable from '../../../Components/Timetable'
 import './style.scss'
 
 const requiredCourses = [
@@ -103,7 +103,7 @@ class Simulation extends React.Component {
                     </div>
                   </h4>
                 </div>
-                <Schedule />
+                <Timetable />
               </div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { PastExamTable, PastExamUpload } from '../../../Components/PastExamUpload'
+import { PastExamUploadTable, PastExamUpload } from '../../../Components/PastExamUpload'
 
 class Upload extends React.Component {
   render () {
@@ -19,7 +19,7 @@ class Upload extends React.Component {
           </div>
           <hr />
           <h5>Step2.上傳檔案及填寫說明</h5>
-          <PastExamTable />
+          <PastExamUploadTable />
           <hr />
           <PastExamUpload disabled />
         </div>

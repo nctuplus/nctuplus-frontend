@@ -2,7 +2,7 @@
 import React from 'react'
 import classNames from 'classnames'
 
-const PastExamTable = (props) => (
+const PastExamUploadTable = (props) => (
   <table className='table table-light'>
     <thead>
       <tr className='table-light'>
@@ -17,7 +17,7 @@ const PastExamTable = (props) => (
       </tr>
     </thead>
     <tbody className='files' >
-      { props.children || <tr ><td colspan='8' className='text-center'>尚無檔案!</td></tr> }
+      { props.children || <tr ><td colSpan='8' className='text-center'>尚無檔案!</td></tr> }
     </tbody>
   </table>
 )
@@ -62,4 +62,4 @@ const PastExamUpload = (props) => (
   </div>
 )
 
-export { PastExamTable, PastExamUpload }
+export { PastExamUploadTable, PastExamUpload }

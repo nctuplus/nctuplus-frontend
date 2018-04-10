@@ -11,7 +11,7 @@ import {
 } from '../../../Components/Course'
 import { Ratings, PersonalRating } from '../../../Components/Ratings'
 import { Comment, SubComment } from '../../../Components/Comment'
-import { PastExamTable, PastExamUpload } from '../../../Components/PastExamUpload'
+import { PastExamUploadTable, PastExamUpload } from '../../../Components/PastExamUpload'
 import './style.scss'
 
 const chartData = [
@@ -174,7 +174,7 @@ class Show extends React.Component {
             </Section>
 
             <Section title='考古題區'>
-              <PastExamTable />
+              <PastExamUploadTable />
               <PastExamUpload />
             </Section>
           </div>
