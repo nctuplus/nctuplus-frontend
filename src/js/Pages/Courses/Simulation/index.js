@@ -44,15 +44,17 @@ class Simulation extends React.Component {
                   </h4>
                 </div>
                 <div className='card-body'>
-                  <div className='row courses-list-utils'>
+                  <div className='row p-3'>
                     <div md={4} className='text-center no-padding'>
-                      <div>
-                        <button className='d-inline-block'><i className='fa fa-book' /></button>
-                        <button className='d-inline-block'><i className='fa fa-calendar' /></button>
-                        <button className='d-inline-block'><i className='fa fa-graduation-cap' /></button>
+                      <div className='btn-toolbar'>
+                        <div className='btn-group'>
+                          <button className='btn btn-secondary'><i className='fa fa-book' /></button>
+                          <button className='btn btn-secondary'><i className='fa fa-calendar' /></button>
+                          <button className='btn btn-secondary'><i className='fa fa-graduation-cap' /></button>
+                        </div>
                       </div>
                     </div>
-                    <div md={8} className='text-left no-padding'>
+                    <div md={8} className='text-left mx-2'>
                       <SearchCourse />
                     </div>
                   </div>

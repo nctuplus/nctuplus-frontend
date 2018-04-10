@@ -38,25 +38,25 @@ const Index = (props) => (
               <div className='btn-group filter-group' >
                 <button
                   onClick={() => props.apply_filters({ sort_by: 'price' })}
-                  className={props.filters.sort_by === 'price' ? 'btn btn-primary' : 'btn btn-default'}
+                  className={props.books.filters.sort_by === 'price' ? 'btn btn-primary' : 'btn btn-default'}
                 >
                   價錢
                   {
-                    props.filters.sort_by === 'price' &&
-                    <span onClick={() => props.apply_filters({ descend: !props.filters.descend })}>
-                      { props.filters.descend ? '▼' : '▲' }
+                    props.books.filters.sort_by === 'price' &&
+                    <span onClick={() => props.apply_filters({ descend: !props.books.filters.descend })}>
+                      { props.books.filters.descend ? '▼' : '▲' }
                     </span>
                   }
                 </button>
                 <button
                   onClick={() => props.apply_filters({ sort_by: 'date' })}
-                  className={props.filters.sort_by === 'date' ? 'btn btn-primary' : 'btn btn-default'}
+                  className={props.books.filters.sort_by === 'date' ? 'btn btn-primary' : 'btn btn-default'}
                 >
                   日期
                   {
-                    props.filters.sort_by === 'date' &&
-                    <span onClick={() => props.apply_filters({ descend: !props.filters.descend })}>
-                      { props.filters.descend ? '▼' : '▲' }
+                    props.books.filters.sort_by === 'date' &&
+                    <span onClick={() => props.apply_filters({ descend: !props.books.filters.descend })}>
+                      { props.books.filters.descend ? '▼' : '▲' }
                     </span>
                   }
                 </button>
@@ -65,17 +65,23 @@ const Index = (props) => (
             <SearchPanelCollegeList />
             <SearchPanelNewsFeed >
               {
-                props.sold_books.map((book, index) => (
+                props.books.data.length
+                ? props.books.data.map((book, index) => (
                   <SearchPanelNews href={`/books/${book.id}`} key={index}>
-                    { book.sold_time } 售出了 { book.name }
+                    {
+                      /* get diff of date */
+                      Math.ceil((Date.now() - Date.parse(book.update_time)) / 864000000)
+                    }
+                    售出了 { book.name }
                   </SearchPanelNews>
                 ))
+                : <SearchPanelNews href='/books'>沒有書QQ</SearchPanelNews>
               }
             </SearchPanelNewsFeed>
           </SearchPanel>
         </div>
         <div className='col-12 col-md-9'>
-          <BooksTable {...props.books_table} update_page={props.update_page} />
+          <BooksTable {...props.books} update_page={props.update_page} />
         </div>
       </div>
     </div>
@@ -83,14 +89,7 @@ const Index = (props) => (
 )
 
 const mapStateToProps = (state) => ({
-  filters: state.books.filters,
-  status: state.books.status,
-  sold_books: state.books.data.sold_books,
-  books_table: {
-    page: state.books.page,
-    max_page: state.books.max_page,
-    books: state.books.data.books
-  }
+  books: state.books
 })
 const mapDispatchToProps = (dispatch) => ({
   apply_filters: (filters) => dispatch(applyBooksFilters(filters)),

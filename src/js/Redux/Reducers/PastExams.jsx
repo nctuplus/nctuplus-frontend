@@ -3,13 +3,13 @@ import { handleActions } from 'redux-actions'
 import { FETCHING_STATUS } from '../../constants'
 
 const initialState = {
-  data: null,
+  data: [],
   status: FETCHING_STATUS.IDLE,
   filter: {},
   page: 1,
-  maxPage: 1024
+  maxPage: 1
 }
 
-export const PastExamReducer = handleActions({
-  UPDATE_PAGE: (state, action) => ({ ...state, page: action.payload })
+export default handleActions({
+  UPDATE_PAST_EXAM_PAGE: (state, action) => ({ ...state, page: action.payload })
 }, initialState)

@@ -35,14 +35,20 @@ const Index = (props) => (
             <SearchPanelCollegeList />
             <SearchPanelNewsFeed>
               {
-                props.recent_discusses.map((value, index) => (
-                  <SearchPanelNews href={`/discusses/${value.id}`} key={index}>
-                    { value.date }天前 { value.user } 新增了
-                    <strong>{ value.course }</strong>
-                    的文章-{ value.content }
+                props.discusses.data.length
+                ? props.discusses.data.map((discuss, index) => (
+                  <SearchPanelNews href={`/discusses/${discuss.id}`} key={index}>
+                    {
+                      /* get diff of date */
+                      Math.ceil((Date.now() - Date.parse(discuss.update_time)) / 864000000)
+                    }
+                    天前 { discuss.user } 新增了
+                    <strong>{ discuss.course }</strong>
+                    的文章-{ discuss.title }
                   </SearchPanelNews>
                   )
                 )
+                : <SearchPanelNews href='/discusses'>沒有心得QQ</SearchPanelNews>
               }
             </SearchPanelNewsFeed>
           </SearchPanel>
@@ -56,9 +62,7 @@ const Index = (props) => (
 )
 
 const mapStateToProps = (state) => ({
-  status: state.discusses.status,
-  recent_discusses: state.discusses.recent_discusses,
-  discusses: state.discusses.discusses
+  discusses: state.discusses
 })
 const mapDispatchToProps = (dispatch) => ({
   update_page: (page) => dispatch(updateDiscussesPage(page))

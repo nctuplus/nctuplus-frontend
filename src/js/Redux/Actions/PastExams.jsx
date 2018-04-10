@@ -1,4 +1,4 @@
 
 import { createAction } from 'redux-actions'
 
-export const updatePage = createAction('UPDATE_PAGE')
+export const updatePastExamsPage = createAction('UPDATE_PAST_EXAMS_PAGE')
