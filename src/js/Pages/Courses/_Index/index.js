@@ -5,24 +5,28 @@ import { CourseTable } from '../../../Components/Course'
 import './style.scss'
 
 import { connect } from 'react-redux'
-import { updateCoursesPage } from '../../../Redux/Actions/Courses'
+import { updateCoursesPage, fetchCourses } from '../../../Redux/Actions/Courses'
 
-const Index = (props) => (
-  <div className='course page-wrapper'>
-    <div className='container'>
-      <div className='search-wrapper'>
-        <SearchCourse show_semester />
+const Index = (props) => {
+  props.courses.status || props.fetch_data()
+  return (
+    <div className='course page-wrapper'>
+      <div className='container'>
+        <div className='search-wrapper'>
+          <SearchCourse show_semester />
+        </div>
+        <CourseTable {...props.courses} update_page={props.update_page} />
       </div>
-      <CourseTable {...props.courses_table} update_page={props.update_page} />
     </div>
-  </div>
-)
+  )
+}
 
 const mapStateToProps = (state) => ({
-  courses_table: state.courses
+  courses: state.courses
 })
 
 const mapDispatchToProps = (dispatch) => ({
+  fetch_data: () => dispatch(fetchCourses()),
   update_page: (page) => dispatch(updateCoursesPage(page))
 })
 

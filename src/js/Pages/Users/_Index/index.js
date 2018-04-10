@@ -4,7 +4,7 @@ import './style.scss'
 
 const _Index = (props) => (
   <div className='page-wrapper user'>
-    <div className='container'>
+    <div className='container pt-3'>
       { props.children }
     </div>
   </div>

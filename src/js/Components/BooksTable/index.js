@@ -19,7 +19,7 @@ const BooksTableItem = withRouter((props) => {
         </div>
 
         <div className='card-footer mt-1 p-2' >
-          <span>{props.update_date}</span>
+          <span>{props.updated_at}</span>
           <span className='pull-right bold price'>
             <i className='fa fa-dollar' />{ props.price }
           </span>

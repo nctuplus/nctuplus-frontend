@@ -7,7 +7,7 @@ import BulletinBoard from '../../Components/Bulletin'
 import './style.scss'
 
 import { connect } from 'react-redux'
-import { asyncFetchBulletins } from '../../Redux/Asyncs/Bulletins'
+import { fetchBulletins } from '../../Redux/Actions/Bulletins'
 
 const CoverImageUrls = [
   'https://plus.nctu.edu.tw/backgrounds/%E8%95%AD%E7%AB%8B%E5%93%81-1.jpg',
@@ -19,7 +19,7 @@ const CoverImageUrls = [
 class Index extends React.Component {
   constructor (props) {
     super(props)
-    props.fetch_data()
+    props.fetching_status || props.fetch_data()
   }
   render () {
     return (
@@ -91,7 +91,7 @@ const mapStateToProps = (state) => ({
   fetching_status: state.bulletins.status
 })
 const mapDispatchToProps = (dispatch) => ({
-  fetch_data: () => dispatch(asyncFetchBulletins())
+  fetch_data: () => dispatch(fetchBulletins())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index)

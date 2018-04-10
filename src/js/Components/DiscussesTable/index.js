@@ -6,9 +6,9 @@ const DiscussesTableRow = (props) => (
   <tr id={props.id} className='clickable'>
     <td className='ct_name'>{ `${props.course}/${props.teacher}` }</td>
     <td className='title'>{props.title}</td>
-    <td className='user_name d-none d-table-cell'>{props.user}</td>
-    <td className='user_id d-none d-table-cell'>{props.user_id}</td>
-    <td className='d-none d-table-cell'>{props.update_time}</td>
+    <td className='user_name d-none d-table-cell'>{props.user.name}</td>
+    <td className='user_id d-none d-table-cell'>{props.user.id}</td>
+    <td className='d-none d-table-cell'>{props.updated_at}</td>
   </tr>
 )
 

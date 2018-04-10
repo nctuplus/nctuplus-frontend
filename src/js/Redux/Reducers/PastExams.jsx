@@ -11,5 +11,8 @@ const initialState = {
 }
 
 export default handleActions({
-  UPDATE_PAST_EXAM_PAGE: (state, action) => ({ ...state, page: action.payload })
+  FETCH_PAST_EXAMS_START: (state) => ({ ...state, status: FETCHING_STATUS.FETCHING }),
+  FETCH_PAST_EXAMS_DONE: (state) => ({ ...state, status: FETCHING_STATUS.DONE }),
+  UPDATE_PAST_EXAMS_PAGE: (state, action) => ({ ...state, page: action.payload }),
+  UPDATE_PAST_EXAMS: (state, action) => ({ ...state, data: action.payload })
 }, initialState)

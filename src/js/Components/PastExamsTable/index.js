@@ -8,7 +8,7 @@ const PastExamsTableRow = (props) => (
     <td>{props.semester}</td>
     <td>{props.file_name}</td>
     <td className='title'>{props.title}</td>
-    <td className='user_name'>{props.user}</td>
+    <td className='user_name'>{props.user.name}</td>
   </tr>
 )
 

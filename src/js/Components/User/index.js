@@ -5,7 +5,7 @@ import classNames from 'classnames'
 import './style.scss'
 
 const checkMatch = (url, match) =>
-  classNames('tab', ' p-2', 'flat-link', 'd-inline-block', url === match && ' active')
+  classNames('tab', 'p-2', 'flat-link', 'd-inline-block', url === match && ' active')
 
 const UserNavigation = (props) => (
   <div className='m-2'>
@@ -17,7 +17,7 @@ const UserNavigation = (props) => (
         <i className='fa fa-calendar mx-1' />歷年課程
       </Link>
       <Link className={checkMatch(props.match.params.url, 'collections')} to='/user/collections'>
-        <i className='fa fa-heart mx-1' />收藏課表
+        <i className='fa fa-heart mx-2' />收藏課表
       </Link>
     </div>
   </div>

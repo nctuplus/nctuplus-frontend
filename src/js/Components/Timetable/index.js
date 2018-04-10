@@ -1,7 +1,7 @@
 
 import React from 'react'
 
-const Schedule = (props) => (
+const Timetable = (props) => (
   <table className='table table-bordered'>
     <tbody>
       <tr>
@@ -181,4 +181,4 @@ const Schedule = (props) => (
   </table>
 )
 
-export default Schedule
+export default Timetable

@@ -14,9 +14,10 @@ const initialState = {
 }
 
 export default handleActions({
-  FETCH_BOOKS: (state) => ({ ...state, status: FETCHING_STATUS.FETCHING }),
+  FETCH_BOOKS_START: (state) => ({ ...state, status: FETCHING_STATUS.FETCHING }),
   FETCH_BOOKS_DONE: (state) => ({ ...state, status: FETCHING_STATUS.DONE }),
   UPDATE_BOOKS_PAGE: (state, action) => ({ ...state, page: action.payload }),
+  UPDATE_BOOKS: (state, action) => ({ ...state, data: action.payload }),
   APPLY_BOOKS_FILTERS: (state, action) => ({ ...state, filters: { ...state.filters, ...action.payload } }),
   CLEAR_BOOKS_FILTERS: (state) => ({ ...state, filters: initialState.filters })
 }, initialState)

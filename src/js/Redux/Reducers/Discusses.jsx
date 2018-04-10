@@ -10,8 +10,9 @@ const initialState = {
 }
 
 export default handleActions({
-  FETCH_DISCUSSES: (state) => ({ ...state, status: FETCHING_STATUS.FETCHING }),
+  FETCH_DISCUSSES_START: (state) => ({ ...state, status: FETCHING_STATUS.FETCHING }),
   FETCH_DISCUSSES_DONE: (state) => ({ ...state, status: FETCHING_STATUS.DONE }),
-  UPDATE_DISCUSSES_PAGE: (state, action) => ({ ...state, page: action.payload })
+  UPDATE_DISCUSSES_PAGE: (state, action) => ({ ...state, page: action.payload }),
+  UPDATE_DISCUSSES: (state, action) => ({ ...state, data: action.payload })
 
 }, initialState)
