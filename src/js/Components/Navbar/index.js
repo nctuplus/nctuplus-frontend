@@ -44,7 +44,7 @@ class NavbarContent extends React.Component {
           <div className='navbar-nav mr-auto'>
             <NavDropdown title='全校課程'>
               <NavDropdownLink to='/courses'>全校課程</NavDropdownLink>
-              <NavDropdownLink to='/discusses'>心得</NavDropdownLink>
+              <NavDropdownLink to='/comments'>心得</NavDropdownLink>
               <NavDropdownLink to='/past_exams'>考古題</NavDropdownLink>
               <NavDropdownLink to='/courses/tutorial'>選課教學</NavDropdownLink>
             </NavDropdown>

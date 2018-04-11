@@ -1,6 +1,7 @@
 
 import React from 'react'
 import classNames from 'classnames'
+import { Link } from 'react-router-dom'
 import './style.scss'
 
 const EventPreview = (props) => {
@@ -10,7 +11,13 @@ const EventPreview = (props) => {
     <div className='col-12 col-sm-6 col-md-3 mb-3'>
       <div className='card bg-white'>
 
-        <img alt='poster' className='card-img-top clickable' src={props.poster} />
+        <Link to={`/events/${props.id}`}>
+          <img
+            alt='poster'
+            className='card-img-top clickable'
+            src={props.poster}
+          />
+        </Link>
 
         <div className='card-text p-2'>
           <div className='pull-right'>

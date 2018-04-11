@@ -5,7 +5,7 @@ import { PersonalRatingBar } from '../../../Components/Ratings'
 class New extends React.Component {
   render () {
     return (
-      <div className='discuss-detail page-wrapper'>
+      <div className='page-wrapper'>
         <div className='container bg-white p-5'>
           <div className='col-9 offset-1'>
             <h1>新增文章</h1>

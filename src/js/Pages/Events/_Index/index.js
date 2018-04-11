@@ -79,7 +79,7 @@ const Index = (props) => {
           </div>
           {
             props.events.data
-            .map((event, index) => (<EventPreview {... event} key={index} />))
+            .map((event, index) => <EventPreview {...event} key={index} />)
           }
         </div>
 
@@ -89,7 +89,7 @@ const Index = (props) => {
           </div>
           {
             props.events.data
-            .map((event, index) => (<EventPreview {... event} key={index} />))
+            .map((event, index) => <EventPreview {...event} key={index} />)
           }
         </div>
       </div>
@@ -97,9 +97,11 @@ const Index = (props) => {
   )
 }
 
-const mapStateToProps = (state) => ({ events: state.events })
+const mapStateToProps = (state) => ({ 
+  events: state.events.all
+})
 const mapDispatchToProps = (dispatch) => ({
-  fetch_data: () => dispatch(fetchEvents())
+  fetch_data: (page) => dispatch(fetchEvents(page))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index)

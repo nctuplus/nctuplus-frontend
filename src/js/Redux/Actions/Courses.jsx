@@ -7,9 +7,9 @@ export const fetchCoursesDone = createAction('FETCH_COURSES_DONE')
 export const updateCourses = createAction('UPDATE_COURSES')
 export const updateCoursesPage = createAction('UPDATE_COURSES_PAGE')
 
-export const fetchCourses = () => dispatch => {
+export const fetchCourses = (page = 1) => dispatch => {
   dispatch(fetchCoursesStart)
-  fetch(`${SERVER_URL}/courses`)
+  fetch(`${SERVER_URL}/courses?_limit=30&_page=${page}`)
   .then(response => response.json())
   .then(json => {
     dispatch(updateCourses(json))

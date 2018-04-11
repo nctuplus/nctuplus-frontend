@@ -66,7 +66,7 @@ const mapStateToProps = (state) => ({
   pastExams: state.pastExams
 })
 const mapDispatchToProps = (dispatch) => ({
-  fetch_data: () => dispatch(fetchPastExams()),
+  fetch_data: (page) => dispatch(fetchPastExams(page)),
   update_page: (page) => dispatch(updatePastExamsPage(page))
 })
 

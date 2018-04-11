@@ -2,7 +2,7 @@
 import React from 'react'
 import Pagination from '../Pagination'
 
-const DiscussesTableRow = (props) => (
+const CommentsTableRow = (props) => (
   <tr id={props.id} className='clickable'>
     <td className='ct_name'>{ `${props.course}/${props.teacher}` }</td>
     <td className='title'>{props.title}</td>
@@ -12,7 +12,7 @@ const DiscussesTableRow = (props) => (
   </tr>
 )
 
-const DiscussesTable = (props) => (
+const CommentsTable = (props) => (
   <div>
     <table className='table table-sm table-hover bg-white'>
       <thead>
@@ -26,7 +26,7 @@ const DiscussesTable = (props) => (
       <tbody>
         {
           props.data.map((value, index) => (
-            <DiscussesTableRow
+            <CommentsTableRow
               key={index}
               {...value}
             />)
@@ -40,4 +40,4 @@ const DiscussesTable = (props) => (
   </div>
 )
 
-export { DiscussesTable, DiscussesTableRow }
+export { CommentsTable, CommentsTableRow }

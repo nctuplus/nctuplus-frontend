@@ -7,14 +7,14 @@ import {
   SearchPanelNews,
   SearchPanelNewsFeed
 } from '../../../Components/Search'
-import { DiscussesTable } from '../../../Components/DiscussesTable'
+import { CommentsTable } from '../../../Components/CommentsTable'
 import { InputWithButton } from '../../../Components/FormUtils'
 
 import { connect } from 'react-redux'
-import { updateDiscussesPage, fetchDiscusses } from '../../../Redux/Actions/Discusses'
+import { updateCommentsPage, fetchComments } from '../../../Redux/Actions/Comments'
 
 const Index = (props) => {
-  props.discusses.status || props.fetch_data()
+  props.comments.status || props.fetch_data()
   return (
     <div className='page-wrapper'>
       <div className='container pt-3'>
@@ -28,24 +28,24 @@ const Index = (props) => {
               />
               <SearchPanelButtonGroup
                 new_title='新增文章'
-                new_link='/discusses/new'
+                new_link='/comments/new'
                 new_btn_type='info'
                 mine_title='我的文章'
-                mine_link='/discusses/?mine=true'
+                mine_link='/comments/?mine=true'
                 mine_btn_type='primary'
               />
               <SearchPanelCollegeList />
               <SearchPanelNewsFeed>
                 {
-                  props.discusses.data.slice(0, 10).map((discuss, index) => (
-                    <SearchPanelNews href={`/discusses/${discuss.id}`} key={index}>
+                  props.comments.data.slice(0, 10).map((comment, index) => (
+                    <SearchPanelNews href={`/comments/${comment.id}`} key={index}>
                       {
                         /* get diff of date */
-                        Math.ceil((Date.now() - Date.parse(discuss.updated_at)) / 864000000)
+                        Math.ceil((Date.now() - Date.parse(comment.updated_at)) / 864000000)
                       }
-                      天前 { discuss.user.name } 新增了
-                      <strong>{ discuss.course }</strong>
-                      的文章-{ discuss.title }
+                      天前 { comment.user.name } 新增了
+                      <strong>{ comment.course }</strong>
+                      的文章-{ comment.title }
                     </SearchPanelNews>
                     )
                   )
@@ -54,7 +54,7 @@ const Index = (props) => {
             </SearchPanel>
           </div>
           <div className='col-12 col-md-9'>
-            <DiscussesTable {...props.discusses} update_page={props.update_page} />
+            <CommentsTable {...props.comments} update_page={props.update_page} />
           </div>
         </div>
       </div>
@@ -63,11 +63,11 @@ const Index = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  discusses: state.discusses
+  comments: state.comments.all
 })
 const mapDispatchToProps = (dispatch) => ({
-  fetch_data: () => dispatch(fetchDiscusses()),
-  update_page: (page) => dispatch(updateDiscussesPage(page))
+  fetch_data: (page) => dispatch(fetchComments(page)),
+  update_page: (page) => dispatch(updateCommentsPage(page))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index)

@@ -1,22 +1,15 @@
 
 import React from 'react'
 import { SearchCourse } from '../../../Components/Search'
-import { CoursesList, CoursesListItem } from '../../../Components/Course'
+import { CoursesList } from '../../../Components/Course'
 import Timetable from '../../../Components/Timetable'
 import './style.scss'
-
-const requiredCourses = [
-]
-const generalCourses = [
-]
-const foreignCourses = [
-]
 
 class Simulation extends React.Component {
   render () {
     return (
       <div className='page-wrapper simulation'>
-        <div className='container'>
+        <div className='container pt-3'>
           <div className='row'>
             <div className='col-12'>
               <div className='alert alert-warning'>
@@ -59,27 +52,9 @@ class Simulation extends React.Component {
                     </div>
                   </div>
                   <div className='scrollable'>
-                    <CoursesList title='必修' type='required'>
-                      {
-                        requiredCourses.map((course, index) =>
-                          <CoursesListItem key={index} {...course} />
-                        )
-                      }
-                    </CoursesList>
-                    <CoursesList title='通識' type='general'>
-                      {
-                        generalCourses.map((course, index) =>
-                          <CoursesListItem key={index} {...course} />
-                        )
-                      }
-                    </CoursesList>
-                    <CoursesList title='外語' type='foreign'>
-                      {
-                        foreignCourses.map((course, index) =>
-                          <CoursesListItem key={index} {...course} />
-                        )
-                      }
-                    </CoursesList>
+                    <CoursesList title='必修' type='required' />
+                    <CoursesList title='通識' type='general' />
+                    <CoursesList title='外語' type='foreign' />
                   </div>
                 </div>
               </div>

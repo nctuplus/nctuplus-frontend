@@ -26,7 +26,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetch_data: () => dispatch(fetchCourses()),
+  fetch_data: (page) => dispatch(fetchCourses(page)),
   update_page: (page) => dispatch(updateCoursesPage(page))
 })
 

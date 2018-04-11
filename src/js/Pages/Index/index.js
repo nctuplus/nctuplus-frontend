@@ -51,7 +51,7 @@ class Index extends React.Component {
               image='https://plus.nctu.edu.tw/assets/new-index/discuss-intro-ef6b3b595b441e1124d39fbac28936a6.png'
               title='全校課程心得'
               is_new={false}
-              to='/discusses'
+              to='/comments'
             >
               選課前的好幫手，包羅歷年交大所有課程心得，舊文新文一次找齊，也包含課堂評價與歷屆成績，也歡迎同學一起討論。
             </IntroItem>

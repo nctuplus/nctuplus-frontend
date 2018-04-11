@@ -90,10 +90,10 @@ const Index = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  books: state.books
+  books: state.books.all
 })
 const mapDispatchToProps = (dispatch) => ({
-  fetch_data: () => dispatch(fetchBooks()),
+  fetch_data: (page) => dispatch(fetchBooks(page)),
   apply_filters: (filters) => dispatch(applyBooksFilters(filters)),
   update_page: (page) => dispatch(updateBooksPage(page))
 })
