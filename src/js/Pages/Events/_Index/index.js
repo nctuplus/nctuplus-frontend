@@ -97,7 +97,7 @@ const Index = (props) => {
   )
 }
 
-const mapStateToProps = (state) => ({ 
+const mapStateToProps = (state) => ({
   events: state.events.all
 })
 const mapDispatchToProps = (dispatch) => ({

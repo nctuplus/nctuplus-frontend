@@ -19,7 +19,7 @@ const CoverImageUrls = [
 class Index extends React.Component {
   constructor (props) {
     super(props)
-    props.fetching_status || props.fetch_data()
+                     props.fetching_status || props.fetch_data()
   }
   render () {
     return (
