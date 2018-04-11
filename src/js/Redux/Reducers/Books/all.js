@@ -1,6 +1,6 @@
 
 import { handleActions } from 'redux-actions'
-import { FETCHING_STATUS } from '../../constants'
+import { FETCHING_STATUS } from '../../../constants'
 
 const initialState = {
   data: [],
@@ -8,8 +8,8 @@ const initialState = {
   page: 1,
   maxPage: 1,
   filters: {
-    'sort_by': 'price',
-    'descend': true
+    sort_by: 'price',
+    descend: true
   }
 }
 
@@ -19,5 +19,5 @@ export default handleActions({
   UPDATE_BOOKS_PAGE: (state, action) => ({ ...state, page: action.payload }),
   UPDATE_BOOKS: (state, action) => ({ ...state, data: action.payload }),
   APPLY_BOOKS_FILTERS: (state, action) => ({ ...state, filters: { ...state.filters, ...action.payload } }),
-  CLEAR_BOOKS_FILTERS: (state) => ({ ...state, filters: initialState.filters })
+  RESET_BOOKS_FILTERS: (state) => ({ ...state, filters: initialState.filters })
 }, initialState)
