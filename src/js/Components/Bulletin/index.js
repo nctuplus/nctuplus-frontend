@@ -1,5 +1,6 @@
 
 import React from 'react'
+import Spinner from '../Spinner'
 import './style.scss'
 
 const Bulletin = (props) => (
@@ -38,10 +39,13 @@ class BulletinBoard extends React.Component {
         </div>
         <div className='bulletins'>
           {
-            this.props.bulletins &&
-            this.props.bulletins
+            this.props.bulletins.length
+            ? this.props.bulletins
               .filter(bulletin => bulletin.type === this.state.tab)
               .map((bulletin, index) => (<Bulletin {...bulletin} key={index} />))
+            : <div className='text-center'>
+              <Spinner size={24} color='white' />
+            </div>
           }
         </div>
       </div>

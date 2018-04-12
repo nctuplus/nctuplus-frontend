@@ -2,6 +2,7 @@ var Path = require('path')
 var webpack = require('webpack')
 var WebpackNotifierPlugin = require('webpack-notifier')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: [
@@ -24,7 +25,11 @@ module.exports = {
         test: /\.css$/, loader: 'style-loader!css-loader'
       },
       {
-        test: /\.scss$/, loader: 'style-loader!css-loader!sass-loader!postcss-loader'
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader', 'sass-loader', 'postcss-loader']
+        })
       },
       {
         test: /\.json$/, loader: 'json-loader'
@@ -55,6 +60,7 @@ module.exports = {
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new WebpackNotifierPlugin(),
+    new ExtractTextPlugin('styles.css'),
     new HtmlWebpackPlugin({
       template: 'src/index.ejs',
       inject: 'body'

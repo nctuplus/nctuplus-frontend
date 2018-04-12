@@ -2,6 +2,7 @@
 import React from 'react'
 import { SearchCourse } from '../../../Components/Search'
 import { CourseTable } from '../../../Components/Course'
+import Spinner from '../../../Components/Spinner'
 import './style.scss'
 
 import { connect } from 'react-redux'
@@ -15,7 +16,11 @@ const Index = (props) => {
         <div className='search-wrapper'>
           <SearchCourse show_semester />
         </div>
-        <CourseTable {...props.courses} update_page={props.update_page} />
+        {
+          props.courses.status
+          ? <CourseTable {...props.courses} update_page={props.update_page} />
+          : <div className='text-center'><Spinner size={48} color='grey' /></div>
+        }
       </div>
     </div>
   )

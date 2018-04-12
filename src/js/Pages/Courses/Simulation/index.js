@@ -71,10 +71,6 @@ class Simulation extends React.Component {
                       <button className='btn btn-info btn-circle m-1'>
                         <i className='fa fa-download' />
                       </button>
-                      <ul className='dropdown-menu'>
-                        <li><a href='/courses/export_timetable.xls?sem_id=22'>Excel</a></li>
-                        <li />
-                      </ul>
                     </div>
                   </h4>
                 </div>
