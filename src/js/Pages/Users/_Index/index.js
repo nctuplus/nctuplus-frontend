@@ -1,13 +1,14 @@
 
 import React from 'react'
+import PageWrapper from '../../../Components/PageWrapper'
 import './style.scss'
 
 const _Index = (props) => (
-  <div className='page-wrapper user'>
+  <PageWrapper>
     <div className='container pt-3'>
       { props.children }
     </div>
-  </div>
+  </PageWrapper>
 )
 
 export default _Index

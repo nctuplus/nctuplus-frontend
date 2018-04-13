@@ -1,5 +1,6 @@
 
 import React from 'react'
+import PageWrapper from '../../../Components/PageWrapper'
 import { connect } from 'react-redux'
 import { getEvent } from '../../../Redux/Actions/Events'
 import './style.scss'
@@ -8,7 +9,7 @@ const Show = (props) => {
   let event = props.event
   props.status || props.get_event(props.match.params.id)
   return (
-    <div className='page-wrapper event-detail'>
+    <PageWrapper>
       <div className='container'>
         <div className='banner-wrapper'>
           <img
@@ -51,7 +52,7 @@ const Show = (props) => {
           </div>
         </div>
       </div>
-    </div>
+    </PageWrapper>
   )
 }
 

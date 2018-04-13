@@ -1,11 +1,12 @@
 
 import React from 'react'
+import PageWrapper from '../../../Components/PageWrapper'
 import { PastExamUploadTable, PastExamUpload } from '../../../Components/PastExamUpload'
 
 class Upload extends React.Component {
   render () {
     return (
-      <div className='page-wrapper upload-exam'>
+      <PageWrapper>
         <div className='container bg-white p-4'>
           <h5>Step1.選擇適用課程 - <span className='text-center' /></h5>
           <div className='input-group my-5'>
@@ -23,7 +24,7 @@ class Upload extends React.Component {
           <hr />
           <PastExamUpload disabled />
         </div>
-      </div>
+      </PageWrapper>
     )
   }
 }

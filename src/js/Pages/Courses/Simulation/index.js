@@ -1,5 +1,6 @@
 
 import React from 'react'
+import PageWrapper from '../../../Components/PageWrapper'
 import { SearchCourse } from '../../../Components/Search'
 import { CoursesList } from '../../../Components/Course'
 import Timetable from '../../../Components/Timetable'
@@ -8,7 +9,7 @@ import './style.scss'
 class Simulation extends React.Component {
   render () {
     return (
-      <div className='page-wrapper simulation'>
+      <PageWrapper>
         <div className='container pt-3'>
           <div className='row'>
             <div className='col-12'>
@@ -79,7 +80,7 @@ class Simulation extends React.Component {
             </div>
           </div>
         </div>
-      </div>
+      </PageWrapper>
     )
   }
 }

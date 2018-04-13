@@ -1,9 +1,10 @@
 
 import React from 'react'
+import PageWrapper from '../../../Components/PageWrapper'
 import { Link } from 'react-router-dom'
 
 const GPA = (props) => (
-  <div className='page-wrapper score'>
+  <PageWrapper>
     <div className='container'>
       <div className='row'>
         <div className='col-8 offset-2'>
@@ -48,7 +49,7 @@ const GPA = (props) => (
         </div>
       </div>
     </div>
-  </div>
+  </PageWrapper>
 )
 
 export default GPA

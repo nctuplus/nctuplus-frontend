@@ -1,8 +1,9 @@
 
+import PageWrapper from '../../Components/PageWrapper'
 import React from 'react'
 
 const CourseMap = (props) => (
-  <div className='page-wrapper'>
+  <PageWrapper>
     <div className='container'>
       <div className='row'>
         <div className='col-md-12 text-center'>
@@ -268,7 +269,7 @@ const CourseMap = (props) => (
         </div>
       </div>
     </div>
-  </div>
+  </PageWrapper>
 )
 
 export default CourseMap

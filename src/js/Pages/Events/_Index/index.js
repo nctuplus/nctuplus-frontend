@@ -1,5 +1,6 @@
 
 import React from 'react'
+import PageWrapper from '../../../Components/PageWrapper'
 import Slider from 'react-slick'
 import { Link } from 'react-router-dom'
 import { InputWithButton } from '../../../Components/FormUtils'
@@ -23,7 +24,7 @@ const CustomArrowRight = (props) => (
 const Index = (props) => {
   props.events.status || props.fetch_data()
   return (
-    <div className='page-wrapper event'>
+    <PageWrapper>
       <div className='container pt-3'>
         <div className='m-1'>
           <Slider
@@ -93,7 +94,7 @@ const Index = (props) => {
           }
         </div>
       </div>
-    </div>
+    </PageWrapper>
   )
 }
 

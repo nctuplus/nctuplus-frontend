@@ -7,6 +7,7 @@ import {
   SearchPanelNews,
   SearchPanelNewsFeed
 } from '../../../Components/Search'
+import PageWrapper from '../../../Components/PageWrapper'
 import { BooksTable } from '../../../Components/BooksTable'
 import { InputWithButton } from '../../../Components/FormUtils'
 import './style.scss'
@@ -17,7 +18,7 @@ import { updateBooksPage, applyBooksFilters, fetchBooks } from '../../../Redux/A
 const Index = (props) => {
   props.books.status || props.fetch_data()
   return (
-    <div className='page-wrapper books'>
+    <PageWrapper>
       <div className='container pt-3'>
         <div className='row'>
           <div className='col-12 col-md-3'>
@@ -85,7 +86,7 @@ const Index = (props) => {
           </div>
         </div>
       </div>
-    </div>
+    </PageWrapper>
   )
 }
 

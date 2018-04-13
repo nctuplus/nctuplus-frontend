@@ -1,5 +1,6 @@
 
 import React from 'react'
+import PageWrapper from '../../../Components/PageWrapper'
 import { Link } from 'react-router-dom'
 import { Sidebar, SidebarItem } from '../../../Components/Sidebar'
 import ShareButton from '../../../Components/ShareButton'
@@ -31,7 +32,7 @@ const Section = (props) => (
 class Show extends React.Component {
   render () {
     return (
-      <div className='page-wrapper course-detail'>
+      <PageWrapper>
         <Sidebar >
           <SidebarItem active>課程資訊</SidebarItem>
           <SidebarItem active={false}>課程攻略</SidebarItem>
@@ -179,7 +180,7 @@ class Show extends React.Component {
             </Section>
           </div>
         </div>
-      </div>
+      </PageWrapper>
     )
   }
 }

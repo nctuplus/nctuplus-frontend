@@ -1,5 +1,6 @@
 
 import React from 'react'
+import PageWrapper from '../../../Components/PageWrapper'
 import { Comment } from '../../../Components/Comment'
 
 import { connect } from 'react-redux'
@@ -9,7 +10,7 @@ const Show = (props) => {
   let comment = props.comment
   props.status || props.get_comment(props.match.params.id)
   return (
-    <div className='page-wrapper' >
+    <PageWrapper>
       <div className='container'>
         <div className='col-10 offset-1 bg-white'>
           <Comment
@@ -20,7 +21,7 @@ const Show = (props) => {
           />
         </div>
       </div>
-    </div>
+    </PageWrapper>
   )
 }
 

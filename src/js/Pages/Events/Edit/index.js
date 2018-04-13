@@ -1,5 +1,6 @@
 
 import React from 'react'
+import PageWrapper from '../../../Components/PageWrapper'
 import { LabeledInput } from '../../../Components/FormUtils'
 import CKEditor from 'react-ckeditor-component'
 import './style.scss'
@@ -7,7 +8,7 @@ import './style.scss'
 class Edit extends React.Component {
   render () {
     return (
-      <div className='page-wrapper edit-event'>
+      <PageWrapper>
         <div className='container bg-white'>
           <div className='row'>
             <div className='col-md-9 offset-1'>
@@ -72,7 +73,7 @@ class Edit extends React.Component {
             </div>
           </div>
         </div>
-      </div>
+      </PageWrapper>
     )
   }
 }

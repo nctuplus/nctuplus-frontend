@@ -1,11 +1,12 @@
 
 import React from 'react'
+import PageWrapper from '../../../Components/PageWrapper'
 import { PersonalRatingBar } from '../../../Components/Ratings'
 
 class New extends React.Component {
   render () {
     return (
-      <div className='page-wrapper'>
+      <PageWrapper>
         <div className='container bg-white p-5'>
           <div className='col-9 offset-1'>
             <h1>新增文章</h1>
@@ -54,7 +55,7 @@ class New extends React.Component {
             </div>
           </div>
         </div>
-      </div>
+      </PageWrapper>
     )
   }
 }

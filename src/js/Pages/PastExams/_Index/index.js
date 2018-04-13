@@ -7,8 +7,10 @@ import {
   SearchPanelNews,
   SearchPanelNewsFeed
 } from '../../../Components/Search'
+import PageWrapper from '../../../Components/PageWrapper'
 import { PastExamsTable } from '../../../Components/PastExamsTable'
 import { InputWithButton } from '../../../Components/FormUtils'
+import Spinner from '../../../Components/Spinner'
 
 import { connect } from 'react-redux'
 import { updatePastExamsPage, fetchPastExams } from '../../../Redux/Actions/PastExams'
@@ -16,7 +18,7 @@ import { updatePastExamsPage, fetchPastExams } from '../../../Redux/Actions/Past
 const Index = (props) => {
   props.pastExams.status || props.fetch_data()
   return (
-    <div className='page-wrapper'>
+    <PageWrapper>
       <div className='container pt-3'>
         <div className='row'>
           <div className='col-12 col-md-3'>
@@ -37,18 +39,22 @@ const Index = (props) => {
               <SearchPanelCollegeList />
               <SearchPanelNewsFeed >
                 {
-                  props.pastExams.data.slice(0, 10).map((pastExam, index) => (
+                  props.pastExams.data.length
+                  ? props.pastExams.data.slice(0, 10).map((pastExam, index) => (
                     <SearchPanelNews href={`/past_exams/${pastExam.id}`} key={index}>
                       {
-                        /* get diff of date */
-                        Math.ceil((Date.now() - Date.parse(pastExam.updated_at)) / 864000000)
-                      }
-                      天前 { pastExam.user.name } 上傳了
-                      <strong>{ pastExam.course }</strong>
-                      的考古題
-                    </SearchPanelNews>
+                          /* get diff of date */
+                          Math.ceil((Date.now() - Date.parse(pastExam.updated_at)) / 864000000)
+                        }
+                        天前 { pastExam.user.name } 上傳了
+                        <strong>{ pastExam.course }</strong>
+                        的考古題
+                      </SearchPanelNews>
+                      )
                     )
-                  )
+                  : <div className='text-center'>
+                    <Spinner size={32} color='grey' />
+                  </div>
                 }
               </SearchPanelNewsFeed>
             </SearchPanel>
@@ -58,7 +64,8 @@ const Index = (props) => {
           </div>
         </div>
       </div>
-    </div>
+    </PageWrapper>
+
   )
 }
 

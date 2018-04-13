@@ -7,8 +7,10 @@ import {
   SearchPanelNews,
   SearchPanelNewsFeed
 } from '../../../Components/Search'
+import PageWrapper from '../../../Components/PageWrapper'
 import { CommentsTable } from '../../../Components/CommentsTable'
 import { InputWithButton } from '../../../Components/FormUtils'
+import Spinner from '../../../Components/Spinner'
 
 import { connect } from 'react-redux'
 import { updateCommentsPage, fetchComments } from '../../../Redux/Actions/Comments'
@@ -16,7 +18,7 @@ import { updateCommentsPage, fetchComments } from '../../../Redux/Actions/Commen
 const Index = (props) => {
   props.comments.status || props.fetch_data()
   return (
-    <div className='page-wrapper'>
+    <PageWrapper>
       <div className='container pt-3'>
         <div className='row'>
           <div className='col-12 col-md-3'>
@@ -37,18 +39,22 @@ const Index = (props) => {
               <SearchPanelCollegeList />
               <SearchPanelNewsFeed>
                 {
-                  props.comments.data.slice(0, 10).map((comment, index) => (
+                  props.comments.data.length
+                  ? props.comments.data.slice(0, 10).map((comment, index) => (
                     <SearchPanelNews href={`/comments/${comment.id}`} key={index}>
                       {
-                        /* get diff of date */
-                        Math.ceil((Date.now() - Date.parse(comment.updated_at)) / 864000000)
-                      }
-                      天前 { comment.user.name } 新增了
-                      <strong>{ comment.course }</strong>
-                      的文章-{ comment.title }
+                          /* get diff of date */
+                          Math.ceil((Date.now() - Date.parse(comment.updated_at)) / 864000000)
+                        }
+                        天前 { comment.user.name } 新增了
+                        <strong>{ comment.course }</strong>
+                        的文章-{ comment.title }
                     </SearchPanelNews>
+                      )
                     )
-                  )
+                  : <div className='text-center'>
+                    <Spinner size={32} color='grey' />
+                  </div>
                 }
               </SearchPanelNewsFeed>
             </SearchPanel>
@@ -58,7 +64,7 @@ const Index = (props) => {
           </div>
         </div>
       </div>
-    </div>
+    </PageWrapper>
   )
 }
 

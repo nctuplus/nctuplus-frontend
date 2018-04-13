@@ -1,5 +1,6 @@
 
 import React from 'react'
+import PageWrapper from '../../../Components/PageWrapper'
 import './style.scss'
 
 import { connect } from 'react-redux'
@@ -8,7 +9,7 @@ import { getBook } from '../../../Redux/Actions/Books'
 const Show = ({ match, book, status, get_book, ...props }) => {
   status || get_book(match.params.id)
   return (
-    <div className='page-wrapper book-detail'>
+    <PageWrapper>
       <div className='container'>
         <div className='row bg-white'>
           <div className='col-12 col-md-11 offset-md-1'>
@@ -60,7 +61,7 @@ const Show = ({ match, book, status, get_book, ...props }) => {
           </div>
         </div>
       </div>
-    </div>
+    </PageWrapper>
   )
 }
 

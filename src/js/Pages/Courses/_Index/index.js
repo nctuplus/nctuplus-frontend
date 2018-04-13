@@ -1,5 +1,6 @@
 
 import React from 'react'
+import PageWrapper from '../../../Components/PageWrapper'
 import { SearchCourse } from '../../../Components/Search'
 import { CourseTable } from '../../../Components/Course'
 import Spinner from '../../../Components/Spinner'
@@ -11,7 +12,7 @@ import { updateCoursesPage, fetchCourses } from '../../../Redux/Actions/Courses'
 const Index = (props) => {
   props.courses.status || props.fetch_data()
   return (
-    <div className='course page-wrapper'>
+    <PageWrapper className='course'>
       <div className='container'>
         <div className='search-wrapper'>
           <SearchCourse show_semester />
@@ -22,7 +23,7 @@ const Index = (props) => {
           : <div className='text-center'><Spinner size={48} color='grey' /></div>
         }
       </div>
-    </div>
+    </PageWrapper>
   )
 }
 
