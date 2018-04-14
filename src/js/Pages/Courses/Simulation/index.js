@@ -1,82 +1,16 @@
 
 import React from 'react'
+import PageWrapper from '../../../Components/PageWrapper'
 import { SearchCourse } from '../../../Components/Search'
-import { CoursesList, CoursesListItem } from '../../../Components/Course'
-import Schedule from '../../../Components/Schedule'
+import { CoursesList } from '../../../Components/Course'
+import Timetable from '../../../Components/Timetable'
 import './style.scss'
-
-const requiredCourses = [
-  {
-    id: 36789,
-    course_name: '編譯器設計概論',
-    teacher: '游逸平',
-    category: '資訊學院共同課程',
-    requirement: '必修',
-    class_time: '3CD5G',
-    classroom: 'EDB27',
-    grade: 'all',
-    current_enroll: 98,
-    max_enroll: 99
-  },
-  {
-    id: 36789,
-    course_name: '編譯器設計概論',
-    teacher: '游逸平',
-    category: '資訊學院共同課程',
-    requirement: '必修',
-    class_time: '3CD5G',
-    classroom: 'EDB27',
-    grade: 'all',
-    current_enroll: 98,
-    max_enroll: 99
-  },
-  {
-    id: 36789,
-    course_name: '編譯器設計概論',
-    teacher: '游逸平',
-    category: '資訊學院共同課程',
-    requirement: '必修',
-    class_time: '3CD5G',
-    classroom: 'EDB27',
-    grade: 'all',
-    current_enroll: 98,
-    max_enroll: 99
-  },
-  {
-    id: 36789,
-    course_name: '編譯器設計概論',
-    teacher: '游逸平',
-    category: '資訊學院共同課程',
-    requirement: '必修',
-    class_time: '3CD5G',
-    classroom: 'EDB27',
-    grade: 'all',
-    current_enroll: 98,
-    max_enroll: 99
-  },
-  {
-    id: 36789,
-    course_name: '編譯器設計概論',
-    teacher: '游逸平',
-    category: '資訊學院共同課程',
-    requirement: '必修',
-    class_time: '3CD5G',
-    classroom: 'EDB27',
-    grade: 'all',
-    current_enroll: 98,
-    max_enroll: 99
-  }
-]
-const generalCourses = [
-]
-const foreignCourses = [
-]
 
 class Simulation extends React.Component {
   render () {
     return (
-      <div className='page-wrapper simulation'>
-        <div className='container'>
+      <PageWrapper>
+        <div className='container pt-3'>
           <div className='row'>
             <div className='col-12'>
               <div className='alert alert-warning'>
@@ -104,40 +38,24 @@ class Simulation extends React.Component {
                   </h4>
                 </div>
                 <div className='card-body'>
-                  <div className='row courses-list-utils'>
+                  <div className='row p-3'>
                     <div md={4} className='text-center no-padding'>
-                      <div>
-                        <button className='d-inline-block'><i className='fa fa-book' /></button>
-                        <button className='d-inline-block'><i className='fa fa-calendar' /></button>
-                        <button className='d-inline-block'><i className='fa fa-graduation-cap' /></button>
+                      <div className='btn-toolbar'>
+                        <div className='btn-group'>
+                          <button className='btn btn-secondary'><i className='fa fa-book' /></button>
+                          <button className='btn btn-secondary'><i className='fa fa-calendar' /></button>
+                          <button className='btn btn-secondary'><i className='fa fa-graduation-cap' /></button>
+                        </div>
                       </div>
                     </div>
-                    <div md={8} className='text-left no-padding'>
+                    <div md={8} className='text-left mx-2'>
                       <SearchCourse />
                     </div>
                   </div>
                   <div className='scrollable'>
-                    <CoursesList title='必修' type='required'>
-                      {
-                        requiredCourses.map((course, index) =>
-                          <CoursesListItem key={index} {...course} />
-                        )
-                      }
-                    </CoursesList>
-                    <CoursesList title='通識' type='general'>
-                      {
-                        generalCourses.map((course, index) =>
-                          <CoursesListItem key={index} {...course} />
-                        )
-                      }
-                    </CoursesList>
-                    <CoursesList title='外語' type='foreign'>
-                      {
-                        foreignCourses.map((course, index) =>
-                          <CoursesListItem key={index} {...course} />
-                        )
-                      }
-                    </CoursesList>
+                    <CoursesList title='必修' type='required' />
+                    <CoursesList title='通識' type='general' />
+                    <CoursesList title='外語' type='foreign' />
                   </div>
                 </div>
               </div>
@@ -154,19 +72,15 @@ class Simulation extends React.Component {
                       <button className='btn btn-info btn-circle m-1'>
                         <i className='fa fa-download' />
                       </button>
-                      <ul className='dropdown-menu'>
-                        <li><a href='/courses/export_timetable.xls?sem_id=22'>Excel</a></li>
-                        <li />
-                      </ul>
                     </div>
                   </h4>
                 </div>
-                <Schedule />
+                <Timetable />
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </PageWrapper>
     )
   }
 }

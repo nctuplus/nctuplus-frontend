@@ -1,11 +1,12 @@
 
 import React from 'react'
+import PageWrapper from '../../Components/PageWrapper'
 import { Link } from 'react-router-dom'
 
 class PageNotFound extends React.Component {
   render () {
     return (
-      <div className='page-wrapper'>
+      <PageWrapper>
         <div className='text-center mt-5'>
           <span style={{ fontSize: 256 }}>
             <i className='fa fa-exclamation-triangle' />
@@ -17,7 +18,7 @@ class PageNotFound extends React.Component {
           </span>
 
         </div>
-      </div>
+      </PageWrapper>
     )
   }
 }

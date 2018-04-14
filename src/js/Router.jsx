@@ -11,7 +11,7 @@ import Footer from './Components/Footer'
 
 import Index from './Pages/Index'
 import * as Courses from './Pages/Courses'
-import * as Discusses from './Pages/Discusses'
+import * as Comments from './Pages/Comments'
 import * as PastExams from './Pages/PastExams'
 import * as Books from './Pages/Books'
 import * as Events from './Pages/Events'
@@ -45,10 +45,10 @@ class Router extends React.Component {
             <Route path='/courses/:id' component={Courses.Show} />
 
             {/* discuss route group */}
-            <Route exact path='/discusses' component={Discusses.Index} />
-            <Route path='/discusses/new' component={Discusses.New} />
-            <Route path='/discusses/:id' component={Discusses.Show} />
-            <Route path='/discusses/:id/edit' component={Discusses.Edit} />
+            <Route exact path='/comments' component={Comments.Index} />
+            <Route path='/comments/new' component={Comments.New} />
+            <Route path='/comments/:id' component={Comments.Show} />
+            <Route path='/comments/:id/edit' component={Comments.Edit} />
 
             {/* past exam route group */}
             <Route exact path='/past_exams' component={PastExams.Index} />

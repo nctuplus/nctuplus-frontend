@@ -1,11 +1,12 @@
 
 import React from 'react'
+import PageWrapper from '../../../Components/PageWrapper'
 import { LabeledInput, InputWithButton } from '../../../Components/FormUtils'
 
 class Edit extends React.Component {
   render () {
     return (
-      <div className='page-wrapper edit-book'>
+      <PageWrapper>
         <div className='container bg-white p-5'>
           <div className='row'>
             <div className='col-md-8 offset-md-2'>
@@ -77,7 +78,7 @@ class Edit extends React.Component {
             </div>
           </div>
         </div>
-      </div>
+      </PageWrapper>
     )
   }
 }

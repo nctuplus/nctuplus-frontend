@@ -69,91 +69,71 @@ class SearchCourse extends React.Component {
   }
 }
 
-class SearchPanelNews extends React.Component {
-  render () {
-    return (
-      <Link to={this.props.href} className='list-group-item list-group-item-success'>
-        { this.props.children }
-      </Link>
-    )
-  }
-}
+const SearchPanelNews = (props) => (
+  <Link to={props.href} className='list-group-item list-group-item-success'>
+    { props.children }
+  </Link>
+)
 
-class SearchPanelNewsFeed extends React.Component {
-  render () {
-    return (
-      <div>
-        <h4 className='text-center d-none d-sm-block title'>最新動態</h4>
-        <div className='row d-none d-sm-block'>
-          <div className='list-group'>
-            { this.props.children }
-          </div>
-        </div>
+const SearchPanelNewsFeed = (props) => (
+  <div>
+    <h4 className='text-center d-none d-sm-block title'>最新動態</h4>
+    <div className='row d-none d-sm-block'>
+      <div className='list-group'>
+        { props.children }
       </div>
-    )
-  }
-}
+    </div>
+  </div>
+)
 
-class SearchPanelCollegeList extends React.Component {
-  render () {
-    return (
-      <div className='college-group'>
-        <h4 className='text-center'>分類</h4>
-        <button className='btn btn-default college' >共同課程</button>
-        <button className='btn btn-default college' >資訊學院</button>
-        <button className='btn btn-default college' >電機學院</button>
-        <button className='btn btn-default college' >工學院</button>
-        <button className='btn btn-default college' >理學院</button>
-        <button className='btn btn-default college' >光電學院</button>
-        <button className='btn btn-default college' >生科學院</button>
-        <button className='btn btn-default college' >管理學院</button>
-        <button className='btn btn-default college' >人社學院</button>
-        <button className='btn btn-default college' >客家文化學院</button>
-      </div>
-    )
-  }
-}
+const SearchPanelCollegeList = (props) => (
+  <div className='college-group'>
+    <h4 className='text-center'>分類</h4>
+    <button className='btn btn-default college' >共同課程</button>
+    <button className='btn btn-default college' >資訊學院</button>
+    <button className='btn btn-default college' >電機學院</button>
+    <button className='btn btn-default college' >工學院</button>
+    <button className='btn btn-default college' >理學院</button>
+    <button className='btn btn-default college' >光電學院</button>
+    <button className='btn btn-default college' >生科學院</button>
+    <button className='btn btn-default college' >管理學院</button>
+    <button className='btn btn-default college' >人社學院</button>
+    <button className='btn btn-default college' >客家文化學院</button>
+  </div>
+)
 
-class SearchPanelButtonGroup extends React.Component {
-  render () {
-    return (
-      <div className='row mt-3'>
-        <table className='table table-bordered text-center' >
-          <tbody>
-            <tr>
-              <td>
-                <Link
-                  className={`btn btn-sm btn-${this.props.new_btn_type}`}
-                  to={this.props.new_link}
-                >
-                  { this.props.new_title }
-                </Link>
-              </td>
-              <td>
-                <Link
-                  className={`btn btn-sm btn-${this.props.mine_btn_type}`}
-                  to={this.props.mine_link}
-                >
-                  { this.props.mine_title }
-                </Link>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    )
-  }
-}
+const SearchPanelButtonGroup = (props) => (
+  <div className='row mt-3'>
+    <table className='table table-bordered text-center' >
+      <tbody>
+        <tr>
+          <td>
+            <Link
+              className={`btn btn-sm btn-${props.new_btn_type}`}
+              to={props.new_link}
+            >
+              { props.new_title }
+            </Link>
+          </td>
+          <td>
+            <Link
+              className={`btn btn-sm btn-${props.mine_btn_type}`}
+              to={props.mine_link}
+            >
+              { props.mine_title }
+            </Link>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+)
 
-class SearchPanel extends React.Component {
-  render () {
-    return (
-      <div className='search-panel'>
-        { this.props.children }
-      </div>
-    )
-  }
-}
+const SearchPanel = (props) => (
+  <div className='search-panel'>
+    { props.children }
+  </div>
+)
 
 export {
   SearchCourse,

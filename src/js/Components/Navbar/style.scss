@@ -1,8 +1,6 @@
 
 @import "../../../assets/styles/_common";
 
-$nav-item-margin: 12px;
-
 .navbar-container{
 	position: fixed;
 	width: 100%;
@@ -20,11 +18,7 @@ $nav-item-margin: 12px;
 		}
 	}
 	.navbar-collapse { background-color: $theme-color; }
-	.nav-item{ 
-		@include media-breakpoint-down(md){
-		}
-		font-size: 14px; 
-	}
+	.nav-item{ font-size: 14px; }
 	.navbar-toggler { color: white; }
 	.nav-link{
 		color: white;

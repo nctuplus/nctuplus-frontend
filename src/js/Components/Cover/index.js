@@ -7,8 +7,9 @@ class Cover extends React.Component {
     return (
       <div
         className='cover'
+        ref={cover => (this.cover = cover)}
         style={{
-          background: `url("${this.props.images[0]}") no-repeat`,
+          background: `url('${this.props.images[0]}') no-repeat`,
           backgroundSize: 'cover'
         }}
       >

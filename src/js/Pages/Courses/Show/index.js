@@ -1,5 +1,6 @@
 
 import React from 'react'
+import PageWrapper from '../../../Components/PageWrapper'
 import { Link } from 'react-router-dom'
 import { Sidebar, SidebarItem } from '../../../Components/Sidebar'
 import ShareButton from '../../../Components/ShareButton'
@@ -11,7 +12,7 @@ import {
 } from '../../../Components/Course'
 import { Ratings, PersonalRating } from '../../../Components/Ratings'
 import { Comment, SubComment } from '../../../Components/Comment'
-import { PastExamTable, PastExamUpload } from '../../../Components/PastExamUpload'
+import { PastExamUploadTable, PastExamUpload } from '../../../Components/PastExamUpload'
 import './style.scss'
 
 const chartData = [
@@ -31,7 +32,7 @@ const Section = (props) => (
 class Show extends React.Component {
   render () {
     return (
-      <div className='page-wrapper course-detail'>
+      <PageWrapper>
         <Sidebar >
           <SidebarItem active>課程資訊</SidebarItem>
           <SidebarItem active={false}>課程攻略</SidebarItem>
@@ -174,12 +175,12 @@ class Show extends React.Component {
             </Section>
 
             <Section title='考古題區'>
-              <PastExamTable />
+              <PastExamUploadTable />
               <PastExamUpload />
             </Section>
           </div>
         </div>
-      </div>
+      </PageWrapper>
     )
   }
 }

@@ -6,15 +6,15 @@ const PastExamsTableRow = (props) => (
   <tr className='clickable' href={props.href}>
     <td>{`${props.course}/${props.teacher}`}</td>
     <td>{props.semester}</td>
-    <td>{props.filename}</td>
+    <td>{props.file_name}</td>
     <td className='title'>{props.title}</td>
-    <td className='user_name'>{props.user}</td>
+    <td className='user_name'>{props.user.name}</td>
   </tr>
 )
 
 const PastExamsTable = (props) => (
   <div>
-    <table className='table table-hover bg-white'>
+    <table className='table table-sm table-hover bg-white'>
       <thead>
         <tr>
           <th>課程/教授</th>
@@ -25,13 +25,17 @@ const PastExamsTable = (props) => (
         </tr>
       </thead>
       <tbody>
-        { props.children }
+        {
+          props.data.map((pastExam, index) => (
+            <PastExamsTableRow {...pastExam} key={index} />
+          ))
+        }
       </tbody>
     </table>
     <div className='text-center'>
-      <Pagination />
+      <Pagination page={props.page} maxPage={props.max_page} to={props.update_page} />
     </div>
   </div>
 )
 
-export { PastExamsTable, PastExamsTableRow }
+export { PastExamsTable }

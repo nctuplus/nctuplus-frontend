@@ -41,8 +41,8 @@ const SubComment = (props) => (
       </a>
     </div>
     <div className='col-8'>
-      <p>{ props.date }</p>
-      <p>{props.children}</p>
+      <p>{ props.created_at }</p>
+      <p>{ props.content }</p>
     </div>
   </div>
 )
@@ -57,10 +57,10 @@ const Comment = (props) => (
       </div>
       <div className='col-md-6'>
         <h4>{ props.title }</h4>
-        <p>{ props.date }</p>
+        <p>{ props.created_at }</p>
       </div>
       <div className='col-md-5'>
-        <div className='pull-right share'>
+        <div className='pull-right'>
           <ShareButton />
         </div>
       </div>
@@ -71,17 +71,27 @@ const Comment = (props) => (
     <div className='row'>
       <div className='col-md-12'>
         <p className='p-3'>
-          { props.children }
+          { props.content }
         </p>
       </div>
     </div>
 
     <hr />
-    <div className='py-3 pl-5'>
-      { props.reply }
-    </div>
     {
-      props.enable_reply && (
+      props.sub_comments &&
+      (
+        <div className='py-3 pl-5'>
+          {
+          props.sub_comments.map((comment, index) => (
+            <SubComment {...comment} key={index} />)
+          )
+        }
+        </div>
+      )
+    }
+    {
+      props.enable_reply &&
+      (
         <div className='py-3 pl-5'>
           <CommentReply />
         </div>

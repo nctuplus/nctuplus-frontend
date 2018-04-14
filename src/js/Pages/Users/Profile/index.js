@@ -1,21 +1,21 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Schedule from '../../../Components/Schedule'
+import Timetable from '../../../Components/Timetable'
 
-const UserCard = (props) => (
+const UserCard = ({ user }) => (
   <div className='card'>
     <div className='text-center pt-3'>
-      <img className='circle' width='128' height='128' src='https://graph.facebook.com/1898906487000541/picture?type=large&amp;redirect=true&amp;width=140&amp;height=140' />
-      <h4 class='mt-3'>學號:0416304</h4>
+      <img className='circle' width='128' height='128' src={user.avatar_url} />
+      <h4 className='mt-3'>{ user.name }</h4>
     </div>
     <div className='card-body mx-auto'>
-      系級：資工系(資工組) 108 級 <br />
-      學號：0416304<br />
-      信箱：yanglin5689446@gmail.com<br />
-      身份：NCTU Facebook <br />
-      分享課表：On <br />
-      註冊日期：2015-09-04
+      系級：{ user.department } { user.degree } 級 <br />
+      學號：{ user.student_id }<br />
+      信箱：{ user.degree }<br />
+      身份：{ user.identity } <br />
+      分享課表：{ user.allow_schedule_share } <br />
+      註冊日期：{ user.register_date }
     </div>
     <div className='card-footer text-center'>
       <button className='btn btn-primary btn-sm mx-1'>
@@ -42,38 +42,36 @@ const UserCard = (props) => (
   </div>
 )
 
-const UserAnalysis = (props) => (
+const UserAnalysis = ({ user }) => (
   <div className='row bg-white'>
     <div className='col-4 p-1 text-center'>
       歷年平均分數
-      <h4 className='bold'>81.8</h4>
+      <h4 className='bold'>{ user.average_grade }</h4>
     </div>
     <div className='col-4 p-1 text-center'>
       總排名
-      <h4 className='bold'>Not Yet</h4>
+      <h4 className='bold'>{ user.is_graduated }</h4>
     </div>
     <div className='col-4 p-1 text-center'>
       距離畢業
-      <h4 className='bold'>
-        612天
-      </h4>
+      <h4 className='bold'>{ user.graduate_countdown } 天</h4>
     </div>
     <div className='col-4 p-1 text-center'>
       本學期學分
-      <h4 className='bold'>0</h4>
+      <h4 className='bold'>{ user.credits_this_semaster }</h4>
     </div>
     <div className='col-4 p-1 text-center'>
       已修學分
-      <h4 className='bold'>75</h4>
+      <h4 className='bold'>{ user.all_credits }</h4>
     </div>
     <div className='col-4 p-1 text-center'>
       畢業學分
-      <h4 className='bold'>128</h4>
+      <h4 className='bold'>{ user.graduate_credits }</h4>
     </div>
   </div>
 )
 
-const UserCreditTable = (props) => (
+const UserCreditTable = ({ user }) => (
   <div className='bg-white p-2'>
     <table className='table table-bordered '>
       <tbody className='text-center'>
@@ -83,12 +81,8 @@ const UserCreditTable = (props) => (
           <td colSpan='3'>二</td>
         </tr>
         <tr>
-          <td colSpan='3'>
-            <i className='fa fa-check fa-2x' />
-          </td>
-          <td colSpan='3'>
-            <i className='fa fa-check fa-2x' />
-          </td>
+          <td colSpan='3' />
+          <td colSpan='3' />
         </tr>
         <tr>
           <td rowSpan='2'>藝文賞析</td>
@@ -109,9 +103,9 @@ const UserCreditTable = (props) => (
           <td>選修</td>
         </tr>
         <tr>
-          <td><i className='fa fa-check fa-2x' /></td>
-          <td><i className='fa fa-check fa-2x' /></td>
-          <td><i className='fa fa-check fa-2x' /></td>
+          <td />
+          <td />
+          <td />
           <td />
           <td />
           <td />
@@ -119,14 +113,7 @@ const UserCreditTable = (props) => (
         <tr>
           <td>外文</td>
           <td colSpan='6'>
-            <div className='progress'>
-              <div className='progress-bar bg-success px-1'>
-                <span>基礎 <strong>2/4</strong></span>
-              </div>
-              <div className='progress-bar px-1'>
-                <span>進階(其他) <strong>0/2</strong></span>
-              </div>
-            </div>
+            <div className='progress' />
           </td>
         </tr>
         <tr>
@@ -139,23 +126,16 @@ const UserCreditTable = (props) => (
           <td>自然</td>
         </tr>
         <tr>
-          <td><i className='fa fa-check fa-2x' /></td>
-          <td><i className='fa fa-check fa-2x' /></td>
           <td />
-          <td><i className='fa fa-check fa-2x' /></td>
-          <td><i className='fa fa-check fa-2x' /></td>
+          <td />
+          <td />
+          <td />
+          <td />
           <td />
         </tr>
         <tr>
           <td colSpan='6'>
-            <div className='progress'>
-              <div className='progress-bar px-1'>
-                <span>當代 <strong>2/2</strong></span>
-              </div>
-              <div className='progress-bar px-1'>
-                <span>其他 <strong>6/18</strong></span>
-              </div>
-            </div>
+            <div className='progress' />
           </td>
         </tr>
       </tbody>
@@ -169,19 +149,9 @@ const UserCreditTable = (props) => (
         <tr>
           <td className='col-md-12' colSpan='3'>
             <h4 className='text-center'>
-              <Link to='/course_maps/198'>資工系(資工組) 入學年度:104</Link>
+              <Link to='/course_maps/198'>{ user.department } 入學年度: { user.enroll_year }</Link>
               <a href='/user/statistics_table' className='btn btn-info pull-right' target='blank'>產生報表</a>
             </h4>
-          </td>
-        </tr>
-        <tr>
-          <td className='col-md-2 text-center'>基本必修</td>
-          <td className='col-md-10 text-center' colSpan='2'>29/56</td>
-        </tr>
-        <tr>
-          <td className='col-md-2 text-center'>物/化/生三選一</td>
-          <td className='col-md-10 text-center' colSpan='2'>
-            <i className='fa fa-check fa-2x' />
           </td>
         </tr>
       </tbody>
@@ -197,17 +167,16 @@ const Profile = (props) => (
     <div className='col-12 col-lg-6'>
 
       <div className='m-0 m-md-2'>
-        <UserCard />
+        <UserCard user={{}} />
       </div>
 
       <div className='m-0 m-md-2 p-3' >
-        <UserAnalysis />
+        <UserAnalysis user={{}} />
       </div>
 
       <div className='m-0 m-md-2'>
-        <UserCreditTable />
+        <UserCreditTable user={{}} />
       </div>
-
     </div>
     <div className='col-12 col-lg-6'>
       <div className='m-0 m-md-2 bg-white p-2'>
@@ -223,7 +192,7 @@ const Profile = (props) => (
           </div>
         </div>
 
-        <Schedule />
+        <Timetable />
 
       </div>
     </div>

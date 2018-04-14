@@ -2,20 +2,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import CircularProgressbar from 'react-circular-progressbar'
-import { EntypoStarOutlined } from 'react-entypo'
 import './style.scss'
 
 class PersonalRatingBar extends React.Component {
   render () {
     return (
       <div className='rating-bar'>
-        <label>{this.props.children}</label>
+        <label className='mx-2'>{this.props.children}</label>
         <span>
-          <EntypoStarOutlined />
-          <EntypoStarOutlined />
-          <EntypoStarOutlined />
-          <EntypoStarOutlined />
-          <EntypoStarOutlined />
+          <i className='fa fa-star-o mx-1' />
+          <i className='fa fa-star-o mx-1' />
+          <i className='fa fa-star-o mx-1' />
+          <i className='fa fa-star-o mx-1' />
+          <i className='fa fa-star-o mx-1' />
         </span>
       </div>
     )

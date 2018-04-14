@@ -1,11 +1,12 @@
 
 import React from 'react'
+import Spinner from '../Spinner'
 import './style.scss'
 
 const Bulletin = (props) => (
   <span>
-    <span className='inline-block ellipsis title'>{ props.title }</span>
-    <span className='inline-block date'>{ props.updated_at.substr(0, 10) }</span>
+    <span className='d-inline-block ellipsis title'>{ props.title }</span>
+    <span className='d-inline-block date'>{ props.updated_at.substr(0, 10) }</span>
     <br />
   </span>
 )
@@ -38,10 +39,13 @@ class BulletinBoard extends React.Component {
         </div>
         <div className='bulletins'>
           {
-            this.props.bulletins
-            ? this.props.bulletins.map((bulletin, index) => {
-              if (bulletin.type === this.state.tab) { return <Bulletin {...bulletin} key={index} /> }
-            }) : ''
+            this.props.bulletins.length
+            ? this.props.bulletins
+              .filter(bulletin => bulletin.type === this.state.tab)
+              .map((bulletin, index) => (<Bulletin {...bulletin} key={index} />))
+            : <div className='text-center'>
+              <Spinner size={24} color='white' />
+            </div>
           }
         </div>
       </div>
