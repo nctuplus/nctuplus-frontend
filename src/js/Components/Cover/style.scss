@@ -2,7 +2,6 @@
 @import '../../../assets/styles/_common';
 
 .cover{
-	background-repeat: no-repeat;
 	height: calc(100vh - #{$navbar-height});
 	width: 100vw;
 	.container {
