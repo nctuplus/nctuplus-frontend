@@ -1,7 +1,7 @@
 
 import React from 'react'
 import {
-  BrowserRouter,
+  HashRouter,
   Route,
   Switch,
   Redirect
@@ -26,7 +26,7 @@ import Login from './Pages/Login'
 class Router extends React.Component {
   render () {
     return (
-      <BrowserRouter>
+      <HashRouter>
         <div>
           {/* shared navbar. */}
           <Route path='/:url?' component={Navbar} />
@@ -95,7 +95,7 @@ class Router extends React.Component {
           {/* shared footer. */}
           <Route path='/:url?' component={Footer} />
         </div>
-      </BrowserRouter>
+      </HashRouter>
     )
   }
 }
