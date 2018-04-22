@@ -6,7 +6,7 @@ import './style.scss'
 
 const EventPreview = (props) => {
   let now = Date.now()
-  let inProgress = Date.parse(props.start_time) <= now && now <= Date.parse(props.end_time)
+  let inProgress = Date.parse(props.begin_time) <= now && now <= Date.parse(props.end_time)
   return (
     <div className='col-12 col-sm-6 col-md-3 mb-3'>
       <div className='card bg-white'>
@@ -25,7 +25,7 @@ const EventPreview = (props) => {
               {
                 inProgress
                 ? '進行中'
-                : props.start_time.slice(5, 10)
+                : props.begin_time.slice(5, 10)
               }
             </span>
           </div>

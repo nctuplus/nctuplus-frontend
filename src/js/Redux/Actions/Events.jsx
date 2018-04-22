@@ -10,6 +10,10 @@ export const getEventStart = createAction('GET_EVENT_START')
 export const storeEvent = createAction('STORE_EVENT')
 export const getEventDone = createAction('GET_EVENT_DONE')
 
+export const followEventStart = createAction('FOLLOW_EVENT_START')
+export const followEventDone = createAction('FOLLOW_EVENT_DONE')
+export const storeFollowEvent = createAction('STORE_FOLLOW_EVENT')
+
 export const fetchEvents = (page = 1) => dispatch => {
   dispatch(fetchEventsStart)
   fetch(`${SERVER_URL}/events?_limit=30&_page=${page}`)
@@ -31,3 +35,19 @@ export const getEvent = (id) => dispatch => {
   })
   .catch(error => console.log(error))
 }
+
+//能不能用前面fetch到的id繼續用
+export const followEvent = (event_id , user_id) => dispatch => {
+  fetch(SERVER_URL, {
+    method: "POST",
+    body: {
+      event_id: event_id,
+      user_id: user_id
+    }
+  })
+  .then(response => console.log('succccccc'))
+  .catch(error => console.log('error'))
+}
+
+
+

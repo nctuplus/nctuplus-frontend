@@ -5,6 +5,9 @@ import Slider from 'react-slick'
 import { Link } from 'react-router-dom'
 import { InputWithButton } from '../../../Components/FormUtils'
 import { EventPreview } from '../../../Components/Event'
+
+import { EventFollow } from '../../../Components/EventFollow'
+
 import './style.scss'
 
 import { connect } from 'react-redux'
@@ -21,7 +24,7 @@ const CustomArrowRight = (props) => (
   </div>
 )
 
-const Index = (props) => {
+const Index = (props) => {  
   props.events.status || props.fetch_data()
   return (
     <PageWrapper>
@@ -94,6 +97,15 @@ const Index = (props) => {
           }
         </div>
       </div>
+
+      <div>
+      {
+        props.events.data
+        .map((data, index) => <EventFollow {...data} key={index}/>)
+      }
+      </div>
+
+
     </PageWrapper>
   )
 }

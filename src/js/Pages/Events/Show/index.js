@@ -2,7 +2,7 @@
 import React from 'react'
 import PageWrapper from '../../../Components/PageWrapper'
 import { connect } from 'react-redux'
-import { getEvent } from '../../../Redux/Actions/Events'
+import { getEvent, followEvent} from '../../../Redux/Actions/Events'
 import './style.scss'
 
 const Show = (props) => {
@@ -22,7 +22,7 @@ const Show = (props) => {
         <div className='event-info-wrapper bg-white'>
           <div className='row'>
             <div className='col-7'>
-              <p><i className='fa fa-calendar' /> 時間: <strong>{ event.start_time } ~ { event.end_time }</strong></p>
+              <p><i className='fa fa-calendar' /> 時間: <strong>{ event.begin_time } ~ { event.end_time }</strong></p>
               <p><i className='fa fa-cubes' /> 主辦單位: { event.organizer }</p>
               <p><i className='fa fa-location-arrow' /> 地點: { event.positon }</p>
               <p><i className='fa fa-share-alt' /> 活動網址: <a href={event.link} target='blank'>點這裡</a></p>
@@ -43,9 +43,15 @@ const Show = (props) => {
       <div className='fixed-menu fixed'>
         <div className='container'>
           <div className='pull-right'>
-            <button className='btn btn-info nav-button'>
-              關注
+          {event.followBool ?
+            <button className='btn btn-info nav-button' onClick = {() => props.follow_Event(1,2)}>
+              取消關注
             </button>
+            :
+            <button className='btn btn-info nav-button' onClick = {() => props.follow_Event(1,2)}>
+              關注
+            </button>}
+
             <button className='btn btn-success nav-button' >
               參加
             </button>
@@ -62,6 +68,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  get_event: (id) => dispatch(getEvent(id))
+  get_event: (id) => dispatch(getEvent(id)),
+  follow_Event: (event_id, user_id) => dispatch(followEvent(event_id, user_id))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Show)
