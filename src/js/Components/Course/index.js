@@ -198,7 +198,7 @@ const CoursesListItem = (props) => (
           </button>
         </span>
       </p>
-      <p className='text-right course-property'>
+      <p className='text-right'>
         <span className='d-inline-block'>{ props.requirement }</span>
         <span className='d-inline-block'>年級: { props.grade } </span>
         <span className='d-inline-block bold'>
@@ -217,11 +217,17 @@ const CoursesListItem = (props) => (
   </tr>
 )
 
+const courseListColorMap = {
+  required: 'lightgreen300', 
+  general: 'orange500', 
+  foreign: 'yellow300', 
+}
+
 const CoursesList = (props) => (
-  <table className='table table-hover courses-list'>
+  <table className='table table-hover'>
     <thead>
       <tr>
-        <th className={`course-${props.type}`}>{ props.title }</th>
+        <th className={`bg-${courseListColorMap[props.type]}`}>{ props.title }</th>
       </tr>
     </thead>
     <tbody>{ props.children }</tbody>

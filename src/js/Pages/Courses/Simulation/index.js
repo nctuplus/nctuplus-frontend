@@ -4,7 +4,6 @@ import PageWrapper from '../../../Components/PageWrapper'
 import { SearchCourse } from '../../../Components/Search'
 import { CoursesList } from '../../../Components/Course'
 import Timetable from '../../../Components/Timetable'
-import './style.scss'
 
 class Simulation extends React.Component {
   render () {

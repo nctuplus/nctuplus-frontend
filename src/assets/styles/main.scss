@@ -16,6 +16,9 @@
 .bg-white{ background-color: white !important;}
 .bg-grey{ background-color: $color-grey !important;}
 .bg-blue{ background-color: #4c66a4 !important; }
+.bg-lightgreen300{ background-color: #8BC34A !important; }
+.bg-orange500{ background-color: #FF9800 !important; }
+.bg-yellow300{ background-color: #FFF176 !important; }
 
 .border-left-cyan{ border-left: 5px solid #25b0eb; }
 .border-left-grey{ border-left: 5px solid #999999; }
@@ -30,18 +33,7 @@
 .italic{ font-style: italic; }
 .underlined{ text-decoration: underline; }
 
-
 .full-width { width: 100%; }
-
-.margin-auto{ margin: auto; }
-.no-padding { padding: 0;}
-.no-padding-left { padding-left: 0;}
-.no-padding-right { padding-right: 0;}
-
-.no-margin { margin: 0;}
-.no-margin-left { margin-left: 0;}
-.no-margin-right { margin-right: 0;}
-
 
 .clickable{ cursor: pointer; }
 .form-group{ margin: 15px; }
