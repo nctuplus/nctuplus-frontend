@@ -24,7 +24,7 @@ const EventPreview = (props) => {
               {
                 inProgress
                 ? '進行中'
-                : props.begin_time.slice(5, 10)
+                : props.begin_time.slice(0, 10)
               }
             </span>
           </div>
@@ -32,7 +32,7 @@ const EventPreview = (props) => {
           <div className='card-title bold'>{ props.title }</div>
 
           <div className='info'>
-            <div className='info-item'>單位: { props.organizer }</div>
+            <div className='info-item'>單位: { props.organization }</div>
             <div className='info-item'>地點: { props.location }</div>
           </div>
         </div>

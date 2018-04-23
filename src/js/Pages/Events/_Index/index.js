@@ -1,15 +1,14 @@
 
 import React from 'react'
-import PageWrapper from '../../../Components/PageWrapper'
-import Slider from 'react-slick'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
+import Slider from 'react-slick'
+import PageWrapper from '../../../Components/PageWrapper'
 import { InputWithButton } from '../../../Components/FormUtils'
 import { EventPreview } from '../../../Components/Event'
-
-import './style.scss'
-
-import { connect } from 'react-redux'
 import { fetchEvents } from '../../../Redux/Actions/Events'
+import './style.scss'
 
 const CustomArrowLeft = (props) => (
   <div className='custom-arrow custom-arrow-left text-white' onClick={props.onClick}>
@@ -30,7 +29,6 @@ const NavFooter = ({visible}) => (
           我的活動
         </div>
         <div className='col-md-9 my-activity-link'>
-          doSome
           {
             // this.props.data.map((event, i) => <a key={i}> {event.my_event} </a>)
           }
@@ -125,12 +123,7 @@ class Index extends React.Component {
             </div>
           </div>
 
-          {/*<div>
-            <EventFollow {...this.props.events} />
-          </div>*/}
           <NavFooter visible={this.state.visible}/>
-
-
         </PageWrapper>
       )
   }
@@ -143,4 +136,4 @@ const mapDispatchToProps = (dispatch) => ({
   fetch_data: (page) => dispatch(fetchEvents(page))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Index)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Index))
