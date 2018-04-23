@@ -1,6 +1,7 @@
 
 import React from 'react'
 import Pagination from '../Pagination'
+import Spinner from '../Spinner'
 
 const PastExamsTableRow = (props) => (
   <tr className='clickable' href={props.href}>
@@ -26,9 +27,15 @@ const PastExamsTable = (props) => (
       </thead>
       <tbody>
         {
-          props.data.map((pastExam, index) => (
+          props.data.length
+          ? props.data.map((pastExam, index) => (
             <PastExamsTableRow {...pastExam} key={index} />
           ))
+          : <tr className='text-center'>
+            <td colSpan='5'>
+              <Spinner size={48} color='grey' />
+            </td>
+          </tr>
         }
       </tbody>
     </table>
