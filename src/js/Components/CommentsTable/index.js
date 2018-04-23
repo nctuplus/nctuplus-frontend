@@ -1,6 +1,8 @@
 
 import React from 'react'
 import Pagination from '../Pagination'
+import Spinner from '../Spinner'
+
 
 const CommentsTableRow = (props) => (
   <tr id={props.id} className='clickable'>
@@ -25,12 +27,18 @@ const CommentsTable = (props) => (
       </thead>
       <tbody>
         {
-          props.data.map((value, index) => (
+          props.data.length
+          ? props.data.map((value, index) => (
             <CommentsTableRow
               key={index}
               {...value}
             />)
           )
+          : <tr className='text-center'>
+            <td colSpan='4'>
+              <Spinner size={48} color='grey' />
+            </td>
+          </tr>
         }
       </tbody>
     </table>
