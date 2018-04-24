@@ -29,7 +29,6 @@ const Show = (props) => {
             </div>
             <div className='col-5'>
               <p className='info-box'><i className='fa fa-eye' /> 觀看次數: <strong>{ event.view_count }</strong></p>
-              <p className='info-box'><i className='fa fa-sign-in' /> 參加人數: <strong>{ event.participant }</strong></p>
               <p className='info-box'><i className='fa fa-rss' /> 關注人數: <strong>{ event.people }</strong></p>
             </div>
           </div>
@@ -44,17 +43,13 @@ const Show = (props) => {
         <div className='container'>
           <div className='pull-right'>
           {event.followBool ?
-            <button className='btn btn-info nav-button' onClick = {() => props.follow_Event(1,2)}>
+            <button className='btn btn-success nav-button' onClick = {() => props.follow_Event(event.id,1)}>
               取消關注
             </button>
             :
-            <button className='btn btn-info nav-button' onClick = {() => props.follow_Event(1,2)}>
+            <button className='btn btn-success nav-button' onClick = {() => props.follow_Event(event.id,1)}>
               關注
             </button>}
-
-            <button className='btn btn-success nav-button' >
-              參加
-            </button>
           </div>
         </div>
       </div>

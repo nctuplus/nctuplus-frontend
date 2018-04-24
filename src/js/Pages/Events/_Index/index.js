@@ -6,8 +6,6 @@ import { Link } from 'react-router-dom'
 import { InputWithButton } from '../../../Components/FormUtils'
 import { EventPreview } from '../../../Components/Event'
 
-import { EventFollow } from '../../../Components/EventFollow'
-
 import './style.scss'
 
 import { connect } from 'react-redux'
@@ -24,90 +22,118 @@ const CustomArrowRight = (props) => (
   </div>
 )
 
-const Index = (props) => {  
-  props.events.status || props.fetch_data()
-  return (
-    <PageWrapper>
-      <div className='container pt-3'>
-        <div className='m-1'>
-          <Slider
-            infinite
-            autoplay
-            speed={1000}
-            slidesToShow={1}
-            slidesToScroll={1}
-            pauseOnHover
-            prevArrow={<CustomArrowLeft />}
-            nextArrow={<CustomArrowRight />}
-          >
-            {
-              props.events.data.map((event, index) =>
-                <div key={index}>
-                  <Link to={/events/ + event.id}>
-                    <img
-                      alt='banner'
-                      height='300'
-                      className='m-auto clickable'
-                      src={event.poster}
-                    />
-                  </Link>
-                  <h3 className='text-center text-white'>
-                    {event.title}
-                  </h3>
-                </div>
-              )
-            }
-          </Slider>
+const NavFooter = ({visible}) => ( 
+  <div>
+    <nav id="footer" className={visible ? 'slideIn' : 'slideOut'}>
+      <div className="row">
+        <div className='col-sm-3 my-activity'>
+          我的活動
         </div>
-        <div className='row form-wrapper p-3'>
-          <div className='control-wrapper col-6 col-sm-3 col-md-2'>
-            <Link to='/events/new' className='flat-link'>
-              <button className='btn btn-info full-width'>新增活動</button>
-            </Link>
-          </div>
-          <div className='control-wrapper col-6 col-sm-3 col-md-2'>
-            <button className='btn btn-info full-width'>我的活動</button>
-          </div>
-          <div className='control-wrapper col-12 col-sm-6 col-md-8'>
-            <InputWithButton
-              placeholder='輸入活動名稱/地點/組織'
-              button_style='primary'
-              button_content={<i className='fa fa-search' />}
-            />
-          </div>
-        </div>
-
-        <div className='row event-block p-4 mb-3'>
-          <div className='col-12'>
-            <h1 className='my-3'>近期活動</h1>
-          </div>
+        <div className='col-md-9 my-activity-link'>
+          doSome
           {
-            props.events.data
-            .map((event, index) => <EventPreview {...event} key={index} />)
-          }
-        </div>
-
-        <div className='row event-block p-4 mb-3'>
-          <div className='col-12'>
-            <h1 className='my-3'>已結束活動</h1>
-          </div>
-          {
-            props.events.data
-            .map((event, index) => <EventPreview {...event} key={index} />)
+            // this.props.data.map((event, i) => <a key={i}> {event.my_event} </a>)
           }
         </div>
       </div>
+    </nav>
+  </div>
+)
 
-      <div>
-      {
-        props.events.data
-        .map((data, index) => <EventFollow {...data} key={index}/>)
-      }
-      </div>
+class Index extends React.Component {  
+  constructor (props) {
+    super(props)
+    this.state={ visible: false }
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick(){
+    this.setState({visible: !this.state.visible})
+  }
+
+  render () {
+    this.props.events.status || this.props.fetch_data()
+      return (
+        <PageWrapper>
+          <div className='container pt-3'>
+            <div className='m-1'>
+              <Slider
+                infinite
+                autoplay
+                speed={1000}
+                slidesToShow={1}
+                slidesToScroll={1}
+                pauseOnHover
+                prevArrow={<CustomArrowLeft />}
+                nextArrow={<CustomArrowRight />}
+              >
+                {
+                  this.props.events.data.map((event, index) =>
+                    <div key={index}>
+                      <Link to={/events/ + event.id}>
+                        <img
+                          alt='banner'
+                          height='300'
+                          className='m-auto clickable'
+                          src={event.poster}
+                        />
+                      </Link>
+                      <h3 className='text-center text-white'>
+                        {event.title}
+                      </h3>
+                    </div>
+                  )
+                }
+              </Slider>
+            </div>
+            <div className='row form-wrapper p-3'>
+              <div className='control-wrapper col-6 col-sm-3 col-md-2'>
+                <Link to='/events/new' className='flat-link'>
+                  <button className='btn btn-info full-width'>新增活動</button>
+                </Link>
+              </div>
+              <div className='control-wrapper col-6 col-sm-3 col-md-2'>
+                <button className='btn btn-info full-width' onClick={ this.handleClick }>我的活動</button>
+              </div>
+              <div className='control-wrapper col-12 col-sm-6 col-md-8'>
+                <InputWithButton
+                  placeholder='輸入活動名稱/地點/組織'
+                  button_style='primary'
+                  button_content={<i className='fa fa-search' />}
+                />
+              </div>
+            </div>
+
+            <div className='row event-block p-4 mb-3'>
+              <div className='col-12'>
+                <h1 className='my-3'>近期活動</h1>
+              </div>
+              {
+                this.props.events.data
+                .map((event, index) => <EventPreview {...event} key={index} />)
+              }
+            </div>
+
+            <div className='row event-block p-4 mb-3'>
+              <div className='col-12'>
+                <h1 className='my-3'>已結束活動</h1>
+              </div>
+              {
+                this.props.events.data
+                .map((event, index) => <EventPreview {...event} key={index} />)
+              }
+            </div>
+          </div>
+
+          {/*<div>
+            <EventFollow {...this.props.events} />
+          </div>*/}
+          <NavFooter visible={this.state.visible}/>
 
 
-    </PageWrapper>
-  )
+        </PageWrapper>
+      )
+  }
 }
 
 const mapStateToProps = (state) => ({
