@@ -1,6 +1,7 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
+import CourseConfig from './config'
 import {
   ResponsiveContainer,
   BarChart,
@@ -217,17 +218,13 @@ const CoursesListItem = (props) => (
   </tr>
 )
 
-const courseListColorMap = {
-  required: 'lightgreen300', 
-  general: 'orange500', 
-  foreign: 'yellow300', 
-}
-
 const CoursesList = (props) => (
   <table className='table table-hover'>
     <thead>
       <tr>
-        <th className={`bg-${courseListColorMap[props.type]}`}>{ props.title }</th>
+        <th className={`bg-${CourseConfig[props.type].color}`}>
+          { CourseConfig[props.type].chinese }
+        </th>
       </tr>
     </thead>
     <tbody>{ props.children }</tbody>

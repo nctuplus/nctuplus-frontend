@@ -181,17 +181,6 @@ const Profile = (props) => (
     <div className='col-12 col-lg-6'>
       <div className='m-0 m-md-2 bg-white p-2'>
 
-        <div className='input-group m-2 w-25'>
-          <select className='form-control'>
-            <option value='16'>104上</option>
-          </select>
-          <div className='input-group-append'>
-            <button className='btn btn-info'>
-              <i className='fa fa-share-square-o' />
-            </button>
-          </div>
-        </div>
-
         <Timetable />
 
       </div>

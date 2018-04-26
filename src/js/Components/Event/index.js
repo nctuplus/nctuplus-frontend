@@ -25,7 +25,7 @@ const EventPreview = (props) => {
               {
                 inProgress
                 ? '進行中'
-                : props.start_time.slice(5, 10)
+                : props.begin_time.slice(5, 10)
               }
             </span>
           </div>

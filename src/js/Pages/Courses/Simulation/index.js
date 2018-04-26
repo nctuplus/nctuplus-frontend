@@ -5,6 +5,7 @@ import { SearchCourse } from '../../../Components/Search'
 import { CoursesList } from '../../../Components/Course'
 import Timetable from '../../../Components/Timetable'
 
+
 class Simulation extends React.Component {
   render () {
     return (
@@ -52,9 +53,9 @@ class Simulation extends React.Component {
                     </div>
                   </div>
                   <div className='scrollable'>
-                    <CoursesList title='必修' type='required' />
-                    <CoursesList title='通識' type='general' />
-                    <CoursesList title='外語' type='foreign' />
+                    <CoursesList type='required' />
+                    <CoursesList type='general' />
+                    <CoursesList type='foreign' />
                   </div>
                 </div>
               </div>
@@ -63,15 +64,7 @@ class Simulation extends React.Component {
               <div className='card'>
                 <div className='card-heading bg-blue text-white p-2'>
                   <h4 className='text-center'>
-                    <button className='btn btn-info btn-circle m-1 pull-left'>
-                      <i className='fa fa-share' />
-                    </button>
                     106上
-                    <div className='pull-right header-button pop-over'>
-                      <button className='btn btn-info btn-circle m-1'>
-                        <i className='fa fa-download' />
-                      </button>
-                    </div>
                   </h4>
                 </div>
                 <Timetable />
