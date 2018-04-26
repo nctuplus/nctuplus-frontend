@@ -3,7 +3,6 @@ import React from 'react'
 import Pagination from '../Pagination'
 import Spinner from '../Spinner'
 
-
 const CommentsTableRow = (props) => (
   <tr id={props.id} className='clickable'>
     <td className='ct_name'>{ `${props.course}/${props.teacher}` }</td>

@@ -23,7 +23,7 @@
 	.nav-link{
 		color: white;
 		text-decoration: none;
-		transition: color 0.5s;
+		transition: color 0.5s ease-in;
 
 		&:hover { color: #003469; }
 	}
