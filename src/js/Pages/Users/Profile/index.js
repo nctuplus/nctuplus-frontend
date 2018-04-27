@@ -179,10 +179,8 @@ const Profile = (props) => (
       </div>
     </div>
     <div className='col-12 col-lg-6'>
-      <div className='m-0 m-md-2 bg-white p-2'>
-
+      <div className='m-0 m-md-1 bg-white'>
         <Timetable />
-
       </div>
     </div>
   </div>

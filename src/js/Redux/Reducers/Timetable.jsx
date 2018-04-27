@@ -1,5 +1,4 @@
 
-
 import { handleActions } from 'redux-actions'
 
 const initialState = {
@@ -42,23 +41,23 @@ const initialState = {
     updated_at: '2017/05/17 09:45:55'
   }],
   selected: {},
-  hovering: false,
+  hovering: false
 }
 
 export default handleActions({
-  TIMETABLE_SELECT_NEW_CELL: (state, action) => ({ 
-    ...state, 
-    selected: { 
-      ...state.selected, 
-      [action.payload]: true 
-    } 
+  TIMETABLE_SELECT_NEW_CELL: (state, action) => ({
+    ...state,
+    selected: {
+      ...state.selected,
+      [action.payload]: true
+    }
   }),
-  TIMETABLE_UNSELECT_CELL: (state, action) => ({ 
-    ...state, 
-    selected: { 
-      ...state.selected, 
-      [action.payload]: false 
-    } 
+  TIMETABLE_UNSELECT_CELL: (state, action) => ({
+    ...state,
+    selected: {
+      ...state.selected,
+      [action.payload]: false
+    }
   }),
-  TIMETABLE_SET_HOVERING: (state, action) => ({ ...state, hovering: action.payload }),
+  TIMETABLE_SET_HOVERING: (state, action) => ({ ...state, hovering: action.payload })
 }, initialState)

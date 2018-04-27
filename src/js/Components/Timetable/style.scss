@@ -1,6 +1,9 @@
 
 
 .timetable{
+	td{
+		user-select: none;
+	}
 	.selected{
 		border: 3px solid #428bca ;
 	}

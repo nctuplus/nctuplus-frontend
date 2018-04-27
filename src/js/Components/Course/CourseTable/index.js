@@ -16,11 +16,7 @@ const CourseTableRow = withRouter((props) => (
     <td>{props.credit}</td>
     <td>{props.course_time}</td>
     <td>{props.grade}</td>
-    <td className='d-none d-table-cell'>
-      <span>
-        <i className='fa fa-square-o fa-2x' />
-      </span>
-    </td>
+
   </tr>
 ))
 
@@ -36,7 +32,6 @@ const CourseTable = (props) => (
           <th>學分</th>
           <th>時間</th>
           <th>年級</th>
-          <th className='d-none d-table-cell'>收藏</th>
         </tr>
       </thead>
       <tbody>

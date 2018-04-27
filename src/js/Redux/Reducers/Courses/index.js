@@ -1,17 +1,7 @@
 
-import { handleActions } from 'redux-actions'
-import { FETCHING_STATUS } from '../../../constants'
+import { combineReducers } from 'redux'
 
-const initialState = {
-  status: FETCHING_STATUS.IDLE,
-  data: [],
-  page: 1,
-  max_page: 1
-}
+import all from './all.js'
+import show from './show.js'
 
-export default handleActions({
-  FETCH_COURSES_START: (state) => ({ ...state, status: FETCHING_STATUS.FETCHING }),
-  FETCH_COURSES_DONE: (state) => ({ ...state, status: FETCHING_STATUS.DONE }),
-  UPDATE_COURSES_PAGE: (state, action) => ({ ...state, page: action.payload }),
-  UPDATE_COURSES: (state, action) => ({ ...state, data: action.payload })
-}, initialState)
+export default combineReducers({ all, show })

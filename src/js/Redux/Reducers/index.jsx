@@ -8,7 +8,6 @@ import pastExams from './PastExams'
 import events from './Events'
 import timetable from './Timetable'
 
-
 export default combineReducers({
   bulletins,
   books,

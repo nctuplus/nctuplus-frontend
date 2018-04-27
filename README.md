@@ -29,6 +29,11 @@ pre-commit hooks 會在 commit 前用 standard 這個套件修正 coding style�
 ### 套件
 - npm install
 
+#### UI套件
+react-scroll-component: https://github.com/flyingant/react-scroll-to-component
+react-tooltip: https://github.com/react-component/tooltip
+
+
 
 ## 開發 
 ### dev server

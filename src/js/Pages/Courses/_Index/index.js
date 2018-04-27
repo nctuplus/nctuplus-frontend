@@ -7,7 +7,7 @@ import Spinner from '../../../Components/Spinner'
 import './style.scss'
 
 import { connect } from 'react-redux'
-import { updateCoursesPage, fetchCourses } from '../../../Redux/Actions/Courses'
+import courseActions from '../../../Redux/Actions/Courses'
 
 const Index = (props) => {
   props.courses.status || props.fetch_data()
@@ -28,12 +28,12 @@ const Index = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  courses: state.courses
+  courses: state.courses.all
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetch_data: (page) => dispatch(fetchCourses(page)),
-  update_page: (page) => dispatch(updateCoursesPage(page))
+  fetch_data: (page) => dispatch(courseActions.index.fetch(page)),
+  update_page: (page) => dispatch(courseActions.index.updatePage(page))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index)
