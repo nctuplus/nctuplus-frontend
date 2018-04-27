@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "html2canvas": "^1.0.0-alpha.12",
     "isomorphic-fetch": "^2.2.1",
     "moment": "^2.22.2",
     "node-sass": "^4.9.3",

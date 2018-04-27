@@ -13,6 +13,8 @@ import {
   timetableSetHovering
 } from '../../Redux/Actions/Timetable'
 
+import html2canvas from 'html2canvas'
+
 const codes = ['M', 'N', 'A', 'B', 'C', 'D', 'X', 'E', 'F', 'G', 'H', 'Y', 'I', 'J', 'K', 'L']
 const codeTimeMap = {
   M: '6:00 ~ 6:50',
@@ -71,6 +73,17 @@ function transformTimetableStructure (courses) {
   return data
 }
 
+// 以html2canvas截下課表，並以png格式匯出
+function exportTimetable () {
+  html2canvas(document.getElementById('timetable'), {logging: false}).then(canvas => {
+    let dataUrl = canvas.toDataURL('image/png')
+    let exportTable = document.createElement('a')
+    exportTable.href = dataUrl
+    exportTable.download = 'timetable.png'
+    exportTable.click()
+  })
+}
+
 const TimetableCell = (props) => {
   const toggle = () => {
     props.selected
@@ -124,11 +137,11 @@ const Timetable = (props) => {
           <button className='btn btn-lg btn-secondary col' data-tip='分享課表'>
             <i className='fa fa-share mr-1' />
           </button>
-          <button className='btn btn-lg btn-secondary col' data-tip='下載/匯出'>
+          <button className='btn btn-lg btn-secondary col' data-tip='下載/匯出' onClick={exportTimetable}>
             <i className='fa fa-download mr-1' />
           </button>
         </div>
-        <table className='table table-bordered timetable'>
+        <table className='table table-bordered timetable' id='timetable'>
           <tbody>
             <tr>
               <th className='text-center'><i className='fa fa-bars' /></th>
