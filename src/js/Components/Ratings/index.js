@@ -44,27 +44,27 @@ const Ratings = (props) => (
   <div className='d-flex'>
     <div className='rating col'>
       <CircularProgressbar
-        percentage={props.loading}
+        percentage={props.loading || 0}
         initialAnimation
       />
-      <div className='people text-center' >涼度({ props.loading_people }人)</div>
+      <div className='people text-center' >涼度({ props.loading_people || 0 }人)</div>
     </div>
     <div className='rating col'>
       <CircularProgressbar
         className='green'
-        percentage={props.easiness}
+        percentage={props.easiness || 0}
         initialAnimation
       />
-      <div className='people text-center' >甜度({ props.easiness_people }人)</div>
+      <div className='people text-center' >甜度({ props.easiness_people || 0 }人)</div>
 
     </div>
     <div className='rating col'>
       <CircularProgressbar
         className='orange'
-        percentage={props.depth}
+        percentage={props.depth || 0}
         initialAnimation
       />
-      <div className='people text-center' >深度({ props.depth_people }人)</div>
+      <div className='people text-center' >深度({ props.depth_people || 0 }人)</div>
     </div>
   </div>
 )
