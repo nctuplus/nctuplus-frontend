@@ -14,11 +14,11 @@ const Show = ({ match, book, status, getBook, ...props }) => {
         <div className='row bg-white'>
           <div className='col-12 col-md-11 offset-md-1'>
             <div className='row'>
-              <div className='col-12 col-md-3 offset-md-1'>
-                <img className='img-preview' alt='尚無圖片!' src='https://plus.nctu.edu.tw/file_upload/book_covers/000/001/432/IMG_20170921_151626.jpg?1506278647' />
+              <div className='col-12 col-md-3 mt-3'>
+                <img className='img-fluid' alt='尚無圖片!' src='https://plus.nctu.edu.tw/file_upload/book_covers/000/001/432/IMG_20170921_151626.jpg?1506278647' />
               </div>
               <div className='col-8'>
-                <table className='table'>
+                <table className='table book-detail'>
                   <tbody>
                     <tr>
                       <td colSpan='2' className='col-md-12'>
@@ -28,7 +28,7 @@ const Show = ({ match, book, status, getBook, ...props }) => {
                     </tr>
                     <tr>
                       <td>價格</td>
-                      <td><span className='price'>{ book.price }</span></td>
+                      <td><span className='price'>500{/* book.price */}</span></td>
                     </tr>
                     <tr>
                       <td>賣家</td>

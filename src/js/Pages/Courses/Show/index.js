@@ -43,10 +43,9 @@ class Show extends React.Component {
     this.anchors = []
 
     // fetch data
-    if (!this.props.course || this.props.course.id !== this.props.match.params.id) { 
+    if (!this.props.course || this.props.course.id !== this.props.match.params.id) {
       this.props.fetch_data(this.props.match.params.id)
     }
-
   }
   scrollTo (index) {
     scrollToComponent(this.anchors[index], { align: 'top', offset: -20, duration: 500 })
@@ -78,7 +77,7 @@ class Show extends React.Component {
         </Sidebar>
         <div className='container'>
           <div className='offset-2 py-4'>
-          {
+            {
             this.props.fetching.status !== 2
             ? <div className='text-center pt-3'><Spinner size={64} color='grey' /></div>
             : <div>
