@@ -78,101 +78,101 @@ class Show extends React.Component {
         <div className='container'>
           <div className='offset-2 py-4'>
             {
-            this.props.fetching.status !== 2
-            ? <div className='text-center pt-3'><Spinner size={64} color='grey' /></div>
-            : <div>
-              <div className='row'>
-                <div className='col-md-10'>
-                  <h1>{ this.props.course.name }</h1>
-                  <small>最後同步時間 { this.props.course.updated_at }</small>
-                </div>
-                <div className='col-md-2 pull-right mt-5'>
-                  <ShareButton />
-                </div>
-              </div>
-
-              <hr />
-
-              <Section domref={anchor => (this.anchors[0] = anchor)} >
-                <div className='row'>
-                  <div className='col-12 col-md-7'>
-                    <Ratings rating={this.ratings} />
+              this.props.fetching.status !== 2
+                ? <div className='text-center pt-3'><Spinner size={64} color='grey' /></div>
+                : <div>
+                  <div className='row'>
+                    <div className='col-md-10'>
+                      <h1>{ this.props.course.name }</h1>
+                      <small>最後同步時間 { this.props.course.updated_at }</small>
+                    </div>
+                    <div className='col-md-2 pull-right mt-5'>
+                      <ShareButton />
+                    </div>
                   </div>
-                  <div className='col-12 col-md-5'>
-                    <PersonalRating />
-                  </div>
+
+                  <hr />
+
+                  <Section domref={anchor => (this.anchors[0] = anchor)} >
+                    <div className='row'>
+                      <div className='col-12 col-md-7'>
+                        <Ratings rating={this.ratings} />
+                      </div>
+                      <div className='col-12 col-md-5'>
+                        <PersonalRating />
+                      </div>
+                    </div>
+                  </Section>
+
+                  <hr />
+
+                  <Section
+                    domref={anchor => (this.anchors[1] = anchor)}
+                    title={<span><i className='fa fa-book mx-2' />課程資訊</span>}
+                  >
+                    <CourseInfo {...this.props.course} />
+                  </Section>
+
+                  <hr />
+
+                  <Section title={<span><i className='fa fa-cube mx-2' />修了這堂課的人，也修了...</span>} />
+
+                  <hr />
+
+                  <Section
+                    domref={anchor => (this.anchors[2] = anchor)}
+                    title={<span><i className='fa fa-gamepad mx-2' />課程攻略</span>}
+                  >
+                    <CourseTips />
+                  </Section>
+
+                  <hr />
+
+                  <Section
+                    domref={anchor => (this.anchors[3] = anchor)}
+                    title={<span><i className='fa fa-align-left mx-2' />歷年統計</span>}
+                  >
+                    <CourseStatistics chart_data={this.chartData} />
+                  </Section>
+
+                  <hr />
+
+                  <Section
+                    domref={anchor => (this.anchors[4] = anchor)}
+                    title={<span><i className='fa fa-weixin mx-2' />留言板</span>}
+                  >
+                    <div className='well bg-grey p-4'>
+                      <p className='text-center'>
+                        <strong>尚無討論</strong>
+                      </p>
+                    </div>
+                    <div className='input-group'>
+                      <div>
+                        <select className='form-control'>
+                          <option value='1'>推</option>
+                          <option value='2'>→</option>
+                          <option value='3'>噓</option>
+                        </select>
+                      </div>
+                      <input className='form-control' maxLength='32' type='text' />
+                      <div className='input-group-append'>
+                        <button className='btn btn-outline-success' type='button'>確定</button>
+                      </div>
+                    </div>
+                  </Section>
+
+                  <hr />
+
+                  <Section domref={anchor => (this.anchors[5] = anchor)}>
+                    <CourseForum />
+                  </Section>
+
+                  <Section domref={anchor => (this.anchors[6] = anchor)} title='考古題區'>
+                    <PastExamUploadTable />
+                    <PastExamUpload />
+                  </Section>
                 </div>
-              </Section>
-
-              <hr />
-
-              <Section
-                domref={anchor => (this.anchors[1] = anchor)}
-                title={<span><i className='fa fa-book mx-2' />課程資訊</span>}
-              >
-                <CourseInfo {...this.props.course} />
-              </Section>
-
-              <hr />
-
-              <Section title={<span><i className='fa fa-cube mx-2' />修了這堂課的人，也修了...</span>} />
-
-              <hr />
-
-              <Section
-                domref={anchor => (this.anchors[2] = anchor)}
-                title={<span><i className='fa fa-gamepad mx-2' />課程攻略</span>}
-              >
-                <CourseTips />
-              </Section>
-
-              <hr />
-
-              <Section
-                domref={anchor => (this.anchors[3] = anchor)}
-                title={<span><i className='fa fa-align-left mx-2' />歷年統計</span>}
-              >
-                <CourseStatistics chart_data={this.chartData} />
-              </Section>
-
-              <hr />
-
-              <Section
-                domref={anchor => (this.anchors[4] = anchor)}
-                title={<span><i className='fa fa-weixin mx-2' />留言板</span>}
-              >
-                <div className='well bg-grey p-4'>
-                  <p className='text-center'>
-                    <strong>尚無討論</strong>
-                  </p>
-                </div>
-                <div className='input-group'>
-                  <div>
-                    <select className='form-control'>
-                      <option value='1'>推</option>
-                      <option value='2'>→</option>
-                      <option value='3'>噓</option>
-                    </select>
-                  </div>
-                  <input className='form-control' maxLength='32' type='text' />
-                  <div className='input-group-append'>
-                    <button className='btn btn-outline-success' type='button'>確定</button>
-                  </div>
-                </div>
-              </Section>
-
-              <hr />
-
-              <Section domref={anchor => (this.anchors[5] = anchor)}>
-                <CourseForum />
-              </Section>
-
-              <Section domref={anchor => (this.anchors[6] = anchor)} title='考古題區'>
-                <PastExamUploadTable />
-                <PastExamUpload />
-              </Section>
-            </div>
-          }
+            }
           </div>
         </div>
       </PageWrapper>
