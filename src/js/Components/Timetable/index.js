@@ -84,6 +84,23 @@ function exportTimetable () {
   })
 }
 
+// 將空的row隱藏/顯示[toggle]
+function hiddenEmptyRow () {
+  document.querySelectorAll('tbody tr').forEach(
+    (tr, i) => {
+      let empty = true
+      if ([1, 2, 12, 13, 14, 15, 16].includes(i)) {
+        tr.childNodes.forEach((td, j) => {
+          if (td.innerHTML !== '' && j > 0) {
+            empty = false
+          }
+        })
+        if (empty) { tr.hidden = !tr.hidden }
+      }
+    }
+  )
+}
+
 const TimetableCell = (props) => {
   const toggle = () => {
     props.selected
@@ -98,7 +115,7 @@ const TimetableCell = (props) => {
     props.setHovering(false)
   }
   return props.course
-    ? <td className={`bg-${CourseConfig[props.course.type].color}`}>
+    ? <td className={`bg-${CourseConfig[props.course.type].color}`} data-tip={props.course.classroom}>
       <Link to={`/courses/${props.course.id}`}>{props.course.name}</Link>
     </td>
     : <td
@@ -144,7 +161,9 @@ const Timetable = (props) => {
         <table className='table table-bordered timetable' id='timetable'>
           <tbody>
             <tr>
-              <th className='text-center'><i className='fa fa-bars' /></th>
+              <th className='text-center'>
+                <i className='fa fa-bars' id='hiddenEmptyRow' onClick={hiddenEmptyRow} data-html2canvas-ignore='true' />
+              </th>
               <th className='text-center'>Mon</th>
               <th className='text-center'>Tue</th>
               <th className='text-center'>Wed</th>
