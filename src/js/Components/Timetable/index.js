@@ -130,7 +130,7 @@ const TimetableCell = (props) => {
 const Timetable = (props) => {
   let structure = transformTimetableStructure(props.courses)
   return (
-    <div className='card'>
+    <div className='card mb-3'>
       <ReactTooltip effect='solid' />
       <div className='card-heading bg-blue text-white p-2'>
         <h4 className='text-center'>
@@ -158,7 +158,7 @@ const Timetable = (props) => {
             <i className='fa fa-download mr-1' />
           </button>
         </div>
-        <table className='table table-bordered timetable' id='timetable'>
+        <table className='table table-bordered timetable mb-0' id='timetable'>
           <tbody>
             <tr>
               <th className='text-center'>
