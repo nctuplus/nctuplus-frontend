@@ -68,7 +68,7 @@ function transformTimetableStructure (courses) {
   courses
     .map(preprocessCourse)
     .forEach(course =>
-      course.timeslots.forEach(timeslot => (data[ timeslot[1] ][ timeslot[0] ] = course.info)))
+      course.timeslots.forEach(timeslot => (data[ timeslot[1] ][ timeslot[0] - 1 ] = course.info)))
 
   return data
 }
