@@ -10,12 +10,14 @@ import { connect } from 'react-redux'
 import {
   timetableSelectNewCell,
   timetableUnselectCell,
-  timetableSetHovering
+  timetableSetHovering,
+  timetableAdjustRow
 } from '../../Redux/Actions/Timetable'
 
 import html2canvas from 'html2canvas'
 
 const codes = ['M', 'N', 'A', 'B', 'C', 'D', 'X', 'E', 'F', 'G', 'H', 'Y', 'I', 'J', 'K', 'L']
+const canBeHidden = ['M', 'N', 'Y', 'I', 'J', 'K', 'L']
 const codeTimeMap = {
   M: '6:00 ~ 6:50',
   N: '7:00 ~ 7:50',
@@ -84,23 +86,6 @@ function exportTimetable () {
   })
 }
 
-// 將空的row隱藏/顯示[toggle]
-function hiddenEmptyRow () {
-  document.querySelectorAll('tbody tr').forEach(
-    (tr, i) => {
-      let empty = true
-      if ([1, 2, 12, 13, 14, 15, 16].includes(i)) {
-        tr.childNodes.forEach((td, j) => {
-          if (td.innerHTML !== '' && j > 0) {
-            empty = false
-          }
-        })
-        if (empty) { tr.hidden = !tr.hidden }
-      }
-    }
-  )
-}
-
 const TimetableCell = (props) => {
   const toggle = () => {
     props.selected
@@ -129,6 +114,7 @@ const TimetableCell = (props) => {
 
 const Timetable = (props) => {
   let structure = transformTimetableStructure(props.courses)
+  console.log(structure)
   return (
     <div className='card mb-3'>
       <ReactTooltip effect='solid' />
@@ -161,8 +147,8 @@ const Timetable = (props) => {
         <table className='table table-bordered timetable mb-0' id='timetable'>
           <tbody>
             <tr>
-              <th className='text-center'>
-                <i className='fa fa-bars' id='hiddenEmptyRow' onClick={hiddenEmptyRow} data-html2canvas-ignore='true' />
+              <th className='btn border-0' data-tip={props.minified ? '展開課表' : '收合課表'} onClick={props.adjustRow}>
+                {props.minified ? <i className='fa fa-expand' data-html2canvas-ignore='true' /> : <i className='fa fa-compress' data-html2canvas-ignore='true' />}
               </th>
               <th className='text-center'>Mon</th>
               <th className='text-center'>Tue</th>
@@ -173,24 +159,25 @@ const Timetable = (props) => {
             </tr>
             {
               Object.keys(structure).map(code => (
-                <tr key={code} >
-                  <td className='text-center' data-tip={codeTimeMap[code]}>{ code }</td>
-                  {
-                    structure[code].map((course, index) => {
-                      const key = `${index + 1}${code}`
-                      const selected = props.selectable && props.selected_cells[key]
-                      return (
-                        <TimetableCell
-                          key={key}
-                          id={key}
-                          selected={selected}
-                          course={course}
-                          {...props.cells}
-                        />
-                      )
-                    })
-                  }
-                </tr>
+                props.minified && canBeHidden.includes(code) && structure[code].every(v => v == null)
+                  ? null : <tr key={code} >
+                    <td className='text-center' data-tip={codeTimeMap[code]}>{ code }</td>
+                    {
+                      structure[code].map((course, index) => {
+                        const key = `${index + 1}${code}`
+                        const selected = props.selectable && props.selected_cells[key]
+                        return (
+                          <TimetableCell
+                            key={key}
+                            id={key}
+                            selected={selected}
+                            course={course}
+                            {...props.cells}
+                          />
+                        )
+                      })
+                    }
+                  </tr>
               ))
             }
           </tbody>
@@ -203,7 +190,8 @@ const Timetable = (props) => {
 const mapStateToProps = (state) => ({
   timetable: {
     selected_cells: state.timetable.selected,
-    courses: state.timetable.courses
+    courses: state.timetable.courses,
+    minified: state.timetable.minified
   },
   cells: {
     hovering: state.timetable.hovering
@@ -215,12 +203,16 @@ const mapDispatchToProps = (dispatch) => ({
     select: (payload) => dispatch(timetableSelectNewCell(payload)),
     unselect: (payload) => dispatch(timetableUnselectCell(payload)),
     setHovering: (payload) => dispatch(timetableSetHovering(payload))
+  },
+  timetable: {
+    adjustRow: (payload) => dispatch(timetableAdjustRow())
   }
 })
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => ({
   ...ownProps,
   ...stateProps.timetable,
+  ...dispatchProps.timetable,
   cells: {
     ...stateProps.cells,
     ...dispatchProps.cells
