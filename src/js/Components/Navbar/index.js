@@ -15,10 +15,10 @@ const NavLink = (props) => (
   <NavItem>
     {
     /* if prop {external} provide, use <a> tag for external link */
-    (typeof props.external === 'undefined')
-    ? <Link to={props.to} className='nav-link'>{ props.children }</Link>
-    : <a href={props.to} target='_blank' className='nav-link' >{ props.children }</a>
-  }
+      (typeof props.external === 'undefined')
+        ? <Link to={props.to} className='nav-link'>{ props.children }</Link>
+        : <a href={props.to} target='_blank' className='nav-link' >{ props.children }</a>
+    }
   </NavItem>
 )
 

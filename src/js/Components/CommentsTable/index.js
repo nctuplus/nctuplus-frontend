@@ -27,17 +27,17 @@ const CommentsTable = (props) => (
       <tbody>
         {
           props.data.length
-          ? props.data.map((value, index) => (
-            <CommentsTableRow
-              key={index}
-              {...value}
-            />)
-          )
-          : <tr className='text-center'>
-            <td colSpan='4'>
-              <Spinner size={48} color='grey' />
-            </td>
-          </tr>
+            ? props.data.map((value, index) => (
+              <CommentsTableRow
+                key={index}
+                {...value}
+              />)
+            )
+            : <tr className='text-center'>
+              <td colSpan='4'>
+                <Spinner size={48} color='grey' />
+              </td>
+            </tr>
         }
       </tbody>
     </table>

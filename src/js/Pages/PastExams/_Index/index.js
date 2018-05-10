@@ -40,9 +40,9 @@ const Index = (props) => {
               <SearchPanelNewsFeed >
                 {
                   props.pastExams.data.length
-                  ? props.pastExams.data.slice(0, 10).map((pastExam, index) => (
-                    <SearchPanelNews href={`/past_exams/${pastExam.id}`} key={index}>
-                      {
+                    ? props.pastExams.data.slice(0, 10).map((pastExam, index) => (
+                      <SearchPanelNews href={`/past_exams/${pastExam.id}`} key={index}>
+                        {
                           /* get diff of date */
                           Math.ceil((Date.now() - Date.parse(pastExam.updated_at)) / 864000000)
                         }
@@ -50,11 +50,11 @@ const Index = (props) => {
                         <strong>{ pastExam.course }</strong>
                         的考古題
                       </SearchPanelNews>
-                      )
                     )
-                  : <div className='text-center'>
-                    <Spinner size={32} color='grey' />
-                  </div>
+                    )
+                    : <div className='text-center'>
+                      <Spinner size={32} color='grey' />
+                    </div>
                 }
               </SearchPanelNewsFeed>
             </SearchPanel>

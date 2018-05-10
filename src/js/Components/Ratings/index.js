@@ -25,7 +25,8 @@ class PersonalRating extends React.Component {
   render () {
     return (
       <div className='personal-rating' >
-        <span className='d-inline-block my-rating'>我的評分
+        <span className='d-inline-block my-rating'>
+          我的評分
           <small className='d-none'>
             使用此功能請先<Link className='flat-link' to='/login'>登入</Link>
           </small>

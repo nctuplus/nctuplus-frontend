@@ -80,7 +80,7 @@ const Index = (props) => {
           </div>
           {
             props.events.data
-            .map((event, index) => <EventPreview {...event} key={index} />)
+              .map((event, index) => <EventPreview {...event} key={index} />)
           }
         </div>
 
@@ -90,7 +90,7 @@ const Index = (props) => {
           </div>
           {
             props.events.data
-            .map((event, index) => <EventPreview {...event} key={index} />)
+              .map((event, index) => <EventPreview {...event} key={index} />)
           }
         </div>
       </div>

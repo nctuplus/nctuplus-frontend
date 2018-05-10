@@ -13,21 +13,21 @@ export const getEventDone = createAction('GET_EVENT_DONE')
 export const fetchEvents = (page = 1) => dispatch => {
   dispatch(fetchEventsStart)
   fetch(`${SERVER_URL}/events?_limit=30&_page=${page}`)
-  .then(response => response.json())
-  .then(json => {
-    dispatch(updateEvents(json))
-    dispatch(fetchEventsDone())
-  })
-  .catch(error => console.log(error))
+    .then(response => response.json())
+    .then(json => {
+      dispatch(updateEvents(json))
+      dispatch(fetchEventsDone())
+    })
+    .catch(error => console.log(error))
 }
 
 export const getEvent = (id) => dispatch => {
   dispatch(getEventStart)
   fetch(`${SERVER_URL}/events/${id}`)
-  .then(response => response.json())
-  .then(json => {
-    dispatch(storeEvent(json))
-    dispatch(getEventDone())
-  })
-  .catch(error => console.log(error))
+    .then(response => response.json())
+    .then(json => {
+      dispatch(storeEvent(json))
+      dispatch(getEventDone())
+    })
+    .catch(error => console.log(error))
 }

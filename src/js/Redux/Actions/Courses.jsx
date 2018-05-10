@@ -30,23 +30,23 @@ const courseActions = courses.courses
 courseActions.index.fetch = (page = 1) => dispatch => {
   dispatch(courseActions.index.status.start())
   fetch(`${SERVER_URL}/courses?_limit=30&_page=${page}`)
-  .then(response => response.json())
-  .then(json => {
-    dispatch(courseActions.index.store(json))
-    dispatch(courseActions.index.status.done())
-  })
-  .catch(error => console.log(error))
+    .then(response => response.json())
+    .then(json => {
+      dispatch(courseActions.index.store(json))
+      dispatch(courseActions.index.status.done())
+    })
+    .catch(error => console.log(error))
 }
 
 courseActions.show.fetch = (id) => dispatch => {
   dispatch(courseActions.show.status.start())
   fetch(`${SERVER_URL}/courses/${id}`)
-  .then(response => response.json())
-  .then(json => {
-    dispatch(courseActions.show.store(json))
-    dispatch(courseActions.show.status.done())
-  })
-  .catch(error => console.log(error))
+    .then(response => response.json())
+    .then(json => {
+      dispatch(courseActions.show.store(json))
+      dispatch(courseActions.show.status.done())
+    })
+    .catch(error => console.log(error))
 }
 
 export default courseActions

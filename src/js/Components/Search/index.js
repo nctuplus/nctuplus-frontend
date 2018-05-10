@@ -39,12 +39,12 @@ class SearchCourse extends React.Component {
         <div className={classNames('row', !this.state.advanced && 'd-none')} >
           {
             this.props.show_semester
-            ? <div className='col-4 text-center no-padding-right'>
-              <select className='form-control'>
-                <option value=''>所有學期</option>
+              ? <div className='col-4 text-center no-padding-right'>
+                <select className='form-control'>
+                  <option value=''>所有學期</option>
 
-              </select>
-            </div> : ''
+                </select>
+              </div> : ''
           }
           <div
             className={`col-8 text-center ${this.props.show_semester ? 'no-padding-left' : 'no-padding-right'}`}
