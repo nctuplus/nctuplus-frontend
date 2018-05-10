@@ -29,7 +29,7 @@ class PersonalRating extends React.Component {
           我的評分
           <small className='d-none'>
             使用此功能請先<Link className='flat-link' to='/login'>登入</Link>
-          </small>
+        </small>
         </span>
         <div>
           <PersonalRatingBar>涼度</PersonalRatingBar>
