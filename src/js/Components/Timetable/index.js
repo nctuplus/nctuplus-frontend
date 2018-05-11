@@ -4,6 +4,7 @@ import classNames from 'classnames'
 import { Link } from 'react-router-dom'
 import CourseConfig from '../Course/config'
 import ReactTooltip from 'react-tooltip'
+import {ShareModal} from '../ShareButton'
 import './style.scss'
 
 import { connect } from 'react-redux'
@@ -11,7 +12,8 @@ import {
   timetableSelectNewCell,
   timetableUnselectCell,
   timetableSetHovering,
-  timetableAdjustRow
+  timetableAdjustRow,
+  timetableShareToggle
 } from '../../Redux/Actions/Timetable'
 
 import html2canvas from 'html2canvas'
@@ -114,10 +116,9 @@ const TimetableCell = (props) => {
 
 const Timetable = (props) => {
   let structure = transformTimetableStructure(props.courses)
-  console.log(structure)
   return (
     <div className='card mb-3'>
-      <ReactTooltip effect='solid' />
+      <ReactTooltip effect='solid' globalEventOff='click' />
       <div className='card-heading bg-blue text-white p-2'>
         <h4 className='text-center'>
           106上<i className='fa fa-caret-down mx-2' />
@@ -137,9 +138,10 @@ const Timetable = (props) => {
           <button className='btn btn-lg btn-secondary col' data-tip='複製課表'>
             <i className='fa fa-copy mr-1' />
           </button>
-          <button className='btn btn-lg btn-secondary col' data-tip='分享課表'>
+          <button className='btn btn-lg btn-secondary col' data-tip='分享課表' onClick={props.shareToggle}>
             <i className='fa fa-share mr-1' />
           </button>
+          {props.shareModal ? <ShareModal userHashID='forTest' close={props.shareToggle} /> : ''}
           <button className='btn btn-lg btn-secondary col' data-tip='下載/匯出' onClick={exportTimetable}>
             <i className='fa fa-download mr-1' />
           </button>
@@ -191,7 +193,8 @@ const mapStateToProps = (state) => ({
   timetable: {
     selected_cells: state.timetable.selected,
     courses: state.timetable.courses,
-    minified: state.timetable.minified
+    minified: state.timetable.minified,
+    shareModal: state.timetable.shareModal
   },
   cells: {
     hovering: state.timetable.hovering
@@ -205,7 +208,8 @@ const mapDispatchToProps = (dispatch) => ({
     setHovering: (payload) => dispatch(timetableSetHovering(payload))
   },
   timetable: {
-    adjustRow: (payload) => dispatch(timetableAdjustRow())
+    adjustRow: (payload) => dispatch(timetableAdjustRow()),
+    shareToggle: (payload) => dispatch(timetableShareToggle())
   }
 })
 

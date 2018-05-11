@@ -1,7 +1,7 @@
 
 import React from 'react'
 import classNames from 'classnames'
-import ShareButton from '../ShareButton'
+import {ShareButton} from '../ShareButton'
 import './style.scss'
 
 const CommentReply = (props) => (

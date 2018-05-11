@@ -42,7 +42,8 @@ const initialState = {
   }],
   selected: {},
   hovering: false,
-  minified: false
+  minified: false,
+  shareModal: false
 }
 
 export default handleActions({
@@ -61,5 +62,6 @@ export default handleActions({
     }
   }),
   TIMETABLE_SET_HOVERING: (state, action) => ({ ...state, hovering: action.payload }),
-  TIMETABLE_ADJUST_ROW: (state, action) => ({ ...state, minified: !state.minified })
+  TIMETABLE_ADJUST_ROW: (state, action) => ({ ...state, minified: !state.minified }),
+  TIMETABLE_SHARE_TOGGLE: (state, action) => ({ ...state, shareModal: !state.shareModal })
 }, initialState)

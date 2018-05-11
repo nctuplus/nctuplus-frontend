@@ -2,7 +2,7 @@
 import React from 'react'
 import PageWrapper from '../../../Components/PageWrapper'
 import { Sidebar, SidebarItem } from '../../../Components/Sidebar'
-import ShareButton from '../../../Components/ShareButton'
+import {ShareButton} from '../../../Components/ShareButton'
 import {
   CourseInfo,
   CourseTips,
