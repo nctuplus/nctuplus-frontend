@@ -9,6 +9,10 @@ const image = [
 
 const Login = (props) => (
   <div className='login'>
+    {(props.location.state)
+      ? <div className='col-2 alert alert-warning'>請先登入，謝謝!</div>
+      : ''
+    }
     <Cover images={image} >
       <div className='login-area container'>
         <div className='text-center'>
