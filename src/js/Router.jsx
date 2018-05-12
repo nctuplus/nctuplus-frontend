@@ -30,7 +30,7 @@ const loginOnly = (Component) => {
   else return () => <Redirect to='/login' />
 }
 
-const Router = (props) => (
+const Router = () => (
   <BrowserRouter>
     <div>
       {/* shared navbar. */}
@@ -102,5 +102,6 @@ const Router = (props) => (
     </div>
   </BrowserRouter>
 )
+
 
 export default Router

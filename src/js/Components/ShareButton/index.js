@@ -3,8 +3,23 @@ import React from 'react'
 import Modal from '../Modal'
 import './style.scss'
 
-const ShareModal = (props) => {
-  let shareURL = `https://plus.nctu.edu.tw/%23${props.userHashID}` // urlencoding: # --> %23
+import { connect } from 'react-redux'
+
+import Hashids from 'hashids'
+
+function getHash (userID, semesterID) {
+  let hashids = new Hashids('nctuplusisgood5566', 8)
+  return hashids.encode(userID, semesterID)
+}
+
+const mapStateToProps = (state) => ({
+  userID: state.user.userID
+})
+
+const ShareModal = connect(mapStateToProps)((props) => {
+  console.log(props)
+  let hash = getHash(props.userID, props.semesterID)
+  let shareURL = `https://plus.nctu.edu.tw/shares/${hash}`
   return (
     <Modal close={props.close}>
       <div className='modal-header'>
@@ -16,13 +31,13 @@ const ShareModal = (props) => {
         <a className='btn' href={`https://twitter.com/home?status=${shareURL}`} target='_blank'><i className='fa fa-twitter-square' /></a>
         <hr />
         <p className='input-group'>
-          <span id='shareURL' className='input-group-prepend input-group-text mr-3'>{`https://plus.nctu.edu.tw/#${props.userHashID}`}</span>
+          <span id='shareURL' className='input-group-prepend input-group-text mr-3'>{`https://plus.nctu.edu.tw/shares/${hash}`}</span>
           <span className='btn'><i className='fa fa-copy' /></span>
         </p>
       </div>
     </Modal>
   )
-}
+})
 
 const ShareButton = () => (
   <div>

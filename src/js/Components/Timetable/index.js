@@ -141,7 +141,7 @@ const Timetable = (props) => {
           <button className='btn btn-lg btn-secondary col' data-tip='分享課表' onClick={props.shareToggle}>
             <i className='fa fa-share mr-1' />
           </button>
-          {props.shareModal ? <ShareModal userHashID='forTest' close={props.shareToggle} /> : ''}
+          {props.shareModal ? <ShareModal semesterID='22' close={props.shareToggle} /> : ''}
           <button className='btn btn-lg btn-secondary col' data-tip='下載/匯出' onClick={exportTimetable}>
             <i className='fa fa-download mr-1' />
           </button>
