@@ -114,79 +114,97 @@ const TimetableCell = (props) => {
     />
 }
 
-const Timetable = (props) => {
-  let structure = transformTimetableStructure(props.courses)
-  return (
-    <div className='card mb-3'>
-      <ReactTooltip effect='solid' globalEventOff='click' />
-      <div className='card-heading bg-blue text-white p-2'>
-        <h4 className='text-center'>
-          106上<i className='fa fa-caret-down mx-2' />
-        </h4>
-      </div>
-      <div className='card-body p-0'>
-        <div className='btn-group d-flex'>
-          <button className='btn btn-lg btn-secondary col' data-tip='刪除課表'>
-            <i className='fa fa-trash mr-1' />
-          </button>
-          <button className='btn btn-lg btn-secondary col' data-tip='清除已選時段'>
-            <i className='fa fa-eraser mr-1' />
-          </button>
-          <button className='btn btn-lg btn-secondary col' data-tip='儲存課表'>
-            <i className='fa fa-save mr-1' />
-          </button>
-          <button className='btn btn-lg btn-secondary col' data-tip='複製課表'>
-            <i className='fa fa-copy mr-1' />
-          </button>
-          <button className='btn btn-lg btn-secondary col' data-tip='分享課表' onClick={props.shareToggle}>
-            <i className='fa fa-share mr-1' />
-          </button>
-          {props.shareModal ? <ShareModal semesterID='22' close={props.shareToggle} /> : ''}
-          <button className='btn btn-lg btn-secondary col' data-tip='下載/匯出' onClick={exportTimetable}>
-            <i className='fa fa-download mr-1' />
-          </button>
+class Timetable extends React.Component {
+  constructor (props) {
+    super(props)
+    this.checkMinified = this.checkMinified.bind(this)
+    this.structure = transformTimetableStructure(this.props.courses)
+  }
+  componentDidUpdate () {
+    ReactTooltip.rebuild()
+  }
+  checkMinified (code) {
+    return this.props.minified &&
+      canBeHidden.includes(code) &&
+      this.structure[code].every(v => !v)
+  }
+  render () {
+    return (
+      <div className='card mb-3'>
+        <ReactTooltip effect='solid' globalEventOff='click' />
+        <div className='card-heading bg-blue text-white p-2'>
+          <h4 className='text-center'>
+            106上<i className='fa fa-caret-down mx-2' />
+          </h4>
         </div>
-        <table className='table table-bordered timetable mb-0' id='timetable'>
-          <tbody>
-            <tr>
-              <th className='btn border-0' data-tip={props.minified ? '展開課表' : '收合課表'} onClick={props.adjustRow}>
-                {props.minified ? <i className='fa fa-expand' data-html2canvas-ignore='true' /> : <i className='fa fa-compress' data-html2canvas-ignore='true' />}
-              </th>
-              <th className='text-center'>Mon</th>
-              <th className='text-center'>Tue</th>
-              <th className='text-center'>Wed</th>
-              <th className='text-center'>Thu</th>
-              <th className='text-center'>Fri</th>
-              <th className='text-center'>Sat</th>
-            </tr>
-            {
-              Object.keys(structure).map(code => (
-                props.minified && canBeHidden.includes(code) && structure[code].every(v => v == null)
-                  ? null : <tr key={code} >
+        <div className='card-body p-0'>
+          <div className='btn-group d-flex'>
+            <button className='btn btn-lg btn-secondary col' data-tip='刪除課表'>
+              <i className='fa fa-trash mr-1' />
+            </button>
+            <button className='btn btn-lg btn-secondary col' data-tip='清除已選時段'>
+              <i className='fa fa-eraser mr-1' />
+            </button>
+            <button className='btn btn-lg btn-secondary col' data-tip='儲存課表'>
+              <i className='fa fa-save mr-1' />
+            </button>
+            <button className='btn btn-lg btn-secondary col' data-tip='複製課表'>
+              <i className='fa fa-copy mr-1' />
+            </button>
+            <button
+              className='btn btn-lg btn-secondary col'
+              data-tip='分享課表'
+              onClick={this.props.shareToggle}
+            >
+              <i className='fa fa-share mr-1' />
+            </button>
+            { this.props.shareModal && <ShareModal semesterID='22' close={this.props.shareToggle} /> }
+            <button className='btn btn-lg btn-secondary col' data-tip='下載/匯出' onClick={exportTimetable}>
+              <i className='fa fa-download mr-1' />
+            </button>
+          </div>
+          <table className='table table-bordered timetable mb-0' id='timetable'>
+            <tbody>
+              <tr>
+                <th className='btn border-0' data-tip={this.props.minified ? '展開課表' : '收合課表'} onClick={this.props.adjustRow}>
+                  {this.props.minified ? <i className='fa fa-expand' data-html2canvas-ignore='true' /> : <i className='fa fa-compress' data-html2canvas-ignore='true' />}
+                </th>
+                <th className='text-center'>Mon</th>
+                <th className='text-center'>Tue</th>
+                <th className='text-center'>Wed</th>
+                <th className='text-center'>Thu</th>
+                <th className='text-center'>Fri</th>
+                <th className='text-center'>Sat</th>
+              </tr>
+              {
+                Object.keys(this.structure).map(code => (
+                  this.checkMinified(code) ||
+                  <tr key={code} >
                     <td className='text-center' data-tip={codeTimeMap[code]}>{ code }</td>
                     {
-                      structure[code].map((course, index) => {
+                      this.structure[code].map((course, index) => {
                         const key = `${index + 1}${code}`
-                        const selected = props.selectable && props.selected_cells[key]
+                        const selected = this.props.selectable && this.props.selected_cells[key]
                         return (
                           <TimetableCell
                             key={key}
                             id={key}
                             selected={selected}
                             course={course}
-                            {...props.cells}
+                            {...this.props.cells}
                           />
                         )
                       })
                     }
                   </tr>
-              ))
-            }
-          </tbody>
-        </table>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 const mapStateToProps = (state) => ({
