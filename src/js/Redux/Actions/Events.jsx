@@ -19,7 +19,7 @@ export const fetchEvents = (page = 1) => dispatch => {
   fetch(`${SERVER_URL}/events?_limit=30&_page=${page}`)
   .then(response => response.json())
   .then(json => {
-    dispatch(updateEvents(json))
+    dispatch(updateEvents(json.data))
     dispatch(fetchEventsDone())
   })
   .catch(error => console.log(error))
@@ -38,7 +38,7 @@ export const getEvent = (id) => dispatch => {
 
 //能不能用前面fetch到的id繼續用
 export const followEvent = (event_id , user_id) => dispatch => {
-  fetch(`${SERVER_URL}/events/${event_id}`, {
+  fetch(`${SERVER_URL}/users/events/${event_id}`, {
     method: "POST",
     body: {
       event_id: event_id,

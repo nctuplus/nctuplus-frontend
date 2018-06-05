@@ -23,19 +23,21 @@ const Show = (props) => {
           <div className='row'>
             <div className='col-7'>
               <p><i className='fa fa-calendar' /> 時間: <strong>{ event.begin_time } ~ { event.end_time }</strong></p>
-              <p><i className='fa fa-cubes' /> 主辦單位: { event.organizer }</p>
-              <p><i className='fa fa-location-arrow' /> 地點: { event.positon }</p>
-              <p><i className='fa fa-share-alt' /> 活動網址: <a href={event.link} target='blank'>點這裡</a></p>
+              <p><i className='fa fa-cubes' /> 主辦單位: { event.organization }</p>
+              <p><i className='fa fa-location-arrow' /> 地點: { event.location }</p>
+              <p><i className='fa fa-share-alt' /> 活動網址: <a href={event.url} target='blank'>點這裡</a></p>
             </div>
             <div className='col-5'>
-              <p className='info-box'><i className='fa fa-eye' /> 觀看次數: <strong>{ event.view_count }</strong></p>
-              <p className='info-box'><i className='fa fa-rss' /> 關注人數: <strong>{ event.people }</strong></p>
+              <p className='info-box'><i className='fa fa-eye' /> 觀看次數: <strong>{ event.view_times }</strong></p>
+              <p className='info-box'><i className='fa fa-rss' /> 關注人數: <strong>{ event.event_follows_count }</strong></p>
             </div>
           </div>
+       
+
           <div className='divide-horizontal'>
             <span>活動介紹</span>
           </div>
-          <section dangerouslySetInnerHTML={event.introduce} />
+          <section dangerouslySetInnerHTML={{__html: event.content}} />
         </div>
 
       </div>
@@ -43,11 +45,11 @@ const Show = (props) => {
         <div className='container'>
           <div className='pull-right'>
           {event.followBool ?
-            <button className='btn btn-success nav-button' onClick = {() => props.follow_Event(event.id,1)}>
+            <button className='btn btn-success nav-button' onClick = {() => props.follow_Event(event.id,3056)}>
               取消關注
             </button>
             :
-            <button className='btn btn-success nav-button' onClick = {() => props.follow_Event(event.id,1)}>
+            <button className='btn btn-success nav-button' onClick = {() => props.follow_Event(event.id,3056)}>
               關注
             </button>}
           </div>

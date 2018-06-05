@@ -55,7 +55,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"development"',
-      SERVER_URL: '"http://localhost:9487"'
+      SERVER_URL: '"http://sgpvpn.sahaohao.info:3000/api/v1"'
     }),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
