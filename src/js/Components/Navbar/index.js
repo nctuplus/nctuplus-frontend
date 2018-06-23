@@ -29,7 +29,8 @@ class NavbarContent extends React.Component {
   }
   render () {
     return (
-      <nav className='navbar navbar-expand-md navbar-custom'>
+
+      <nav className='navbar navbar-expand-md navbar-custom pt-1'>
         <div className='navbar-brand brand'>
           <Link to='/'>NCTU+</Link>
         </div>
