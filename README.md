@@ -1,5 +1,5 @@
 
-nctuplust-frontend
+nctuplus-frontend
 ===
 
 ## 安裝
