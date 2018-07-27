@@ -3,8 +3,10 @@ nctuplust-frontend
 ===
 
 ## 安裝
+先npm install standard -g
+
 ### pre-commit hook
-在 .git/hooks/ 下面新增一個檔案 ==pre-commit== 
+在 .git/hooks/ 下面新增一個檔案 **pre-commit** 
 內容:
 ```shell
 #!/bin/bash
@@ -22,10 +24,14 @@ if [[ $? -ne 0 ]]; then
   exit 1
 fi
 ```
-`
+
 pre-commit hooks 會在 commit 前用 standard 這個套件修正 coding style。
 沒有通過 linter 測試的 code 不會被 merge ˋˊ
-`
+
+### 注意
+如果**pre-commit**沒有反應 可能是沒有權限
+要先對 **pre-commit** 下chmod 755
+
 ### 套件
 - npm install
 
