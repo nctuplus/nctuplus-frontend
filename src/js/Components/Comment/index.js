@@ -82,10 +82,10 @@ const Comment = (props) => (
       (
         <div className='py-3 pl-5'>
           {
-          props.sub_comments.map((comment, index) => (
-            <SubComment {...comment} key={index} />)
-          )
-        }
+            props.sub_comments.map((comment, index) => (
+              <SubComment {...comment} key={index} />)
+            )
+          }
         </div>
       )
     }

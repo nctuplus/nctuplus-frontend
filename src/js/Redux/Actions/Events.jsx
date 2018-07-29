@@ -30,23 +30,25 @@ export const deleteEventReset = createAction('DELETE_EVENT_RESET')
 export const fetchEvents = (page = 1) => dispatch => {
   dispatch(fetchEventsStart())
   fetch(`${SERVER_URL}/events?_limit=30&_page=${page}`)
-  .then(response => response.json())
-  .then(json => {
-    dispatch(updateEvents(json.data))
-    dispatch(fetchEventsDone())
-  })
-  .catch(error => console.log(error))
+    .then(response => response.json())
+    .then(json => {
+      dispatch(updateEvents(json.data))
+      dispatch(fetchEventsDone())
+    })
+    .catch(error => console.log(error))
 }
 
 export const getEvent = (id) => dispatch => {
   dispatch(getEventStart())
   fetch(`${SERVER_URL}/events/${id}`)
-  .then(response => response.json())
-  .then(json => {
-    dispatch(storeEvent(json))
-    dispatch(getEventDone())
-  })
-  .catch(error => console.log(error))
+    .then(response => response.json())
+    .then(json => {
+      json.begin_time = json.begin_time.slice(0, 10)
+      json.end_time = json.end_time.slice(0, 10)
+      dispatch(storeEvent(json))
+      dispatch(getEventDone())
+    })
+    .catch(error => console.log(error))
 }
 
 export const postEvent = (payload) => dispatch => {
@@ -58,12 +60,12 @@ export const postEvent = (payload) => dispatch => {
       'content-type': 'application/json'
     }
   })
-  .then(response => response.json())
-  .then(json => {
-    dispatch(storePostEvent(json))
-    dispatch(postEventDone()) 
-  })
-  .catch(error => console.log(error))
+    .then(response => response.json())
+    .then(json => {
+      dispatch(storePostEvent(json))
+      dispatch(postEventDone())
+    })
+    .catch(error => console.log(error))
 }
 
 export const patchEvent = (payload, id) => dispatch => {
@@ -75,31 +77,31 @@ export const patchEvent = (payload, id) => dispatch => {
       'content-type': 'application/json'
     }
   })
-  .then(response => response.json())
-  .then(json => dispatch(patchEventDone()))
-  .catch(error => console.log(error))
+    .then(response => response.json())
+    .then(json => dispatch(patchEventDone()))
+    .catch(error => console.log(error))
 }
 
-export const followEvent = (event_id , user_id) => dispatch => {
-  fetch(`${SERVER_URL}/users/events/${event_id}`, {
+export const followEvent = (eventId, userId) => dispatch => {
+  fetch(`${SERVER_URL}/users/events/${eventId}`, {
     method: 'POST',
     body: {
-      event_id: event_id,
-      user_id: user_id
+      event_id: eventId,
+      user_id: userId
     }
   })
-  .catch(error => console.log(error))
+    .catch(error => console.log(error))
 }
 
-export const fetchFollowEvents = (user_id) => dispatch => {
+export const fetchFollowEvents = (userId) => dispatch => {
   dispatch(fetchFollowEventsStart())
   fetch(`${SERVER_URL}/events`)
-  .then(response => response.json())
-  .then(json => {
-    dispatch(storeFollowEvents(json))
-    dispatch(fetchEventsDone())
-  })
-  .catch(error => console.log(error))
+    .then(response => response.json())
+    .then(json => {
+      dispatch(storeFollowEvents(json))
+      dispatch(fetchEventsDone())
+    })
+    .catch(error => console.log(error))
 }
 
 export const deleteEvent = (id) => dispatch => {
@@ -115,7 +117,7 @@ export const deleteEvent = (id) => dispatch => {
       'content-type': 'application/json'
     }
   })
-  .then(response => response.json())
-  .then(json => dispatch(deleteEventDone()))
-  .catch(error => console.log(error))
+    .then(response => response.json())
+    .then(json => dispatch(deleteEventDone()))
+    .catch(error => console.log(error))
 }

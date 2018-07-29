@@ -40,21 +40,21 @@ const Index = (props) => {
               <SearchPanelNewsFeed>
                 {
                   props.comments.data.length
-                  ? props.comments.data.slice(0, 10).map((comment, index) => (
-                    <SearchPanelNews href={`/comments/${comment.id}`} key={index}>
-                      {
+                    ? props.comments.data.slice(0, 10).map((comment, index) => (
+                      <SearchPanelNews href={`/comments/${comment.id}`} key={index}>
+                        {
                           /* get diff of date */
                           Math.ceil((Date.now() - Date.parse(comment.updated_at)) / 864000000)
                         }
                         天前 { comment.user.name } 新增了
                         <strong>{ comment.course }</strong>
                         的文章-{ comment.title }
-                    </SearchPanelNews>
-                      )
+                      </SearchPanelNews>
                     )
-                  : <div className='text-center'>
-                    <Spinner size={32} color='grey' />
-                  </div>
+                    )
+                    : <div className='text-center'>
+                      <Spinner size={32} color='grey' />
+                    </div>
                 }
               </SearchPanelNewsFeed>
             </SearchPanel>

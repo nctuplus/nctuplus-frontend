@@ -28,14 +28,14 @@ const PastExamsTable = (props) => (
       <tbody>
         {
           props.data.length
-          ? props.data.map((pastExam, index) => (
-            <PastExamsTableRow {...pastExam} key={index} />
-          ))
-          : <tr className='text-center'>
-            <td colSpan='5'>
-              <Spinner size={48} color='grey' />
-            </td>
-          </tr>
+            ? props.data.map((pastExam, index) => (
+              <PastExamsTableRow {...pastExam} key={index} />
+            ))
+            : <tr className='text-center'>
+              <td colSpan='5'>
+                <Spinner size={48} color='grey' />
+              </td>
+            </tr>
         }
       </tbody>
     </table>

@@ -187,17 +187,17 @@ const CourseMap = (props) => (
                   <div className='col-md-4'>
                     <span className='clickable-hover' >
                       <div className='square-course' /> 基本必修
-                  </span>
+                    </span>
                   </div>
                   <div className='col-md-4'>
                     <span className='clickable-hover'>
                       <div className='square-course' /> 物/化/生三選一
-                  </span>
+                    </span>
                   </div>
                   <div className='col-md-4'>
                     <span className='clickable-hover'>
                       <div className='square-course' /> 已修課程
-                  </span>
+                    </span>
                   </div>
                 </div>
                 <table className='table'>

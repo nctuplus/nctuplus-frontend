@@ -19,8 +19,8 @@ const Index = (props) => {
         </div>
         {
           props.courses.status
-          ? <CourseTable {...props.courses} update_page={props.update_page} />
-          : <div className='text-center'><Spinner size={48} color='grey' /></div>
+            ? <CourseTable {...props.courses} update_page={props.update_page} />
+            : <div className='text-center'><Spinner size={48} color='grey' /></div>
         }
       </div>
     </PageWrapper>

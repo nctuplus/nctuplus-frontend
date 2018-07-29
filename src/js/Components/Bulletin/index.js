@@ -40,12 +40,12 @@ class BulletinBoard extends React.Component {
         <div className='bulletins'>
           {
             this.props.bulletins.length
-            ? this.props.bulletins
-              .filter(bulletin => bulletin.type === this.state.tab)
-              .map((bulletin, index) => (<Bulletin {...bulletin} key={index} />))
-            : <div className='text-center'>
-              <Spinner size={24} color='white' />
-            </div>
+              ? this.props.bulletins
+                .filter(bulletin => bulletin.type === this.state.tab)
+                .map((bulletin, index) => (<Bulletin {...bulletin} key={index} />))
+              : <div className='text-center'>
+                <Spinner size={24} color='white' />
+              </div>
           }
         </div>
       </div>

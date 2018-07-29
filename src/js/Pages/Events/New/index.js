@@ -15,11 +15,11 @@ class New extends React.Component {
     this.onChange = this.onChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.state = {
-      ckeditorContent: '',
+      ckeditorContent: ''
     }
   }
 
-  onChange(event) {
+  onChange (event) {
     this.setState({
       ckeditorContent: event.editor.getData()
     })
@@ -36,8 +36,8 @@ class New extends React.Component {
       end_time: this.refs.end_time.value,
       content: this.state.ckeditorContent
     }
-    
-    if( (payload.title !== '') && (payload.event_type !== '') ) {
+
+    if ((payload.title !== '') && (payload.event_type !== '')) {
       // 讓表單不要照預設方法送出
       event.preventDefault()
       this.props.post_event(payload)
@@ -45,12 +45,12 @@ class New extends React.Component {
   }
 
   render () {
-    if(this.props.status === FETCHING_STATUS.DONE) {
+    if (this.props.status === FETCHING_STATUS.DONE) {
       this.props.post_event_reset()
       return (<Redirect to={`/events/${this.props.event.id}`} />)
     }
 
-    return (     
+    return (
       <PageWrapper>
         <div className='container bg-white'>
           <div className='row'>
@@ -78,7 +78,7 @@ class New extends React.Component {
                         <option value='其他'>其他</option>
                       </select>
                     </div>
-                    <input ref='title' className='form-control' placeholder='必填' type='text' required/>
+                    <input ref='title' className='form-control' placeholder='必填' type='text' required />
                   </div>
                 </LabeledInput>
                 <LabeledInput label='活動網址'>
@@ -109,7 +109,7 @@ class New extends React.Component {
                   </div>
                 </div>
                 <LabeledInput label='內容'>
-                  <CKEditor activeClass='p10' content={this.state.ckeditorContent} events={ {'change': this.onChange} } />
+                  <CKEditor activeClass='p10' content={this.state.ckeditorContent} events={{'change': this.onChange}} />
                 </LabeledInput>
                 <div className='col-12 text-right'>
                   <button type='submit' className='btn btn-success btn-large' onClick={this.handleSubmit}>送出</button>

@@ -48,8 +48,8 @@ const CourseList = (props) => (
     </thead>
     <tbody>
       {
-      props.data.map((data, index) => <CourseListItem key={index} {...data} />)
-    }
+        props.data.map((data, index) => <CourseListItem key={index} {...data} />)
+      }
     </tbody>
   </table>
 )

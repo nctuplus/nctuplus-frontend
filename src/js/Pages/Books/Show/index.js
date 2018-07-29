@@ -6,8 +6,8 @@ import './style.scss'
 import { connect } from 'react-redux'
 import { getBook } from '../../../Redux/Actions/Books'
 
-const Show = ({ match, book, status, get_book, ...props }) => {
-  status || get_book(match.params.id)
+const Show = ({ match, book, status, getBook, ...props }) => {
+  status || getBook(match.params.id)
   return (
     <PageWrapper>
       <div className='container'>

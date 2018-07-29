@@ -23,8 +23,8 @@ const EventPreview = (props) => {
             <span className={classNames('bold', 'date', inProgress && 'text-red')}>
               {
                 inProgress
-                ? '進行中'
-                : props.begin_time.slice(0, 10)
+                  ? '進行中'
+                  : props.begin_time.slice(0, 10)
               }
             </span>
           </div>
