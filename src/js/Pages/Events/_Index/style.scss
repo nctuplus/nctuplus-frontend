@@ -41,3 +41,34 @@
 }
 
 
+#footer{
+	background: rgba(177, 177, 177, 0.7);
+	position:fixed;
+	left: 0px;
+	bottom: 0px;
+	height: 150px;
+	width: 100%;
+	-webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: transform 0.3s ease-out;
+}
+
+.my-activity{
+	height: 150px;
+    padding: 20px;
+    margin: 0;
+    text-indent: 20px;
+    font-family: 'Open Sans', '微軟正黑體';
+    font-size: 1.9em;
+    font-weight: lighter;
+	color: #FBFDFF;
+	background: rgba(82,82,82,0.7); 		
+}
+
+#footer.slideIn {
+	transform: translate(0, 0);
+}
+
+#footer.slideOut {
+	transform: translate(0, 100%);
+}
