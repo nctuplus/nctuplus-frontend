@@ -71,7 +71,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  get_book: (id) => dispatch(getBook(id))
+  getBook: (id) => dispatch(getBook(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Show)
