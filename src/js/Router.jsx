@@ -1,7 +1,7 @@
 
 import React from 'react'
 import {
-  HashRouter,
+  BrowserRouter,
   Route,
   Switch,
   Redirect
