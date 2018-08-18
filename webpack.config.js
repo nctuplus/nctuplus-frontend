@@ -2,7 +2,6 @@ var Path = require('path')
 var webpack = require('webpack')
 var WebpackNotifierPlugin = require('webpack-notifier')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: [
@@ -26,10 +25,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader', 'postcss-loader']
-        })
+        loaders: ['style-loader', 'css-loader', 'sass-loader', 'postcss-loader']
       },
       {
         test: /\.json$/, loader: 'json-loader'
@@ -55,12 +51,11 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"development"',
-      SERVER_URL: '"http://sgpvpn.sahaohao.info:3000/api/v1"'
+      SERVER_URL: '"https://nctuplus-api-test.herokuapp.com"'
     }),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new WebpackNotifierPlugin(),
-    new ExtractTextPlugin('styles.css'),
     new HtmlWebpackPlugin({
       template: 'src/index.ejs',
       inject: 'body'
