@@ -29,10 +29,10 @@ export const deleteEventReset = createAction('DELETE_EVENT_RESET')
 
 export const fetchEvents = (page = 1) => dispatch => {
   dispatch(fetchEventsStart())
-  fetch(`${SERVER_URL}/api/v1/events?_limit=30&_page=${page}`)
+  fetch(`${SERVER_URL}/api/v1/events?page=${page}`)
     .then(response => response.json())
     .then(json => {
-      dispatch(updateEvents(json.data))
+      dispatch(updateEvents(json))
       dispatch(fetchEventsDone())
     })
     .catch(error => console.log(error))

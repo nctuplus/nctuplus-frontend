@@ -14,7 +14,7 @@ const EventPreview = (props) => {
           <img
             alt='poster'
             className='card-img-top clickable'
-            src={props.poster}
+            src={`${SERVER_URL}${props.cover_image.url}`}
           />
         </Link>
 
@@ -41,4 +41,4 @@ const EventPreview = (props) => {
   )
 }
 
-export { EventPreview }
+export default EventPreview
