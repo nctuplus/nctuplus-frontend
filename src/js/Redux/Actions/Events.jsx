@@ -29,7 +29,7 @@ export const deleteEventReset = createAction('DELETE_EVENT_RESET')
 
 export const fetchEvents = (page = 1) => dispatch => {
   dispatch(fetchEventsStart())
-  fetch(`${SERVER_URL}/events?_limit=30&_page=${page}`)
+  fetch(`${SERVER_URL}/api/v1/events?_limit=30&_page=${page}`)
     .then(response => response.json())
     .then(json => {
       dispatch(updateEvents(json.data))
@@ -40,7 +40,7 @@ export const fetchEvents = (page = 1) => dispatch => {
 
 export const getEvent = (id) => dispatch => {
   dispatch(getEventStart())
-  fetch(`${SERVER_URL}/events/${id}`)
+  fetch(`${SERVER_URL}/api/v1/events/${id}`)
     .then(response => response.json())
     .then(json => {
       json.begin_time = json.begin_time.slice(0, 10)
@@ -53,7 +53,7 @@ export const getEvent = (id) => dispatch => {
 
 export const postEvent = (payload) => dispatch => {
   dispatch(postEventStart())
-  fetch(`${SERVER_URL}/events/`, {
+  fetch(`${SERVER_URL}/api/v1/events/`, {
     method: 'POST',
     body: JSON.stringify(payload),
     headers: {
@@ -70,7 +70,7 @@ export const postEvent = (payload) => dispatch => {
 
 export const patchEvent = (payload, id) => dispatch => {
   dispatch(patchEventStart())
-  fetch(`${SERVER_URL}/events/${id}`, {
+  fetch(`${SERVER_URL}/api/v1/events/${id}`, {
     method: 'PATCH',
     body: JSON.stringify(payload),
     headers: {
@@ -83,7 +83,7 @@ export const patchEvent = (payload, id) => dispatch => {
 }
 
 export const followEvent = (eventId, userId) => dispatch => {
-  fetch(`${SERVER_URL}/users/events/${eventId}`, {
+  fetch(`${SERVER_URL}/api/v1/events/${eventId}/action`, {
     method: 'POST',
     body: {
       event_id: eventId,
@@ -95,7 +95,7 @@ export const followEvent = (eventId, userId) => dispatch => {
 
 export const fetchFollowEvents = (userId) => dispatch => {
   dispatch(fetchFollowEventsStart())
-  fetch(`${SERVER_URL}/events`)
+  fetch(`${SERVER_URL}/api/v1/my/events`)
     .then(response => response.json())
     .then(json => {
       dispatch(storeFollowEvents(json))
@@ -110,7 +110,7 @@ export const deleteEvent = (id) => dispatch => {
   }
 
   dispatch(deleteEventStart())
-  fetch(`${SERVER_URL}/events/${id}`, {
+  fetch(`${SERVER_URL}/api/v1/events/${id}`, {
     method: 'DELETE',
     body: JSON.stringify(payload),
     headers: {

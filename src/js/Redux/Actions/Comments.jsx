@@ -14,7 +14,7 @@ export const getCommentDone = createAction('GET_COMMENT_DONE')
 
 export const fetchComments = (page = 1) => dispatch => {
   dispatch(fetchCommentsStart)
-  fetch(`${SERVER_URL}/comments?_limit=30&_page=${page}`)
+  fetch(`${SERVER_URL}/api/v1/comments?_limit=30&_page=${page}`)
     .then(response => response.json())
     .then(json => {
       dispatch(updateComments(json))
@@ -25,7 +25,7 @@ export const fetchComments = (page = 1) => dispatch => {
 
 export const getComment = (id) => dispatch => {
   dispatch(getCommentStart)
-  fetch(`${SERVER_URL}/comments/${id}`)
+  fetch(`${SERVER_URL}/api/v1/comments/${id}`)
     .then(response => response.json())
     .then(json => {
       dispatch(storeComment(json))

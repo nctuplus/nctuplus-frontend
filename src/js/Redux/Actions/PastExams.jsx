@@ -10,7 +10,7 @@ export const updatePastExamsPage = createAction('UPDATE_PAST_EXAMS_PAGE')
 
 export const fetchPastExams = (page = 1) => dispatch => {
   dispatch(fetchPastExamsStart)
-  fetch(`${SERVER_URL}/past_exams?_limit=30&_page=${page}`)
+  fetch(`${SERVER_URL}/api/v1/past_exams?page=${page}`)
     .then(response => response.json())
     .then(json => {
       dispatch(updatePastExams(json))

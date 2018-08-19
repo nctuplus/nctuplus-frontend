@@ -29,7 +29,7 @@ const courseActions = courses.courses
 
 courseActions.index.fetch = (page = 1) => dispatch => {
   dispatch(courseActions.index.status.start())
-  fetch(`${SERVER_URL}/courses?_limit=30&_page=${page}`)
+  fetch(`${SERVER_URL}/api/v1/courses?_limit=30&_page=${page}`)
     .then(response => response.json())
     .then(json => {
       dispatch(courseActions.index.store(json))
@@ -40,7 +40,7 @@ courseActions.index.fetch = (page = 1) => dispatch => {
 
 courseActions.show.fetch = (id) => dispatch => {
   dispatch(courseActions.show.status.start())
-  fetch(`${SERVER_URL}/courses/${id}`)
+  fetch(`${SERVER_URL}/api/v1/courses/${id}`)
     .then(response => response.json())
     .then(json => {
       dispatch(courseActions.show.store(json))

@@ -8,7 +8,7 @@ export const updateBulletins = createAction('UPDATE_BULLETINS')
 
 export const fetchBulletins = () => dispatch => {
   dispatch(fetchBulletinsStart)
-  fetch(`${SERVER_URL}/bulletins`)
+  fetch(`${SERVER_URL}/api/v1/bulletins`)
     .then(response => response.json())
     .then(json => {
       dispatch(updateBulletins(json))
