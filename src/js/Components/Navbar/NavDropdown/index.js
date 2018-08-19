@@ -5,10 +5,7 @@ import { withRouter } from 'react-router-dom'
 import './style.scss'
 
 const NavDropdownLink = withRouter((props) => (
-  <span className='dropdown-item'
-    onTouchTap={() => props.history.push(props.to)}
-    onClick={() => props.history.push(props.to)}
-  >
+  <span className='dropdown-item' onClick={() => props.history.push(props.to)}>
     { props.children }
   </span>
 ))
@@ -28,7 +25,7 @@ class NavDropdown extends React.Component {
       >
         <a
           className={classNames('nav-link', 'dropdown-toggle', this.state.open && 'show')}
-          onTouchTap={() => this.setState({ open: !this.state.open })}
+          onClick={() => this.setState({ open: !this.state.open })}
         >
           { this.props.title }
         </a>

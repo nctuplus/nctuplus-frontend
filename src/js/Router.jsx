@@ -23,8 +23,10 @@ import * as Scores from './Pages/Scores'
 import PageNotFound from './Pages/PageNotFound'
 import Login from './Pages/Login'
 
+const loggedIn = () => true // window.getCookie('_nctuplus_session')
+
 const loginOnly = (Component) => {
-  if (window.getCookie('_nctuplus_session')) return () => <Component />
+  if (loggedIn()) return () => <Component />
   else return () => <Redirect to='/login' />
 }
 
