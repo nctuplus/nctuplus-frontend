@@ -29,10 +29,10 @@ const courseActions = courses.courses
 
 courseActions.index.fetch = (page = 1) => dispatch => {
   dispatch(courseActions.index.status.start())
-  fetch(`${SERVER_URL}/api/v1/courses?_limit=30&_page=${page}`)
+  fetch(`${SERVER_URL}/api/v1/courses?page=${page}`)
     .then(response => response.json())
     .then(json => {
-      dispatch(courseActions.index.store(json))
+      dispatch(courseActions.index.store(json.data))
       dispatch(courseActions.index.status.done())
     })
     .catch(error => console.log(error))

@@ -14,7 +14,7 @@ const CourseTableRow = withRouter((props) => (
     <td>{props.name}</td>
     <td>{props.teachers}</td>
     <td>{props.credit}</td>
-    <td>{props.course_time}</td>
+    <td>{props.time_slots}</td>
     <td>{props.grade}</td>
 
   </tr>

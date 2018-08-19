@@ -17,10 +17,10 @@ export const resetBooksFilters = createAction('RESET_BOOKS_FILTERS')
 
 export const fetchBooks = (page = 1) => dispatch => {
   dispatch(fetchBooksStart)
-  fetch(`${SERVER_URL}/api/v1/books?_limit=30&_page=${page}`)
+  fetch(`${SERVER_URL}/api/v1/books?page=${page}`)
     .then(response => response.json())
     .then(json => {
-      dispatch(updateBooks(json))
+      dispatch(updateBooks(json.data))
       dispatch(fetchBooksDone())
     })
     .catch(error => console.log(error))
