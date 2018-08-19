@@ -65,7 +65,7 @@ const Router = (props) => (
         <Route exact path='/books/:id/edit' render={loginOnly(Books.Edit)} />
 
         {/* event route group */}
-        <Route exact path='/events' render={Events.Index} />
+        <Route exact path='/events' render={loginOnly(Events.Index)} />
         <Route path='/events/new' render={loginOnly(Events.New)} />
         <Route exact path='/events/:id' render={loginOnly(Events.Show)} />
         <Route exact path='/events/:id/edit' render={loginOnly(Events.Edit)} />
