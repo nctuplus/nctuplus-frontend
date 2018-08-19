@@ -23,8 +23,10 @@ import * as Scores from './Pages/Scores'
 import PageNotFound from './Pages/PageNotFound'
 import Login from './Pages/Login'
 
+const loggedIn = () => true // window.getCookie('_nctuplus_session')
+
 const loginOnly = (Component) => {
-  if (window.getCookie('_nctuplus_session')) return () => <Component />
+  if (loggedIn()) return () => <Component />
   else return () => <Redirect to='/login' />
 }
 
@@ -65,7 +67,7 @@ const Router = (props) => (
         <Route exact path='/books/:id/edit' render={loginOnly(Books.Edit)} />
 
         {/* event route group */}
-        <Route exact path='/events' render={Events.Index} />
+        <Route exact path='/events' render={loginOnly(Events.Index)} />
         <Route path='/events/new' render={loginOnly(Events.New)} />
         <Route exact path='/events/:id' render={loginOnly(Events.Show)} />
         <Route exact path='/events/:id/edit' render={loginOnly(Events.Edit)} />

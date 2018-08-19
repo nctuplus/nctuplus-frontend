@@ -44,6 +44,7 @@
     "react-tooltip": "^3.6.1",
     "react-transition-group": "^2.3.0",
     "recharts": "^1.0.0-apha.5",
+    "recompose": "^0.28.2",
     "redux": "^3.6.0",
     "redux-actions": "^2.6.1",
     "redux-thunk": "^2.2.0",
