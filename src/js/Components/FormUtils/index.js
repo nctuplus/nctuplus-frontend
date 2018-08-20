@@ -16,7 +16,7 @@ const InputWithButton = (props) => (
 const LabeledInput = (props) => (
   <div className='form-group'>
     <div className='row'>
-      <label className='col-2 text-right'>{ props.label }</label>
+      <label className='col-2 text-right align-self-center'>{ props.label }</label>
       <div className='col-10'>
         {props.children}
       </div>

@@ -9,6 +9,7 @@ import PageWrapper from '../../../Components/PageWrapper'
 import { LabeledInput } from '../../../Components/FormUtils'
 import { postEvent, postEventReset } from '../../../Redux/Actions/Events'
 import { FETCHING_STATUS } from '../../../constants'
+import './style.scss'
 
 const mapStateToProps = (state) => ({
   event: state.events.post.data,
@@ -56,7 +57,6 @@ const enhance = compose(
       event.preventDefault()
       // 檔案還沒上傳並編碼完前不送出
       if (fileUploadStatus === 'uploading') return
-      console.log(payload)
 
       if (payload.title && payload.event_type && payload.organization && payload.location) {
         postEvent(payload)
