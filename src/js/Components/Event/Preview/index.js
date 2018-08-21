@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 
-const EventPreview = (props) => (
+const Preview = (props) => (
   <div className='col-12 col-sm-6 col-md-3 mb-3'>
     <div className='card bg-white'>
 
@@ -20,9 +20,11 @@ const EventPreview = (props) => (
         <div className='pull-right'>
           <span className={classNames('bold', 'date', moment().isBetween(props.begin_time, props.end_time) && 'text-red')}>
             {
-              moment().isBetween(props.begin_time, props.end_time)
-                ? '進行中'
-                : props.begin_time.slice(0, 10)
+              (props.begin_time && props.end_time)
+                ? (moment().isBetween(props.begin_time, props.end_time)
+                  ? '進行中'
+                  : props.begin_time.slice(0, 10))
+                : '?????'
             }
           </span>
         </div>
@@ -38,4 +40,4 @@ const EventPreview = (props) => (
   </div>
 )
 
-export default EventPreview
+export default Preview

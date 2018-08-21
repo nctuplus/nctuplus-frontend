@@ -7,7 +7,7 @@ import Slider from 'react-slick'
 import { compose, withState, lifecycle } from 'recompose'
 import moment from 'moment'
 import PageWrapper from '../../../Components/PageWrapper'
-import EventPreview from '../../../Components/EventPreview'
+import Preview from '../../../Components/Event/Preview'
 import { InputWithButton } from '../../../Components/FormUtils'
 import { fetchEvents } from '../../../Redux/Actions/Events'
 import './style.scss'
@@ -115,7 +115,7 @@ const Index = enhance((props) =>
         {
           props.events.data
             .filter(event => moment().isBetween(event.begin_time, event.end_time))
-            .map((event, index) => <EventPreview {...event} key={index} />)
+            .map((event, index) => <Preview {...event} key={index} />)
         }
       </div>
 
@@ -126,7 +126,7 @@ const Index = enhance((props) =>
         {
           props.events.data
             .filter(event => moment().isAfter(event.end_time))
-            .map((event, index) => <EventPreview {...event} key={index} />)
+            .map((event, index) => <Preview {...event} key={index} />)
         }
       </div>
     </div>
