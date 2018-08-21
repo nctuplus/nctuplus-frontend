@@ -1,3 +1,4 @@
+import { withProps } from 'recompose'
 
 function base64encode (file) {
   return new Promise((resolve, reject) => {
@@ -8,4 +9,6 @@ function base64encode (file) {
   })
 }
 
-export { base64encode }
+const debug = withProps(p => console.log(p))
+
+export { base64encode, debug }
