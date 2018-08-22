@@ -47,7 +47,7 @@ const enhance = compose(
   withRouter,
   connect(mapStateToProps, mapDispatchToProps),
   withState('visible', 'setVisible', false),
-  lifecycle({ componentDidMount: function () { this.props.events.status || this.props.fetchData() } })
+  lifecycle({ componentDidMount: function () { this.props.fetchData() } })
 )
 
 const Index = enhance((props) =>

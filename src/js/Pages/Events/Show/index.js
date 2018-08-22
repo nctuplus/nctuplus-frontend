@@ -41,8 +41,8 @@ class Show extends React.Component {
                 <p><i className='fa fa-share-alt' /> 活動網址: <a href={event.url} target='blank'>點這裡</a></p>
               </div>
               <div className='col-5'>
-                <p className='info-box'><i className='fa fa-eye' /> 觀看次數: <strong>{event.view_times}</strong></p>
-                <p className='info-box'><i className='fa fa-rss' /> 關注人數: <strong>{event.event_follows_count}</strong>
+                <p className='info-box'><i className='fa fa-eye' /> 觀看次數: <strong>{event.view_count}</strong></p>
+                <p className='info-box'><i className='fa fa-rss' /> 關注人數: <strong>{event.follow_count}</strong>
                 </p>
               </div>
             </div>
