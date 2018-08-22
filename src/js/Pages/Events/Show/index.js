@@ -10,14 +10,14 @@ import './style.scss'
 
 class Show extends React.Component {
   componentDidMount () {
-    this.props.get_event(this.props.match.params.id)
+    this.props.getEvent(this.props.match.params.id)
   }
 
   render () {
     let event = this.props.event
 
     if (this.props.status_delete === FETCHING_STATUS.DONE) {
-      this.props.delete_event_reset()
+      this.props.deleteEventReset()
       return (<Redirect to='/events' />)
     }
 
@@ -62,17 +62,17 @@ class Show extends React.Component {
                     編輯
                   </button>
                 </Link>
-                <button className='btn btn-danger nav-button' onClick={() => this.props.delete_event(this.props.match.params.id)}>
+                <button className='btn btn-danger nav-button' onClick={() => this.props.deleteEvent(this.props.match.params.id)}>
                   刪除
                 </button>
               </div>
             }
             <div className='pull-right'>
               {event.followBool
-                ? <button className='btn btn-success nav-button' onClick={() => this.props.follow_Event(event.id, 3056)}>
+                ? <button className='btn btn-success nav-button' onClick={() => this.props.followEvent(event.id, 3056)}>
                   取消關注
                 </button>
-                : <button className='btn btn-success nav-button' onClick={() => this.props.follow_Event(event.id, 3056)}>
+                : <button className='btn btn-success nav-button' onClick={() => this.props.followEvent(event.id, 3056)}>
                   關注
                 </button>}
             </div>
@@ -90,14 +90,14 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  get_event: (id) => dispatch(getEvent(id)),
-  follow_event: (eventId, userId) => dispatch(followEvent(eventId, userId)),
-  delete_event: (id) => {
+  getEvent: (id) => dispatch(getEvent(id)),
+  followEvent: (eventId, userId) => dispatch(followEvent(eventId, userId)),
+  deleteEvent: (id) => {
     if (window.confirm('確定刪除此活動嗎?')) {
       dispatch(deleteEvent(id))
     }
   },
-  delete_event_reset: () => dispatch(deleteEventReset())
+  deleteEventReset: () => dispatch(deleteEventReset())
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Show))
