@@ -39,7 +39,7 @@ const Form = props => (
                     onChange={e => props.updatePayload({ event_type: e.target.value })}
                     required
                   >
-                    <option value='0'>類型</option>
+                    <option value=''>類型</option>
                     <option value='1'>校友週</option>
                     <option value='2'>講座</option>
                     <option value='3'>表演</option>
@@ -77,6 +77,7 @@ const Form = props => (
                     className='form-control'
                     placeholder='必填'
                     type='text'
+                    required
                   />
                 </div>
                 <label className='col-sm-2 control-label text-right'>地點</label>
@@ -87,6 +88,7 @@ const Form = props => (
                     className='form-control'
                     placeholder='必填'
                     type='text'
+                    required
                   />
                 </div>
               </div>
@@ -101,6 +103,7 @@ const Form = props => (
                     className='form-control'
                     placeholder='必填'
                     type='date'
+                    required
                   />
                 </div>
                 <label className='col-sm-2 control-label text-right'>結束時間</label>
@@ -111,6 +114,7 @@ const Form = props => (
                     className='form-control'
                     placeholder='必填'
                     type='date'
+                    required
                   />
                 </div>
               </div>

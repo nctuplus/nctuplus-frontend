@@ -105,10 +105,6 @@ export const fetchFollowEvents = (userId) => dispatch => {
 }
 
 export const deleteEvent = (id) => dispatch => {
-  let payload = {
-    event_id: id
-  }
-
   dispatch(deleteEventStart())
   fetch(`${SERVER_URL}/api/v1/events/${id}`, {
     method: 'DELETE'
