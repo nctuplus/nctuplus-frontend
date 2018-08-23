@@ -2,7 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import PageWrapper from '../../../Components/PageWrapper'
 import { getEvent, followEvent, deleteEvent, deleteEventReset } from '../../../Redux/Actions/Events'
 import { FETCHING_STATUS } from '../../../constants'
@@ -13,13 +13,15 @@ class Show extends React.Component {
     this.props.getEvent(this.props.match.params.id)
   }
 
+  componentDidUpdate () {
+    if (this.props.eventDeleteStatus === FETCHING_STATUS.DONE) {
+      this.props.deleteEventReset()
+      this.props.history.push('/events')
+    }
+  }
+
   render () {
     let event = this.props.event
-
-    if (this.props.status_delete === FETCHING_STATUS.DONE) {
-      this.props.deleteEventReset()
-      return (<Redirect to='/events' />)
-    }
 
     return (
       <PageWrapper>
@@ -86,7 +88,7 @@ class Show extends React.Component {
 const mapStateToProps = (state) => ({
   event: state.events.show.data,
   status: state.events.show.status,
-  status_delete: state.events.show.status_delete
+  eventDeleteStatus: state.events.show.status_delete
 })
 
 const mapDispatchToProps = (dispatch) => ({
