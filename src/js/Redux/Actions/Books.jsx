@@ -16,18 +16,18 @@ export const applyBooksFilters = createAction('APPLY_BOOKS_FILTERS')
 export const resetBooksFilters = createAction('RESET_BOOKS_FILTERS')
 
 export const fetchBooks = (page = 1) => dispatch => {
-  dispatch(fetchBooksStart)
+  dispatch(fetchBooksStart())
   fetch(`${SERVER_URL}/api/v1/books?page=${page}`)
     .then(response => response.json())
     .then(json => {
-      dispatch(updateBooks(json.data))
+      dispatch(updateBooks(json))
       dispatch(fetchBooksDone())
     })
     .catch(error => console.log(error))
 }
 
 export const getBook = (id) => dispatch => {
-  dispatch(getBookStart)
+  dispatch(getBookStart())
   fetch(`${SERVER_URL}/api/v1/books/${id}`)
     .then(response => response.json())
     .then(json => {
