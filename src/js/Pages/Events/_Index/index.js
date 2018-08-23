@@ -41,13 +41,13 @@ const NavFooter = (props) => (
 )
 
 const mapStateToProps = (state) => ({ events: state.events.all })
-const mapDispatchToProps = (dispatch) => ({ fetch_data: (page) => dispatch(fetchEvents(page)) })
+const mapDispatchToProps = (dispatch) => ({ fetchData: (page) => dispatch(fetchEvents(page)) })
 
 const enhance = compose(
   withRouter,
   connect(mapStateToProps, mapDispatchToProps),
   withState('visible', 'setVisible', false),
-  lifecycle({ componentDidMount: function () { this.props.events.status || this.props.fetch_data() } })
+  lifecycle({ componentDidMount: function () { this.props.fetchData() } })
 )
 
 const Index = enhance((props) =>

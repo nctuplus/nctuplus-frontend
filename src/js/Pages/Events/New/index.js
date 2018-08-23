@@ -22,7 +22,7 @@ const enhance = compose(
   withRouter,
   connect(mapStateToProps, mapDispatchToProps),
   withState('payload', 'setPayload', {
-    event_type: 0,
+    event_type: '',
     title: '',
     url: '',
     organization: '',
@@ -50,12 +50,12 @@ const enhance = compose(
     onSubmit: ({ formRef, fileUploadStatus, payload, postEvent }) => event => {
       // only works on chrome, but who care others? ;)
       formRef.current.reportValidity()
-      // 讓表單不要照預設方法送出
-      event.preventDefault()
       // 檔案還沒上傳並編碼完前不送出
       if (fileUploadStatus === 'uploading') return
 
-      if (payload.title && payload.event_type && payload.organization && payload.location) {
+      if (payload.title && payload.event_type && payload.organization && payload.location && payload.begin_time && payload.end_time) {
+        // 讓表單不要照預設方法送出
+        event.preventDefault()
         postEvent(payload)
       }
     }

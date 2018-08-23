@@ -2,7 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import PageWrapper from '../../../Components/PageWrapper'
 import { getEvent, followEvent, deleteEvent, deleteEventReset } from '../../../Redux/Actions/Events'
 import { FETCHING_STATUS } from '../../../constants'
@@ -10,16 +10,18 @@ import './style.scss'
 
 class Show extends React.Component {
   componentDidMount () {
-    this.props.get_event(this.props.match.params.id)
+    this.props.getEvent(this.props.match.params.id)
+  }
+
+  componentDidUpdate () {
+    if (this.props.eventDeleteStatus === FETCHING_STATUS.DONE) {
+      this.props.deleteEventReset()
+      this.props.history.push('/events')
+    }
   }
 
   render () {
-    let event = this.props.event
-
-    if (this.props.status_delete === FETCHING_STATUS.DONE) {
-      this.props.delete_event_reset()
-      return (<Redirect to='/events' />)
-    }
+    const { event } = this.props
 
     return (
       <PageWrapper>
@@ -41,8 +43,8 @@ class Show extends React.Component {
                 <p><i className='fa fa-share-alt' /> 活動網址: <a href={event.url} target='blank'>點這裡</a></p>
               </div>
               <div className='col-5'>
-                <p className='info-box'><i className='fa fa-eye' /> 觀看次數: <strong>{event.view_times}</strong></p>
-                <p className='info-box'><i className='fa fa-rss' /> 關注人數: <strong>{event.event_follows_count}</strong>
+                <p className='info-box'><i className='fa fa-eye' /> 觀看次數: <strong>{event.view_count}</strong></p>
+                <p className='info-box'><i className='fa fa-rss' /> 關注人數: <strong>{event.follow_count}</strong>
                 </p>
               </div>
             </div>
@@ -62,17 +64,17 @@ class Show extends React.Component {
                     編輯
                   </button>
                 </Link>
-                <button className='btn btn-danger nav-button' onClick={() => this.props.delete_event(this.props.match.params.id)}>
+                <button className='btn btn-danger nav-button' onClick={() => this.props.deleteEvent(this.props.match.params.id)}>
                   刪除
                 </button>
               </div>
             }
             <div className='pull-right'>
               {event.followBool
-                ? <button className='btn btn-success nav-button' onClick={() => this.props.follow_Event(event.id, 3056)}>
+                ? <button className='btn btn-success nav-button' onClick={() => this.props.followEvent(event.id, 3056)}>
                   取消關注
                 </button>
-                : <button className='btn btn-success nav-button' onClick={() => this.props.follow_Event(event.id, 3056)}>
+                : <button className='btn btn-success nav-button' onClick={() => this.props.followEvent(event.id, 3056)}>
                   關注
                 </button>}
             </div>
@@ -86,18 +88,18 @@ class Show extends React.Component {
 const mapStateToProps = (state) => ({
   event: state.events.show.data,
   status: state.events.show.status,
-  status_delete: state.events.show.status_delete
+  eventDeleteStatus: state.events.show.status_delete
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  get_event: (id) => dispatch(getEvent(id)),
-  follow_event: (eventId, userId) => dispatch(followEvent(eventId, userId)),
-  delete_event: (id) => {
+  getEvent: (id) => dispatch(getEvent(id)),
+  followEvent: (eventId, userId) => dispatch(followEvent(eventId, userId)),
+  deleteEvent: (id) => {
     if (window.confirm('確定刪除此活動嗎?')) {
       dispatch(deleteEvent(id))
     }
   },
-  delete_event_reset: () => dispatch(deleteEventReset())
+  deleteEventReset: () => dispatch(deleteEventReset())
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Show))
