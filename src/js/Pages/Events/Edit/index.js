@@ -68,7 +68,8 @@ const enhance = compose(
       const props = this.props
 
       if (props.status === FETCHING_STATUS.DONE && !props.synced) {
-        props.setPayload(payload => ({ ...payload, ...props.event }))
+        setTimeout(() => props.setPayload(payload => ({ ...payload, ...props.event })), 100)
+
         if (props.event.cover_image) {
           props.setUploadedImageUrl(props.event.cover_image.url)
         }
