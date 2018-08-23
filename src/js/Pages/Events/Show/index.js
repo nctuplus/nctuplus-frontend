@@ -21,7 +21,7 @@ class Show extends React.Component {
   }
 
   render () {
-    let event = this.props.event
+    const { event } = this.props
 
     return (
       <PageWrapper>
