@@ -8,7 +8,7 @@ import {
   SearchPanelNewsFeed
 } from '../../../Components/Search'
 import PageWrapper from '../../../Components/PageWrapper'
-import { BooksTable } from '../../../Components/BooksTable'
+import { BooksTable } from '../../../Components/Book/BooksTable'
 import { InputWithButton } from '../../../Components/FormUtils'
 import './style.scss'
 

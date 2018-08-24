@@ -1,86 +1,77 @@
 
 import React from 'react'
-import PageWrapper from '../../../Components/PageWrapper'
-import { LabeledInput, InputWithButton } from '../../../Components/FormUtils'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
+import { compose, withState, lifecycle, withHandlers, withProps } from 'recompose'
+// import { base64encode } from '../../../Utilities'
+// import { FETCHING_STATUS } from '../../../constants'
+import Form from '../../../Components/Book/Form'
 
-class Edit extends React.Component {
-  render () {
-    return (
-      <PageWrapper>
-        <div className='container bg-white p-5'>
-          <div className='row'>
-            <div className='col-md-8 offset-md-2'>
-              <h2><i className='fa fa-book mx-3' />我要賣書</h2>
+const mapStateToProps = (state) => ({
 
-              <hr />
+})
 
-              <LabeledInput label='書籍名稱'>
-                <div className='input-group'>
-                  <input className='form-control' placeholder='利用搜尋可快速填入其他資訊' type='text' />
-                  <div className='input-group-btn'>
-                    <button className='btn btn-success' >搜尋</button>
-                  </div>
-                </div>
-              </LabeledInput>
+const mapDispatchToProps = (dispatch) => ({
 
-              <LabeledInput label='作者'>
-                <input className='form-control' placeholder='' required='required' type='text' />
-              </LabeledInput>
+})
 
-              <LabeledInput label={<a >ISBN<sup><i className='fa fa-question' /></sup></a>}>
-                <input className='form-control integer-only' placeholder='10 碼或13 碼皆可，範例：9789861994192' type='text' />
-              </LabeledInput>
+const enhance = compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps),
+  withState('payload', 'setPayload', {
 
-              <LabeledInput label='圖片'>
-                <input accept='image/*' className='hidden' type='file' />
-                <div className='text-center clickable-hover'>
-                  點選上傳圖片(需小於2MB)
-                </div>
-              </LabeledInput>
+  }),
+  withState('fileUploadStatus', 'setFileUploadStatus', 'none'),
+  withState('uploadedImageUrl', 'setUploadedImageUrl', null),
+  withState('synced', 'setSynced', false),
+  withProps(({ formRef: React.createRef(), imageUploadRef: React.createRef() })),
+  withHandlers({
+    updatePayload: ({ setPayload }) => payload => setPayload(previous => ({ ...previous, ...payload })),
+    /* onFileUpload: ({ setFileUploadStatus, setPayload, imageUploadRef, setUploadedImageUrl }) => () => {
+      setFileUploadStatus('uploading')
+      const file = imageUploadRef.current.files[0]
+      base64encode(file)
+        .then(encoded => {
+          setPayload(previous => ({ ...previous, cover_image: encoded }))
+          setFileUploadStatus('done')
+          setUploadedImageUrl(URL.createObjectURL(file))
+        })
+    }, */
+    onSubmit: ({ formRef, fileUploadStatus, payload, patchEvent, match }) => event => {
+      // only works on chrome, but who care others? ;)
+      formRef.current.reportValidity()
 
-              <LabeledInput label='價格'>
-                <input className='form-control integer-only' type='text' />
-              </LabeledInput>
+      // 檔案還沒上傳並編碼完前不送出
+      if (fileUploadStatus === 'uploading') return
 
-              <LabeledInput label='書況說明'>
-                <textarea className='form-control' required='required' rows='8' />
-              </LabeledInput>
+      if (payload.name) {
+        // 讓表單不要照預設方法送出
+        event.preventDefault()
+        patchEvent(payload, match.params.id)
+      }
+    }
+  }),
+  lifecycle({
+    componentDidUpdate: function () {
+      /* const props = this.props
 
-              <LabeledInput label='聯絡方式'>
-                <div className='radio'>
-                  <label>
-                    <input type='radio' /> Facebook
-                  </label>
-                </div>
-                <div className='radio'>
-                  <label>
-                    <input checked='checked' type='radio' value='0' /> Email
-                  </label>
-                </div>
-              </LabeledInput>
+      if (props.status === FETCHING_STATUS.DONE && !props.synced) {
+        props.setPayload(payload => ({ ...payload, ...props.event }))
 
-              <h4><span className='text-center' /></h4>
-              <div>
-                <LabeledInput label='適用課程'>
-                  <InputWithButton
-                    placeholder='搜尋課名（交大專用）'
-                    button_content='搜尋'
-                  />
-                </LabeledInput>
-              </div>
-              <div className='row'>
-                <div className='col-md-10'>
-                  <a hidden>展開</a>
-                </div>
-              </div>
-              <hr />
-              <button className='btn btn-primary pull-right'>立即刊登</button>
-            </div>
-          </div>
-        </div>
-      </PageWrapper>
-    )
-  }
-}
+        if (props.event.cover_image) {
+          props.setUploadedImageUrl(props.event.cover_image.url)
+        }
+        props.setSynced(true)
+      }
+      if (props.eventUpdateStatus === FETCHING_STATUS.DONE) {
+        props.patchEventReset()
+        props.history.push(`/events/${props.payload.id}`)
+      } */
+    },
+    componentDidMount: function () {
+      // this.props.getBook(this.props.match.params.id)
+    }
+  })
+)
 
-export default Edit
+export default enhance(Form)

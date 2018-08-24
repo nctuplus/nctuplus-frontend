@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-import Pagination from '../Pagination'
+import Pagination from '../../Pagination'
 import './style.scss'
 
 const BooksTableItem = withRouter((props) => {
