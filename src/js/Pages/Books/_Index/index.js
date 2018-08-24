@@ -17,7 +17,13 @@ import { updateBooksPage, applyBooksFilters, fetchBooks } from '../../../Redux/A
 
 class Index extends React.Component {
   componentDidMount () {
-    this.props.fetchData()
+    this.props.fetchData(1)
+  }
+
+  componentDidUpdate (prevProps) {
+    if (this.props.books.page !== prevProps.books.page) {
+      this.props.fetchData(this.props.books.page)
+    }
   }
 
   render () {
@@ -86,7 +92,7 @@ class Index extends React.Component {
               </SearchPanel>
             </div>
             <div className='col-12 col-md-9'>
-              <BooksTable {...this.props.books} update_page={this.props.updatePage} />
+              <BooksTable {...this.props.books} updatePage={this.props.updatePage.bind(this)} />
             </div>
           </div>
         </div>

@@ -42,7 +42,7 @@ const BooksTable = (props) => (
       }
     </div>
     <div className='text-center'>
-      <Pagination page={props.page} maxPage={props.maxPage} to={props.update_page} />
+      <Pagination page={props.page} maxPage={props.maxPage} to={props.updatePage} />
     </div>
   </div>
 )
