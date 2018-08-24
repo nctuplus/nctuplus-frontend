@@ -12,14 +12,13 @@ const BooksTableItem = withRouter((props) => {
           <img className='d-inline-block' alt='尚無圖片!' height='150' src={`${SERVER_URL}${props.cover_image.url}`} />
         </div>
         <div className='card-body text-center'>
-          <div>{props.title}</div>
-          <div>{props.author}</div>
-          <div>課程: {props.course}</div>
-          <div>老師: {props.teacher}</div>
+          <div>{props.name}</div>
+          <div>作者: {props.author}</div>
+          <div>課程: {}</div>
         </div>
 
         <div className='card-footer mt-1 p-2' >
-          <span>{props.updated_at}</span>
+          <span>{props.updated_at.slice(0, 10)}</span>
           <span className='pull-right bold price'>
             <i className='fa fa-dollar' />{ props.price }
           </span>

@@ -13,6 +13,8 @@ class Show extends React.Component {
   }
 
   render () {
+    let book = this.props.book
+
     return (
       <PageWrapper>
         <div className='container'>
@@ -24,7 +26,7 @@ class Show extends React.Component {
                     className='img-preview'
                     alt='尚無圖片!'
                     width='100%'
-                    src={this.props.book.poster}
+                    src={book.cover_image && `${SERVER_URL}${book.cover_image.url}`}
                   />
                 </div>
                 <div className='col-8'>
@@ -32,33 +34,33 @@ class Show extends React.Component {
                     <tbody>
                       <tr>
                         <td colSpan='2' className='col-md-12'>
-                          <h4><strong>{ this.props.book.name }</strong></h4>
-                          by { this.props.book.authors }
+                          <h4><strong>{ book.name }</strong></h4>
+                          by { book.author }
                         </td>
                       </tr>
                       <tr>
                         <td>價格</td>
-                        <td><span className='price'>{ this.props.book.price }</span></td>
+                        <td><span className='price'>{ book.price }</span></td>
                       </tr>
                       <tr>
                         <td>賣家</td>
-                        <td>{ this.props.book.seller && this.props.book.seller.name }</td>
+                        <td>{ book.seller && book.seller.name }</td>
                       </tr>
                       <tr>
                         <td>連絡方式</td>
-                        <td><a href='#'>Facebook</a></td>
+                        <td><a href={book.contact_way}>Facebook</a></td>
                       </tr>
                       <tr>
                         <td>書況</td>
-                        <td className='line-break'>{ this.props.book.description }</td>
+                        <td className='line-break'>{ book.condition }</td>
                       </tr>
                       <tr>
                         <td>觀看次數</td>
-                        <td>{ this.props.book.view_count }</td>
+                        <td>{ book.view_count }</td>
                       </tr>
                       <tr>
                         <td>ISBN</td>
-                        <td>{ this.props.book.isbn }</td>
+                        <td>{ book.isbn }</td>
                       </tr>
                       <tr>
                         <td>適用課程</td>
