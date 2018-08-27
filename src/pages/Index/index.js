@@ -78,8 +78,8 @@ const Index = (props) => {
   )
 }
 const mapStateToProps = (state) => ({
-  bulletins: state.bulletins.data,
-  fetching_status: state.bulletins.status
+  bulletins: state.bulletins.all.data,
+  fetching_status: state.bulletins.all.status
 })
 const mapDispatchToProps = (dispatch) => ({
   fetch_data: () => dispatch(fetchBulletins())

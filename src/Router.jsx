@@ -10,6 +10,7 @@ import Navbar from 'components/Navbar'
 import Footer from 'components/Footer'
 
 import Index from 'pages/Index'
+import * as Admin from 'pages/Admin'
 import * as Courses from 'pages/Courses'
 import * as Comments from 'pages/Comments'
 import * as PastExams from 'pages/PastExams'
@@ -42,6 +43,17 @@ const Router = () => (
         {/* index route group */}
         <Route exact path='/' component={Index} />
         <Route exact path='/login' component={Login} />
+
+        {/* admin bulletin route group */}
+        <Route exact path='/admin/bulletin' render={loginOnly(Admin.Bulletin.Index)} />
+        <Route path='/admin/bulletin/latest_news' render={loginOnly(Admin.Bulletin.LatestNews)} />
+        <Route path='/admin/bulletin/website_revision' render={loginOnly(Admin.Bulletin.WebsiteRevision)} />
+
+        {/* admin slogan route group */}
+        <Route exact path='/admin/slogan' render={loginOnly(Admin.Slogan.Index)} />
+
+        {/* admin background route group */}
+        <Route exact path='/admin/background' render={loginOnly(Admin.Background.Index)} />
 
         {/* course route group */}
         <Route exact path='/courses' component={Courses.Index} />
