@@ -10,16 +10,15 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchData: () => dispatch(fetchBulletins())
+  fetchData: (type) => dispatch(fetchBulletins(type))
 })
 
 class Index extends React.Component {
   componentDidMount () {
-    this.props.fetchData()
+    this.props.fetchData('all')
   }
 
   render () {
-    console.log(this.props.bulletins)
     return (
       <Bulletin type='bulletin' url={this.props.match.url} data={this.props.bulletins.data} />
     )

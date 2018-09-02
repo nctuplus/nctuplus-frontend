@@ -18,9 +18,9 @@ export const patchBulletinStart = createAction('PATCH_BULLETIN_START')
 export const patchBulletinDone = createAction('PATCH_BULLETIN_DONE')
 export const patchBulletinReset = createAction('PATCH_BULLETIN_RESET')
 
-export const fetchBulletins = () => dispatch => {
+export const fetchBulletins = (type = 'all') => dispatch => {
   dispatch(fetchBulletinsStart())
-  fetch(`${SERVER_URL}/api/v1/bulletins`)
+  fetch(`${SERVER_URL}/api/v1/bulletins?type=${type}`)
     .then(response => response.json())
     .then(json => {
       dispatch(updateBulletins(json))

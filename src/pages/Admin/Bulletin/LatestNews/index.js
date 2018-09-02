@@ -1,10 +1,28 @@
 
 import React from 'react'
+import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import Bulletin from 'components/Admin/Bulletin'
+import { fetchBulletins } from 'redux/Actions/Bulletins'
 
-const LatestNews = props => (
-  <Bulletin type='bulletin' url={props.match.url} />
-)
+const mapStateToProps = (state) => ({
+  bulletins: state.bulletins.all
+})
 
-export default withRouter(LatestNews)
+const mapDispatchToProps = (dispatch) => ({
+  fetchData: (type) => dispatch(fetchBulletins(type))
+})
+
+class LatestNews extends React.Component {
+  componentDidMount () {
+    this.props.fetchData('latest_news')
+  }
+
+  render () {
+    return (
+      <Bulletin type='bulletin' url={this.props.match.url} data={this.props.bulletins.data} />
+    )
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LatestNews))
