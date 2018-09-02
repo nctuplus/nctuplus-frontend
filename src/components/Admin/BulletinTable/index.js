@@ -26,17 +26,23 @@ const BulletinTable = props => (
           </thead>
           <tbody>
             {
-              props.data.map((bulletin, index) => (
+              props.data.map((data, index) => (
                 <tr key={index}>
-                  <td>{ bulletin.title }</td>
-                  <td>{ bulletin.created_at.slice(0, 10) }</td>
-                  <td>{ bulletin.updated_at.slice(0, 10) }</td>
+                  <td>
+                    {
+                      props.type !== 'background'
+                        ? data.title
+                        : <img src={data.url} />
+                    }
+                  </td>
+                  <td>{ data.created_at.slice(0, 10) }</td>
+                  <td>{ data.updated_at.slice(0, 10) }</td>
                   { /* 這裏condition render 後面不知道要放什麼才不會有warning */ }
                   { props.type === 'slogan' ? <td>顯示</td> : '' }
                   <td>
                     {
                       props.type !== 'background'
-                        ? <Link to={`/admin/${props.type}/${bulletin.id}/edit`}>
+                        ? <Link to={`/admin/${props.type}/${data.id}/edit`}>
                           <button className='btn btn-primary' >編輯</button>
                         </Link>
                         : <div />
