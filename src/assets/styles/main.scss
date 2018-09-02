@@ -76,5 +76,32 @@ body{
   text-align: center;
   font-size: 12px;
 }
-	
 
+.btn-primary {
+  background-color: #337ab7;
+  border-color: #2e6da4;
+  &:hover {
+    background-color: #286090;
+    border-color: #204d74;
+  }
+}
+
+.btn-danger {
+  background-color: #d9534f;
+  border-color: #d43f3a;
+  &:hover {
+    background-color: #c9302c;
+    border-color: #ac2925;
+  }
+}
+
+.btn-warning {
+  color: #ffffff;
+  background-color: #f0ad4e;
+  border-color: #eea236;
+  &:hover {
+    color: #ffffff;
+    background-color: #ec971f;
+    border-color: #d58512;
+  }
+}

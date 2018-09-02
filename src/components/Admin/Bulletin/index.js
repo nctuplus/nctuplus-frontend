@@ -31,7 +31,9 @@ const Bulletin = props => (
         <div className='col-10'>
           <div className='row mb-3'>
             <div className='ml-auto' />
-            <Link className='btn new-bulletin-btn' to={Button[props.type].url}>{Button[props.type].title}</Link>
+            <Link to={Button[props.type].url}>
+              <button className='btn btn-warning'>{Button[props.type].title}</button>
+            </Link>
           </div>
           <div className='row'>
             <div className='col-12 pr-0'>
