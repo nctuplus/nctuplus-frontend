@@ -1,6 +1,7 @@
 
 import { combineReducers } from 'redux'
 import bulletins from './Bulletins'
+import slogans from './Slogans'
 import books from './Books'
 import courses from './Courses'
 import comments from './Comments'
@@ -11,6 +12,7 @@ import user from './User'
 
 export default combineReducers({
   bulletins,
+  slogans,
   books,
   courses,
   comments,

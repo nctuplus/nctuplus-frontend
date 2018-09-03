@@ -8,7 +8,7 @@ const initialState = {
 }
 
 export default handleActions({
-  POST_EVENT_START: (state) => ({ ...state, status: FETCHING_STATUS.FETCHING }),
-  POST_EVENT_DONE: (state) => ({ ...state, status: FETCHING_STATUS.DONE }),
-  POST_EVENT_RESET: (state) => ({ ...state, status: FETCHING_STATUS.IDLE })
+  POST_BULLETIN_START: (state) => ({ ...state, status: FETCHING_STATUS.FETCHING }),
+  POST_BULLETIN_DONE: (state) => ({ ...state, status: FETCHING_STATUS.DONE }),
+  POST_BULLETIN_RESET: (state) => ({ ...state, status: FETCHING_STATUS.IDLE })
 }, initialState)
