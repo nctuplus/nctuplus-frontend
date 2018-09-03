@@ -1,8 +1,8 @@
 
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { compose, withState, withHandlers, lifecycle } from 'recompose'
-import { postBulletin, postBulletinReset } from 'redux/Actions/Events'
+import { compose, withState, withProps, withHandlers, lifecycle } from 'recompose'
+import { postBulletin, postBulletinReset } from 'redux/Actions/Bulletins'
 import { FETCHING_STATUS } from 'utilities/constants'
 import Form from 'components/Admin/Bulletin/Form'
 
@@ -21,6 +21,7 @@ const enhance = compose(
   withState('payload', 'setPayload', {
     schedule: false
   }),
+  withProps({ action: '新增' }),
   withHandlers({
     updatePayload: ({ setPayload }) => payload => setPayload(previous => ({ ...previous, ...payload }))
   }),

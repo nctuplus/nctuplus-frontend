@@ -1,8 +1,8 @@
 
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { compose, withState, withHandlers, lifecycle } from 'recompose'
-import { getBulletin, patchBulletin, patchBulletinReset } from 'redux/Actions/Events'
+import { compose, withState, withProps, withHandlers, lifecycle } from 'recompose'
+import { getBulletin, patchBulletin, patchBulletinReset } from 'redux/Actions/Bulletins'
 import { FETCHING_STATUS } from 'utilities/constants'
 import Form from 'components/Admin/Bulletin/Form'
 
@@ -14,7 +14,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getBulletin: (id) => dispatch(getBulletin(id)),
-  patchBulletin: (payload) => dispatch(patchBulletin(payload)),
+  patchBulletin: (payload, id) => dispatch(patchBulletin(payload, id)),
   patchBulletinReset: () => dispatch(patchBulletinReset())
 })
 
@@ -24,6 +24,7 @@ const enhance = compose(
   withState('payload', 'setPayload', {
     schedule: false
   }),
+  withProps({ action: '更新' }),
   withHandlers({
     updatePayload: ({ setPayload }) => payload => setPayload(previous => ({ ...previous, ...payload }))
   }),

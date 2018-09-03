@@ -34,7 +34,7 @@ const Form = props => (
               <input type='date' />
             </div>
             <div className='text-center'>
-              <button className='btn btn-warning mr-3'>新增</button>
+              <button className='btn btn-warning mr-3'>{props.action}</button>
               <Link to='/admin/bulletin/'>
                 <button className='btn btn-primary'>返回</button>
               </Link>
