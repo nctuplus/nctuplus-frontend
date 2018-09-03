@@ -10,12 +10,12 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchData: (type) => dispatch(fetchBulletins(type))
+  fetchData: (category) => dispatch(fetchBulletins(category))
 })
 
 class LatestNews extends React.Component {
   componentDidMount () {
-    this.props.fetchData('latest_news')
+    this.props.fetchData(1)
   }
 
   render () {

@@ -10,12 +10,12 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchData: (type) => dispatch(fetchBulletins(type))
+  fetchData: (category) => dispatch(fetchBulletins(category))
 })
 
 class Index extends React.Component {
   componentDidMount () {
-    this.props.fetchData('all')
+    this.props.fetchData(0)
   }
 
   render () {

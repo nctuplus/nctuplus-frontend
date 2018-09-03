@@ -11,8 +11,8 @@ const Form = props => (
           <form>
             <div className='form-group'>
               <select className='form-control'>
-                <option value='true'>最新消息</option>
-                <option value='false'>網站改版</option>
+                <option value='1'>最新消息</option>
+                <option value='2'>網站改版</option>
               </select>
             </div>
             <div className='form-group'>

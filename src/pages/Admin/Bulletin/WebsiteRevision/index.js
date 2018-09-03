@@ -10,12 +10,12 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchData: (type) => dispatch(fetchBulletins(type))
+  fetchData: (category) => dispatch(fetchBulletins(category))
 })
 
 class WebsiteRevision extends React.Component {
   componentDidMount () {
-    this.props.fetchData('website_revision')
+    this.props.fetchData(2)
   }
 
   render () {
