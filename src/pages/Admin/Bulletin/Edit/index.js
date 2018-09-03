@@ -2,9 +2,9 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { compose, withState, withHandlers, lifecycle } from 'recompose'
-import { getBulletin, patchBulletin, patchBulletinReset } from '../../../../Redux/Actions/Events'
-import { FETCHING_STATUS } from '../../../../constants'
-import Form from '../../../../Components/Admin/Bulletin/Form'
+import { getBulletin, patchBulletin, patchBulletinReset } from 'redux/Actions/Events'
+import { FETCHING_STATUS } from 'utilities/constants'
+import Form from 'components/Admin/Bulletin/Form'
 
 const mapStateToProps = (state) => ({
   bulletin: state.bulletins.show.data,

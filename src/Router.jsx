@@ -53,6 +53,8 @@ const Router = () => (
 
         {/* admin slogan route group */}
         <Route exact path='/admin/slogan' render={loginOnly(Admin.Slogan.Index)} />
+        <Route path='/admin/slogan/new' render={loginOnly(Admin.Slogan.New)} />
+        <Route path='/admin/slogan/:id/edit' render={loginOnly(Admin.Slogan.Edit)} />
 
         {/* admin background route group */}
         <Route exact path='/admin/background' render={loginOnly(Admin.Background.Index)} />

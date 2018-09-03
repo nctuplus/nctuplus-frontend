@@ -1,34 +1,35 @@
 
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { compose, withState, withHandlers, lifecycle } from 'recompose'
-import { postBulletin, postBulletinReset } from '../../../../Redux/Actions/Events'
-import { FETCHING_STATUS } from '../../../../constants'
-import Form from '../../../../Components/Admin/Bulletin/Form'
+import { compose, withState, withProps, withHandlers, lifecycle } from 'recompose'
+import { postSlogan, postSloganReset } from 'redux/Actions/Slogans'
+import { FETCHING_STATUS } from 'utilities/constants'
+import Form from 'components/Admin/Slogan/Form'
 
 const mapStateToProps = (state) => ({
-  status: state.bulletins.post.status
+  status: state.slogans.post.status
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  postBulletin: (payload) => dispatch(postBulletin(payload)),
-  postBulletinReset: () => dispatch(postBulletinReset())
+  postSlogan: (payload) => dispatch(postSlogan(payload)),
+  postSloganReset: () => dispatch(postSloganReset())
 })
 
 const enhance = compose(
   withRouter,
   connect(mapStateToProps, mapDispatchToProps),
   withState('payload', 'setPayload', {
-    schedule: false
+
   }),
+  withProps({ action: '新增' }),
   withHandlers({
     updatePayload: ({ setPayload }) => payload => setPayload(previous => ({ ...previous, ...payload }))
   }),
   lifecycle({
     componentDidUpdate: function () {
       if (this.props.status === FETCHING_STATUS.DONE) {
-        this.props.postBulletinReset()
-        this.props.history.push('/admin/bulletin/')
+        this.props.postSloganReset()
+        this.props.history.push('/admin/slogan/')
       }
     }
   })
