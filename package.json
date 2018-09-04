@@ -54,7 +54,9 @@
   },
   "scripts": {
     "dev": "NODE_ENV=development node_modules/.bin/webpack-dev-server",
-    "build": "NODE_ENV=production webpack -p --progress  --config ./webpack.production.config.js"
+    "build": "NODE_ENV=production webpack -p --progress  --config ./webpack.production.config.js",
+    "lint": "standard --fix",
+    "test": "echo 'test'"
   },
   "standard": {
     "globals": [
