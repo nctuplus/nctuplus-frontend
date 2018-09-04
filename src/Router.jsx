@@ -59,6 +59,9 @@ const Router = () => (
         {/* admin background route group */}
         <Route exact path='/admin/background' render={loginOnly(Admin.Background.Index)} />
 
+        {/* admin user route */}
+        <Route path='/admin/users' render={loginOnly(Admin.Users)} />
+
         {/* course route group */}
         <Route exact path='/courses' component={Courses.Index} />
         <Route path='/courses/tutorial' component={Courses.Tutorial} />

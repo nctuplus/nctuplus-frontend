@@ -7,6 +7,7 @@ export const fetchUsersDone = createAction('FETCH_USERS_DONE')
 export const updateUsers = createAction('UPDATE_USERS')
 
 export const updateUsersPage = createAction('UPDATE_USERS_PAGE')
+export const resetUsersPage = createAction('RESET_USERS_PAGE')
 
 export const fetchUsers = (page = 1) => dispatch => {
   dispatch(fetchUsersStart())
