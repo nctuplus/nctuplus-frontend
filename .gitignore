@@ -3,3 +3,9 @@ node_modules/*
 fake_api/database.json
 build/*
 .idea
+
+# ignore trash files
+*/.DS_store
+**/.DS_Store
+*.swp
+**/*.swp
