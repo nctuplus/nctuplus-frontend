@@ -23,7 +23,7 @@ export const fetchDepartments = (page = 1) => dispatch => {
   fetch(`${SERVER_URL}/api/v1/departments`)
     .then(response => response.json())
     .then(json => {
-      dispatch(updateDepartments(json.data))
+      dispatch(updateDepartments(json))
       dispatch(fetchDepartmentsDone())
     })
     .catch(error => console.log(error))
