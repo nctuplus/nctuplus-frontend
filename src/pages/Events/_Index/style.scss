@@ -3,13 +3,10 @@
 /* slick-carousel */
 @import "~slick-carousel/slick/slick.css";
 
-.event{
-	.slider-wrapper{ margin: 10px; }
-	.form-wrapper{ background-color: rgba(100, 100, 100, 0.7); }
-	h3 {
-		position: relative;
-		bottom: 100px;
-	}
+.form-wrapper{ background-color: rgba(100, 100, 100, 0.7); }
+h3 {
+	position: relative;
+	bottom: 100px;
 }
 
 .event-block{
