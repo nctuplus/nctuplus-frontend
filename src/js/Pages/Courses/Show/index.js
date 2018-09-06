@@ -2,7 +2,7 @@
 import React from 'react'
 import PageWrapper from '../../../Components/PageWrapper'
 import { Sidebar, SidebarItem } from '../../../Components/Sidebar'
-import ShareButton from '../../../Components/ShareButton'
+import {ShareButton} from '../../../Components/ShareButton'
 import {
   CourseInfo,
   CourseTips,
@@ -11,9 +11,10 @@ import {
 } from '../../../Components/Course'
 import { Ratings, PersonalRating } from '../../../Components/Ratings'
 import { PastExamUploadTable, PastExamUpload } from '../../../Components/PastExamUpload'
-import scrollToComponent from 'react-scroll-to-component'
+import Spinner from '../../../Components/Spinner'
 import './style.scss'
 
+import scrollToComponent from 'react-scroll-to-component'
 import { connect } from 'react-redux'
 import courseActions from '../../../Redux/Actions/Courses'
 
@@ -28,7 +29,6 @@ class Show extends React.Component {
   constructor (props) {
     super(props)
 
-    this.course = this.props.course || {}
     this.ratings = this.props.ratings || {}
     // workaround
     this.chartData = this.props.chartData || [
@@ -38,12 +38,14 @@ class Show extends React.Component {
       { name: '105上', '胡正光': 0, 'N/A': 0, '洪意凌': 48 }
     ]
 
-    // fetch data
-    if (!this.course || this.course.id !== this.props.match.params.id) { this.props.fetch_data(this.props.match.params.id) }
-
-    this.state = { anchor: 0 }
+    this.state = { anchor: 1 }
     this.scrollTo = this.scrollTo.bind(this)
     this.anchors = []
+
+    // fetch data
+    if (!this.props.course || this.props.course.id !== this.props.match.params.id) {
+      this.props.fetch_data(this.props.match.params.id)
+    }
   }
   scrollTo (index) {
     scrollToComponent(this.anchors[index], { align: 'top', offset: -20, duration: 500 })
@@ -75,96 +77,102 @@ class Show extends React.Component {
         </Sidebar>
         <div className='container'>
           <div className='offset-2 py-4'>
-            <div className='row'>
-              <div className='col-md-10'>
-                <h1>{ this.course.name }</h1>
-                <small>最後同步時間 { this.course.updated_at }</small>
-              </div>
-              <div className='col-md-2 pull-right mt-5'>
-                <ShareButton />
-              </div>
-            </div>
+            {
+              this.props.fetching.status !== 2
+                ? <div className='text-center pt-3'><Spinner size={64} color='grey' /></div>
+                : <div>
+                  <div className='row'>
+                    <div className='col-md-10'>
+                      <h1>{ this.props.course.name }</h1>
+                      <small>最後同步時間 { this.props.course.updated_at }</small>
+                    </div>
+                    <div className='col-md-2 pull-right mt-5'>
+                      <ShareButton />
+                    </div>
+                  </div>
 
-            <hr />
+                  <hr />
 
-            <Section domref={anchor => (this.anchors[0] = anchor)} >
-              <div className='row'>
-                <div className='col-12 col-md-7'>
-                  <Ratings rating={this.ratings} />
+                  <Section domref={anchor => (this.anchors[0] = anchor)} >
+                    <div className='row'>
+                      <div className='col-12 col-md-7'>
+                        <Ratings rating={this.ratings} />
+                      </div>
+                      <div className='col-12 col-md-5'>
+                        <PersonalRating />
+                      </div>
+                    </div>
+                  </Section>
+
+                  <hr />
+
+                  <Section
+                    domref={anchor => (this.anchors[1] = anchor)}
+                    title={<span><i className='fa fa-book mx-2' />課程資訊</span>}
+                  >
+                    <CourseInfo {...this.props.course} />
+                  </Section>
+
+                  <hr />
+
+                  <Section title={<span><i className='fa fa-cube mx-2' />修了這堂課的人，也修了...</span>} />
+
+                  <hr />
+
+                  <Section
+                    domref={anchor => (this.anchors[2] = anchor)}
+                    title={<span><i className='fa fa-gamepad mx-2' />課程攻略</span>}
+                  >
+                    <CourseTips />
+                  </Section>
+
+                  <hr />
+
+                  <Section
+                    domref={anchor => (this.anchors[3] = anchor)}
+                    title={<span><i className='fa fa-align-left mx-2' />歷年統計</span>}
+                  >
+                    <CourseStatistics chart_data={this.chartData} />
+                  </Section>
+
+                  <hr />
+
+                  <Section
+                    domref={anchor => (this.anchors[4] = anchor)}
+                    title={<span><i className='fa fa-weixin mx-2' />留言板</span>}
+                  >
+                    <div className='well bg-grey p-4'>
+                      <p className='text-center'>
+                        <strong>尚無討論</strong>
+                      </p>
+                    </div>
+                    <div className='input-group'>
+                      <div>
+                        <select className='form-control'>
+                          <option value='1'>推</option>
+                          <option value='2'>→</option>
+                          <option value='3'>噓</option>
+                        </select>
+                      </div>
+                      <input className='form-control' maxLength='32' type='text' />
+                      <div className='input-group-append'>
+                        <button className='btn btn-outline-success' type='button'>確定</button>
+                      </div>
+                    </div>
+                  </Section>
+
+                  <hr />
+
+                  <Section domref={anchor => (this.anchors[5] = anchor)}>
+                    <CourseForum />
+                  </Section>
+
+                  <Section domref={anchor => (this.anchors[6] = anchor)} title='考古題區'>
+                    <PastExamUploadTable />
+                    <PastExamUpload />
+                  </Section>
                 </div>
-                <div className='col-12 col-md-5'>
-                  <PersonalRating />
-                </div>
-              </div>
-            </Section>
-
-            <hr />
-
-            <Section
-              domref={anchor => (this.anchors[1] = anchor)}
-              title={<span><i className='fa fa-book mx-2' />課程資訊</span>}
-            >
-              <CourseInfo {...this.course} />
-            </Section>
-
-            <hr />
-
-            <Section title={<span><i className='fa fa-cube mx-2' />修了這堂課的人，也修了...</span>} />
-
-            <hr />
-
-            <Section
-              domref={anchor => (this.anchors[2] = anchor)}
-              title={<span><i className='fa fa-gamepad mx-2' />課程攻略</span>}
-            >
-              <CourseTips />
-            </Section>
-
-            <hr />
-
-            <Section
-              domref={anchor => (this.anchors[3] = anchor)}
-              title={<span><i className='fa fa-align-left mx-2' />歷年統計</span>}
-            >
-              <CourseStatistics chart_data={this.chartData} />
-            </Section>
-
-            <hr />
-
-            <Section
-              domref={anchor => (this.anchors[4] = anchor)}
-              title={<span><i className='fa fa-weixin mx-2' />留言板</span>}
-            >
-              <div className='well bg-grey p-4'>
-                <p className='text-center'>
-                  <strong>尚無討論</strong>
-                </p>
-              </div>
-              <div className='input-group'>
-                <div>
-                  <select className='form-control'>
-                    <option value='1'>推</option>
-                    <option value='2'>→</option>
-                    <option value='3'>噓</option>
-                  </select>
-                </div>
-                <input className='form-control' maxLength='32' type='text' />
-                <div className='input-group-append'>
-                  <button className='btn btn-outline-success' type='button'>確定</button>
-                </div>
-              </div>
-            </Section>
-
-            <hr />
-
-            <Section domref={anchor => (this.anchors[5] = anchor)}>
-              <CourseForum />
-            </Section>
-
-            <Section domref={anchor => (this.anchors[6] = anchor)} title='考古題區'>
-              <PastExamUploadTable />
-              <PastExamUpload />
-            </Section>
+            }
           </div>
         </div>
       </PageWrapper>
@@ -173,7 +181,10 @@ class Show extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  course: state.courses.show.data
+  course: state.courses.show.data,
+  fetching: {
+    status: state.courses.show.status
+  }
 })
 
 const mapDispatchToProps = (dispatch) => ({

@@ -21,6 +21,12 @@
                 color: #fff;
                 transition: 0.3s background-color;
                 &:hover{ background-color: #b52f1f; }
-	}
+    }
+    .alert{
+        position: absolute;
+        z-index: 9;
+        top: 80px;
+        left: 20px;
+    }
 }
 

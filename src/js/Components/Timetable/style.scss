@@ -7,4 +7,10 @@
 	.selected{
 		border: 3px solid #428bca ;
 	}
+	a{
+		color: #000;
+		&:hover{
+			text-decoration: none;
+		}
+	}
 }

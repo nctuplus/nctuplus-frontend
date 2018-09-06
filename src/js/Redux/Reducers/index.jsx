@@ -7,6 +7,7 @@ import comments from './Comments'
 import pastExams from './PastExams'
 import events from './Events'
 import timetable from './Timetable'
+import user from './User'
 
 export default combineReducers({
   bulletins,
@@ -15,5 +16,6 @@ export default combineReducers({
   comments,
   events,
   pastExams,
-  timetable
+  timetable,
+  user
 })

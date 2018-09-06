@@ -5,6 +5,8 @@ import MediaQuery from 'react-responsive'
 import './style.scss'
 import { NavDropdown, NavDropdownLink } from './NavDropdown'
 
+import { connect } from 'react-redux'
+
 const NavItem = (props) => (
   <div className='nav-item mx-md-1 mx-lg-2'>
     { props.children }
@@ -58,7 +60,9 @@ class NavbarContent extends React.Component {
             <NavLink external to='https://www.facebook.com/messages/t/nctuplus' target='_blank'>
               問題回報
             </NavLink>
-            <NavLink to='/login'>登入</NavLink>
+            {(this.props.isLogin)
+              ? <NavLink to='/user'><i className='fa fa-user-circle' /></NavLink>
+              : <NavLink to='/login'>登入</NavLink>}
           </div>
         </div>
       </nav>
@@ -69,12 +73,16 @@ class NavbarContent extends React.Component {
 const Navbar = (props) => (
   <div className='navbar-container'>
     <MediaQuery minDeviceWidth={768} >
-      <div className='container'><NavbarContent /></div>
+      <div className='container'><NavbarContent isLogin={props.isLogin} /></div>
     </MediaQuery>
     <MediaQuery maxDeviceWidth={767} >
-      <NavbarContent />
+      <NavbarContent isLogin={props.isLogin} />
     </MediaQuery>
   </div>
 )
 
-export default Navbar
+const mapStateToProps = (state) => ({
+  isLogin: state.user.isLogin
+})
+
+export default connect(mapStateToProps)(Navbar)

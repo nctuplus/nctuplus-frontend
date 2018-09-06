@@ -1,25 +1,51 @@
 
 import React from 'react'
+import Modal from '../Modal'
+import './style.scss'
 
-class ShareButton extends React.Component {
-  render () {
-    return (
-      <div>
-        <div className='share-button'>
-          <button className='btn btn-primary'>
-            <i className='fa fa-export' />分享
-          </button>
-          <div className='d-none'>
-            <i className='fa fa-pinterest' />
-            <i className='fa fa-facebook' />
-            <i className='fa fa-googleplus' />
-            <i className='fa fa-twitter' />
-            <i className='fa fa-paper-plane' />
-          </div>
-        </div>
-      </div>
-    )
-  }
+import { connect } from 'react-redux'
+
+import Hashids from 'hashids'
+
+function getHash (userID, semesterID) {
+  let hashids = new Hashids('nctuplusisgood5566', 8)
+  return hashids.encode(userID, semesterID)
 }
 
-export default ShareButton
+const mapStateToProps = (state) => ({
+  userID: state.user.userID
+})
+
+const ShareModal = connect(mapStateToProps)((props) => {
+  console.log(props)
+  let hash = getHash(props.userID, props.semesterID)
+  let shareURL = `https://plus.nctu.edu.tw/shares/${hash}`
+  return (
+    <Modal close={props.close}>
+      <div className='modal-header'>
+        <h5 className='modal-title'>分享</h5>
+      </div>
+      <div className='modal-body'>
+        <a className='btn' href={`https://www.facebook.com/sharer/sharer.php?u=${shareURL}`} target='_blank'><i className='fa fa-facebook-square' /></a>
+        <a className='btn' href={`https://plus.google.com/share?url=${shareURL}`} target='_blank'><i className='fa fa-google-plus-square' /></a>
+        <a className='btn' href={`https://twitter.com/home?status=${shareURL}`} target='_blank'><i className='fa fa-twitter-square' /></a>
+        <hr />
+        <p className='input-group'>
+          <span id='shareURL' className='input-group-prepend input-group-text mr-3'>{`https://plus.nctu.edu.tw/shares/${hash}`}</span>
+          <span className='btn'><i className='fa fa-copy' /></span>
+        </p>
+      </div>
+    </Modal>
+  )
+})
+
+const ShareButton = () => (
+  <div>
+    <button className='btn btn-primary'>
+      <i className='fa fa-export' />分享
+    </button>
+    {/* <ShareModal /> */}
+  </div>
+)
+
+export {ShareModal, ShareButton}
