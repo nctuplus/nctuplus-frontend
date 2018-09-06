@@ -2,10 +2,10 @@ import React from 'react'
 import { render } from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import Reducer from './js/Redux/Reducers'
+import Reducer from 'redux/Reducers'
 import thunk from 'redux-thunk'
-import Router from './js/Router'
-import './assets/styles/main.scss'
+import Router from 'Router'
+import 'assets/styles/main.scss'
 
 let store = createStore(Reducer, applyMiddleware(thunk))
 

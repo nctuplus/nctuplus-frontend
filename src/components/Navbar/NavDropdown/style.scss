@@ -1,0 +1,30 @@
+
+@import "../../../assets/styles/_common";
+
+
+.dropdown{
+	color: white;
+	.dropdown-menu{
+		background-color: rgba(0,0,0,0);
+		border: none;
+		.dropdown-item {
+			display: block;
+			min-width: 160px;
+			max-width: 90vw;
+			line-height: 28px;
+			background-color: rgba(0, 0, 0, 0.6);
+			color: white;
+			padding-left: 10px;
+			border-bottom: 1px solid white;
+			transition: background-color 0.5s;
+			&:hover{
+				background-color: #AAAAAA;
+				cursor: pointer;
+			}
+			a{
+				text-decoration: none;
+				color: white;
+			}
+		}
+	}
+}

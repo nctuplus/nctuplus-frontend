@@ -1,7 +1,7 @@
 // stylelint-disable declaration-no-important
 
 //
-// Utilities for common `display` values
+// utilities for common `display` values
 //
 
 @each $breakpoint in map-keys($grid-breakpoints) {
@@ -22,7 +22,7 @@
 
 
 //
-// Utilities for toggling `display` in print
+// utilities for toggling `display` in print
 //
 
 @media print {

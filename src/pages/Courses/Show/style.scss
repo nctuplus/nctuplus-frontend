@@ -1,0 +1,56 @@
+
+@import "../../../assets/styles/_common";
+
+.course-detail{
+    .table-invisible{
+        line-height: 40px;
+        width: 50%;
+    }
+    .statistic-block{
+      	display: inline-block;
+      	background-color: white;
+      	padding-bottom: 20px;
+      	margin: 15px 10px 15px 10px;
+    }
+
+    .section-title{
+      	font-size: 26px;
+      	font-weight: bold;
+      	margin-top: 15px;
+      	margin-bottom: 15px;
+    }
+}
+
+.CircularProgressbar {
+/*
+ * This fixes an issue where the CircularProgressbar svg has
+ * 0 width inside a "display: flex" container, and thus not visible.
+ *
+ * If you're not using "display: flex", you can remove this style.
+ */
+}
+
+.CircularProgressbar .CircularProgressbar-path {
+    stroke: #3e98c7;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.5s ease 0s;
+}
+
+.CircularProgressbar .CircularProgressbar-trail {
+   stroke: #d6d6d6;
+}
+
+.CircularProgressbar .CircularProgressbar-text {
+    fill: #3e98c7;
+    font-size: 20px;
+    dominant-baseline: middle;
+    text-anchor: middle;
+}
+.green {
+    .CircularProgressbar-path { stroke: #00C853; }
+    .CircularProgressbar-text { stroke: #00C853; }
+}
+.orange {
+    .CircularProgressbar-path { stroke: #F57C00; }
+    .CircularProgressbar-text { stroke: #F57C00; }
+}

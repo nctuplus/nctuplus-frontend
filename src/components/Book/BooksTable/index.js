@@ -1,0 +1,49 @@
+
+import React from 'react'
+import { withRouter } from 'react-router-dom'
+import Pagination from 'components/Pagination'
+import './style.scss'
+
+const BooksTableItem = withRouter((props) => {
+  return (
+    <div className='col-4 col-md-4 mb-3' onClick={() => props.history.push(`/books/${props.id}`)}>
+      <div className='card clickable' >
+        <div className='text-center'>
+          <img className='d-inline-block' alt='尚無圖片!' height='150' src={`${SERVER_URL}${props.cover_image.url}`} />
+        </div>
+        <div className='card-body text-center'>
+          <div>{props.name}</div>
+          <div>作者: {props.author}</div>
+          <div>課程: {}</div>
+        </div>
+
+        <div className='card-footer mt-1 p-2' >
+          <span>{props.updated_at.slice(0, 10)}</span>
+          <span className='pull-right bold price'>
+            <i className='fa fa-dollar' />{ props.price }
+          </span>
+        </div>
+      </div>
+    </div>
+  )
+})
+
+const BooksTable = (props) => (
+  <div>
+    <div className='row'>
+      {
+        props.data.map((book, index) => (
+          <BooksTableItem
+            key={index}
+            {...book}
+          />
+        ))
+      }
+    </div>
+    <div className='text-center'>
+      <Pagination page={props.page} maxPage={props.maxPage} to={props.updatePage} />
+    </div>
+  </div>
+)
+
+export { BooksTable, BooksTableItem }

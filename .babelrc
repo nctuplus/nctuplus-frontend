@@ -5,18 +5,23 @@
       "plugins": [
         ["react-transform", {
           "transforms": [{
-              "transform": "react-transform-hmr",
-	      // change this to react-native if writing react-native
-              "imports": ["react"],
-              "locals": ["module"]
-            }]
+            "transform": "react-transform-hmr",
+            // change this to react-native if writing react-native
+            "imports": ["react"],
+            "locals": ["module"]
+          }]
         }],
-        "transform-object-rest-spread"
+        "transform-object-rest-spread",
+        ["module-resolver", { "root": ["./src"] }]
       ]
     },
     "production": {
       "plugins": [
-        "transform-object-rest-spread"
+        "transform-object-rest-spread",
+        "module-resolver",
+        {
+          "root": ["./src"]
+        }
       ]
     }
   }
