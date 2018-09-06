@@ -45,6 +45,13 @@ class NavbarContent extends React.Component {
         </button>
         <div className={`collapse navbar-collapse ${this.state.show && 'show'}`}>
           <div className='navbar-nav mr-auto'>
+            <NavDropdown title='管理'>
+              <NavDropdownLink to='/admin/bulletin'>公布欄</NavDropdownLink>
+              <NavDropdownLink to='/admin/users'>使用者</NavDropdownLink>
+              <NavDropdownLink to='/admin/statistics'>統計資料</NavDropdownLink>
+              <NavDropdownLink to='/admin/departments'>系所管理</NavDropdownLink>
+              <NavDropdownLink to='/admin/course_maps'>課程地圖</NavDropdownLink>
+            </NavDropdown>
             <NavDropdown title='全校課程'>
               <NavDropdownLink to='/courses'>全校課程</NavDropdownLink>
               <NavDropdownLink to='/comments'>心得</NavDropdownLink>

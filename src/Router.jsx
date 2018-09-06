@@ -10,6 +10,7 @@ import Navbar from 'components/Navbar'
 import Footer from 'components/Footer'
 
 import Index from 'pages/Index'
+import * as Admin from 'pages/Admin'
 import * as Courses from 'pages/Courses'
 import * as Comments from 'pages/Comments'
 import * as PastExams from 'pages/PastExams'
@@ -42,6 +43,29 @@ const Router = () => (
         {/* index route group */}
         <Route exact path='/' component={Index} />
         <Route exact path='/login' component={Login} />
+
+        {/* admin bulletin route group */}
+        <Route exact path='/admin/bulletin' render={loginOnly(Admin.Bulletin.Index)} />
+        <Route path='/admin/bulletin/latest_news' render={loginOnly(Admin.Bulletin.LatestNews)} />
+        <Route path='/admin/bulletin/website_revision' render={loginOnly(Admin.Bulletin.WebsiteRevision)} />
+        <Route path='/admin/bulletin/new' render={loginOnly(Admin.Bulletin.New)} />
+        <Route path='/admin/bulletin/:id/edit' render={loginOnly(Admin.Bulletin.Edit)} />
+
+        {/* admin slogan route group */}
+        <Route exact path='/admin/slogan' render={loginOnly(Admin.Slogan.Index)} />
+        <Route path='/admin/slogan/new' render={loginOnly(Admin.Slogan.New)} />
+        <Route path='/admin/slogan/:id/edit' render={loginOnly(Admin.Slogan.Edit)} />
+
+        {/* admin background route group */}
+        <Route exact path='/admin/background' render={loginOnly(Admin.Background.Index)} />
+
+        {/* admin user route */}
+        <Route path='/admin/users' render={loginOnly(Admin.Users)} />
+
+        {/* admin department route group */}
+        <Route exact path='/admin/departments' render={loginOnly(Admin.Departments.Index)} />
+        <Route path='/admin/departments/new' render={loginOnly(Admin.Departments.New)} />
+        <Route path='/admin/departments/:id/edit' render={loginOnly(Admin.Departments.Edit)} />
 
         {/* course route group */}
         <Route exact path='/courses' component={Courses.Index} />
