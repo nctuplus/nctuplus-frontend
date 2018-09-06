@@ -1,13 +1,13 @@
 
 import React from 'react'
-import PageWrapper from '../../../components/PageWrapper'
-import { SearchCourse } from '../../../components/Search'
-import { CourseTable } from '../../../components/Course'
-import Spinner from '../../../components/Spinner'
+import PageWrapper from 'components/PageWrapper'
+import { SearchCourse } from 'components/Search'
+import { CourseTable } from 'components/Course'
+import Spinner from 'components/Spinner'
 import './style.scss'
 
 import { connect } from 'react-redux'
-import courseActions from '../../../redux/Actions/Courses'
+import courseActions from 'redux/Actions/Courses'
 import { compose, lifecycle } from 'recompose'
 
 const Index = (props) => (

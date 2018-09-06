@@ -1,22 +1,22 @@
 
 import React from 'react'
-import PageWrapper from '../../../components/PageWrapper'
-import { Sidebar, SidebarItem } from '../../../components/Sidebar'
-import {ShareButton} from '../../../components/ShareButton'
+import PageWrapper from 'components/PageWrapper'
+import { Sidebar, SidebarItem } from 'components/Sidebar'
+import {ShareButton} from 'components/ShareButton'
 import {
   CourseInfo,
   CourseTips,
   CourseStatistics,
   CourseForum
-} from '../../../components/Course'
-import { Ratings, PersonalRating } from '../../../components/Ratings'
-import { PastExamUploadTable, PastExamUpload } from '../../../components/PastExamUpload'
-import Spinner from '../../../components/Spinner'
+} from 'components/Course'
+import { Ratings, PersonalRating } from 'components/Ratings'
+import { PastExamUploadTable, PastExamUpload } from 'components/PastExamUpload'
+import Spinner from 'components/Spinner'
 import './style.scss'
 
 import scrollToComponent from 'react-scroll-to-component'
 import { connect } from 'react-redux'
-import courseActions from '../../../redux/Actions/Courses'
+import courseActions from 'redux/Actions/Courses'
 
 const Section = (props) => (
   <div className='py-4' ref={props.domref}>

@@ -6,14 +6,14 @@ import {
   SearchPanelCollegeList,
   SearchPanelNews,
   SearchPanelNewsFeed
-} from '../../../components/Search'
-import PageWrapper from '../../../components/PageWrapper'
-import { CommentsTable } from '../../../components/CommentsTable'
-import { InputWithButton } from '../../../components/FormUtils'
-import Spinner from '../../../components/Spinner'
+} from 'components/Search'
+import PageWrapper from 'components/PageWrapper'
+import { CommentsTable } from 'components/CommentsTable'
+import { InputWithButton } from 'components/FormUtils'
+import Spinner from 'components/Spinner'
 
 import { connect } from 'react-redux'
-import { updateCommentsPage, fetchComments } from '../../../redux/Actions/Comments'
+import { updateCommentsPage, fetchComments } from 'redux/Actions/Comments'
 
 const Index = (props) => {
   props.comments.status || props.fetch_data()

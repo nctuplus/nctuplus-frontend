@@ -1,14 +1,14 @@
 
 import React from 'react'
-import PageWrapper from '../../components/PageWrapper'
-import Cover from '../../components/Cover'
-import { Intro, IntroItem } from '../../components/Intro'
-import About from '../../components/About'
-import BulletinBoard from '../../components/Bulletin'
+import PageWrapper from 'components/PageWrapper'
+import Cover from 'components/Cover'
+import { Intro, IntroItem } from 'components/Intro'
+import About from 'components/About'
+import BulletinBoard from 'components/Bulletin'
 import './style.scss'
 
 import { connect } from 'react-redux'
-import { fetchBulletins } from '../../redux/Actions/Bulletins'
+import { fetchBulletins } from 'redux/Actions/Bulletins'
 
 const CoverImageUrls = [
   'https://plus.nctu.edu.tw/backgrounds/%E8%95%AD%E7%AB%8B%E5%93%81-1.jpg',

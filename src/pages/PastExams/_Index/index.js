@@ -6,14 +6,14 @@ import {
   SearchPanelCollegeList,
   SearchPanelNews,
   SearchPanelNewsFeed
-} from '../../../components/Search'
-import PageWrapper from '../../../components/PageWrapper'
-import { PastExamsTable } from '../../../components/PastExamsTable'
-import { InputWithButton } from '../../../components/FormUtils'
-import Spinner from '../../../components/Spinner'
+} from 'components/Search'
+import PageWrapper from 'components/PageWrapper'
+import { PastExamsTable } from 'components/PastExamsTable'
+import { InputWithButton } from 'components/FormUtils'
+import Spinner from 'components/Spinner'
 
 import { connect } from 'react-redux'
-import { updatePastExamsPage, fetchPastExams } from '../../../redux/Actions/PastExams'
+import { updatePastExamsPage, fetchPastExams } from 'redux/Actions/PastExams'
 
 const Index = (props) => {
   props.pastExams.status || props.fetch_data()
