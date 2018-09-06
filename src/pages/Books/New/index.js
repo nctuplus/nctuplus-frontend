@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { compose, withState, lifecycle, withHandlers, withProps } from 'recompose'
 // import { base64encode } from 'utilities'
-// import { FETCHING_STATUS } from 'constants'
+// import { FETCHING_STATUS } from 'utilities/constants'
 import Form from 'components/Book/Form'
 
 const mapStateToProps = (state) => ({

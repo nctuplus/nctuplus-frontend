@@ -2,7 +2,7 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import Pagination from 'components/Pagination'
-import { convertTimeSlotsToString } from 'lib'
+import { convertTimeSlotsToString } from 'utilities'
 
 const CourseTableRow = withRouter((props) => (
   <tr

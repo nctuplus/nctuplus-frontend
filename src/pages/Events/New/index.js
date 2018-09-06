@@ -5,7 +5,7 @@ import { withRouter } from 'react-router'
 import { compose, withState, lifecycle, withHandlers, withProps } from 'recompose'
 import { base64encode } from 'utilities'
 import { postEvent, postEventReset } from 'redux/Actions/Events'
-import { FETCHING_STATUS } from 'constants'
+import { FETCHING_STATUS } from 'utilities/constants'
 import Form from 'components/Event/Form'
 
 const mapStateToProps = (state) => ({

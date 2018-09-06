@@ -5,7 +5,7 @@ import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 import PageWrapper from 'components/PageWrapper'
 import { getEvent, followEvent, deleteEvent, deleteEventReset } from 'redux/Actions/Events'
-import { FETCHING_STATUS } from 'constants'
+import { FETCHING_STATUS } from 'utilities/constants'
 import './style.scss'
 
 class Show extends React.Component {
