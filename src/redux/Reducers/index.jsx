@@ -5,6 +5,7 @@ import slogans from './Slogans'
 import backgrounds from './Backgrounds'
 import users from './Users'
 import departments from './Departments'
+import courseMaps from './CourseMaps'
 import books from './Books'
 import courses from './Courses'
 import comments from './Comments'
@@ -19,6 +20,7 @@ export default combineReducers({
   backgrounds,
   users,
   departments,
+  courseMaps,
   books,
   courses,
   comments,
