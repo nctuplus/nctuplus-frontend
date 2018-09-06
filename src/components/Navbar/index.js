@@ -61,7 +61,6 @@ class NavbarContent extends React.Component {
             <NavLink to='/courses/simulation'>模擬排課</NavLink>
             <NavLink to='/books'>二手書</NavLink>
             <NavLink to='/events'>活動吧</NavLink>
-            <NavLink external to='https://plus.nctu.edu.tw/newcomer/'>網路新生包</NavLink>
           </div>
           <div className='navbar-nav'>
             <NavLink external to='https://www.facebook.com/messages/t/nctuplus' target='_blank'>
