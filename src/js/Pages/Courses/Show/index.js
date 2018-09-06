@@ -31,47 +31,43 @@ class Show extends React.Component {
 
     this.ratings = this.props.ratings || {}
     // workaround
-    this.chartData = this.props.chartData || [
-      { name: '103下', '胡正光': 50, 'N/A': 20, '洪意凌': 10 },
-      { name: '104上', '胡正光': 0, 'N/A': 18, '洪意凌': 0 },
-      { name: '104下', '胡正光': 30, 'N/A': 8, '洪意凌': 4 },
-      { name: '105上', '胡正光': 0, 'N/A': 0, '洪意凌': 48 }
-    ]
+    this.chartData = this.props.chartData || []
 
     this.state = { anchor: 1 }
     this.scrollTo = this.scrollTo.bind(this)
-    this.anchors = []
-
-    // fetch data
-    if (!this.props.course || this.props.course.id !== this.props.match.params.id) {
-      this.props.fetch_data(this.props.match.params.id)
-    }
+    this.anchors = Array(7).fill(0).map(React.createRef)
+  }
+  componentDidMount () {
+    const { match, fetchData } = this.props
+    fetchData(match.params.id)
   }
   scrollTo (index) {
-    scrollToComponent(this.anchors[index], { align: 'top', offset: -20, duration: 500 })
-    this.setState({ anchor: index })
+    return () => {
+      scrollToComponent(this.anchors[index].current, { align: 'top', offset: -20, duration: 500 })
+      this.setState({ anchor: index })
+    }
   }
 
   render () {
     return (
       <PageWrapper>
         <Sidebar >
-          <SidebarItem active={this.state.anchor === 1} onClick={() => this.scrollTo(1)}>
+          <SidebarItem active={this.state.anchor === 1} onClick={this.scrollTo(1)}>
             課程資訊
           </SidebarItem>
-          <SidebarItem active={this.state.anchor === 2} onClick={() => this.scrollTo(2)}>
+          <SidebarItem active={this.state.anchor === 2} onClick={this.scrollTo(2)}>
             課程攻略
           </SidebarItem>
-          <SidebarItem active={this.state.anchor === 3} onClick={() => this.scrollTo(3)}>
+          <SidebarItem active={this.state.anchor === 3} onClick={this.scrollTo(3)}>
             歷年統計
           </SidebarItem>
-          <SidebarItem active={this.state.anchor === 4} onClick={() => this.scrollTo(4)}>
+          <SidebarItem active={this.state.anchor === 4} onClick={this.scrollTo(4)}>
             留言板
           </SidebarItem>
-          <SidebarItem active={this.state.anchor === 5} onClick={() => this.scrollTo(5)}>
+          <SidebarItem active={this.state.anchor === 5} onClick={this.scrollTo(5)}>
             課程(心得)討論區
           </SidebarItem>
-          <SidebarItem active={this.state.anchor === 6} onClick={() => this.scrollTo(6)}>
+          <SidebarItem active={this.state.anchor === 6} onClick={this.scrollTo(6)}>
             考古題
           </SidebarItem>
         </Sidebar>
@@ -93,7 +89,7 @@ class Show extends React.Component {
 
                   <hr />
 
-                  <Section domref={anchor => (this.anchors[0] = anchor)} >
+                  <Section domref={this.anchors[0]} >
                     <div className='row'>
                       <div className='col-12 col-md-7'>
                         <Ratings rating={this.ratings} />
@@ -107,7 +103,7 @@ class Show extends React.Component {
                   <hr />
 
                   <Section
-                    domref={anchor => (this.anchors[1] = anchor)}
+                    domref={this.anchors[1]}
                     title={<span><i className='fa fa-book mx-2' />課程資訊</span>}
                   >
                     <CourseInfo {...this.props.course} />
@@ -120,7 +116,7 @@ class Show extends React.Component {
                   <hr />
 
                   <Section
-                    domref={anchor => (this.anchors[2] = anchor)}
+                    domref={this.anchors[2]}
                     title={<span><i className='fa fa-gamepad mx-2' />課程攻略</span>}
                   >
                     <CourseTips />
@@ -129,7 +125,7 @@ class Show extends React.Component {
                   <hr />
 
                   <Section
-                    domref={anchor => (this.anchors[3] = anchor)}
+                    domref={this.anchors[3]}
                     title={<span><i className='fa fa-align-left mx-2' />歷年統計</span>}
                   >
                     <CourseStatistics chart_data={this.chartData} />
@@ -138,7 +134,7 @@ class Show extends React.Component {
                   <hr />
 
                   <Section
-                    domref={anchor => (this.anchors[4] = anchor)}
+                    domref={this.anchors[4]}
                     title={<span><i className='fa fa-weixin mx-2' />留言板</span>}
                   >
                     <div className='well bg-grey p-4'>
@@ -163,11 +159,11 @@ class Show extends React.Component {
 
                   <hr />
 
-                  <Section domref={anchor => (this.anchors[5] = anchor)}>
+                  <Section domref={this.anchors[5]}>
                     <CourseForum />
                   </Section>
 
-                  <Section domref={anchor => (this.anchors[6] = anchor)} title='考古題區'>
+                  <Section domref={this.anchors[6]} title='考古題區'>
                     <PastExamUploadTable />
                     <PastExamUpload />
                   </Section>
@@ -188,7 +184,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetch_data: (id) => dispatch(courseActions.show.fetch(id))
+  fetchData: (id) => dispatch(courseActions.show.fetch(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Show)
