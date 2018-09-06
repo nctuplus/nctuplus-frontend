@@ -45,7 +45,10 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx'],
+    alias: {
+      assets: Path.join(__dirname, 'src/assets')
+    }
   },
   plugins: [
     new webpack.DefinePlugin({
