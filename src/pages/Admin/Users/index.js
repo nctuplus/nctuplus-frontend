@@ -1,10 +1,10 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-import PageWrapper from '../../../Components/PageWrapper'
-import { InputWithButton } from '../../../Components/FormUtils'
-import UsersTable from '../../../Components/Admin/UsersTable'
-import { fetchUsers, updateUsersPage, resetUsersPage } from '../../../Redux/Actions/Users'
+import PageWrapper from 'components/PageWrapper'
+import { InputWithButton } from 'components/FormUtils'
+import UsersTable from 'components/Admin/UsersTable'
+import { fetchUsers, updateUsersPage, resetUsersPage } from 'redux/Actions/Users'
 
 const mapStateToProps = (state) => ({
   users: state.users

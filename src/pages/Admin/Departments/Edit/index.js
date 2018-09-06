@@ -2,9 +2,9 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { compose, withState, withProps, withHandlers, lifecycle } from 'recompose'
-import { getDepartment, patchDepartment, patchDepartmentReset } from '../../../../Redux/Actions/Departments'
-import { FETCHING_STATUS } from '../../../../constants'
-import Form from '../../../../Components/Admin/Department/Form'
+import { getDepartment, patchDepartment, patchDepartmentReset } from 'redux/Actions/Departments'
+import { FETCHING_STATUS } from 'utilities/constants'
+import Form from 'components/Admin/Department/Form'
 
 const mapStateToProps = (state) => ({
   department: state.departments.show.data,

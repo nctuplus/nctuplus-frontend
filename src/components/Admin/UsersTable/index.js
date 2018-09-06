@@ -1,6 +1,6 @@
 
 import React from 'react'
-import Pagination from '../../Pagination'
+import Pagination from 'components/Pagination'
 
 const UsersTable = props => (
   <div>
