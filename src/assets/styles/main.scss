@@ -25,6 +25,7 @@
 .border-left-cyan{ border-left: 5px solid #25b0eb; }
 .border-left-grey{ border-left: 5px solid #999999; }
 .border-left-green{ border-left: 5px solid #5cb852; }
+.border-left-white{ border-left: 5px solid #ffffff; }
 .no-border{ border: none; }
 
 
@@ -105,5 +106,15 @@ body{
     color: #ffffff;
     background-color: #ec971f;
     border-color: #d58512;
+  }
+}
+
+.btn-default {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+  &:hover {
+    background-color: #e6e6e6;
+    border-color: #adadad;
   }
 }
