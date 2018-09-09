@@ -8,7 +8,7 @@ import {
   SearchPanelNewsFeed
 } from 'components/Search'
 import PageWrapper from 'components/PageWrapper'
-import PastExamsTable from 'components/PastExamsTable'
+import * as PastExam from 'components/PastExam'
 import { InputWithButton } from 'components/FormUtils'
 import Spinner from 'components/Spinner'
 
@@ -72,7 +72,7 @@ const Index = (props) => (
           </SearchPanel>
         </div>
         <div className='col-12 col-md-9'>
-          <PastExamsTable {...props.pastExams} updatePage={props.updatePage} />
+          <PastExam.Table {...props.pastExams} updatePage={props.updatePage} />
         </div>
       </div>
     </div>

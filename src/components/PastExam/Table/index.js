@@ -3,7 +3,7 @@ import React from 'react'
 import Pagination from 'components/Pagination'
 import Spinner from 'components/Spinner'
 
-const PastExamsTableRow = ({ file, course, teacher }) => (
+const Row = ({ file, course, teacher }) => (
   <tr className='clickable' onClick={() => window.open(`${SERVER_URL}${file.url}`)}>
     <td>{`${course}/${teacher}`}</td>
     <td>{/* props.semester */}</td>
@@ -13,7 +13,7 @@ const PastExamsTableRow = ({ file, course, teacher }) => (
   </tr>
 )
 
-const PastExamsTable = (props) => (
+const Table = (props) => (
   <div>
     <table className='table table-sm table-hover bg-white'>
       <thead>
@@ -29,7 +29,7 @@ const PastExamsTable = (props) => (
         {
           props.data.length
             ? props.data.map((pastExam, index) => (
-              <PastExamsTableRow {...pastExam} key={index} />
+              <Row {...pastExam} key={index} />
             ))
             : <tr className='text-center'>
               <td colSpan='5'>
@@ -45,4 +45,4 @@ const PastExamsTable = (props) => (
   </div>
 )
 
-export default PastExamsTable
+export default Table

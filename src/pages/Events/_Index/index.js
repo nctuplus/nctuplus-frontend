@@ -52,7 +52,7 @@ const enhance = compose(
 
 const Index = enhance((props) =>
   <PageWrapper>
-    <div className='container pt-3'>
+    <div className='container pt-3 event'>
       <div className='m-1'>
         <Slider
           infinite
@@ -77,7 +77,7 @@ const Index = enhance((props) =>
                       src={`${SERVER_URL}${event.cover_image.url}`}
                     />
                   </Link>
-                  <h3 className='text-center text-white'>
+                  <h3 className='text-center text-white title'>
                     {event.title}
                   </h3>
                 </div>
