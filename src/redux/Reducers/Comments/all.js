@@ -6,7 +6,7 @@ const initialState = {
   status: FETCHING_STATUS.IDLE,
   data: [],
   page: 1,
-  max_page: 1
+  maxPage: 1
 }
 
 export default handleActions({

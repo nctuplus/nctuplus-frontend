@@ -3,12 +3,7 @@ import React from 'react'
 import PageWrapper from 'components/PageWrapper'
 import { Sidebar, SidebarItem } from 'components/Sidebar'
 import {ShareButton} from 'components/ShareButton'
-import {
-  CourseInfo,
-  CourseTips,
-  CourseStatistics,
-  CourseForum
-} from 'components/Course'
+import * as Course from 'components/Course'
 import { Ratings, PersonalRating } from 'components/Ratings'
 import * as PastExam from 'components/PastExam'
 import Spinner from 'components/Spinner'
@@ -106,7 +101,7 @@ class Show extends React.Component {
                     domref={this.anchors[1]}
                     title={<span><i className='fa fa-book mx-2' />課程資訊</span>}
                   >
-                    <CourseInfo {...this.props.course} />
+                    <Course.Info {...this.props.course} />
                   </Section>
 
                   <hr />
@@ -119,7 +114,7 @@ class Show extends React.Component {
                     domref={this.anchors[2]}
                     title={<span><i className='fa fa-gamepad mx-2' />課程攻略</span>}
                   >
-                    <CourseTips />
+                    <Course.Tips />
                   </Section>
 
                   <hr />
@@ -128,7 +123,7 @@ class Show extends React.Component {
                     domref={this.anchors[3]}
                     title={<span><i className='fa fa-align-left mx-2' />歷年統計</span>}
                   >
-                    <CourseStatistics chart_data={this.chartData} />
+                    <Course.StatisticCharts chart_data={this.chartData} />
                   </Section>
 
                   <hr />
@@ -160,7 +155,7 @@ class Show extends React.Component {
                   <hr />
 
                   <Section domref={this.anchors[5]}>
-                    <CourseForum />
+                    <Course.Forum />
                   </Section>
 
                   <Section domref={this.anchors[6]} title='考古題區'>

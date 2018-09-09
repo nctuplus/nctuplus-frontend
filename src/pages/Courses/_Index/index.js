@@ -2,7 +2,7 @@
 import React from 'react'
 import PageWrapper from 'components/PageWrapper'
 import { SearchCourse } from 'components/Search'
-import { CourseTable } from 'components/Course'
+import * as Course from 'components/Course'
 import Spinner from 'components/Spinner'
 import './style.scss'
 
@@ -18,7 +18,7 @@ const Index = ({ courses, updatePage }) => (
       </div>
       {
         courses.status
-          ? <CourseTable {...courses} updatePage={updatePage} />
+          ? <Course.Table {...courses} updatePage={updatePage} />
           : <div className='text-center'><Spinner size={48} color='grey' /></div>
       }
     </div>

@@ -42,7 +42,7 @@ const CommentsTable = (props) => (
       </tbody>
     </table>
     <div className='text-center'>
-      <Pagination page={props.page} max_page={props.max_page} to={props.update_page} />
+      <Pagination page={props.page} maxPage={props.maxPage} to={props.update_page} />
     </div>
   </div>
 )

@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import Pagination from 'components/Pagination'
 import { convertTimeSlotsToString } from 'utilities'
 
-const CourseTableRow = withRouter((props) => (
+const Row = withRouter((props) => (
   <tr
     id={props.id}
     className='clickable'
@@ -20,7 +20,7 @@ const CourseTableRow = withRouter((props) => (
   </tr>
 ))
 
-const CourseTable = (props) => (
+const Table = ({ data, page, maxPage, updatePage }) => (
   <div>
     <table className='table table-sm table-hover bg-white'>
       <thead>
@@ -36,22 +36,16 @@ const CourseTable = (props) => (
       </thead>
       <tbody>
         {
-          props.data.map((value, index) => (
-            <CourseTableRow
-              key={index}
-              {...value}
-            />)
+          data.map((value, index) => (
+            <Row key={index} {...value} />)
           )
         }
       </tbody>
     </table>
     <div className='text-center'>
-      <Pagination page={props.page} max_page={props.max_page} to={props.updatePage} />
+      <Pagination page={page} maxPage={maxPage} to={updatePage} />
     </div>
   </div>
 )
 
-export {
-  CourseTable,
-  CourseTableRow
-}
+export default Table
