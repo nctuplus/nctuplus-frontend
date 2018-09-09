@@ -10,7 +10,7 @@ import {
   CourseForum
 } from 'components/Course'
 import { Ratings, PersonalRating } from 'components/Ratings'
-import { PastExamUploadTable, PastExamUpload } from 'components/PastExamUpload'
+import * as PastExam from 'components/PastExam'
 import Spinner from 'components/Spinner'
 import './style.scss'
 
@@ -164,8 +164,8 @@ class Show extends React.Component {
                   </Section>
 
                   <Section domref={this.anchors[6]} title='考古題區'>
-                    <PastExamUploadTable />
-                    <PastExamUpload />
+                    <PastExam.FileList />
+                    <PastExam.Upload />
                   </Section>
                 </div>
             }
