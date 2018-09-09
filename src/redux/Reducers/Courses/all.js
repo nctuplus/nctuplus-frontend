@@ -12,11 +12,11 @@ const initialState = {
 export default handleActions({
   COURSES: {
     INDEX: {
-      STATUS: {
-        START: (state) => ({ ...state, status: FETCHING_STATUS.FETCHING }),
-        DONE: (state) => ({ ...state, status: FETCHING_STATUS.DONE })
+      SET_STATUS: (state, action) => ({ ...state, status: action.payload }),
+      STORE: (state, action) => {
+        const { data, current_page: page, total_pages: maxPage } = action.payload
+        return { ...state, data, page, maxPage }
       },
-      STORE: (state, action) => ({ ...state, data: action.payload }),
       UPDATE_PAGE: (state, action) => ({ ...state, page: action.payload })
     }
   }

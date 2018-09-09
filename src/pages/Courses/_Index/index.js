@@ -10,15 +10,15 @@ import { connect } from 'react-redux'
 import courseActions from 'redux/Actions/Courses'
 import { compose, lifecycle } from 'recompose'
 
-const Index = (props) => (
+const Index = ({ courses, updatePage }) => (
   <PageWrapper className='course'>
     <div className='container'>
       <div className='search-wrapper'>
         <SearchCourse show_semester />
       </div>
       {
-        props.courses.status
-          ? <CourseTable {...props.courses} updatePage={props.updatePage} />
+        courses.status
+          ? <CourseTable {...courses} updatePage={updatePage} />
           : <div className='text-center'><Spinner size={48} color='grey' /></div>
       }
     </div>
