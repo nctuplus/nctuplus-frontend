@@ -3,13 +3,13 @@ import React from 'react'
 import Pagination from 'components/Pagination'
 import Spinner from 'components/Spinner'
 
-const PastExamsTableRow = (props) => (
-  <tr className='clickable' href={props.href}>
-    <td>{`${props.course}/${props.teacher}`}</td>
-    <td>{props.semester}</td>
-    <td>{props.file_name}</td>
-    <td className='title'>{props.title}</td>
-    <td className='user_name'>{props.user.name}</td>
+const PastExamsTableRow = ({ file, course, teacher }) => (
+  <tr className='clickable' onClick={() => window.open(`${SERVER_URL}${file.url}`)}>
+    <td>{`${course}/${teacher}`}</td>
+    <td>{/* props.semester */}</td>
+    <td>{/* props.file_name */}</td>
+    <td>{/* props.description */}</td>
+    <td>{/* props.user.name */}</td>
   </tr>
 )
 
@@ -40,9 +40,9 @@ const PastExamsTable = (props) => (
       </tbody>
     </table>
     <div className='text-center'>
-      <Pagination page={props.page} maxPage={props.max_page} to={props.update_page} />
+      <Pagination page={props.page} maxPage={props.maxPage} to={props.updatePage} />
     </div>
   </div>
 )
 
-export { PastExamsTable }
+export default PastExamsTable

@@ -1,20 +1,29 @@
 
 import fetch from 'isomorphic-fetch'
-import { createAction } from 'redux-actions'
+import { FETCHING_STATUS } from 'utilities/constants'
+import { createActions } from 'redux-actions'
 
-export const fetchPastExamsStart = createAction('FETCH_PAST_EXAMS_START')
-export const fetchPastExamsDone = createAction('FETCH_PAST_EXAMS_DONE')
-export const updatePastExams = createAction('UPDATE_PAST_EXAMS')
+const actions = createActions({
+  PAST_EXAMS: {
+    INDEX: {
+      SET_STATUS: null,
+      STORE: null,
+      UPDATE_PAGE: null
+    }
+  }
+})
 
-export const updatePastExamsPage = createAction('UPDATE_PAST_EXAMS_PAGE')
+const pastExamsActions = actions.pastExams
 
-export const fetchPastExams = (page = 1) => dispatch => {
-  dispatch(fetchPastExamsStart)
+pastExamsActions.index.fetch = (page = 1) => dispatch => {
+  dispatch(pastExamsActions.index.setStatus(FETCHING_STATUS.FETCHING))
   fetch(`${SERVER_URL}/api/v1/past_exams?page=${page}`)
     .then(response => response.json())
     .then(json => {
-      dispatch(updatePastExams(json))
-      dispatch(fetchPastExamsDone())
+      dispatch(pastExamsActions.index.store(json))
+      dispatch(pastExamsActions.index.setStatus(FETCHING_STATUS.DONE))
     })
-    .catch(error => console.log(error))
+    .catch(() => dispatch(pastExamsActions.index.setStatus(FETCHING_STATUS.FAIL)))
 }
+
+export default pastExamsActions
