@@ -2,11 +2,11 @@
 import React from 'react'
 import './style.scss'
 
-const PageWrapper = ({className, ...props}) => {
-  window.scroll(0, 0)
+const PageWrapper = ({className, children}) => {
+  window.scroll({ top: 0, left: 0, behavior: 'smooth' })
   return (
     <div className={`page-wrapper ${className || ''}`} >
-      { props.children }
+      { children }
     </div>
   )
 }
