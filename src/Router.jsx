@@ -70,6 +70,7 @@ const Router = () => (
         {/* admin course map route group */}
         <Route exact path='/admin/course_maps' render={loginOnly(Admin.CourseMaps.Index)} />
         <Route path='/admin/course_maps/new' render={loginOnly(Admin.CourseMaps.New)} />
+        <Route path='/admin/course_maps/:id/edit' render={loginOnly(Admin.CourseMaps.Edit)} />
 
         {/* course route group */}
         <Route exact path='/courses' component={Courses.Index} />
