@@ -4,7 +4,7 @@ import { withRouter } from 'react-router'
 import { compose, withState, withHandlers, lifecycle } from 'recompose'
 import { postCourseMap, postCourseMapReset } from 'redux/Actions/CourseMaps'
 import { FETCHING_STATUS } from 'utilities/constants'
-import Form from 'components/Admin/CourseMap/Form'
+import Form from 'components/Admin/CourseMap/NewForm'
 
 const mapStateToProps = (state) => ({
   status: state.courseMaps.post.status
