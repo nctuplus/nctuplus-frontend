@@ -13,7 +13,7 @@ import { InputWithButton } from 'components/FormUtils'
 import Spinner from 'components/Spinner'
 
 import { connect } from 'react-redux'
-import pastExamsActions from 'redux/Actions/PastExams'
+import pastExamsActions from 'api/Actions/PastExams'
 import { compose, lifecycle } from 'recompose'
 import { debug } from 'utilities'
 

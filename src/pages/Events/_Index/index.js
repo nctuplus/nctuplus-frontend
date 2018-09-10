@@ -9,7 +9,7 @@ import moment from 'moment'
 import PageWrapper from 'components/PageWrapper'
 import Preview from 'components/Event/Preview'
 import { InputWithButton } from 'components/FormUtils'
-import { fetchEvents } from 'redux/Actions/Events'
+import { fetchEvents } from 'api/Actions/Events'
 import './style.scss'
 
 const CustomArrowLeft = (props) => (

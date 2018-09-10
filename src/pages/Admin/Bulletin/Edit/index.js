@@ -2,7 +2,7 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { compose, withState, withProps, withHandlers, lifecycle } from 'recompose'
-import { getBulletin, patchBulletin, patchBulletinReset } from 'redux/Actions/Bulletins'
+import { getBulletin, patchBulletin, patchBulletinReset } from 'api/Actions/Bulletins'
 import { FETCHING_STATUS } from 'utilities/constants'
 import Form from 'components/Admin/Bulletin/Form'
 

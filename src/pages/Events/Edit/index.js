@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { compose, withState, lifecycle, withHandlers, withProps } from 'recompose'
 import { base64encode } from 'utilities'
-import { getEvent, patchEvent, patchEventReset } from 'redux/Actions/Events'
+import { getEvent, patchEvent, patchEventReset } from 'api/Actions/Events'
 import { FETCHING_STATUS } from 'utilities/constants'
 import Form from 'components/Event/Form'
 

@@ -11,7 +11,7 @@ import './style.scss'
 
 import scrollToComponent from 'react-scroll-to-component'
 import { connect } from 'react-redux'
-import courseActions from 'redux/Actions/Courses'
+import courseActions from 'api/Actions/Courses'
 
 const Section = (props) => (
   <div className='py-4' ref={props.domref}>

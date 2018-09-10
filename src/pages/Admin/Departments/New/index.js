@@ -2,7 +2,7 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { compose, withState, withProps, withHandlers, lifecycle } from 'recompose'
-import { postDepartment, postDepartmentReset } from 'redux/Actions/Departments'
+import { postDepartment, postDepartmentReset } from 'api/Actions/Departments'
 import { FETCHING_STATUS } from 'utilities/constants'
 import Form from 'components/Admin/Department/Form'
 

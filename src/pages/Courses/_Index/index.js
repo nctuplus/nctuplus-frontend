@@ -7,7 +7,7 @@ import Spinner from 'components/Spinner'
 import './style.scss'
 
 import { connect } from 'react-redux'
-import courseActions from 'redux/Actions/Courses'
+import courseActions from 'api/Actions/Courses'
 import { compose, lifecycle } from 'recompose'
 
 const Index = ({ courses, updatePage }) => (

@@ -13,7 +13,7 @@ import { InputWithButton } from 'components/FormUtils'
 import './style.scss'
 
 import { connect } from 'react-redux'
-import { updateBooksPage, applyBooksFilters, fetchBooks } from 'redux/Actions/Books'
+import { updateBooksPage, applyBooksFilters, fetchBooks } from 'api/Actions/Books'
 
 class Index extends React.Component {
   componentDidMount () {

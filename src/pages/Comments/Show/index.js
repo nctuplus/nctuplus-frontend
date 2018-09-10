@@ -4,7 +4,7 @@ import PageWrapper from 'components/PageWrapper'
 import { Comment } from 'components/Comment'
 
 import { connect } from 'react-redux'
-import { getComment } from 'redux/Actions/Comments'
+import { getComment } from 'api/Actions/Comments'
 
 const Show = (props) => {
   let comment = props.comment

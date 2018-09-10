@@ -14,7 +14,7 @@ import {
   timetableSetHovering,
   timetableAdjustRow,
   timetableShareToggle
-} from 'redux/Actions/Timetable'
+} from 'api/Actions/Timetable'
 
 import html2canvas from 'html2canvas'
 

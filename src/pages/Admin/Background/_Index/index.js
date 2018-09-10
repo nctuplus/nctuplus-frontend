@@ -3,7 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import Bulletin from 'components/Admin/Bulletin'
-import { fetchBackgrounds } from 'redux/Actions/Backgrounds'
+import { fetchBackgrounds } from 'api/Actions/Backgrounds'
 
 const mapStateToProps = (state) => ({
   backgrounds: state.backgrounds.all
