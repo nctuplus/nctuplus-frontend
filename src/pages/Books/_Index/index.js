@@ -8,8 +8,9 @@ import {
   SearchPanelNewsFeed
 } from 'components/Search'
 import Layout from 'pages/Layout'
-import { BooksTable } from 'components/Book/BooksTable'
+import * as Books from 'components/Book'
 import { InputWithButton } from 'components/FormUtils'
+import moment from 'moment'
 import './style.scss'
 
 import { connect } from 'react-redux'
@@ -80,11 +81,7 @@ class Index extends React.Component {
                   {
                     this.props.books.data.slice(0, 10).map((book, index) => (
                       <SearchPanelNews href={`/books/${book.id}`} key={index}>
-                        {
-                          /* get diff of date */
-                          Math.ceil((Date.now() - Date.parse(book.updated_at)) / 864000000)
-                        }
-                        天前 售出了 { book.name }
+                        { moment(book.updated_at).fromNow() } 售出了 { book.name }
                       </SearchPanelNews>
                     ))
                   }
@@ -92,7 +89,7 @@ class Index extends React.Component {
               </SearchPanel>
             </div>
             <div className='col-12 col-md-9'>
-              <BooksTable {...this.props.books} updatePage={this.props.updatePage.bind(this)} />
+              <Books.Table {...this.props.books} updatePage={this.props.updatePage.bind(this)} />
             </div>
           </div>
         </div>

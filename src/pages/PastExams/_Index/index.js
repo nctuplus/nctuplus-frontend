@@ -15,6 +15,7 @@ import Spinner from 'components/Spinner'
 import { connect } from 'react-redux'
 import pastExamsActions from 'api/Actions/PastExams'
 import { compose, lifecycle } from 'recompose'
+import moment from 'moment'
 
 const mapStateToProps = (state) => ({ pastExams: state.pastExams })
 const mapDispatchToProps = (dispatch) => ({
@@ -27,7 +28,7 @@ const enhance = compose(
   lifecycle({ componentDidMount () { this.props.fetchData() } })
 )
 
-const Index = (props) => (
+const Index = ({ pastExams, updatePage }) => (
   <Layout>
     <div className='container pt-3'>
       <div className='row'>
@@ -49,19 +50,20 @@ const Index = (props) => (
             <SearchPanelCollegeList />
             <SearchPanelNewsFeed >
               {
-                props.pastExams.data.length
-                  ? props.pastExams.data.slice(0, 10).map((pastExam, index) => (
-                    <SearchPanelNews href={`/past_exams/${pastExam.id}`} key={index}>
-                      {
-                        /* get diff of date */
-                        Math.ceil((Date.now() - Date.parse(pastExam.updated_at)) / 864000000)
-                      }
-                      天前 { /* pastExam.uploader.name */ } 上傳了
-                      <strong>{ pastExam.course }</strong>
-                      的考古題
-                    </SearchPanelNews>
-                  )
-                  )
+                pastExams.data.length
+                  ? pastExams.data
+                    .slice(0, 10)
+                    .map((pastExam, index) => (
+                      <SearchPanelNews
+                        href={`/past_exams/${pastExam.id}`}
+                        key={index}
+                      >
+                        { moment(pastExam.updated_at).fromNow() }
+                        { /* pastExam.uploader.name */ }
+                          上傳了 <strong>{ pastExam.course }</strong> 的考古題
+                      </SearchPanelNews>
+                    )
+                    )
                   : <div className='text-center'>
                     <Spinner size={32} color='grey' />
                   </div>
@@ -70,7 +72,7 @@ const Index = (props) => (
           </SearchPanel>
         </div>
         <div className='col-12 col-md-9'>
-          <PastExam.Table {...props.pastExams} updatePage={props.updatePage} />
+          <PastExam.Table {...pastExams} updatePage={updatePage} />
         </div>
       </div>
     </div>

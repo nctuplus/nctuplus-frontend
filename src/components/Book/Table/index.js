@@ -4,10 +4,10 @@ import { withRouter } from 'react-router-dom'
 import Pagination from 'components/Pagination'
 import './style.scss'
 
-const BooksTableItem = withRouter((props) => {
+const Item = withRouter((props) => {
   return (
     <div className='col-4 col-md-4 mb-3' onClick={() => props.history.push(`/books/${props.id}`)}>
-      <div className='card clickable' >
+      <div className='book-item card clickable' >
         <div className='text-center'>
           <img className='d-inline-block' alt='尚無圖片!' height='150' src={`${SERVER_URL}${props.cover_image.url}`} />
         </div>
@@ -28,17 +28,10 @@ const BooksTableItem = withRouter((props) => {
   )
 })
 
-const BooksTable = (props) => (
+const Table = (props) => (
   <div>
     <div className='row'>
-      {
-        props.data.map((book, index) => (
-          <BooksTableItem
-            key={index}
-            {...book}
-          />
-        ))
-      }
+      { props.data.map(book => (<Item key={book.id} {...book} />)) }
     </div>
     <div className='text-center'>
       <Pagination page={props.page} maxPage={props.maxPage} to={props.updatePage} />
@@ -46,4 +39,4 @@ const BooksTable = (props) => (
   </div>
 )
 
-export { BooksTable, BooksTableItem }
+export default Table

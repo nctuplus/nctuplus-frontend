@@ -9,7 +9,7 @@ const Forum = ({ children }) => (
         <i className='fa fa-comment-o' />課程心得/討論
       </h4>
       <h4 className='d-inline-block'>
-        <Link to='/discuss/new'>我要發文</Link>
+        <Link to='/comments/new'>我要發文</Link>
       </h4>
     </div>
     <div>
