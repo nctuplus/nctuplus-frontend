@@ -18,6 +18,7 @@ const StatisticBlock = ({ value, children }) => (
   </div>
 )
 
+// @todo: connect API
 const StatisticCharts = (props) => (
   <div>
     <div className='chart-wrapper'>
