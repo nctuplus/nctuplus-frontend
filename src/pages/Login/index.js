@@ -48,7 +48,7 @@ const Login = ({ location, login }) => (
             <div className='w-25 m-auto'>
               <button
                 className='btn btn-success btn-block'
-                onClick={() => login(mock.login('test'))}
+                onClick={() => login(mock.login('admin'))}
               >
                 交大單一入口登入
               </button>

@@ -81,8 +81,9 @@ const NavbarContent = enhance(({ toggleDropdown, show, currentUser, logout }) =>
                 <span className='ml-2 user-name'>{ currentUser.name }</span>
               </span>
             }>
+              <NavDropdownLink to='/user/profile'>個人資料</NavDropdownLink>
               <span className='dropdown-item' onClick={logout}>
-                  登出
+                登出
               </span>
             </NavDropdown>
             : <NavLink to='/login'>登入</NavLink>

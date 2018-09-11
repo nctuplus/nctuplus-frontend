@@ -15,7 +15,6 @@ import Spinner from 'components/Spinner'
 import { connect } from 'react-redux'
 import pastExamsActions from 'api/Actions/PastExams'
 import { compose, lifecycle } from 'recompose'
-import { debug } from 'utilities'
 
 const mapStateToProps = (state) => ({ pastExams: state.pastExams })
 const mapDispatchToProps = (dispatch) => ({
@@ -25,8 +24,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 const enhance = compose(
   connect(mapStateToProps, mapDispatchToProps),
-  lifecycle({ componentDidMount () { this.props.fetchData() } }),
-  debug
+  lifecycle({ componentDidMount () { this.props.fetchData() } })
 )
 
 const Index = (props) => (
