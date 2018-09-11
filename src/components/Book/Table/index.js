@@ -7,7 +7,7 @@ import './style.scss'
 const Item = withRouter((props) => {
   return (
     <div className='col-4 col-md-4 mb-3' onClick={() => props.history.push(`/books/${props.id}`)}>
-      <div className='card clickable' >
+      <div className='book-item card clickable' >
         <div className='text-center'>
           <img className='d-inline-block' alt='尚無圖片!' height='150' src={`${SERVER_URL}${props.cover_image.url}`} />
         </div>

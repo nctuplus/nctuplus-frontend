@@ -10,6 +10,7 @@ import {
 import Layout from 'pages/Layout'
 import * as Books from 'components/Book'
 import { InputWithButton } from 'components/FormUtils'
+import moment from 'moment'
 import './style.scss'
 
 import { connect } from 'react-redux'
@@ -80,11 +81,7 @@ class Index extends React.Component {
                   {
                     this.props.books.data.slice(0, 10).map((book, index) => (
                       <SearchPanelNews href={`/books/${book.id}`} key={index}>
-                        {
-                          /* get diff of date */
-                          Math.ceil((Date.now() - Date.parse(book.updated_at)) / 864000000)
-                        }
-                        天前 售出了 { book.name }
+                        { moment(book.updated_at).fromNow() } 售出了 { book.name }
                       </SearchPanelNews>
                     ))
                   }
