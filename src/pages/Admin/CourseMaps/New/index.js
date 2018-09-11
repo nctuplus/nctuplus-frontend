@@ -2,7 +2,7 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { compose, withState, withHandlers, lifecycle } from 'recompose'
-import { postCourseMap, postCourseMapReset } from 'redux/Actions/CourseMaps'
+import { postCourseMap, postCourseMapReset } from 'api/Actions/CourseMaps'
 import { FETCHING_STATUS } from 'utilities/constants'
 import Form from 'components/Admin/CourseMap/NewForm'
 

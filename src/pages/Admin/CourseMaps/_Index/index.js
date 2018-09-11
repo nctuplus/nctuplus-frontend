@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import PageWrapper from 'components/PageWrapper'
 import CourseMapsTable from 'components/Admin/CourseMapsTable'
-import { fetchCourseMaps } from 'redux/Actions/CourseMaps'
+import { fetchCourseMaps } from 'api/Actions/CourseMaps'
 
 const mapStateToProps = (state) => ({
   courseMaps: state.courseMaps.all

@@ -5,7 +5,7 @@ import { withRouter } from 'react-router'
 import PageWrapper from 'components/PageWrapper'
 import CourseListDiagram from 'components/CourseMap/CourseListDiagram'
 import CourseListText from 'components/CourseMap/CourseListText'
-import { getCourseMap } from 'redux/Actions/CourseMaps'
+import { getCourseMap } from 'api/Actions/CourseMaps'
 
 const mapStateToProps = (state) => ({
   courseMap: state.courseMaps.show.data,
