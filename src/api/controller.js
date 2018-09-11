@@ -11,6 +11,11 @@ const server = {
 
 // interceptors related to auth
 function withTokenInterceptor (request) {
+  const storage = window.localStorage
+  const token = storage.getItem('token', null)
+  const client = storage.getItem('client', null)
+  const uid = storage.getItem('uid', null)
+  request.headers = { ...request.headers, 'access-token': token, client, uid }
   return request
 }
 function updateTokenInterceptor (response) {
@@ -25,7 +30,7 @@ function updateTokenInterceptor (response) {
   }
   return response
 }
-server.public.interceptors.request.use(withTokenInterceptor)
+server.protected.interceptors.request.use(withTokenInterceptor)
 server.protected.interceptors.response.use(updateTokenInterceptor)
 
 /** *************************
@@ -35,9 +40,27 @@ server.protected.interceptors.response.use(updateTokenInterceptor)
 const login = data => dispatch =>
   server.protected
     .post('/auth/sign_in', data)
-    .then(({ data: userData }) => dispatch(actions.user.auth.login(userData)))
+    .then(({ data: user }) => dispatch(actions.user.auth.login(user.data)))
     .catch(() => dispatch(actions.user.auth.setStatus(FETCHING_STATUS.FAIL)))
 
-export {
-  login
+const logout = () => dispatch =>
+  server.protected
+    .delete('/auth/sign_out')
+    .then(() => dispatch(actions.user.auth.logout()))
+    .catch(() => dispatch(actions.user.auth.setStatus(FETCHING_STATUS.FAIL)))
+
+const validateToken = () => dispatch => {
+  const storage = window.localStorage
+  const token = storage.getItem('token')
+  const client = storage.getItem('client')
+  const uid = storage.getItem('uid')
+  const config = { params: { 'access-token': token, client, uid } }
+  if (token && uid && client) {
+    server.protected
+      .get('/auth/validate_token', config)
+      .then(({ data: user }) => dispatch(actions.user.auth.login(user.data)))
+      .catch(() => dispatch(actions.user.auth.setStatus(FETCHING_STATUS.FAIL)))
+  }
 }
+
+export { login, logout, validateToken }

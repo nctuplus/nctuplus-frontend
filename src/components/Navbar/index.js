@@ -2,15 +2,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import MediaQuery from 'react-responsive'
-import './style.scss'
 import { withState, withHandlers, compose } from 'recompose'
 import { NavDropdown, NavDropdownLink } from './NavDropdown'
+import { logout } from 'api/controller'
+import './style.scss'
 
 import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => ({ currentUser: state.user.currentUser })
+const mapDispatchToProps = (dispatch) => ({ logout: () => dispatch(logout()) })
 const enhance = compose(
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
   withState('show', 'setDropdown', false),
   withHandlers({ toggleDropdown: ({ setDropdown, show }) => () => setDropdown(!show) })
 )
@@ -32,7 +34,7 @@ const NavLink = ({ external, to, children }) => (
   </NavItem>
 )
 
-const NavbarContent = enhance(({ toggleDropdown, show, currentUser }) => (
+const NavbarContent = enhance(({ toggleDropdown, show, currentUser, logout }) => (
   <nav className='navbar navbar-expand-md navbar-custom pt-1'>
     <div className='navbar-brand brand'>
       <Link to='/'>NCTU+</Link>
@@ -46,13 +48,17 @@ const NavbarContent = enhance(({ toggleDropdown, show, currentUser }) => (
     </button>
     <div className={`collapse navbar-collapse ${show && 'show'}`}>
       <div className='navbar-nav mr-auto'>
-        <NavDropdown title='管理'>
-          <NavDropdownLink to='/admin/bulletin'>公布欄</NavDropdownLink>
-          <NavDropdownLink to='/admin/users'>使用者</NavDropdownLink>
-          <NavDropdownLink to='/admin/statistics'>統計資料</NavDropdownLink>
-          <NavDropdownLink to='/admin/departments'>系所管理</NavDropdownLink>
-          <NavDropdownLink to='/admin/course_maps'>課程地圖</NavDropdownLink>
-        </NavDropdown>
+        {
+          currentUser && currentUser.role === 1
+            ? <NavDropdown title='管理'>
+              <NavDropdownLink to='/admin/bulletin'>公布欄</NavDropdownLink>
+              <NavDropdownLink to='/admin/users'>使用者</NavDropdownLink>
+              <NavDropdownLink to='/admin/statistics'>統計資料</NavDropdownLink>
+              <NavDropdownLink to='/admin/departments'>系所管理</NavDropdownLink>
+              <NavDropdownLink to='/admin/course_maps'>課程地圖</NavDropdownLink>
+            </NavDropdown>
+            : null
+        }
         <NavDropdown title='全校課程'>
           <NavDropdownLink to='/courses'>全校課程</NavDropdownLink>
           <NavDropdownLink to='/comments'>心得</NavDropdownLink>
@@ -67,9 +73,20 @@ const NavbarContent = enhance(({ toggleDropdown, show, currentUser }) => (
         <NavLink external to='https://www.facebook.com/messages/t/nctuplus' target='_blank'>
           問題回報
         </NavLink>
-        {(currentUser)
-          ? <NavLink to='/user'><i className='fa fa-user-circle' /></NavLink>
-          : <NavLink to='/login'>登入</NavLink>}
+        {
+          currentUser
+            ? <NavDropdown title={
+              <span>
+                <i className='fa fa-user-circle' />
+                <span className='ml-2 user-name'>{ currentUser.name }</span>
+              </span>
+            }>
+              <span className='dropdown-item' onClick={logout}>
+                  登出
+              </span>
+            </NavDropdown>
+            : <NavLink to='/login'>登入</NavLink>
+        }
       </div>
     </div>
   </nav>

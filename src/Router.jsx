@@ -6,6 +6,8 @@ import {
   Switch,
   Redirect
 } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { validateToken } from 'api/controller'
 
 import Index from 'pages/Index'
 import * as Admin from 'pages/Admin'
@@ -21,6 +23,7 @@ import * as Scores from 'pages/Scores'
 
 import PageNotFound from 'pages/PageNotFound'
 import Login from 'pages/Login'
+import { lifecycle, compose } from 'recompose'
 
 const loggedIn = () => true // window.getCookie('_nctuplus_session')
 
@@ -29,7 +32,12 @@ const loginOnly = (Component) => {
   else return () => <Redirect to='/login' />
 }
 
-const Router = () => (
+const enhance = compose(
+  connect(() => ({}), dispatch => ({ validateToken: () => dispatch(validateToken()) })),
+  lifecycle({ componentDidMount () { this.props.validateToken() } })
+)
+
+const Router = enhance(() => (
   <BrowserRouter>
     {/* page routes */}
     <Switch>
@@ -100,7 +108,7 @@ const Router = () => (
       {/* user route group */}
       <Route exact path='/user' render={() => <Redirect to='/user/profile' />} />
       <Route exact path='/user/static_table' component={User.StaticTable} />
-      <Route path='/user' render={() =>
+      <Route path='/user' render={loginOnly(() =>
         <User.Index>
           <Route path='/user/:url?' component={UserNavigation} />
 
@@ -109,12 +117,12 @@ const Router = () => (
           <Route path='/user/courses' component={User.Courses} />
           <Route path='/user/collections' component={User.Collections} />
         </User.Index>
-      } />
+      )} />
 
       {/* 404 not found */}
       <Route component={PageNotFound} />
     </Switch>
   </BrowserRouter>
-)
+))
 
 export default Router
