@@ -1,6 +1,6 @@
 
 import React from 'react'
-import PageWrapper from 'components/PageWrapper'
+import Layout from 'pages/Layout'
 import './style.scss'
 
 const TutorialStep = (props) => (
@@ -15,7 +15,7 @@ const TutorialStep = (props) => (
 )
 
 const Tutorial = (props) => (
-  <PageWrapper className='tutorial'>
+  <Layout className='tutorial'>
     <div className='container'>
       <div className='row'>
         <div className='group w-100'>模擬排課</div>
@@ -62,7 +62,7 @@ const Tutorial = (props) => (
         </TutorialStep>
       </div>
     </div>
-  </PageWrapper>
+  </Layout>
 )
 
 export default Tutorial

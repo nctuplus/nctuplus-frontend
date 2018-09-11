@@ -1,9 +1,9 @@
 
 import React from 'react'
-import PageWrapper from 'components/PageWrapper'
+import Layout from 'pages/Layout'
 
 const Form = props => (
-  <PageWrapper>
+  <Layout>
     <div className='container pt-3'>
       <div className='row'>
         <div className='col-12'>
@@ -79,7 +79,7 @@ const Form = props => (
         </div>
       </div>
     </div>
-  </PageWrapper>
+  </Layout>
 )
 
 export default Form

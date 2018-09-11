@@ -1,13 +1,13 @@
 
 import React from 'react'
-import PageWrapper from 'components/PageWrapper'
+import Layout from 'pages/Layout'
 import { SearchCourse } from 'components/Search'
 import { List } from 'components/Course'
 import Timetable from 'components/Timetable'
 
 // @todo: connect course list data
 const Simulation = () => (
-  <PageWrapper>
+  <Layout>
     <div className='container pt-3'>
       <div className='row'>
         <div className='col-12'>
@@ -64,7 +64,7 @@ const Simulation = () => (
         </div>
       </div>
     </div>
-  </PageWrapper>
+  </Layout>
 )
 
 export default Simulation

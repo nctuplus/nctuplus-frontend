@@ -3,7 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
-import PageWrapper from 'components/PageWrapper'
+import Layout from 'pages/Layout'
 import { getEvent, followEvent, deleteEvent, deleteEventReset } from 'api/Actions/Events'
 import { FETCHING_STATUS } from 'utilities/constants'
 import './style.scss'
@@ -24,7 +24,7 @@ class Show extends React.Component {
     const { event } = this.props
 
     return (
-      <PageWrapper>
+      <Layout>
         <div className='container'>
           <div className='banner-wrapper'>
             <img
@@ -80,7 +80,7 @@ class Show extends React.Component {
             </div>
           </div>
         </div>
-      </PageWrapper>
+      </Layout>
     )
   }
 }

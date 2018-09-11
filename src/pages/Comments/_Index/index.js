@@ -7,7 +7,7 @@ import {
   SearchPanelNews,
   SearchPanelNewsFeed
 } from 'components/Search'
-import PageWrapper from 'components/PageWrapper'
+import Layout from 'pages/Layout'
 import { CommentsTable } from 'components/CommentsTable'
 import { InputWithButton } from 'components/FormUtils'
 import Spinner from 'components/Spinner'
@@ -18,7 +18,7 @@ import { updateCommentsPage, fetchComments } from 'api/Actions/Comments'
 const Index = (props) => {
   props.comments.status || props.fetch_data()
   return (
-    <PageWrapper>
+    <Layout>
       <div className='container pt-3'>
         <div className='row'>
           <div className='col-12 col-md-3'>
@@ -64,7 +64,7 @@ const Index = (props) => {
           </div>
         </div>
       </div>
-    </PageWrapper>
+    </Layout>
   )
 }
 

@@ -1,6 +1,6 @@
 
 import React from 'react'
-import PageWrapper from 'components/PageWrapper'
+import Layout from 'pages/Layout'
 import { Sidebar, SidebarItem } from 'components/Sidebar'
 import {ShareButton} from 'components/ShareButton'
 import * as Course from 'components/Course'
@@ -45,7 +45,7 @@ class Show extends React.Component {
 
   render () {
     return (
-      <PageWrapper>
+      <Layout>
         <Sidebar >
           <SidebarItem active={this.state.anchor === 1} onClick={this.scrollTo(1)}>
             課程資訊
@@ -166,7 +166,7 @@ class Show extends React.Component {
             }
           </div>
         </div>
-      </PageWrapper>
+      </Layout>
     )
   }
 }

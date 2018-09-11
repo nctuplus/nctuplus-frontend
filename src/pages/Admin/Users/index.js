@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-import PageWrapper from 'components/PageWrapper'
+import Layout from 'pages/Layout'
 import { InputWithButton } from 'components/FormUtils'
 import UsersTable from 'components/Admin/UsersTable'
 import { fetchUsers, updateUsersPage, resetUsersPage } from 'api/Actions/Users'
@@ -33,7 +33,7 @@ class Users extends React.Component {
 
   render () {
     return (
-      <PageWrapper>
+      <Layout>
         <div className='container pt-4'>
           <div className='row'>
             <div className='col-4 offset-3'>
@@ -51,7 +51,7 @@ class Users extends React.Component {
             </div>
           </div>
         </div>
-      </PageWrapper>
+      </Layout>
     )
   }
 }

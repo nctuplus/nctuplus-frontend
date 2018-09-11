@@ -1,10 +1,10 @@
 
 import React from 'react'
-import PageWrapper from 'components/PageWrapper'
+import Layout from 'pages/Layout'
 import * as PastExam from 'components/PastExam'
 
 const Upload = () => (
-  <PageWrapper>
+  <Layout>
     <div className='container bg-white p-4'>
       <h5>Step1.選擇適用課程 - <span className='text-center' /></h5>
       <div className='input-group my-5'>
@@ -22,7 +22,7 @@ const Upload = () => (
       <hr />
       <PastExam.Upload disabled />
     </div>
-  </PageWrapper>
+  </Layout>
 )
 
 export default Upload

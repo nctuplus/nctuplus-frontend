@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-import PageWrapper from 'components/PageWrapper'
+import Layout from 'pages/Layout'
 import BulletinNavbar from 'components/Admin/BulletinNavbar'
 import BulletinTable from 'components/Admin/BulletinTable'
 import './style.scss'
@@ -22,7 +22,7 @@ const Button = {
 }
 
 const Bulletin = props => (
-  <PageWrapper>
+  <Layout>
     <div className='container pt-4'>
       <div className='row'>
         <div className='col-2'>
@@ -43,7 +43,7 @@ const Bulletin = props => (
         </div>
       </div>
     </div>
-  </PageWrapper>
+  </Layout>
 )
 
 export default Bulletin

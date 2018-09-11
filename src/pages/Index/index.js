@@ -5,7 +5,7 @@ import { fetchBulletins } from 'api/Actions/Bulletins'
 import { withRouter } from 'react-router-dom'
 import { lifecycle, compose } from 'recompose'
 
-import PageWrapper from 'components/PageWrapper'
+import Layout from 'pages/Layout'
 import Cover from 'components/Cover'
 import About from 'components/About'
 import BulletinBoard from 'components/Bulletin'
@@ -19,10 +19,10 @@ const CoverImageUrls = [
 ]
 
 const Feature = withRouter(({ history, to, image, title, isNew, children }) => (
-  <div className='item col-3 clickable' onClick={() => history.push(to)}>
+  <div className='intro-item col-3 clickable' onClick={() => history.push(to)}>
     <img className='img-fluid p-5' src={image} />
     <h4 className='mt-3'>{ title }</h4>
-    { isNew && <span className='new-feature'>NCTU+新功能!</span> }
+    { isNew && <span className='intro-new-feature'>NCTU+新功能!</span> }
     <div className='mb-5'>
       { children }
     </div>
@@ -43,7 +43,7 @@ const enhance = compose(
 )
 
 const Index = (props) => (
-  <PageWrapper>
+  <Layout>
     <Cover images={CoverImageUrls} >
       <div className='container px-5'>
         <div className='row'>
@@ -100,7 +100,7 @@ const Index = (props) => (
       </div>
     </div>
     <About />
-  </PageWrapper>
+  </Layout>
 )
 
 export default enhance(Index)

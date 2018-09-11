@@ -1,10 +1,10 @@
 
 import React from 'react'
-import PageWrapper from 'components/PageWrapper'
+import Layout from 'pages/Layout'
 import { Link } from 'react-router-dom'
 
 const GPA = (props) => (
-  <PageWrapper>
+  <Layout>
     <div className='container'>
       <div className='row'>
         <div className='col-8 offset-2'>
@@ -49,7 +49,7 @@ const GPA = (props) => (
         </div>
       </div>
     </div>
-  </PageWrapper>
+  </Layout>
 )
 
 export default GPA

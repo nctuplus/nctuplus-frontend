@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import Slider from 'react-slick'
 import { compose, withState, lifecycle } from 'recompose'
 import moment from 'moment'
-import PageWrapper from 'components/PageWrapper'
+import Layout from 'pages/Layout'
 import Preview from 'components/Event/Preview'
 import { InputWithButton } from 'components/FormUtils'
 import { fetchEvents } from 'api/Actions/Events'
@@ -51,7 +51,7 @@ const enhance = compose(
 )
 
 const Index = enhance((props) =>
-  <PageWrapper>
+  <Layout>
     <div className='container pt-3 event'>
       <div className='m-1'>
         <Slider
@@ -132,7 +132,7 @@ const Index = enhance((props) =>
     </div>
 
     <NavFooter visible={props.visible} />
-  </PageWrapper>
+  </Layout>
 )
 
 export default Index

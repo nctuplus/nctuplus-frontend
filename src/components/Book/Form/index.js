@@ -1,10 +1,10 @@
 
 import React from 'react'
-import PageWrapper from 'components/PageWrapper'
+import Layout from 'pages/Layout'
 import { LabeledInput, InputWithButton } from 'components/FormUtils'
 
 const Form = props => (
-  <PageWrapper>
+  <Layout>
     <div className='container bg-white p-5'>
       <div className='row'>
         <div className='col-md-8 offset-md-2'>
@@ -76,7 +76,7 @@ const Form = props => (
         </div>
       </div>
     </div>
-  </PageWrapper>
+  </Layout>
 )
 
 export default Form

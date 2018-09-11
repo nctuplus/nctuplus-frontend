@@ -1,10 +1,10 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-import PageWrapper from 'components/PageWrapper'
+import Layout from 'pages/Layout'
 
 const Form = props => (
-  <PageWrapper>
+  <Layout>
     <div className='container pt-5'>
       <div className='row'>
         <div className='col-6 offset-2'>
@@ -56,7 +56,7 @@ const Form = props => (
         </div>
       </div>
     </div>
-  </PageWrapper>
+  </Layout>
 )
 
 export default Form

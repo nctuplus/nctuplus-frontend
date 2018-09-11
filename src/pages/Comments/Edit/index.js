@@ -1,12 +1,12 @@
 
 import React from 'react'
-import PageWrapper from 'components/PageWrapper'
+import Layout from 'pages/Layout'
 import { PersonalRatingBar } from 'components/Ratings'
 
 class Edit extends React.Component {
   render () {
     return (
-      <PageWrapper>
+      <Layout>
         <div className='container bg-white p-5'>
           <div className='col-9 offset-1'>
             <h1>新增文章</h1>
@@ -55,7 +55,7 @@ class Edit extends React.Component {
             </div>
           </div>
         </div>
-      </PageWrapper>
+      </Layout>
     )
   }
 }
