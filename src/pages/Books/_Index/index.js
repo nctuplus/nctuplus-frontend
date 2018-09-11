@@ -8,7 +8,7 @@ import {
   SearchPanelNewsFeed
 } from 'components/Search'
 import Layout from 'pages/Layout'
-import { BooksTable } from 'components/Book/BooksTable'
+import * as Books from 'components/Book'
 import { InputWithButton } from 'components/FormUtils'
 import './style.scss'
 
@@ -92,7 +92,7 @@ class Index extends React.Component {
               </SearchPanel>
             </div>
             <div className='col-12 col-md-9'>
-              <BooksTable {...this.props.books} updatePage={this.props.updatePage.bind(this)} />
+              <Books.Table {...this.props.books} updatePage={this.props.updatePage.bind(this)} />
             </div>
           </div>
         </div>
