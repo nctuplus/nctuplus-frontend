@@ -16,7 +16,7 @@ import * as Books from 'pages/Books'
 import * as Events from 'pages/Events'
 import CourseMap from 'pages/CourseMap'
 import { UserNavigation } from 'components/User'
-import * as Users from 'pages/Users'
+import * as User from 'pages/User'
 import * as Scores from 'pages/Scores'
 
 import PageNotFound from 'pages/PageNotFound'
@@ -99,17 +99,17 @@ const Router = () => (
 
       {/* user route group */}
       <Route exact path='/user' render={() => <Redirect to='/user/profile' />} />
-      <Route exact path='/user/static_table' component={Users.StaticTable} />
-      <Route path='/user' render={loginOnly(
-        <Users.Index>
+      <Route exact path='/user/static_table' component={User.StaticTable} />
+      <Route path='/user' render={() =>
+        <User.Index>
           <Route path='/user/:url?' component={UserNavigation} />
 
-          <Route path='/user/profile' component={Users.Profile} />
-          <Route path='/user/edit' component={Users.Edit} />
-          <Route path='/user/courses' component={Users.Courses} />
-          <Route path='/user/collections' component={Users.Collections} />
-        </Users.Index>
-      )} />
+          <Route path='/user/profile' component={User.Profile} />
+          <Route path='/user/edit' component={User.Edit} />
+          <Route path='/user/courses' component={User.Courses} />
+          <Route path='/user/collections' component={User.Collections} />
+        </User.Index>
+      } />
 
       {/* 404 not found */}
       <Route component={PageNotFound} />
