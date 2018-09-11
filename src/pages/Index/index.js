@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchBulletins } from 'redux/Actions/Bulletins'
+import { fetchBulletins } from 'api/Actions/Bulletins'
 import { withRouter } from 'react-router-dom'
 import { lifecycle, compose } from 'recompose'
 

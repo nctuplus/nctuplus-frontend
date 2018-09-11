@@ -13,7 +13,7 @@ import { InputWithButton } from 'components/FormUtils'
 import Spinner from 'components/Spinner'
 
 import { connect } from 'react-redux'
-import { updateCommentsPage, fetchComments } from 'redux/Actions/Comments'
+import { updateCommentsPage, fetchComments } from 'api/Actions/Comments'
 
 const Index = (props) => {
   props.comments.status || props.fetch_data()

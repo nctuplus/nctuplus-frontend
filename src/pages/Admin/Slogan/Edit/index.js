@@ -2,7 +2,7 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { compose, withState, withProps, withHandlers, lifecycle } from 'recompose'
-import { getSlogan, patchSlogan, patchSloganReset } from 'redux/Actions/Slogans'
+import { getSlogan, patchSlogan, patchSloganReset } from 'api/Actions/Slogans'
 import { FETCHING_STATUS } from 'utilities/constants'
 import Form from 'components/Admin/Slogan/Form'
 

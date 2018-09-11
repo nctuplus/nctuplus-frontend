@@ -2,7 +2,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import { Link } from 'react-router-dom'
-import CourseConfig from '../Course/config'
+import CourseConfig from 'components/Course/config'
 import ReactTooltip from 'react-tooltip'
 import {ShareModal} from 'components/ShareButton'
 import './style.scss'
@@ -14,7 +14,7 @@ import {
   timetableSetHovering,
   timetableAdjustRow,
   timetableShareToggle
-} from 'redux/Actions/Timetable'
+} from 'api/Actions/Timetable'
 
 import html2canvas from 'html2canvas'
 

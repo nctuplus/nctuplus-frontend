@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import PageWrapper from 'components/PageWrapper'
 import { InputWithButton } from 'components/FormUtils'
 import UsersTable from 'components/Admin/UsersTable'
-import { fetchUsers, updateUsersPage, resetUsersPage } from 'redux/Actions/Users'
+import { fetchUsers, updateUsersPage, resetUsersPage } from 'api/Actions/Users'
 
 const mapStateToProps = (state) => ({
   users: state.users

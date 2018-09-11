@@ -3,7 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import CourseConfig from '../config'
 
-const CourseListItem = (props) => (
+const Item = (props) => (
   <tr>
     <td>
       <p>
@@ -37,7 +37,7 @@ const CourseListItem = (props) => (
   </tr>
 )
 
-const CourseList = (props) => (
+const List = (props) => (
   <table className='table table-hover'>
     <thead>
       <tr>
@@ -47,11 +47,9 @@ const CourseList = (props) => (
       </tr>
     </thead>
     <tbody>
-      {
-        props.data.map((data, index) => <CourseListItem key={index} {...data} />)
-      }
+      { props.data.map((data, index) => <Item key={index} {...data} />) }
     </tbody>
   </table>
 )
 
-export { CourseList }
+export default List

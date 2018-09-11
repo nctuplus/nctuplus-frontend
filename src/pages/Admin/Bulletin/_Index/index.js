@@ -3,7 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import Bulletin from 'components/Admin/Bulletin'
-import { fetchBulletins } from 'redux/Actions/Bulletins'
+import { fetchBulletins } from 'api/Actions/Bulletins'
 
 const mapStateToProps = (state) => ({
   bulletins: state.bulletins.all

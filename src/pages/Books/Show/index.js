@@ -5,7 +5,7 @@ import './style.scss'
 
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { getBook } from 'redux/Actions/Books'
+import { getBook } from 'api/Actions/Books'
 
 class Show extends React.Component {
   componentDidMount () {

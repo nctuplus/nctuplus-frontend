@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import PageWrapper from 'components/PageWrapper'
 import DepartmentsTable from 'components/admin/DepartmentsTable'
-import { fetchDepartments } from 'redux/Actions/Departments'
+import { fetchDepartments } from 'api/Actions/Departments'
 
 const mapStateToProps = (state) => ({
   departments: state.departments.all
