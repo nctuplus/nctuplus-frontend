@@ -1,15 +1,38 @@
 
 import React from 'react'
 import Cover from 'components/Cover'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+import { compose, lifecycle } from 'recompose'
+import * as mock from 'api/mock'
+import { login } from 'api/controller'
 import './style.scss'
 
 const image = [
   'https://plus.nctu.edu.tw/assets/new-index/bg-login-ffb5ed42d0a4d4b1e40e29c273db0a4e.jpg'
 ]
 
-const Login = (props) => (
+const mapStateToProps = (state) => ({ currentUser: state.user.currentUser })
+const mapStateToDispatch = (dispatch) => ({ login: data => dispatch(login(data)) })
+
+const enhance = compose(
+  connect(mapStateToProps, mapStateToDispatch),
+  withRouter,
+  lifecycle({
+    componentDidMount () {
+      const { currentUser, history } = this.props
+      if (currentUser)history.goBack()
+    },
+    componentDidUpdate () {
+      const { currentUser, history } = this.props
+      if (currentUser)history.goBack()
+    }
+  })
+)
+
+const Login = ({ location, login }) => (
   <div className='login'>
-    {(props.location.state)
+    { location.state
       ? <div className='col-2 alert alert-warning'>請先登入，謝謝!</div>
       : ''
     }
@@ -23,7 +46,7 @@ const Login = (props) => (
           <div className='w-25 m-auto'>
             <button
               className='btn btn-success btn-block'
-              onClick={() => (window.location.href = 'http://plus.nctu.me/api/v1/auth/nctu')}
+              onClick={() => login(mock.login('test'))}
             >
               交大單一入口登入
             </button>
@@ -41,4 +64,4 @@ const Login = (props) => (
   </div>
 )
 
-export default Login
+export default enhance(Login)

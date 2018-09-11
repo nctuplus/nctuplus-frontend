@@ -1,5 +1,12 @@
 
-import { createAction } from 'redux-actions'
+import { createActions } from 'redux-actions'
 
-export const shareableToggle = createAction('SHAREABLE_TOGGLE')
-export const loginLogout = createAction('LOGIN_OR_LOGOUT')
+export default createActions({
+  USER: {
+    AUTH: {
+      LOGIN: null,
+      LOGOUT: null,
+      SET_STATUS: null
+    }
+  }
+})
