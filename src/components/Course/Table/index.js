@@ -14,8 +14,14 @@ const Row = withRouter((props) => (
     <td className='d-none d-table-cell'>
       {props.department}{props.remarks ? ` / ${props.remarks}` : '' }
     </td>
-    <td>{props.name}</td>
-    <td>{props.teachers}</td>
+    <td>{props.permanent_course.name}</td>
+    <td>
+      {
+        props.teachers
+          .map(teacher => teacher.name)
+          .join(', ')
+      }
+    </td>
     <td>{props.credit}</td>
     <td>{convertTimeSlotsToString(props.time_slots)}</td>
     <td>{props.grade}</td>

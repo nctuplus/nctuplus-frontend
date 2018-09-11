@@ -1,12 +1,13 @@
 
 import React from 'react'
+import { convertSemesterToString, convertTimeSlotsToString } from 'utilities'
 
 const Info = (props) => (
   <div className='row p-4'>
     <table className='table-invisible'>
       <tbody>
         <tr>
-          <td>永久課號<strong>{props.permanent_id}</strong></td>
+          <td>永久課號<strong>{props.permanent_course.code}</strong></td>
           <td>學分<strong>{props.credit}</strong></td>
         </tr>
         <tr>
@@ -35,14 +36,14 @@ const Info = (props) => (
       </thead>
       <tbody>
         <tr>
-          <td>{props.semester}</td>
+          <td>{convertSemesterToString(props.semester)}</td>
           <td>{props.department}</td>
           <td>
-            <a href={props.href} target='_blank'>{props.course_id}</a>
+            <a href={props.href} target='_blank'>{props.code}</a>
           </td>
-          <td>{props.course_type}</td>
-          <td className='text-center'>{props.current_enroll}/{props.max_enroll}</td>
-          <td>{props.course_time}</td>
+          <td>{props.requirement_type}</td>
+          <td className='text-center'>{props.registration_count}/{props.registration_limit}</td>
+          <td>{convertTimeSlotsToString(props.time_slots)}</td>
           <td>{props.classroom}</td>
           <td>{props.grade}</td>
           <td>{props.remark}</td>
