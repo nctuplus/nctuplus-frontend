@@ -2,7 +2,7 @@
 import React from 'react'
 import './style.scss'
 
-const PageWrapper = ({className, children}) => {
+const Layout = ({className, children}) => {
   window.scroll({ top: 0, left: 0, behavior: 'smooth' })
   return (
     <div className={`page-wrapper ${className || ''}`} >
@@ -11,4 +11,4 @@ const PageWrapper = ({className, children}) => {
   )
 }
 
-export default PageWrapper
+export default Layout

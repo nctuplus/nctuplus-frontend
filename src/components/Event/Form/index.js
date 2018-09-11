@@ -1,12 +1,12 @@
 
 import React from 'react'
 import CKEditor from 'react-ckeditor-component'
-import PageWrapper from 'components/PageWrapper'
+import Layout from 'pages/Layout'
 import { LabeledInput } from 'components/FormUtils'
 import './style.scss'
 
 const Form = props => (
-  <PageWrapper>
+  <Layout>
     <div className='container bg-white pt-5'>
       <div className='row'>
         <div className='col-md-9 offset-1'>
@@ -133,7 +133,7 @@ const Form = props => (
         </div>
       </div>
     </div>
-  </PageWrapper>
+  </Layout>
 )
 
 export default Form

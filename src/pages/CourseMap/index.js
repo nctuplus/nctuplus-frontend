@@ -2,7 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import PageWrapper from 'components/PageWrapper'
+import Layout from 'pages/Layout'
 import CourseListDiagram from 'components/CourseMap/CourseListDiagram'
 import CourseListText from 'components/CourseMap/CourseListText'
 import { getCourseMap } from 'api/Actions/CourseMaps'
@@ -32,7 +32,7 @@ class CourseMap extends React.Component {
     let courseMap = this.props.courseMap
 
     return (
-      <PageWrapper>
+      <Layout>
         <div className='container pt-4'>
           <div className='row'>
             <div className='col-6 offset-3'>
@@ -120,7 +120,7 @@ class CourseMap extends React.Component {
             </div>
           </div>
         </div>
-      </PageWrapper>
+      </Layout>
     )
   }
 }

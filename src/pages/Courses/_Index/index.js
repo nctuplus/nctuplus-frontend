@@ -1,6 +1,6 @@
 
 import React from 'react'
-import PageWrapper from 'components/PageWrapper'
+import Layout from 'pages/Layout'
 import { SearchCourse } from 'components/Search'
 import * as Course from 'components/Course'
 import Spinner from 'components/Spinner'
@@ -11,7 +11,7 @@ import courseActions from 'api/Actions/Courses'
 import { compose, lifecycle } from 'recompose'
 
 const Index = ({ courses, updatePage }) => (
-  <PageWrapper className='course'>
+  <Layout className='course'>
     <div className='container'>
       <div className='search-wrapper'>
         <SearchCourse show_semester />
@@ -22,7 +22,7 @@ const Index = ({ courses, updatePage }) => (
           : <div className='text-center'><Spinner size={48} color='grey' /></div>
       }
     </div>
-  </PageWrapper>
+  </Layout>
 )
 
 const mapStateToProps = (state) => ({

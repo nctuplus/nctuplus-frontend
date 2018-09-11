@@ -7,7 +7,7 @@ import {
   SearchPanelNews,
   SearchPanelNewsFeed
 } from 'components/Search'
-import PageWrapper from 'components/PageWrapper'
+import Layout from 'pages/Layout'
 import * as PastExam from 'components/PastExam'
 import { InputWithButton } from 'components/FormUtils'
 import Spinner from 'components/Spinner'
@@ -30,7 +30,7 @@ const enhance = compose(
 )
 
 const Index = (props) => (
-  <PageWrapper>
+  <Layout>
     <div className='container pt-3'>
       <div className='row'>
         <div className='col-12 col-md-3'>
@@ -76,7 +76,7 @@ const Index = (props) => (
         </div>
       </div>
     </div>
-  </PageWrapper>
+  </Layout>
 )
 
 export default enhance(Index)

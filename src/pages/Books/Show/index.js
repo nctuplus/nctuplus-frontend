@@ -1,6 +1,6 @@
 
 import React from 'react'
-import PageWrapper from 'components/PageWrapper'
+import Layout from 'pages/Layout'
 import './style.scss'
 
 import { connect } from 'react-redux'
@@ -16,7 +16,7 @@ class Show extends React.Component {
     let book = this.props.book
 
     return (
-      <PageWrapper>
+      <Layout>
         <div className='container'>
           <div className='row bg-white'>
             <div className='col-12 col-md-11 offset-md-1'>
@@ -73,7 +73,7 @@ class Show extends React.Component {
             </div>
           </div>
         </div>
-      </PageWrapper>
+      </Layout>
     )
   }
 }

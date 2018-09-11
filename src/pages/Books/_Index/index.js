@@ -7,7 +7,7 @@ import {
   SearchPanelNews,
   SearchPanelNewsFeed
 } from 'components/Search'
-import PageWrapper from 'components/PageWrapper'
+import Layout from 'pages/Layout'
 import { BooksTable } from 'components/Book/BooksTable'
 import { InputWithButton } from 'components/FormUtils'
 import './style.scss'
@@ -28,7 +28,7 @@ class Index extends React.Component {
 
   render () {
     return (
-      <PageWrapper>
+      <Layout>
         <div className='container pt-3'>
           <div className='row'>
             <div className='col-12 col-md-3'>
@@ -96,7 +96,7 @@ class Index extends React.Component {
             </div>
           </div>
         </div>
-      </PageWrapper>
+      </Layout>
     )
   }
 }

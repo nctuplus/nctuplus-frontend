@@ -1,10 +1,10 @@
 
 import React from 'react'
-import PageWrapper from 'components/PageWrapper'
+import Layout from 'pages/Layout'
 import './style.scss'
 
 const Import = (props) => (
-  <PageWrapper>
+  <Layout>
     <div className='container'>
       <div className='mx-auto w-75'>
         <div className='border-left-cyan bg-white p-3'>
@@ -26,7 +26,7 @@ const Import = (props) => (
         </div>
       </div>
     </div>
-  </PageWrapper>
+  </Layout>
 
 )
 

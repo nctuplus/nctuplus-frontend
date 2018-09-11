@@ -3,7 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import PageWrapper from 'components/PageWrapper'
+import Layout from 'pages/Layout'
 import DepartmentsTable from 'components/admin/DepartmentsTable'
 import { fetchDepartments } from 'api/Actions/Departments'
 
@@ -22,7 +22,7 @@ class Index extends React.Component {
 
   render () {
     return (
-      <PageWrapper>
+      <Layout>
         <div className='container pt-4'>
           <div className='row'>
             <div className='ml-auto'>
@@ -35,7 +35,7 @@ class Index extends React.Component {
             </div>
           </div>
         </div>
-      </PageWrapper>
+      </Layout>
     )
   }
 }
