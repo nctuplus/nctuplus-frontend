@@ -1,12 +1,12 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-import PageWrapper from 'components/PageWrapper'
+import Layout from 'pages/Layout'
 import { InputWithButton } from 'components/FormUtils'
 import './style.scss'
 
 const Form = props => (
-  <PageWrapper>
+  <Layout>
     <div className='container pt-3'>
       <div className='row course-map-edit-box py-3'>
         <div className='col-12'>
@@ -100,7 +100,7 @@ const Form = props => (
         </div>
       </div>
     </div>
-  </PageWrapper>
+  </Layout>
 )
 
 export default Form

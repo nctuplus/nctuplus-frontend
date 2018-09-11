@@ -3,7 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import PageWrapper from 'components/PageWrapper'
+import Layout from 'pages/Layout'
 import CourseMapsTable from 'components/Admin/CourseMapsTable'
 import { fetchCourseMaps } from 'api/Actions/CourseMaps'
 
@@ -22,7 +22,7 @@ class Index extends React.Component {
 
   render () {
     return (
-      <PageWrapper>
+      <Layout>
         <div className='container pt-4'>
           <div className='row'>
             <div className='col-4'>
@@ -38,7 +38,7 @@ class Index extends React.Component {
             </div>
           </div>
         </div>
-      </PageWrapper>
+      </Layout>
     )
   }
 }

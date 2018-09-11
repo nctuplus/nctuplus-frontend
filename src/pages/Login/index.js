@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom'
 import { compose, lifecycle } from 'recompose'
 import * as mock from 'api/mock'
 import { login } from 'api/controller'
+import Layout from 'pages/Layout'
 import './style.scss'
 
 const image = [
@@ -31,37 +32,39 @@ const enhance = compose(
 )
 
 const Login = ({ location, login }) => (
-  <div className='login'>
-    { location.state
-      ? <div className='col-2 alert alert-warning'>請先登入，謝謝!</div>
-      : ''
-    }
-    <Cover images={image} >
-      <div className='login-area container'>
-        <div className='text-center'>
-          <h1 className='text-white'>NCTU+</h1>
-          <div className='m-3'>
-            <small className='text-white'>是交大學生嗎？請用單一入口登入享用完整功能。</small>
-          </div>
-          <div className='w-25 m-auto'>
-            <button
-              className='btn btn-success btn-block'
-              onClick={() => login(mock.login('test'))}
-            >
-              交大單一入口登入
-            </button>
-            <h6 className='text-white m-3'>or</h6>
-            <button className='btn btn-fb w-50'>
-              Facebook登入
-            </button>
-            <button className='btn btn-google w-50'>
-              Google登入
-            </button>
+  <Layout className='mt-0'>
+    <div className='login'>
+      { location.state
+        ? <div className='col-2 alert alert-warning'>請先登入，謝謝!</div>
+        : ''
+      }
+      <Cover images={image} >
+        <div className='login-area container'>
+          <div className='text-center'>
+            <h1 className='text-white'>NCTU+</h1>
+            <div className='m-3'>
+              <small className='text-white'>是交大學生嗎？請用單一入口登入享用完整功能。</small>
+            </div>
+            <div className='w-25 m-auto'>
+              <button
+                className='btn btn-success btn-block'
+                onClick={() => login(mock.login('test'))}
+              >
+                交大單一入口登入
+              </button>
+              <h6 className='text-white m-3'>or</h6>
+              <button className='btn btn-fb w-50'>
+                Facebook登入
+              </button>
+              <button className='btn btn-google w-50'>
+                Google登入
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </Cover>
-  </div>
+      </Cover>
+    </div>
+  </Layout>
 )
 
 export default enhance(Login)
