@@ -19,10 +19,10 @@ const CoverImageUrls = [
 ]
 
 const Feature = withRouter(({ history, to, image, title, isNew, children }) => (
-  <div className='item col-3 clickable' onClick={() => history.push(to)}>
+  <div className='intro-item col-3 clickable' onClick={() => history.push(to)}>
     <img className='img-fluid p-5' src={image} />
     <h4 className='mt-3'>{ title }</h4>
-    { isNew && <span className='new-feature'>NCTU+新功能!</span> }
+    { isNew && <span className='intro-new-feature'>NCTU+新功能!</span> }
     <div className='mb-5'>
       { children }
     </div>
