@@ -2,7 +2,7 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import Pagination from 'components/Pagination'
-import { convertTimeSlotsToString } from 'utilities'
+import { convertTimeSlotsToString, convertSemesterToString } from 'utilities'
 
 const Row = withRouter((props) => (
   <tr
@@ -10,8 +10,10 @@ const Row = withRouter((props) => (
     className='clickable'
     onClick={() => props.history.push(`/courses/${props.id}`)}
   >
-    <td className='d-none d-table-cell'>{props.semester}</td>
-    <td className='d-none d-table-cell'>{props.department}</td>
+    <td className='d-none d-table-cell'>{convertSemesterToString(props.semester)}</td>
+    <td className='d-none d-table-cell'>
+      {props.department}{props.remarks ? ` / ${props.remarks}` : '' }
+    </td>
     <td>{props.name}</td>
     <td>{props.teachers}</td>
     <td>{props.credit}</td>
@@ -36,9 +38,7 @@ const Table = ({ data, page, maxPage, updatePage }) => (
       </thead>
       <tbody>
         {
-          data.map((value, index) => (
-            <Row key={index} {...value} />)
-          )
+          data.map((course) => (<Row key={course.id} {...course} />))
         }
       </tbody>
     </table>
