@@ -1,12 +1,12 @@
 
 import React from 'react'
 import Spinner from 'components/Spinner'
-import './style.scss'
+import styles from './style.scss'
 
 const Bulletin = (props) => (
   <span>
-    <span className='d-inline-block ellipsis title'>{ props.title }</span>
-    <span className='d-inline-block date'>{ props.updated_at.substr(0, 10) }</span>
+    <span className={`d-inline-block ellipsis ${title}`}>{ props.title }</span>
+    <span className={`d-inline-block ${date}`}>{ props.updated_at.substr(0, 10) }</span>
     <br />
   </span>
 )
@@ -21,9 +21,9 @@ class BulletinBoard extends React.Component {
   }
   render () {
     return (
-      <div className='bulletin-board'>
+      <div className={styles.bulletinBoard}>
         <hr />
-        <div className='tabs'>
+        <div className={styles.tabs}>
           <button
             className={this.state.tab === TAB_UPDATE_LOG ? 'active' : ''}
             onClick={() => this.setState({ tab: TAB_UPDATE_LOG })}
@@ -37,7 +37,7 @@ class BulletinBoard extends React.Component {
             最新消息
           </button>
         </div>
-        <div className='bulletins'>
+        <div className={styles.bulletins}>
           {
             this.props.bulletins.length
               ? this.props.bulletins

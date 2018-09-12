@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import Layout from 'pages/Layout'
 import BulletinNavbar from 'components/Admin/BulletinNavbar'
 import BulletinTable from 'components/Admin/BulletinTable'
-import './style.scss'
 
 const Button = {
   'bulletin': {

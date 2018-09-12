@@ -2,12 +2,12 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import Pagination from 'components/Pagination'
-import './style.scss'
+import style from './style.scss'
 
 const Item = withRouter((props) => {
   return (
     <div className='col-4 col-md-4 mb-3' onClick={() => props.history.push(`/books/${props.id}`)}>
-      <div className='book-item card clickable' >
+      <div className={`${styles.bookItem} card clickable`} >
         <div className='text-center'>
           <img className='d-inline-block' alt='尚無圖片!' height='150' src={`${SERVER_URL}${props.cover_image.url}`} />
         </div>
@@ -19,7 +19,7 @@ const Item = withRouter((props) => {
 
         <div className='card-footer mt-1 p-2' >
           <span>{props.updated_at.slice(0, 10)}</span>
-          <span className='pull-right bold price'>
+          <span className={`pull-right bold ${styles.price}`}>
             <i className='fa fa-dollar' />{ props.price }
           </span>
         </div>
