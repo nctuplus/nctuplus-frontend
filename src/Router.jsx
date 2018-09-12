@@ -73,6 +73,11 @@ const Router = enhance(({ currentUser }) => {
         <Route path='/admin/departments/new' component={adminOnly(Admin.Departments.New)} />
         <Route path='/admin/departments/:id/edit' component={adminOnly(Admin.Departments.Edit)} />
 
+        {/* admin course_map route group */}
+        <Route exact path='/admin/course_maps' component={adminOnly(Admin.CourseMaps.Index)} />
+        <Route path='/admin/course_maps/new' component={adminOnly(Admin.CourseMaps.New)} />
+        <Route path='/admin/course_maps/:id/edit' component={adminOnly(Admin.CourseMaps.Edit)} />
+
         {/* course route group */}
         <Route exact path='/courses' component={Courses.Index} />
         <Route path='/courses/tutorial' component={Courses.Tutorial} />
