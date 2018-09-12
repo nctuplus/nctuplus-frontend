@@ -10,6 +10,7 @@ import Cover from 'components/Cover'
 import About from 'components/About'
 import BulletinBoard from 'components/Bulletin'
 import './style.scss'
+import coverStyles from 'components/Cover/style.scss'
 
 const CoverImageUrls = [
   'https://plus.nctu.edu.tw/backgrounds/%E8%95%AD%E7%AB%8B%E5%93%81-1.jpg',
@@ -45,7 +46,7 @@ const enhance = compose(
 const Index = (props) => (
   <Layout>
     <Cover images={CoverImageUrls} >
-      <div className='container px-5'>
+      <div className={`${coverStyles.container} px-5`}>
         <div className='row'>
           <div className='col-6'>
             <h1>NCTU+</h1>

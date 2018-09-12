@@ -8,6 +8,7 @@ import * as mock from 'api/mock'
 import { login } from 'api/controller'
 import Layout from 'pages/Layout'
 import './style.scss'
+import coverStyles from 'components/Cover/style.scss'
 
 const image = [
   'https://plus.nctu.edu.tw/assets/new-index/bg-login-ffb5ed42d0a4d4b1e40e29c273db0a4e.jpg'
@@ -39,7 +40,7 @@ const Login = ({ location, login }) => (
         : ''
       }
       <Cover images={image} >
-        <div className='login-area container'>
+        <div className={`login-area ${coverStyles.container}`}>
           <div className='text-center'>
             <h1 className='text-white'>NCTU+</h1>
             <div className='m-3'>
