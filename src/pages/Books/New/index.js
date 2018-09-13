@@ -71,7 +71,6 @@ class New extends React.Component {
   }
 
   render () {
-    console.log(this.state.payload)
     return (
       <Form
         {...this.state}
