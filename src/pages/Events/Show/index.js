@@ -93,7 +93,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getEvent: (id) => dispatch(getEvent(id)),
-  followEvent: (eventId, userId) => dispatch(followEvent(eventId, userId)),
+  followEvent: (id) => dispatch(followEvent(id)),
   deleteEvent: (id) => {
     if (window.confirm('確定刪除此活動嗎?')) {
       dispatch(deleteEvent(id))

@@ -82,18 +82,21 @@ export const patchEvent = (payload, id) => dispatch => {
     .catch(error => console.log(error))
 }
 
-export const followEvent = (eventId, userId) => dispatch => {
-  fetch(`${SERVER_URL}/api/v1/events/${eventId}/action`, {
-    method: 'POST',
-    body: {
-      event_id: eventId,
-      user_id: userId
-    }
+export const followEvent = (id) => dispatch => {
+  fetch(`${SERVER_URL}/api/v1/events/${id}/follow`, {
+    method: 'POST'
   })
     .catch(error => console.log(error))
 }
 
-export const fetchFollowEvents = (userId) => dispatch => {
+export const deleteFollowEvent = (id) => dispatch => {
+  fetch(`${SERVER_URL}/api/v1/events/${id}/follow`, {
+    method: 'DELETE'
+  })
+    .catch(error => console.log(error))
+}
+
+export const fetchFollowEvents = () => dispatch => {
   dispatch(fetchFollowEventsStart())
   fetch(`${SERVER_URL}/api/v1/my/events`)
     .then(response => response.json())
