@@ -25,7 +25,7 @@ const CustomArrowRight = (props) => (
 
 const NavFooter = (props) => (
   <div>
-    <nav id='footer' className={props.visible ? styles.slideIn : styles.slideOut}>
+    <nav id={styles.footer} className={props.visible ? styles.slideIn : styles.slideOut}>
       <div className='row'>
         <div className={`col-sm-3 ${styles.myActivity}`}>
           我的活動
