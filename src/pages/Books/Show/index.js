@@ -1,7 +1,6 @@
 
 import React from 'react'
 import Layout from 'pages/Layout'
-import styles from './style.scss'
 
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
