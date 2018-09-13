@@ -27,6 +27,10 @@ class Index extends React.Component {
     }
   }
 
+  componentWillUnmount () {
+    this.props.resetPage()
+  }
+
   render () {
     return (
       <Layout>
@@ -104,7 +108,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   fetchData: (page) => dispatch(fetchBooks(page)),
   applyFilters: (filters) => dispatch(applyBooksFilters(filters)),
-  updatePage: (page) => dispatch(updateBooksPage(page))
+  updatePage: (page) => dispatch(updateBooksPage(page)),
+  resetPage: () => dispatch(updateBooksPage(1))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index)
