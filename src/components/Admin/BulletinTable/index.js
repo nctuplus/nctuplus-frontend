@@ -1,7 +1,8 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './style.scss'
+import classNames from 'classnames'
+import styles from './style.scss'
 
 const Title = {
   'bulletin': '標題',
@@ -13,7 +14,7 @@ const BulletinTable = props => (
   <div>
     {
       props.data
-        ? <table className='table table-bordered table-striped'>
+        ? <table className={classNames('table', 'table-bordered', styles.tableBordered,  'table-striped', styles.tableStriped)}>
           <thead>
             <tr>
               <th>{ Title[props.type] }</th>

@@ -1,12 +1,12 @@
 
 .login{
-	.login-area{ top: 50%; }
+	.loginArea{ top: 50%; }
 	h1{
 		font-size: 65px;
 		font-weight: bold;
 		line-height: 1.5;
 	}
-	.btn-fb{
+	.btnFb{
         background-color: #3b5998;
         border: none;
         border-radius: 4px;
@@ -14,7 +14,7 @@
         transition: 0.3s background-color;
         &:hover{ background-color: #2a4d98;}
 	}
-	.btn-google{
+	.btnGoogle{
         background-color: #dd4b39;
         border: none;
         border-radius: 4px;
@@ -29,4 +29,3 @@
         left: 20px;
     }
 }
-

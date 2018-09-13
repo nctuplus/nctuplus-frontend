@@ -1,14 +1,14 @@
 
 @import "~assets/styles/_common";
 
-.navbar-container{
+.navbarContainer{
 	position: fixed;
 	width: 100%;
 	top: 0px;
 	height: $navbar-height;
 	background-color: $theme-color;
 	z-index: 10;
-	.navbar-custom { background-color: $theme-color; }
+	.navbarCustom { background-color: $theme-color; }
 	.brand{
 		letter-spacing: 1px;
 		font-weight: bold;
@@ -17,21 +17,20 @@
 			text-decoration: none;
 		}
 	}
-	.navbar-collapse { background-color: $theme-color; }
-	.nav-item{ font-size: 14px; }
-	.navbar-toggler { color: white; }
-	.nav-link{
+	.navbarCollapse { background-color: $theme-color; }
+	.navItem{ font-size: 14px; }
+	.navbarToggler { color: white; }
+	.navLink{
 		color: white;
 		text-decoration: none;
 		transition: color 0.5s ease-in;
 
 		&:hover { color: #003469; }
 	}
-	.fa{
+	i{
 		font-size: 1.5em;
 	}
-	.user-name{
+	.userName{
 		vertical-align: 2px;
 	}
 }
-

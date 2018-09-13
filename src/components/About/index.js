@@ -1,16 +1,16 @@
 
 import React from 'react'
-import './style.scss'
+import styles from './style.scss'
 
 const About = (props) => (
-  <section className='about py-5'>
+  <section className={`${styles.about} py-5`}>
     <div className='container'>
       <div className='row justify-content-center'>
         <h2 className='text-center col-12'>About NCTU+ </h2>
         <div className='col-12 col-md-4 col-lg-4 text-center'>
           <img
             alt='Logo22'
-            className='logo d-inline-block'
+            className={`${styles.logo} d-inline-block`}
             src='https://plus.nctu.edu.tw/assets/logo22-aa2cbf8a416ebd64859993acc6c97feb.png'
           />
         </div>

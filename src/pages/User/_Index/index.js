@@ -1,7 +1,6 @@
 
 import React from 'react'
 import Layout from 'pages/Layout'
-import './style.scss'
 
 const _Index = (props) => (
   <Layout>

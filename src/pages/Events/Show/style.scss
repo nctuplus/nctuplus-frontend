@@ -1,9 +1,9 @@
 
-	.banner-wrapper{
+	.bannerWrapper{
 		max-height: 555px;
 		overflow: hidden;
 	}
-	.event-title{
+	.eventTitle{
 		position: relative;
     top: -50px;
     padding: 10px 30px;
@@ -11,18 +11,18 @@
     font-weight: bold;
     font-size: large;
 	}
-	.event-info-wrapper{ 
-		margin-top: -25px; 
+	.eventInfoWrapper{
+		margin-top: -25px;
 		padding: 50px 30px 30px 30px;
 	}
-	.info-box{
+	.infoBox{
 		display: inline-block;
 	    border-radius: 10px;
 	    border: 2px solid #d1d1e0;
 	    padding: 15px 10px;
 	    margin-left: 5px;
 	}
-	.divide-horizontal {
+	.divideHorizontal {
 	    width: 100%;
 	    text-align: center;
 	    border-bottom: 1px solid #d2d2d2;
@@ -34,7 +34,7 @@
 	    padding: 0 10px;
 		}
 	}
-	.fixed-menu{
+	.fixedMenu{
 		background-color: rgba(255,255,255,0.7);
 		width: 100%;
 		bottom: 0;
@@ -46,5 +46,3 @@
 	    	margin: 5px;
 	    }
 	}
-
-

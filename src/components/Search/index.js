@@ -3,7 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames'
 import { InputWithButton } from 'components/FormUtils'
-import './style.scss'
+import styles from './style.scss'
 
 class SearchCourse extends React.Component {
   constructor (props) {
@@ -16,10 +16,10 @@ class SearchCourse extends React.Component {
   }
   render () {
     return (
-      <div className='search-course'>
+      <div className={styles.searchCourse}>
         <div className='d-inline-block vertical-center'>
           <InputWithButton
-            className='search-bar'
+            className={styles.searchBar}
             placeholder='課名/老師/時間/向度'
             button_style='primary'
             button_content={<i className='fa fa-search' />}
@@ -77,7 +77,7 @@ const SearchPanelNews = (props) => (
 
 const SearchPanelNewsFeed = (props) => (
   <div>
-    <h4 className='text-center d-none d-sm-block title'>最新動態</h4>
+    <h4 className={`text-center d-none d-sm-block ${styles.title}`}>最新動態</h4>
     <div className='row d-none d-sm-block'>
       <div className='list-group'>
         { props.children }
@@ -87,18 +87,18 @@ const SearchPanelNewsFeed = (props) => (
 )
 
 const SearchPanelCollegeList = (props) => (
-  <div className='college-group'>
+  <div className={styles.collegeGroup}>
     <h4 className='text-center'>分類</h4>
-    <button className='btn btn-default college' >共同課程</button>
-    <button className='btn btn-default college' >資訊學院</button>
-    <button className='btn btn-default college' >電機學院</button>
-    <button className='btn btn-default college' >工學院</button>
-    <button className='btn btn-default college' >理學院</button>
-    <button className='btn btn-default college' >光電學院</button>
-    <button className='btn btn-default college' >生科學院</button>
-    <button className='btn btn-default college' >管理學院</button>
-    <button className='btn btn-default college' >人社學院</button>
-    <button className='btn btn-default college' >客家文化學院</button>
+    <button className={`btn btn-default ${styles.college}`} >共同課程</button>
+    <button className={`btn btn-default ${styles.college}`} >資訊學院</button>
+    <button className={`btn btn-default ${styles.college}`} >電機學院</button>
+    <button className={`btn btn-default ${styles.college}`} >工學院</button>
+    <button className={`btn btn-default ${styles.college}`} >理學院</button>
+    <button className={`btn btn-default ${styles.college}`} >光電學院</button>
+    <button className={`btn btn-default ${styles.college}`} >生科學院</button>
+    <button className={`btn btn-default ${styles.college}`} >管理學院</button>
+    <button className={`btn btn-default ${styles.college}`} >人社學院</button>
+    <button className={`btn btn-default ${styles.college}`} >客家文化學院</button>
   </div>
 )
 
@@ -130,7 +130,7 @@ const SearchPanelButtonGroup = (props) => (
 )
 
 const SearchPanel = (props) => (
-  <div className='search-panel'>
+  <div className={styles.searchPanel}>
     { props.children }
   </div>
 )

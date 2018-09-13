@@ -3,7 +3,7 @@ import React from 'react'
 import CKEditor from 'react-ckeditor-component'
 import Layout from 'pages/Layout'
 import { LabeledInput } from 'components/FormUtils'
-import './style.scss'
+import styles from './style.scss'
 
 const Form = props => (
   <Layout>
@@ -21,7 +21,7 @@ const Form = props => (
                 onChange={props.onFileUpload}
               />
               <div
-                className='text-center clickable upload-picture p-5'
+                className={`text-center clickable ${styles.uploadPicture} p-5`}
                 onClick={() => props.imageUploadRef.current.click()}
               >
                 {

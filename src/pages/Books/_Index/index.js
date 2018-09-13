@@ -11,7 +11,7 @@ import Layout from 'pages/Layout'
 import * as Books from 'components/Book'
 import { InputWithButton } from 'components/FormUtils'
 import moment from 'moment'
-import './style.scss'
+import styles from './style.scss'
 
 import { connect } from 'react-redux'
 import { updateBooksPage, applyBooksFilters, fetchBooks } from 'api/Actions/Books'
@@ -47,9 +47,9 @@ class Index extends React.Component {
                   mine_link='/books/?mine=true'
                   mine_btn_type='info'
                 />
-                <div className='text-center filter' >
+              <div className={`text-center ${styles.filter}`} >
                   <h4 className='text-center search-panel-title'>排序</h4>
-                  <div className='btn-group filter-group' >
+                  <div className={`btn-group ${styles.filterGroup}`} >
                     <button
                       onClick={() => this.props.applyFilters({ sort_by: 'price' })}
                       className={this.props.books.filters.sort_by === 'price' ? 'btn btn-primary' : 'btn btn-default'}

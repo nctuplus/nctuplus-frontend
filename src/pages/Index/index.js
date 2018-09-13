@@ -9,7 +9,8 @@ import Layout from 'pages/Layout'
 import Cover from 'components/Cover'
 import About from 'components/About'
 import BulletinBoard from 'components/Bulletin'
-import './style.scss'
+import styles from './style.scss'
+import coverStyles from 'components/Cover/style.scss'
 
 const CoverImageUrls = [
   'https://plus.nctu.edu.tw/backgrounds/%E8%95%AD%E7%AB%8B%E5%93%81-1.jpg',
@@ -19,10 +20,10 @@ const CoverImageUrls = [
 ]
 
 const Feature = withRouter(({ history, to, image, title, isNew, children }) => (
-  <div className='intro-item col-3 clickable' onClick={() => history.push(to)}>
+  <div className={`${styles.introItem} col-3 clickable`} onClick={() => history.push(to)}>
     <img className='img-fluid p-5' src={image} />
     <h4 className='mt-3'>{ title }</h4>
-    { isNew && <span className='intro-new-feature'>NCTU+新功能!</span> }
+    { isNew && <span className={styles.introNewFeature}>NCTU+新功能!</span> }
     <div className='mb-5'>
       { children }
     </div>
@@ -45,7 +46,7 @@ const enhance = compose(
 const Index = (props) => (
   <Layout>
     <Cover images={CoverImageUrls} >
-      <div className='container px-5'>
+      <div className={`container ${coverStyles.container} px-5`}>
         <div className='row'>
           <div className='col-6'>
             <h1>NCTU+</h1>
@@ -58,7 +59,7 @@ const Index = (props) => (
             </div>
           </div>
           <div className='col-6 text-center mt-5'>
-            <div className='slogan d-inline-block text-right'>
+            <div className={`${styles.slogan} d-inline-block text-right`}>
               <pre>{ '手邊有用不到的教科書嗎？\n快登入使用二手書平台！' }</pre>
             </div>
           </div>

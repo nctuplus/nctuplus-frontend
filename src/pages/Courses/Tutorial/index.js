@@ -1,24 +1,24 @@
 
 import React from 'react'
 import Layout from 'pages/Layout'
-import './style.scss'
+import styles from './style.scss'
 
 const TutorialStep = (props) => (
   <div className='mb-4 d-block bg-white'>
-    <div className='title-block col-12 text-center'>
+    <div className={`${styles.titleBlock} col-12 text-center`}>
       <div className='text'>{ props.title }</div>
     </div>
-    <div className='content px-4'>
+    <div className={`${styles.content} px-4`}>
       { props.children }
     </div>
   </div>
 )
 
 const Tutorial = (props) => (
-  <Layout className='tutorial'>
-    <div className='container'>
+  <Layout className={styles.tutorial}>
+    <div className={`container ${styles.container}`}>
       <div className='row'>
-        <div className='group w-100'>模擬排課</div>
+        <div className={`${styles.group} w-100`}>模擬排課</div>
         <TutorialStep title='進入NCTU+首頁，進行登入動作'>
           NCTU+可同時挷定單一入口、Facebook、Google+帳號。
           <img alt='0' className='img-fluid' src='https://plus.nctu.edu.tw/assets/courses-tutorial/0-fa348106ae03772e4e952ce79a6ac0f5.png' />
