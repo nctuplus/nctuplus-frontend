@@ -14,7 +14,7 @@ const BulletinTable = props => (
   <div>
     {
       props.data
-        ? <table className={classNames('table', styles.tableBordered, styles.tableStriped)}>
+        ? <table className={classNames('table', 'table-bordered', styles.tableBordered,  'table-striped', styles.tableStriped)}>
           <thead>
             <tr>
               <th>{ Title[props.type] }</th>

@@ -2,10 +2,10 @@
 import React from 'react'
 import classNames from 'classnames'
 import { withRouter } from 'react-router-dom'
-import './style.scss'
+import styles from './style.scss'
 
 const NavDropdownLink = withRouter((props) => (
-  <span className='dropdown-item' onClick={() => props.history.push(props.to)}>
+  <span className={`dropdown-item ${styles.dropdownItem}`} onClick={() => props.history.push(props.to)}>
     { props.children }
   </span>
 ))
@@ -19,17 +19,17 @@ class NavDropdown extends React.Component {
   render () {
     return (
       <div
-        className='nav-item dropdown clickable'
+        className={`nav-item dropdown ${styles.dropdown} clickable`}
         onMouseOver={() => this.setState({ open: true })}
         onMouseLeave={() => this.setState({ open: false })}
       >
         <a
-          className={classNames('nav-link', 'dropdown-toggle', this.state.open && 'show')}
+          className={classNames('nav-link',' dropdown-toggle', this.state.open && 'show')}
           onClick={() => this.setState({ open: !this.state.open })}
         >
           { this.props.title }
         </a>
-        <div className={classNames('dropdown-menu', this.state.open && 'show')} >
+        <div className={classNames('dropdown-menu', styles.dropdownMenu, this.state.open && 'show')} >
           { this.props.children }
         </div>
       </div>

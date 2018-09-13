@@ -2,7 +2,7 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import Pagination from 'components/Pagination'
-import style from './style.scss'
+import styles from './style.scss'
 
 const Item = withRouter((props) => {
   return (

@@ -46,7 +46,7 @@ const enhance = compose(
 const Index = (props) => (
   <Layout>
     <Cover images={CoverImageUrls} >
-      <div className={`${coverStyles.container} px-5`}>
+      <div className={`container ${coverStyles.container} px-5`}>
         <div className='row'>
           <div className='col-6'>
             <h1>NCTU+</h1>

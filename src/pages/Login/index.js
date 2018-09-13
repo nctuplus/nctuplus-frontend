@@ -40,7 +40,7 @@ const Login = ({ location, login }) => (
         : ''
       }
       <Cover images={image} >
-        <div className={`login-area ${coverStyles.container}`}>
+        <div className={`login-area container ${coverStyles.container}`}>
           <div className='text-center'>
             <h1 className='text-white'>NCTU+</h1>
             <div className='m-3'>

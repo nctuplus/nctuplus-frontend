@@ -5,8 +5,8 @@ import styles from './style.scss'
 
 const Bulletin = (props) => (
   <span>
-    <span className={`d-inline-block ellipsis ${title}`}>{ props.title }</span>
-    <span className={`d-inline-block ${date}`}>{ props.updated_at.substr(0, 10) }</span>
+    <span className={`d-inline-block ellipsis ${styles.title}`}>{ props.title }</span>
+    <span className={`d-inline-block ${styles.date}`}>{ props.updated_at.substr(0, 10) }</span>
     <br />
   </span>
 )
