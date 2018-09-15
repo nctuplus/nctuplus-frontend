@@ -1,32 +1,33 @@
 
-import fetch from 'isomorphic-fetch'
 import { createAction } from 'redux-actions'
 
-export const fetchEventsStart = createAction('FETCH_EVENTS_START')
-export const fetchEventsDone = createAction('FETCH_EVENTS_DONE')
-export const updateEvents = createAction('UPDATE_EVENTS')
-
-export const getEventStart = createAction('GET_EVENT_START')
-export const storeEvent = createAction('STORE_EVENT')
-export const getEventDone = createAction('GET_EVENT_DONE')
-
-export const postEventStart = createAction('POST_EVENT_START')
-export const postEventDone = createAction('POST_EVENT_DONE')
-export const storePostEvent = createAction('STORE_POST_EVENT')
-export const postEventReset = createAction('POST_EVENT_RESET')
-
-export const patchEventStart = createAction('PATCH_EVENT_START')
-export const patchEventDone = createAction('PATCH_EVENT_DONE')
-export const patchEventReset = createAction('PATCH_EVENT_RESET')
-
-export const fetchFollowEventsStart = createAction('FETCH_FOLLOW_EVENTS_START')
-export const fetchFollowEventsDone = createAction('FETCH_FOLLOW_EVENTS_DONE')
-export const storeFollowEvents = createAction('STORE_FOLLOW_EVENTS')
-
-export const deleteEventStart = createAction('DELETE_EVENT_START')
-export const deleteEventDone = createAction('DELETE_EVENT_DONE')
-export const deleteEventReset = createAction('DELETE_EVENT_RESET')
-
+export default createAction({
+  EVENTS: {
+    INDEX: {
+      SET_STATUS: null,
+      STORE: null
+    },
+    SHOW: {
+      SET_STATUS: null,
+      STORE: null
+    },
+    NEW: {
+      SET_STATUS: null,
+      STORE: null
+    },
+    EDIT: {
+      SET_STATUS: null
+    },
+    DELETE: {
+      SET_STATUS: null
+    },
+    FOLLEW: {
+      SET_STATUS: null,
+      STORE: null
+    }
+  }
+})
+/*
 export const fetchEvents = (page = 1) => dispatch => {
   dispatch(fetchEventsStart())
   fetch(`${SERVER_URL}/api/v1/events?page=${page}`)
@@ -115,3 +116,4 @@ export const deleteEvent = (id) => dispatch => {
     .then(() => dispatch(deleteEventDone()))
     .catch(error => console.log(error))
 }
+*/
