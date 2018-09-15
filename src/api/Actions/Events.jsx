@@ -21,7 +21,7 @@ export default createActions({
     DELETE: {
       SET_STATUS: null
     },
-    FOLLEW: {
+    FOLLOW: {
       SET_STATUS: null,
       STORE: null
     }

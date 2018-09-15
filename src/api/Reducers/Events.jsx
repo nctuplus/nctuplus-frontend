@@ -47,7 +47,7 @@ export default handleActions({
     DELETE: {
       SET_STATUS: (state, action) => ({ ...state, delete: { ...state.delete, status: action.payload } })
     },
-    FOLLEW: {
+    FOLLOW: {
       SET_STATUS: (state, action) => ({ ...state, follow: { ...state.follow, status: action.payload } }),
       STORE: (state, action) => ({ ...state, follow: { ...state.follow, data: action.payload } })
     }
