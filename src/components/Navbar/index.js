@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import MediaQuery from 'react-responsive'
 import { withState, withHandlers, compose } from 'recompose'
 import { NavDropdown, NavDropdownLink } from './NavDropdown'
-import { logout } from 'api/controller'
+import { logout } from 'api/Controllers/user'
 import './style.scss'
 
 import { connect } from 'react-redux'

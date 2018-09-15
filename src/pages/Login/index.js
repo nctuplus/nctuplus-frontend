@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { compose, lifecycle } from 'recompose'
 import * as mock from 'api/mock'
-import { login } from 'api/controller'
+import { login } from 'api/Controllers/user'
 import Layout from 'pages/Layout'
 import './style.scss'
 

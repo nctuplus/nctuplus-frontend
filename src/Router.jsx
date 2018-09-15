@@ -7,7 +7,7 @@ import {
   Redirect
 } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { validateToken } from 'api/controller'
+import { validateToken } from 'api/Controllers/user'
 
 import Index from 'pages/Index'
 import * as Admin from 'pages/Admin'

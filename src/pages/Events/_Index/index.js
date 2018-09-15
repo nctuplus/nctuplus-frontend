@@ -9,7 +9,7 @@ import moment from 'moment'
 import Layout from 'pages/Layout'
 import Preview from 'components/Event/Preview'
 import { InputWithButton } from 'components/FormUtils'
-import { fetchEvents } from 'api/controller'
+import { fetchEvents } from 'api/Controllers/events'
 import './style.scss'
 
 const CustomArrowLeft = (props) => (

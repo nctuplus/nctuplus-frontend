@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { compose, withState, lifecycle, withHandlers, withProps } from 'recompose'
 import { base64encode } from 'utilities'
-import { getEvent, patchEvent } from 'api/controller'
-import eventActions from 'api/Actions/Events'
+import { getEvent, patchEvent } from 'api/Controllers/events'
+import actions from 'api/Actions/Events'
 import { FETCHING_STATUS } from 'utilities/constants'
 import Form from 'components/Event/Form'
 
@@ -18,7 +18,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getEvent: (id) => dispatch(getEvent(id)),
   patchEvent: (payload, id) => dispatch(patchEvent(payload, id)),
-  patchEventReset: () => dispatch(eventActions.events.edit.setStatus(FETCHING_STATUS.FAIL))
+  patchEventReset: () => dispatch(actions.events.edit.setStatus(FETCHING_STATUS.FAIL))
 })
 
 const enhance = compose(
