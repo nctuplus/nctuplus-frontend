@@ -1,6 +1,7 @@
 
 import axios from 'axios'
 import actions from 'api/Actions/User'
+import eventActions from 'api/Actions/Events'
 import { FETCHING_STATUS } from 'utilities/constants'
 
 // custom instances
@@ -61,6 +62,68 @@ const validateToken = () => dispatch => {
       .then(({ data: user }) => dispatch(actions.user.auth.login(user.data)))
       .catch(() => dispatch(actions.user.auth.setStatus(FETCHING_STATUS.FAIL)))
   }
+}
+
+export const fetchEvents = (page = 1) => dispatch => {
+  dispatch(eventActions.events.index.setStatus(FETCHING_STATUS.FETCHING))
+  server.public
+    .get(`/api/v1/events?page=${page}`)
+    .then(({ data: events }) => {
+      dispatch(eventActions.events.index.store(events))
+      dispatch(eventActions.events.index.setStatus(FETCHING_STATUS.DONE))
+    })
+    .catch(() => dispatch(eventActions.events.index.setStatus(FETCHING_STATUS.FAIL)))
+}
+
+export const getEvent = (id) => dispatch => {
+  dispatch(eventActions.events.show.setStatus(FETCHING_STATUS.FETCHING))
+  server.public
+    .get(`/api/v1/events/${id}`)
+    .then(({ data: event }) => {
+      event.begin_time = event.begin_time.slice(0, 10)
+      event.end_time = event.end_time.slice(0, 10)
+      dispatch(eventActions.events.show.store(event))
+      dispatch(eventActions.events.show.setStatus(FETCHING_STATUS.DONE))
+    })
+    .catch(() => dispatch(eventActions.events.show.setStatus(FETCHING_STATUS.FAIL)))
+}
+
+export const postEvent = (payload) => dispatch => {
+  dispatch(eventActions.events.new.setStatus(FETCHING_STATUS.FETCHING))
+  server.protected
+    .post('/api/v1/events/', payload)
+    .then(({ data: event }) => {
+      dispatch(eventActions.events.new.store(event))
+      dispatch(eventActions.events.new.setStatus(FETCHING_STATUS.DONE))
+    })
+    .catch(() => dispatch(eventActions.events.new.setStatus(FETCHING_STATUS.FAIL)))
+}
+
+export const patchEvent = (payload, id) => dispatch => {
+  dispatch(eventActions.events.edit.setStatus(FETCHING_STATUS.FETCHING))
+  server.protected
+    .patch(`/api/v1/events/${id}`, payload)
+    .then(({ data: event }) => dispatch(eventActions.events.edit.setStatus(FETCHING_STATUS.DONE)))
+    .catch(() => dispatch(eventActions.events.edit.setStatus(FETCHING_STATUS.FAIL)))
+}
+
+export const deleteEvent = (id) => dispatch => {
+  dispatch(eventActions.events.delete.setStatus(FETCHING_STATUS.FETCHING))
+  server.protected
+    .delete(`/api/v1/events/${id}`)
+    .then(({ data: event }) => dispatch(eventActions.events.delete.setStatus(FETCHING_STATUS.DONE)))
+    .catch(() => dispatch(eventActions.events.delete.setStatus(FETCHING_STATUS.FAIL)))
+}
+
+export const fetchFollowEvents = () => dispatch => {
+  dispatch(eventActions.events.follow.setStatus(FETCHING_STATUS.FETCHING))
+  server.public
+    .get('/api/v1/my/events')
+    .then(({ data: events }) => {
+      dispatch(eventActions.events.follow.store(events))
+      dispatch(eventActions.events.follow.setStatus(FETCHING_STATUS.DONE))
+    })
+    .catch(() => dispatch(eventActions.events.follow.setStatus(FETCHING_STATUS.FAIL)))
 }
 
 export { login, logout, validateToken }
