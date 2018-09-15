@@ -9,7 +9,7 @@ import moment from 'moment'
 import Layout from 'pages/Layout'
 import Preview from 'components/Event/Preview'
 import { InputWithButton } from 'components/FormUtils'
-import { fetchEvents } from 'api/Actions/Events'
+import { fetchEvents } from 'api/controller'
 import './style.scss'
 
 const CustomArrowLeft = (props) => (
@@ -40,7 +40,7 @@ const NavFooter = (props) => (
   </div>
 )
 
-const mapStateToProps = (state) => ({ events: state.events.all })
+const mapStateToProps = (state) => ({ events: state.events.index })
 const mapDispatchToProps = (dispatch) => ({ fetchData: (page) => dispatch(fetchEvents(page)) })
 
 const enhance = compose(
