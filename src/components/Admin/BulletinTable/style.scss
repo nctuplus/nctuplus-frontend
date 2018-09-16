@@ -1,4 +1,4 @@
-.table-striped {
+.tableStriped {
 	tbody {
 		tr:nth-of-type(odd) {
 			td {
@@ -13,6 +13,6 @@
 	}
 }
 
-.table-bordered {
+.tableBordered {
 	border: 1px solid #ddd;
 }

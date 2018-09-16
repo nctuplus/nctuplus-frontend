@@ -7,7 +7,7 @@ import Layout from 'pages/Layout'
 import { getEvent, followEvent, deleteEvent } from 'api/Controllers/events'
 import actions from 'api/Actions/Events'
 import { FETCHING_STATUS } from 'utilities/constants'
-import './style.scss'
+import styles from './style.scss'
 
 class Show extends React.Component {
   componentDidMount () {
@@ -27,15 +27,15 @@ class Show extends React.Component {
     return (
       <Layout>
         <div className='container'>
-          <div className='banner-wrapper'>
+          <div className={styles.bannerWrapper}>
             <img
               alt='Banner with text'
               width='100%'
               src={event.poster}
             />
           </div>
-          <span className='event-title'>{event.title}</span>
-          <div className='event-info-wrapper bg-white'>
+          <span className={styles.eventTitle}>{event.title}</span>
+          <div className={`${styles.eventInfoWrapper} bg-white`}>
             <div className='row'>
               <div className='col-7'>
                 <p><i className='fa fa-calendar' /> 時間: <strong>{event.begin_time} ~ {event.end_time}</strong></p>
@@ -44,19 +44,19 @@ class Show extends React.Component {
                 <p><i className='fa fa-share-alt' /> 活動網址: <a href={event.url} target='blank'>點這裡</a></p>
               </div>
               <div className='col-5'>
-                <p className='info-box'><i className='fa fa-eye' /> 觀看次數: <strong>{event.view_count}</strong></p>
-                <p className='info-box'><i className='fa fa-rss' /> 關注人數: <strong>{event.follow_count}</strong>
+                <p className={styles.infoBox}><i className='fa fa-eye' /> 觀看次數: <strong>{event.view_count}</strong></p>
+                <p className={styles.infoBox}><i className='fa fa-rss' /> 關注人數: <strong>{event.follow_count}</strong>
                 </p>
               </div>
             </div>
 
-            <div className='divide-horizontal'>
+            <div className={styles.divideHorizontal}>
               <span>活動介紹</span>
             </div>
             <section dangerouslySetInnerHTML={{__html: event.content}} />
           </div>
         </div>
-        <div className='fixed-menu fixed'>
+        <div className={`${styles.fixedMenu} fixed`}>
           <div className='container'>
             { // 這裡先直接顯示 之後要改成判斷是否為自己的活動
               <div className='pull-left'>

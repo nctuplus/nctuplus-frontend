@@ -1,15 +1,15 @@
 
 @import "~assets/styles/_common";
 
-.search-course{
+.searchCourse{
 	margin: auto;
-	.search-bar{ width: 212px; }
+	.searchBar{ width: 212px; }
 	.checkbox{
 		margin-left: 10px;
 		vertical-align: 30px;
 	}
 }
-.search-panel{
+.searchPanel{
 	min-height: 20px;
 	padding: 19px;
 	margin-top: 3px;
@@ -19,7 +19,7 @@
   	border: 1px solid #e3e3e3;
   	border-radius: 4px;
   	box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
-  	.college-group{
+  	.collegeGroup{
 	  	padding-bottom: 20px;
 	  	.college{
 			width: 50%;
@@ -33,4 +33,3 @@
 	 }
 	.title{ margin-top: -5%; }
 }
-

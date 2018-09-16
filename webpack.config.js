@@ -21,11 +21,59 @@ module.exports = {
         include: Path.join(__dirname, 'src/')
       },
       {
-        test: /\.css$/, loader: 'style-loader!css-loader'
+        test: /\.css$/,
+        use: [
+          require.resolve('style-loader'),
+          {
+            loader: require.resolve('css-loader'),
+            options: {
+              importLoaders: 1,
+              modules: true,
+              localIdentName: "[name]__[local]___[hash:base64:5]"
+            },
+          },
+        ],
       },
       {
         test: /\.scss$/,
-        loaders: ['style-loader', 'css-loader', 'sass-loader', 'postcss-loader']
+        use: [
+          require.resolve('style-loader'),
+          {
+            loader: require.resolve('css-loader'),
+          },
+          {
+            loader: require.resolve('sass-loader'),
+          },
+          {
+            loader: require.resolve('postcss-loader'),
+          },
+        ],
+        include:[
+          Path.resolve(__dirname, "src/assets/styles")
+        ]
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          require.resolve('style-loader'),
+          {
+            loader: require.resolve('css-loader'),
+            options: {
+              importLoaders: 1,
+              modules: true,
+              localIdentName: "[name]__[local]___[hash:base64:5]"
+            },
+          },
+          {
+            loader: require.resolve('sass-loader'),
+          },
+          {
+            loader: require.resolve('postcss-loader'),
+          },
+        ],
+        exclude:[
+          Path.resolve(__dirname, "src/assets/styles")
+        ]
       },
       {
         test: /\.json$/, loader: 'json-loader'

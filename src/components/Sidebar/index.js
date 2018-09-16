@@ -1,19 +1,19 @@
 
 import React from 'react'
 import classNames from 'classnames'
-import './style.scss'
+import styles from './style.scss'
 
 const SidebarItem = (props) => (
   <li
     onClick={props.onClick}
-    className={classNames('item', 'text-center', props.active && 'active')}
+    className={classNames(styles.item, 'text-center', props.active && 'active')}
   >
     <a >{ props.children }</a>
   </li>
 )
 
 const Sidebar = (props) => (
-  <div className='sidebar d-none d-md-block'>
+  <div className={`${styles.sidebar} d-none d-md-block`}>
     <ul className='nav'>
       { props.children }
     </ul>

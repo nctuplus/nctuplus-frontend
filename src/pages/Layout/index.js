@@ -1,6 +1,6 @@
 
 import React from 'react'
-import './style.scss'
+import styles from './style.scss'
 import Navbar from 'components/Navbar'
 import Footer from 'components/Footer'
 
@@ -9,7 +9,7 @@ const Layout = ({className, children}) => {
   return (
     <div>
       <Navbar />
-      <div className={`page-wrapper ${className || ''}`} >
+      <div className={`${styles.pageWrapper} ${className || ''}`} >
         { children }
       </div>
       <Footer />

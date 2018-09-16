@@ -3,12 +3,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Layout from 'pages/Layout'
 import { InputWithButton } from 'components/FormUtils'
-import './style.scss'
+import styles from './style.scss'
 
 const Form = props => (
   <Layout>
     <div className='container pt-3'>
-      <div className='row course-map-edit-box py-3'>
+      <div className={`row ${styles.courseMapEditBox} py-3`}>
         <div className='col-12'>
           <h4>
             課程地圖 -
@@ -44,7 +44,7 @@ const Form = props => (
           </table>
         </div>
         <div className='col-3'>
-          <div className='course-map-edit-box p-3'>
+          <div className={`${styles.courseMapEditBox} p-3`}>
             <form>
               <div className='row m-0'>
                 <div className='col-5 pl-0 pr-2'>
@@ -69,7 +69,7 @@ const Form = props => (
           </div>
         </div>
         <div className='col-7 px-0'>
-          <div className='course-map-edit-box p-3'>
+          <div className={`${styles.courseMapEditBox} p-3`}>
             <table className='table'>
               <tbody>
                 <tr>
@@ -85,7 +85,7 @@ const Form = props => (
           </div>
         </div>
         <div className='col-2'>
-          <div className='course-map-edit-box p-3'>
+          <div className={`${styles.courseMapEditBox} p-3`}>
             <ul className='list-group'>
               <li className='list-group-item text-center px-0'>
                 <span className='icon fa fa-check-square-o mr-2' />

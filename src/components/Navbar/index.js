@@ -5,7 +5,7 @@ import MediaQuery from 'react-responsive'
 import { withState, withHandlers, compose } from 'recompose'
 import { NavDropdown, NavDropdownLink } from './NavDropdown'
 import { logout } from 'api/Controllers/user'
-import './style.scss'
+import styles from './style.scss'
 
 import { connect } from 'react-redux'
 
@@ -18,7 +18,7 @@ const enhance = compose(
 )
 
 const NavItem = ({ children }) => (
-  <div className='nav-item mx-md-1 mx-lg-2'>
+  <div className={`nav-item ${styles.navItem} mx-md-1 mx-lg-2`}>
     { children }
   </div>
 )
@@ -28,25 +28,25 @@ const NavLink = ({ external, to, children }) => (
     {
     /* if prop {external} provide, use <a> tag for external link */
       (typeof external === 'undefined')
-        ? <Link to={to} className='nav-link'>{ children }</Link>
-        : <a href={to} target='_blank' className='nav-link' >{ children }</a>
+        ? <Link to={to} className={`nav-link ${styles.navLink}`}>{ children }</Link>
+        : <a href={to} target='_blank' className={`nav-link ${styles.navLink}`} >{ children }</a>
     }
   </NavItem>
 )
 
 const NavbarContent = enhance(({ toggleDropdown, show, currentUser, logout }) => (
-  <nav className='navbar navbar-expand-md navbar-custom pt-1'>
-    <div className='navbar-brand brand'>
+  <nav className={`navbar navbar-expand-md ${styles.navbarCustom} pt-1`}>
+    <div className={`navbar-brand ${styles.brand}`}>
       <Link to='/'>NCTU+</Link>
     </div>
     <button
-      className='navbar-toggler mx-2'
+      className={`navbar-toggler ${styles.navbarToggler} mx-2`}
       type='button'
       onClick={toggleDropdown}
     >
       <i className='fa fa-bars' />
     </button>
-    <div className={`collapse navbar-collapse ${show && 'show'}`}>
+    <div className={`collapse navbar-collapse ${styles.navbarCollapse} ${show && 'show'}`}>
       <div className='navbar-nav mr-auto'>
         {
           currentUser && currentUser.role === 1
@@ -78,7 +78,7 @@ const NavbarContent = enhance(({ toggleDropdown, show, currentUser, logout }) =>
             ? <NavDropdown title={
               <span>
                 <i className='fa fa-user-circle' />
-                <span className='ml-2 user-name'>{ currentUser.name }</span>
+                <span className={`ml-2 ${styles.userName}`}>{ currentUser.name }</span>
               </span>
             }>
               <NavDropdownLink to='/user/profile'>個人資料</NavDropdownLink>
@@ -94,7 +94,7 @@ const NavbarContent = enhance(({ toggleDropdown, show, currentUser, logout }) =>
 ))
 
 const Navbar = () => (
-  <div className='navbar-container'>
+  <div className={styles.navbarContainer}>
     <MediaQuery minDeviceWidth={768} >
       <div className='container'>
         <NavbarContent />

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import CourseConfig from 'components/Course/config'
 import ReactTooltip from 'react-tooltip'
 import {ShareModal} from 'components/ShareButton'
-import './style.scss'
+import styles from './style.scss'
 
 import { connect } from 'react-redux'
 import {
@@ -110,7 +110,7 @@ const TimetableCell = (props) => {
       onMouseOver={() => props.hovering && toggle()}
       onMouseUp={endToggle}
       onDrag={(e) => e.preventDefault()}
-      className={classNames(props.selected && 'selected')}
+      className={classNames(props.selected && styles.selected)}
     />
 }
 
@@ -163,7 +163,7 @@ class Timetable extends React.Component {
               <i className='fa fa-download mr-1' />
             </button>
           </div>
-          <table className='table table-bordered timetable mb-0' id='timetable'>
+          <table className={`table table-bordered ${styles.timetable} mb-0`} id='timetable'>
             <tbody>
               <tr>
                 <th className='btn border-0' data-tip={this.props.minified ? '展開課表' : '收合課表'} onClick={this.props.adjustRow}>

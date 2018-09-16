@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import Layout from 'pages/Layout'
-import DepartmentsTable from 'components/admin/DepartmentsTable'
+import DepartmentsTable from 'components/Admin/DepartmentsTable'
 import { fetchDepartments } from 'api/Actions/Departments'
 
 const mapStateToProps = (state) => ({
