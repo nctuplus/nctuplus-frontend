@@ -2,14 +2,18 @@
 import React from 'react'
 import Pagination from 'components/Pagination'
 import Spinner from 'components/Spinner'
+import { convertSemesterToString } from 'utilities'
 
-const Row = ({ file, course, teacher }) => (
+const Row = ({ file, course, uploader, description }) => (
   <tr className='clickable' onClick={() => window.open(`${SERVER_URL}${file.url}`)}>
-    <td>{`${course}/${teacher}`}</td>
-    <td>{/* props.semester */}</td>
-    <td>{/* props.file_name */}</td>
-    <td>{/* props.description */}</td>
-    <td>{/* props.user.name */}</td>
+    <td>
+      { course.permanent_course.name }
+      /
+      { course.teachers.map(teacher => teacher.name).join(',') }
+    </td>
+    <td>{ convertSemesterToString(course.semester) }</td>
+    <td>{ description }</td>
+    <td>{ uploader.name }</td>
   </tr>
 )
 
@@ -20,7 +24,6 @@ const Table = (props) => (
         <tr>
           <th>課程/教授</th>
           <th>學期</th>
-          <th>檔名</th>
           <th>描述</th>
           <th>上傳者</th>
         </tr>
@@ -28,9 +31,7 @@ const Table = (props) => (
       <tbody>
         {
           props.data.length
-            ? props.data.map((pastExam, index) => (
-              <Row {...pastExam} key={index} />
-            ))
+            ? props.data.map(pastExam => <Row {...pastExam} key={pastExam.id} />)
             : <tr className='text-center'>
               <td colSpan='5'>
                 <Spinner size={48} color='grey' />

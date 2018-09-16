@@ -59,8 +59,10 @@ const Index = ({ pastExams, updatePage }) => (
                         key={index}
                       >
                         { moment(pastExam.updated_at).fromNow() }
-                        { /* pastExam.uploader.name */ }
-                          上傳了 <strong>{ pastExam.course }</strong> 的考古題
+                        { pastExam.uploader.name}
+                          上傳了
+                        <strong>{ pastExam.course.permanent_course.name }</strong>
+                          的考古題
                       </SearchPanelNews>
                     )
                     )
