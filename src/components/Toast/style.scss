@@ -1,0 +1,48 @@
+$success:#28a745;
+$info:#17a2b8;
+$warning: #ffc107;
+$danger: #dc3545;
+
+@mixin paint($type) {
+    border-top: 5px solid $type;
+    background-color: lighten($type,45);
+    color: $type;
+}
+
+.toastWrapper{
+    position: fixed;
+    top: calc(56px + 1em);
+    left: 1em;
+    overflow-y: hidden;
+    .toast{
+        position: relative;
+        top: 0;
+        z-index: 11;
+        width: 280px;
+        height: 55px;
+        border-radius: 2px;
+        user-select: none;
+        line-height: 50px;
+        font-size: 15px;
+        padding: 0 8%;
+        margin-bottom: 5%;
+        cursor: pointer;
+        box-shadow: 1px 1px 5px rgba(0,0,0,.17);
+        transition: .4s;
+        &:hover{
+            opacity: 0.9;
+        }
+    }
+    .toast-info{
+        @include paint($info);
+    }
+    .toast-success{
+        @include paint($success);
+    }
+    .toast-warning{
+        @include paint($warning);
+    }
+    .toast-danger{
+        @include paint($danger);
+    }
+}
