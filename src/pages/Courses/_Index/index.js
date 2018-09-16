@@ -4,16 +4,16 @@ import Layout from 'pages/Layout'
 import { SearchCourse } from 'components/Search'
 import * as Course from 'components/Course'
 import Spinner from 'components/Spinner'
-import './style.scss'
+import styles from './style.scss'
 
 import { connect } from 'react-redux'
 import courseActions from 'api/Actions/Courses'
 import { compose, lifecycle } from 'recompose'
 
 const Index = ({ courses, updatePage }) => (
-  <Layout className='course'>
+  <Layout className={styles.course}>
     <div className='container'>
-      <div className='search-wrapper'>
+      <div className={styles.searchWrapper}>
         <SearchCourse show_semester />
       </div>
       {

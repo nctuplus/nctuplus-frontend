@@ -1,13 +1,13 @@
 
 import React from 'react'
-import './style.scss'
+import styles from './style.scss'
 
 const CourseListText = props => (
   <div>
     <button className='btn btn-default'>展開互抵課程</button>
     <table className='table table-bordered mt-3'>
       <tbody>
-        <tr className='course-required'>
+        <tr className={styles.courseRequired}>
           <td className='text-center' colSpan='5'>
             <h5>[必修] 需<strong>?</strong>學分</h5>
           </td>
@@ -23,7 +23,7 @@ const CourseListText = props => (
     </table>
     <table className='table table-bordered mt-3'>
       <tbody>
-        <tr className='course-elective'>
+        <tr className={styles.courseElective}>
           <td className='text-center' colSpan='5'>
             <h5>[選修] 需<strong>?</strong>學分</h5>
           </td>

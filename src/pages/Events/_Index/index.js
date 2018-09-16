@@ -9,28 +9,28 @@ import moment from 'moment'
 import Layout from 'pages/Layout'
 import Preview from 'components/Event/Preview'
 import { InputWithButton } from 'components/FormUtils'
-import { fetchEvents } from 'api/Actions/Events'
-import './style.scss'
+import { fetchEvents } from 'api/Controllers/events'
+import styles from './style.scss'
 
 const CustomArrowLeft = (props) => (
-  <div className='custom-arrow custom-arrow-left text-white' onClick={props.onClick}>
+  <div className={`${styles.customArrow} ${styles.customArrowLeft} text-white`} onClick={props.onClick}>
     <span className='fa fa-chevron-left' />
   </div>
 )
 const CustomArrowRight = (props) => (
-  <div className='custom-arrow custom-arrow-right text-white' onClick={props.onClick}>
+  <div className={`${styles.customArrow} ${styles.customArrowRight} text-white`} onClick={props.onClick}>
     <span className='fa fa-chevron-right' />
   </div>
 )
 
 const NavFooter = (props) => (
   <div>
-    <nav id='footer' className={props.visible ? 'slideIn' : 'slideOut'}>
+    <nav id={styles.footer} className={props.visible ? styles.slideIn : styles.slideOut}>
       <div className='row'>
-        <div className='col-sm-3 my-activity'>
+        <div className={`col-sm-3 ${styles.myActivity}`}>
           我的活動
         </div>
-        <div className='col-md-9 my-activity-link'>
+        <div className={`col-md-9 ${styles.myActivityLink}`}>
           {
             // @todo: user events
           }
@@ -40,7 +40,7 @@ const NavFooter = (props) => (
   </div>
 )
 
-const mapStateToProps = (state) => ({ events: state.events.all })
+const mapStateToProps = (state) => ({ events: state.events.index })
 const mapDispatchToProps = (dispatch) => ({ fetchData: (page) => dispatch(fetchEvents(page)) })
 
 const enhance = compose(
@@ -52,7 +52,7 @@ const enhance = compose(
 
 const Index = enhance((props) =>
   <Layout>
-    <div className='container pt-3 event'>
+    <div className={`container pt-3 ${styles.event}`}>
       <div className='m-1'>
         <Slider
           infinite
@@ -77,7 +77,7 @@ const Index = enhance((props) =>
                       src={`${SERVER_URL}${event.cover_image.url}`}
                     />
                   </Link>
-                  <h3 className='text-center text-white title'>
+                  <h3 className={`text-center text-white ${styles.title}`}>
                     {event.title}
                   </h3>
                 </div>
@@ -85,7 +85,7 @@ const Index = enhance((props) =>
           }
         </Slider>
       </div>
-      <div className='row form-wrapper p-3'>
+      <div className={`row ${styles.formWrapper} p-3`}>
         <div className='control-wrapper col-6 col-sm-3 col-md-2'>
           <Link to='/events/new' className='flat-link'>
             <button className='btn btn-info full-width'>新增活動</button>
@@ -108,7 +108,7 @@ const Index = enhance((props) =>
         </div>
       </div>
 
-      <div className='row event-block p-4 mb-3'>
+      <div className={`row ${styles.eventBlock} p-4 mb-3`}>
         <div className='col-12'>
           <h1 className='my-3'>近期活動</h1>
         </div>
@@ -119,7 +119,7 @@ const Index = enhance((props) =>
         }
       </div>
 
-      <div className='row event-block p-4 mb-3'>
+      <div className={`row ${styles.eventBlock} p-4 mb-3`}>
         <div className='col-12'>
           <h1 className='my-3'>已結束活動</h1>
         </div>

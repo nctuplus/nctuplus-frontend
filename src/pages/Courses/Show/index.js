@@ -7,7 +7,6 @@ import * as Course from 'components/Course'
 import { Ratings, PersonalRating } from 'components/Ratings'
 import * as PastExam from 'components/PastExam'
 import Spinner from 'components/Spinner'
-import './style.scss'
 
 import scrollToComponent from 'react-scroll-to-component'
 import { connect } from 'react-redux'

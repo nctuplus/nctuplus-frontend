@@ -2,14 +2,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames'
-import './style.scss'
+import styles from './style.scss'
 
 const checkMatch = (url, match) =>
-  classNames('tab', 'p-2', 'flat-link', 'd-inline-block', url === match && ' active')
+  classNames(styles.tab, 'p-2', 'flat-link', 'd-inline-block', url === match && ' active')
 
 const UserNavigation = (props) => (
   <div className='m-2'>
-    <div className='user-nav bg-white pl-3'>
+    <div className={`${styles.userNav} bg-white pl-3`}>
       <Link className={checkMatch(props.match.params.url, 'profile')} to='/user/profile'>
         <i className='fa fa-user mx-1' />個人檔案
       </Link>

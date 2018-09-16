@@ -2,7 +2,6 @@
 import React from 'react'
 import classNames from 'classnames'
 import {ShareButton} from 'components/ShareButton'
-import './style.scss'
 
 const CommentReply = (props) => (
   <div className='row justify-content-end'>

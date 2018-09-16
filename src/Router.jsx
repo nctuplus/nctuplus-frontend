@@ -7,7 +7,7 @@ import {
   Redirect
 } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { validateToken } from 'api/controller'
+import { validateToken } from 'api/Controllers/user'
 
 import Index from 'pages/Index'
 import * as Admin from 'pages/Admin'
@@ -72,6 +72,11 @@ const Router = enhance(({ currentUser }) => {
         <Route exact path='/admin/departments' component={adminOnly(Admin.Departments.Index)} />
         <Route path='/admin/departments/new' component={adminOnly(Admin.Departments.New)} />
         <Route path='/admin/departments/:id/edit' component={adminOnly(Admin.Departments.Edit)} />
+
+        {/* admin course_map route group */}
+        <Route exact path='/admin/course_maps' component={adminOnly(Admin.CourseMaps.Index)} />
+        <Route path='/admin/course_maps/new' component={adminOnly(Admin.CourseMaps.New)} />
+        <Route path='/admin/course_maps/:id/edit' component={adminOnly(Admin.CourseMaps.Edit)} />
 
         {/* course route group */}
         <Route exact path='/courses' component={Courses.Index} />
