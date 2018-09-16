@@ -51,7 +51,7 @@ class Index extends React.Component {
                   mine_link='/books/?mine=true'
                   mine_btn_type='info'
                 />
-              <div className={`text-center ${styles.filter}`} >
+                <div className={`text-center ${styles.filter}`} >
                   <h4 className='text-center search-panel-title'>排序</h4>
                   <div className={`btn-group ${styles.filterGroup}`} >
                     <button

@@ -24,7 +24,7 @@ class NavDropdown extends React.Component {
         onMouseLeave={() => this.setState({ open: false })}
       >
         <a
-          className={classNames('nav-link',' dropdown-toggle', this.state.open && 'show')}
+          className={classNames('nav-link', ' dropdown-toggle', this.state.open && 'show')}
           onClick={() => this.setState({ open: !this.state.open })}
         >
           { this.props.title }

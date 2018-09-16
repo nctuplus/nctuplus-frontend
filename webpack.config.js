@@ -39,31 +39,40 @@ module.exports = {
       {
         test: /\.(jsx|js)$/,
         loaders: ['babel-loader'],
-        include: Path.join(__dirname, 'src/'),
+        include: Path.join(__dirname, 'src/')
       },
       {
         test: /\.css$/,
         use: [
-          require.resolve('style-loader'),
-          {
-            loader: require.resolve('css-loader'),
-            options: {
-              importLoaders: 1,
-              modules: true,
-              localIdentName: "[name]__[local]___[hash:base64:5]"
-            },
-          },
-        ],
+          require.resolve('style-loader')
+        ]
       },
       {
         test: /\.scss$/,
         use: [
           env === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
-          'css-loader',
-          'sass-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: true,
+              localIdentName: '[name]__[local]___[hash:base64:5]'
+            }
+          },
+          { loader: 'sass-loader' },
           { loader: 'postcss-loader', options: { plugins: () => [require('autoprefixer')] } }
         ],
-        exclude: /node_modules/
+        exclude: [Path.resolve(__dirname, 'src/assets/styles')]
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          env === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
+          { loader: 'css-loader' },
+          { loader: 'sass-loader' },
+          { loader: 'postcss-loader', options: { plugins: () => [require('autoprefixer')] } }
+        ],
+        include: [Path.resolve(__dirname, 'src/assets/styles')]
       },
       {
         test: /\.(ttf|eot|png|gif|jpg|woff|woff2|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
