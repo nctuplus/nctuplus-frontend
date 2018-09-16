@@ -54,8 +54,7 @@
     "recompose": "^0.28.2",
     "redux": "^3.6.0",
     "redux-actions": "^2.6.1",
-    "redux-thunk": "^2.2.0",
-    "slick-carousel": "^1.8.1"
+    "redux-thunk": "^2.2.0"
   },
   "scripts": {
     "dev": "NODE_ENV=development webpack-dev-server",
