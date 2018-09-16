@@ -34,7 +34,7 @@ class Show extends React.Component {
                       <tr>
                         <td colSpan='2' className='col-md-12'>
                           <h4><strong>{ book.name }</strong></h4>
-                          by { book.author }
+                          by { book.authors }
                         </td>
                       </tr>
                       <tr>
@@ -43,7 +43,7 @@ class Show extends React.Component {
                       </tr>
                       <tr>
                         <td>賣家</td>
-                        <td>{ book.seller && book.seller.name }</td>
+                        <td>{ book.user && book.user.name }</td>
                       </tr>
                       <tr>
                         <td>連絡方式</td>
@@ -51,7 +51,7 @@ class Show extends React.Component {
                       </tr>
                       <tr>
                         <td>書況</td>
-                        <td className='line-break'>{ book.condition }</td>
+                        <td className='line-break'>{ book.info }</td>
                       </tr>
                       <tr>
                         <td>觀看次數</td>
