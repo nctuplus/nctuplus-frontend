@@ -13,6 +13,7 @@ export const storeBook = createAction('STORE_BOOK')
 export const getBookDone = createAction('GET_BOOK_DONE')
 
 export const postBookStart = createAction('POST_BOOK_START')
+export const storePostBook = createAction('STORE_POST_BOOK')
 export const postBookDone = createAction('POST_BOOK_DONE')
 export const postBookReset = createAction('POST_BOOK_RESET')
 
@@ -55,7 +56,10 @@ export const postBook = (payload) => dispatch => {
     }
   })
     .then(response => response.json())
-    .then(json => dispatch(postBookDone()))
+    .then(json => {
+      dispatch(storePostBook(json))
+      dispatch(postBookDone())
+    })
     .catch(error => console.log(error))
 }
 

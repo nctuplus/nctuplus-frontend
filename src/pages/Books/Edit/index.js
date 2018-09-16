@@ -2,76 +2,102 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { compose, withState, lifecycle, withHandlers, withProps } from 'recompose'
-// import { base64encode } from 'utilities'
-// import { FETCHING_STATUS } from 'utilities/constants'
+import { base64encode } from 'utilities'
+import { FETCHING_STATUS } from 'utilities/constants'
+import { getBook, patchBook, patchBookReset } from 'api/Actions/Books'
 import Form from 'components/Book/Form'
 
 const mapStateToProps = (state) => ({
-
+  book: state.books.show.data,
+  status: state.books.show.status,
+  bookUpdateStatus: state.books.patch.status
 })
 
 const mapDispatchToProps = (dispatch) => ({
-
+  getBook: (id) => dispatch(getBook(id)),
+  patchBook: (payload, id) => dispatch(patchBook(payload, id)),
+  patchBookReset: () => dispatch(patchBookReset())
 })
 
-const enhance = compose(
-  withRouter,
-  connect(mapStateToProps, mapDispatchToProps),
-  withState('payload', 'setPayload', {
-
-  }),
-  withState('fileUploadStatus', 'setFileUploadStatus', 'none'),
-  withState('uploadedImageUrl', 'setUploadedImageUrl', null),
-  withState('synced', 'setSynced', false),
-  withProps(({ formRef: React.createRef(), imageUploadRef: React.createRef() })),
-  withHandlers({
-    updatePayload: ({ setPayload }) => payload => setPayload(previous => ({ ...previous, ...payload })),
-    /* onFileUpload: ({ setFileUploadStatus, setPayload, imageUploadRef, setUploadedImageUrl }) => () => {
-      setFileUploadStatus('uploading')
-      const file = imageUploadRef.current.files[0]
-      base64encode(file)
-        .then(encoded => {
-          setPayload(previous => ({ ...previous, cover_image: encoded }))
-          setFileUploadStatus('done')
-          setUploadedImageUrl(URL.createObjectURL(file))
-        })
-    }, */
-    onSubmit: ({ formRef, fileUploadStatus, payload, patchEvent, match }) => event => {
-      // only works on chrome, but who care others? ;)
-      formRef.current.reportValidity()
-
-      // 檔案還沒上傳並編碼完前不送出
-      if (fileUploadStatus === 'uploading') return
-
-      if (payload.name) {
-        // 讓表單不要照預設方法送出
-        event.preventDefault()
-        patchEvent(payload, match.params.id)
-      }
+class Edit extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      payload: {
+        name: '',
+        author: '',
+        isbn: '',
+        price: '',
+        cover_image: '',
+        condition: '',
+        contact_way: ''
+      },
+      synced: false,
+      fileUploadStatus: 'none',
+      uploadedImageUrl: null
     }
-  }),
-  lifecycle({
-    componentDidUpdate: function () {
-      /* const props = this.props
+    this.formRef = React.createRef()
+    this.imageUploadRef = React.createRef()
+  }
 
-      if (props.status === FETCHING_STATUS.DONE && !props.synced) {
-        props.setPayload(payload => ({ ...payload, ...props.event }))
+  componentDidMount () {
+    this.props.getBook(this.props.match.params.id)
+  }
 
-        if (props.event.cover_image) {
-          props.setUploadedImageUrl(props.event.cover_image.url)
-        }
-        props.setSynced(true)
+  componentDidUpdate () {
+    if (this.props.status === FETCHING_STATUS.DONE && !this.state.synced) {
+      this.setState({ payload: { ...this.state.payload, ...this.props.book } })
+
+      if (this.state.payload.cover_image) {
+        this.setState({ uploadedImageUrl: this.state.book.cover_image.url })
       }
-      if (props.eventUpdateStatus === FETCHING_STATUS.DONE) {
-        props.patchEventReset()
-        props.history.push(`/events/${props.payload.id}`)
-      } */
-    },
-    componentDidMount: function () {
-      // this.props.getBook(this.props.match.params.id)
+      this.setState({ synced: true })
     }
-  })
-)
 
-export default enhance(Form)
+    if (this.props.bookUpdateStatus === FETCHING_STATUS.DONE) {
+      this.props.patchBookReset()
+      this.props.history.push(`/books/${this.props.book.id}`)
+    }
+  }
+
+  onFileUpload () {
+    this.setState({ fileUploadStatus: 'uploading' })
+    const file = this.imageUploadRef.current.files[0]
+    base64encode(file)
+      .then(encoded => {
+        this.setState({ ...this.state.payload, cover_image: encoded })
+        this.setState({ fileUploadStatus: 'done' })
+        this.setState({ uploadedImageUrl: URL.createObjectURL(file) })
+      })
+  }
+
+  onSubmit (event) {
+    let payload = this.state.payload
+    // only works on chrome, but who care others? ;)
+    this.formRef.current.reportValidity()
+
+    // 檔案還沒上傳並編碼完前不送出
+    if (this.state.fileUploadStatus === 'uploading') return
+
+    if (payload.name && payload.author && payload.price && payload.condition && payload.contact_way) {
+      // 讓表單不要照預設方法送出
+      event.preventDefault()
+      this.props.patchBook(payload, this.props.match.params.id)
+    }
+  }
+
+  render () {
+    return (
+      <Form
+        {...this.state}
+        formRef={this.formRef}
+        imageUploadRef={this.imageUploadRef}
+        updatePayload={(payload) => this.setState({ payload: { ...this.state.payload, ...payload } })}
+        onFileUpload={() => this.onFileUpload()}
+        onSubmit={(event) => this.onSubmit(event)}
+      />
+    )
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Edit))
