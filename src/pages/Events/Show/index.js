@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 import Layout from 'pages/Layout'
-import { getEvent, followEvent, deleteEvent, deleteEventReset } from 'api/Actions/Events'
+import { getEvent, followEvent, deleteEvent } from 'api/Controllers/events'
+import actions from 'api/Actions/Events'
 import { FETCHING_STATUS } from 'utilities/constants'
 import styles from './style.scss'
 
@@ -88,18 +89,18 @@ class Show extends React.Component {
 const mapStateToProps = (state) => ({
   event: state.events.show.data,
   status: state.events.show.status,
-  eventDeleteStatus: state.events.show.status_delete
+  eventDeleteStatus: state.events.delete.status
 })
 
 const mapDispatchToProps = (dispatch) => ({
   getEvent: (id) => dispatch(getEvent(id)),
-  followEvent: (eventId, userId) => dispatch(followEvent(eventId, userId)),
+  followEvent: (id) => dispatch(followEvent(id)),
   deleteEvent: (id) => {
     if (window.confirm('確定刪除此活動嗎?')) {
       dispatch(deleteEvent(id))
     }
   },
-  deleteEventReset: () => dispatch(deleteEventReset())
+  deleteEventReset: () => dispatch(actions.events.delete.setStatus(FETCHING_STATUS.IDLE))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Show))
