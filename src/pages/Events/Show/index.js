@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 import Layout from 'pages/Layout'
-import { getEvent, followEvent, deleteEvent } from 'api/Controllers/events'
+import { getEvent, deleteEvent, updateFollowEvents, deleteFollowEvents } from 'api/Controllers/events'
 import actions from 'api/Actions/Events'
 import { FETCHING_STATUS } from 'utilities/constants'
 import styles from './style.scss'
@@ -22,7 +22,8 @@ class Show extends React.Component {
   }
 
   render () {
-    const { event } = this.props
+    const { event, followEvents } = this.props
+    const index = followEvents.findIndex(e => e.id === event.id)
 
     return (
       <Layout>
@@ -71,13 +72,15 @@ class Show extends React.Component {
               </div>
             }
             <div className='pull-right'>
-              {event.followBool
-                ? <button className='btn btn-success nav-button' onClick={() => this.props.followEvent(event.id, 3056)}>
+              {
+                index >= 0
+                  ? <button className='btn btn-success nav-button' onClick={() => this.props.cancelFollow(event.id, index, followEvents)}>
                   取消關注
-                </button>
-                : <button className='btn btn-success nav-button' onClick={() => this.props.followEvent(event.id, 3056)}>
+                  </button>
+                  : <button className='btn btn-success nav-button' onClick={() => this.props.follow(event.id, followEvents)}>
                   關注
-                </button>}
+                  </button>
+              }
             </div>
           </div>
         </div>
@@ -89,18 +92,20 @@ class Show extends React.Component {
 const mapStateToProps = (state) => ({
   event: state.events.show.data,
   status: state.events.show.status,
-  eventDeleteStatus: state.events.delete.status
+  eventDeleteStatus: state.events.delete.status,
+  followEvents: state.events.follow.data
 })
 
 const mapDispatchToProps = (dispatch) => ({
   getEvent: (id) => dispatch(getEvent(id)),
-  followEvent: (id) => dispatch(followEvent(id)),
   deleteEvent: (id) => {
     if (window.confirm('確定刪除此活動嗎?')) {
       dispatch(deleteEvent(id))
     }
   },
-  deleteEventReset: () => dispatch(actions.events.delete.setStatus(FETCHING_STATUS.IDLE))
+  deleteEventReset: () => dispatch(actions.events.delete.setStatus(FETCHING_STATUS.IDLE)),
+  follow: (id, events) => dispatch(updateFollowEvents(id, events)),
+  cancelFollow: (id, pos, events) => dispatch(deleteFollowEvents(id, pos, events))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Show))

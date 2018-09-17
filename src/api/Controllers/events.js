@@ -56,10 +56,36 @@ export const deleteEvent = (id) => dispatch => {
 
 export const fetchFollowEvents = () => dispatch => {
   dispatch(actions.events.follow.setStatus(FETCHING_STATUS.FETCHING))
-  server.public
+  server.protected
     .get('/api/v1/my/events')
     .then(({ data: events }) => {
       dispatch(actions.events.follow.store(events))
+      dispatch(actions.events.follow.setStatus(FETCHING_STATUS.DONE))
+    })
+    .catch(() => dispatch(actions.events.follow.setStatus(FETCHING_STATUS.FAIL)))
+}
+
+export const updateFollowEvents = (id, events) => dispatch => {
+  dispatch(actions.events.follow.setStatus(FETCHING_STATUS.FETCHING))
+  server.protected
+    .post(`/api/v1/events/${id}/follow`)
+    .then(() => {
+      let updated = [ ...events ]
+      updated.push({id: id})
+      dispatch(actions.events.follow.store(updated))
+      dispatch(actions.events.follow.setStatus(FETCHING_STATUS.DONE))
+    })
+    .catch(() => dispatch(actions.events.follow.setStatus(FETCHING_STATUS.FAIL)))
+}
+
+export const deleteFollowEvents = (id, pos, events) => dispatch => {
+  dispatch(actions.events.follow.setStatus(FETCHING_STATUS.FETCHING))
+  server.protected
+    .delete(`/api/v1/events/${id}/follow`)
+    .then(() => {
+      let updated = [ ...events ]
+      updated.splice(pos, 1)
+      dispatch(actions.events.follow.store(updated))
       dispatch(actions.events.follow.setStatus(FETCHING_STATUS.DONE))
     })
     .catch(() => dispatch(actions.events.follow.setStatus(FETCHING_STATUS.FAIL)))
