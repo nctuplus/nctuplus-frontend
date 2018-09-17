@@ -9,7 +9,7 @@ import moment from 'moment'
 import Layout from 'pages/Layout'
 import Preview from 'components/Event/Preview'
 import { InputWithButton } from 'components/FormUtils'
-import { fetchEvents } from 'api/Controllers/events'
+import { fetchEvents, fetchFollowEvents } from 'api/Controllers/events'
 import styles from './style.scss'
 
 const CustomArrowLeft = (props) => (
@@ -32,7 +32,12 @@ const NavFooter = (props) => (
         </div>
         <div className={`col-md-9 ${styles.myActivityLink}`}>
           {
-            // @todo: user events
+            props.data.map((event, index) =>
+              <div key={index}>
+                <span className='mr-3'>{event.begin_time ? event.begin_time.slice(0, 10) : ''}</span>
+                <span>{event.title}</span>
+              </div>
+            )
           }
         </div>
       </div>
@@ -40,14 +45,26 @@ const NavFooter = (props) => (
   </div>
 )
 
-const mapStateToProps = (state) => ({ events: state.events.index })
-const mapDispatchToProps = (dispatch) => ({ fetchData: (page) => dispatch(fetchEvents(page)) })
+const mapStateToProps = (state) => ({
+  events: state.events.index,
+  followEvents: state.events.follow.data
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchData: (page) => dispatch(fetchEvents(page)),
+  fetchFollowEvents: () => dispatch(fetchFollowEvents())
+})
 
 const enhance = compose(
   withRouter,
   connect(mapStateToProps, mapDispatchToProps),
   withState('visible', 'setVisible', false),
-  lifecycle({ componentDidMount: function () { this.props.fetchData() } })
+  lifecycle({
+    componentDidMount: function () {
+      this.props.fetchData()
+      this.props.fetchFollowEvents()
+    }
+  })
 )
 
 const Index = enhance((props) =>
@@ -131,7 +148,7 @@ const Index = enhance((props) =>
       </div>
     </div>
 
-    <NavFooter visible={props.visible} />
+    <NavFooter visible={props.visible} data={props.followEvents} />
   </Layout>
 )
 

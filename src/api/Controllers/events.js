@@ -70,8 +70,9 @@ export const updateFollowEvents = (id, events) => dispatch => {
   server.protected
     .post(`/api/v1/events/${id}/follow`)
     .then(() => {
-      events.push({ id: id })
-      dispatch(actions.events.follow.store(events))
+      let updated = [ ...events ]
+      updated.push({id: id})
+      dispatch(actions.events.follow.store(updated))
       dispatch(actions.events.follow.setStatus(FETCHING_STATUS.DONE))
     })
     .catch(() => dispatch(actions.events.follow.setStatus(FETCHING_STATUS.FAIL)))
@@ -82,8 +83,9 @@ export const deleteFollowEvents = (id, pos, events) => dispatch => {
   server.protected
     .delete(`/api/v1/events/${id}/follow`)
     .then(() => {
-      events.splice(pos, 1)
-      dispatch(actions.events.follow.store(events))
+      let updated = [ ...events ]
+      updated.splice(pos, 1)
+      dispatch(actions.events.follow.store(updated))
       dispatch(actions.events.follow.setStatus(FETCHING_STATUS.DONE))
     })
     .catch(() => dispatch(actions.events.follow.setStatus(FETCHING_STATUS.FAIL)))
