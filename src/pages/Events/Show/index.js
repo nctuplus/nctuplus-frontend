@@ -54,7 +54,7 @@ class Show extends React.Component {
             <div className={styles.divideHorizontal}>
               <span>活動介紹</span>
             </div>
-            <section dangerouslySetInnerHTML={{__html: event.content}} />
+            <section dangerouslySetInnerHTML={{ __html: event.content }} />
           </div>
         </div>
         <div className={`${styles.fixedMenu} fixed`}>

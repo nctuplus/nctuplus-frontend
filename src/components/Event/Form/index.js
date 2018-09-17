@@ -99,7 +99,7 @@ const Form = props => (
                 <div className='col-4'>
                   <input
                     value={props.payload.begin_time || ''}
-                    onChange={e => props.updatePayload({begin_time: e.target.value})}
+                    onChange={e => props.updatePayload({ begin_time: e.target.value })}
                     className='form-control'
                     placeholder='必填'
                     type='date'
@@ -110,7 +110,7 @@ const Form = props => (
                 <div className='col-4'>
                   <input
                     value={props.payload.end_time || ''}
-                    onChange={e => props.updatePayload({end_time: e.target.value})}
+                    onChange={e => props.updatePayload({ end_time: e.target.value })}
                     className='form-control'
                     placeholder='必填'
                     type='date'
@@ -123,7 +123,7 @@ const Form = props => (
               <CKEditor
                 activeClass='p10'
                 content={props.payload.content || ''}
-                events={{change: (e) => props.updatePayload({ content: e.editor.getData() })}}
+                events={{ change: (e) => props.updatePayload({ content: e.editor.getData() }) }}
               />
             </LabeledInput>
             <div className='col-12 text-right'>

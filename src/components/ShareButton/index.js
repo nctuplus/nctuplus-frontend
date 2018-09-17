@@ -48,4 +48,4 @@ const ShareButton = () => (
   </div>
 )
 
-export {ShareModal, ShareButton}
+export { ShareModal, ShareButton }

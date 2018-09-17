@@ -2,7 +2,7 @@
 import React from 'react'
 import Layout from 'pages/Layout'
 import { Sidebar, SidebarItem } from 'components/Sidebar'
-import {ShareButton} from 'components/ShareButton'
+import { ShareButton } from 'components/ShareButton'
 import * as Course from 'components/Course'
 import { Ratings, PersonalRating } from 'components/Ratings'
 import * as PastExam from 'components/PastExam'

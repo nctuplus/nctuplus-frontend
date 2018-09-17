@@ -71,7 +71,7 @@ export const updateFollowEvents = (id, events) => dispatch => {
     .post(`/api/v1/events/${id}/follow`)
     .then(() => {
       let updated = [ ...events ]
-      updated.push({id: id})
+      updated.push({ id: id })
       dispatch(actions.events.follow.store(updated))
       dispatch(actions.events.follow.setStatus(FETCHING_STATUS.DONE))
     })
