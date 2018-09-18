@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 // custom instances
-export const server = {
+const server = {
   public: axios.create({ baseURL: SERVER_URL }),
   protected: axios.create({ baseURL: SERVER_URL })
 }
@@ -32,3 +32,5 @@ function updateTokenInterceptor (response) {
 
 server.protected.interceptors.request.use(withTokenInterceptor)
 server.protected.interceptors.response.use(updateTokenInterceptor)
+
+export default server

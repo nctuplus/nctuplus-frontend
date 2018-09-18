@@ -1,6 +1,6 @@
 
 import actions from 'api/Actions/User'
-import { server } from 'api/Controllers'
+import server from 'api/Controllers'
 import { FETCHING_STATUS } from 'utilities/constants'
 
 export const login = data => dispatch =>
