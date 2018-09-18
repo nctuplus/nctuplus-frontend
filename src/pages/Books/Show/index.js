@@ -4,7 +4,7 @@ import Layout from 'pages/Layout'
 
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { getBook } from 'api/Actions/Books'
+import { getBook } from 'api/Controllers/books'
 
 class Show extends React.Component {
   componentDidMount () {

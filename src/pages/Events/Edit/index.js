@@ -18,7 +18,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getEvent: (id) => dispatch(getEvent(id)),
   patchEvent: (payload, id) => dispatch(patchEvent(payload, id)),
-  patchEventReset: () => dispatch(actions.events.edit.setStatus(FETCHING_STATUS.FAIL))
+  patchEventReset: () => dispatch(actions.events.edit.setStatus(FETCHING_STATUS.IDLE))
 })
 
 const enhance = compose(

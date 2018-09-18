@@ -4,19 +4,20 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { base64encode } from 'utilities'
 import { FETCHING_STATUS } from 'utilities/constants'
-import { getBook, patchBook, patchBookReset } from 'api/Actions/Books'
+import { getBook, patchBook } from 'api/Controllers/books'
+import actions from 'api/Actions/Books'
 import Form from 'components/Book/Form'
 
 const mapStateToProps = (state) => ({
   book: state.books.show.data,
   status: state.books.show.status,
-  bookUpdateStatus: state.books.patch.status
+  bookUpdateStatus: state.books.edit.status
 })
 
 const mapDispatchToProps = (dispatch) => ({
   getBook: (id) => dispatch(getBook(id)),
   patchBook: (payload, id) => dispatch(patchBook(payload, id)),
-  patchBookReset: () => dispatch(patchBookReset())
+  patchBookReset: () => dispatch(actions.books.edit.setStatus(FETCHING_STATUS.IDLE))
 })
 
 class Edit extends React.Component {

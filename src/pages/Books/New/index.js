@@ -4,17 +4,18 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { base64encode } from 'utilities'
 import { FETCHING_STATUS } from 'utilities/constants'
-import { postBook, postBookReset } from 'api/Actions/Books'
+import { postBook } from 'api/Controllers/books'
+import actions from 'api/Actions/Books'
 import Form from 'components/Book/Form'
 
 const mapStateToProps = (state) => ({
-  book: state.books.post.data,
-  status: state.books.post.status
+  book: state.books.new.data,
+  status: state.books.new.status
 })
 
 const mapDispatchToProps = (dispatch) => ({
   postBook: (payload) => dispatch(postBook(payload)),
-  postBookReset: () => dispatch(postBookReset())
+  postBookReset: () => dispatch(actions.books.new.setStatus(FETCHING_STATUS.IDLE))
 })
 
 class New extends React.Component {

@@ -14,7 +14,8 @@ import moment from 'moment'
 import styles from './style.scss'
 
 import { connect } from 'react-redux'
-import { updateBooksPage, applyBooksFilters, fetchBooks } from 'api/Actions/Books'
+import { getBooks } from 'api/Controllers/books'
+import actions from 'api/Actions/Books'
 
 class Index extends React.Component {
   componentDidMount () {
@@ -28,7 +29,7 @@ class Index extends React.Component {
   }
 
   componentWillUnmount () {
-    this.props.resetPage()
+    this.props.updatePage(1)
   }
 
   render () {
@@ -55,25 +56,25 @@ class Index extends React.Component {
                   <h4 className='text-center search-panel-title'>排序</h4>
                   <div className={`btn-group ${styles.filterGroup}`} >
                     <button
-                      onClick={() => this.props.applyFilters({ sort_by: 'price' })}
+                      onClick={() => this.props.updateFilters({ sort_by: 'price' })}
                       className={this.props.books.filters.sort_by === 'price' ? 'btn btn-primary' : 'btn btn-default'}
                     >
                       價錢
                       {
                         this.props.books.filters.sort_by === 'price' &&
-                        <span onClick={() => this.props.applyFilters({ descend: !this.props.books.filters.descend })}>
+                        <span onClick={() => this.props.updateFilters({ descend: !this.props.books.filters.descend })}>
                           { this.props.books.filters.descend ? '▼' : '▲' }
                         </span>
                       }
                     </button>
                     <button
-                      onClick={() => this.props.applyFilters({ sort_by: 'date' })}
+                      onClick={() => this.props.updateFilters({ sort_by: 'date' })}
                       className={this.props.books.filters.sort_by === 'date' ? 'btn btn-primary' : 'btn btn-default'}
                     >
                       日期
                       {
                         this.props.books.filters.sort_by === 'date' &&
-                        <span onClick={() => this.props.applyFilters({ descend: !this.props.books.filters.descend })}>
+                        <span onClick={() => this.props.updateFilters({ descend: !this.props.books.filters.descend })}>
                           { this.props.books.filters.descend ? '▼' : '▲' }
                         </span>
                       }
@@ -103,13 +104,12 @@ class Index extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  books: state.books.all
+  books: state.books.index
 })
 const mapDispatchToProps = (dispatch) => ({
-  fetchData: (page) => dispatch(fetchBooks(page)),
-  applyFilters: (filters) => dispatch(applyBooksFilters(filters)),
-  updatePage: (page) => dispatch(updateBooksPage(page)),
-  resetPage: () => dispatch(updateBooksPage(1))
+  fetchData: (page) => dispatch(getBooks(page)),
+  updateFilters: (filters) => dispatch(actions.books.index.updateFilters(filters)),
+  updatePage: (page) => dispatch(actions.books.index.updatePage(page))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index)
