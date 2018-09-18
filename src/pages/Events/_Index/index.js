@@ -9,7 +9,7 @@ import moment from 'moment'
 import Layout from 'pages/Layout'
 import Preview from 'components/Event/Preview'
 import { InputWithButton } from 'components/FormUtils'
-import { fetchEvents, fetchFollowEvents } from 'api/Controllers/events'
+import { getEvents } from 'api/Controllers/events'
 import styles from './style.scss'
 
 const CustomArrowLeft = (props) => (
@@ -51,8 +51,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchData: (page) => dispatch(fetchEvents(page)),
-  fetchFollowEvents: () => dispatch(fetchFollowEvents())
+  fetchData: (page) => dispatch(getEvents(page))
 })
 
 const enhance = compose(
@@ -62,7 +61,6 @@ const enhance = compose(
   lifecycle({
     componentDidMount: function () {
       this.props.fetchData()
-      this.props.fetchFollowEvents()
     }
   })
 )

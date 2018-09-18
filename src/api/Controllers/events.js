@@ -3,7 +3,7 @@ import actions from 'api/Actions/Events'
 import server from 'api/Controllers'
 import { FETCHING_STATUS } from 'utilities/constants'
 
-export const fetchEvents = (page = 1) => dispatch => {
+export const getEvents = (page = 1) => dispatch => {
   dispatch(actions.events.index.setStatus(FETCHING_STATUS.FETCHING))
   server.public
     .get(`/api/v1/events?page=${page}`)
@@ -42,7 +42,7 @@ export const patchEvent = (payload, id) => dispatch => {
   dispatch(actions.events.edit.setStatus(FETCHING_STATUS.FETCHING))
   server.protected
     .patch(`/api/v1/events/${id}`, payload)
-    .then(({ data: event }) => dispatch(actions.events.edit.setStatus(FETCHING_STATUS.DONE)))
+    .then(() => dispatch(actions.events.edit.setStatus(FETCHING_STATUS.DONE)))
     .catch(() => dispatch(actions.events.edit.setStatus(FETCHING_STATUS.FAIL)))
 }
 
@@ -50,11 +50,11 @@ export const deleteEvent = (id) => dispatch => {
   dispatch(actions.events.delete.setStatus(FETCHING_STATUS.FETCHING))
   server.protected
     .delete(`/api/v1/events/${id}`)
-    .then(({ data: event }) => dispatch(actions.events.delete.setStatus(FETCHING_STATUS.DONE)))
+    .then(() => dispatch(actions.events.delete.setStatus(FETCHING_STATUS.DONE)))
     .catch(() => dispatch(actions.events.delete.setStatus(FETCHING_STATUS.FAIL)))
 }
 
-export const fetchFollowEvents = () => dispatch => {
+export const getFollowEvents = () => dispatch => {
   dispatch(actions.events.follow.setStatus(FETCHING_STATUS.FETCHING))
   server.protected
     .get('/api/v1/my/events')

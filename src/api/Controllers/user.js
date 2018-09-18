@@ -1,12 +1,21 @@
 
 import actions from 'api/Actions/User'
 import server from 'api/Controllers'
+import { getFollowEvents } from './events'
 import { FETCHING_STATUS } from 'utilities/constants'
+
+// fetch all user related data while logging in
+export const getAllUserData = () => dispatch => {
+  dispatch(getFollowEvents())
+}
 
 export const login = data => dispatch =>
   server.protected
     .post('/auth/sign_in', data)
-    .then(({ data: user }) => dispatch(actions.user.auth.login(user.data)))
+    .then(({ data: user }) => {
+      dispatch(actions.user.auth.login(user.data))
+      dispatch(getAllUserData())
+    })
     .catch(() => dispatch(actions.user.auth.setStatus(FETCHING_STATUS.FAIL)))
 
 export const logout = () => dispatch =>
@@ -24,7 +33,10 @@ export const validateToken = () => dispatch => {
   if (token && uid && client) {
     server.protected
       .get('/auth/validate_token', config)
-      .then(({ data: user }) => dispatch(actions.user.auth.login(user.data)))
+      .then(({ data: user }) => {
+        dispatch(actions.user.auth.login(user.data))
+        dispatch(getAllUserData())
+      })
       .catch(() => dispatch(actions.user.auth.setStatus(FETCHING_STATUS.FAIL)))
   }
 }
