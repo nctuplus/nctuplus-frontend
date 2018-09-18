@@ -31,8 +31,8 @@ const Form = props => (
 
             <LabeledInput label='作者'>
               <input
-                value={props.payload.author}
-                onChange={e => props.updatePayload({ author: e.target.value })}
+                value={props.payload.authors}
+                onChange={e => props.updatePayload({ authors: e.target.value })}
                 className='form-control'
                 placeholder='必填'
                 type='text'
@@ -81,8 +81,8 @@ const Form = props => (
 
             <LabeledInput label='書況說明'>
               <textarea
-                value={props.payload.condition}
-                onChange={e => props.updatePayload({ condition: e.target.value })}
+                value={props.payload.info}
+                onChange={e => props.updatePayload({ info: e.target.value })}
                 className='form-control'
                 placeholder='必填'
                 required

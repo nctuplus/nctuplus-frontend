@@ -26,11 +26,11 @@ class Edit extends React.Component {
     this.state = {
       payload: {
         name: '',
-        author: '',
+        authors: '',
         isbn: '',
         price: '',
         cover_image: '',
-        condition: '',
+        info: '',
         contact_way: ''
       },
       synced: false,
@@ -80,7 +80,7 @@ class Edit extends React.Component {
     // 檔案還沒上傳並編碼完前不送出
     if (this.state.fileUploadStatus === 'uploading') return
 
-    if (payload.name && payload.author && payload.price && payload.condition && payload.contact_way) {
+    if (payload.name && payload.authors && payload.price && payload.info && payload.contact_way) {
       // 讓表單不要照預設方法送出
       event.preventDefault()
       this.props.patchBook(payload, this.props.match.params.id)
