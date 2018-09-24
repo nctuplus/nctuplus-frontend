@@ -22,13 +22,13 @@ const Row = withRouter((props) => (
     <td className='d-none d-table-cell' width='260px'>
       {props.department}{props.remarks ? ` / ${props.remarks}` : '' }
       <br />
-      <span className='badge badge-success mr-1' data-toggle="tooltip" data-placement="bottom" title="自然/基礎(96 )"> 自然/基礎</span>
-      <span className='badge badge-secondary mr-1' data-toggle="tooltip" data-placement="bottom" title="自然/基礎(96 )"> 通識校基本</span>
+      <span className='badge badge-success mr-1' data-toggle='tooltip' data-placement='bottom' title='自然/基礎(96 )'> 自然/基礎</span>
+      <span className='badge badge-secondary mr-1' data-toggle='tooltip' data-placement='bottom' title='自然/基礎(96 )'> 通識校基本</span>
     </td>
     <td width='80px'>{props.credit}</td>
     <td width='130px'>{convertTimeSlotsToString(props.time_slots)}</td>
     <td width='80px'>{props.grade}</td>
-    <td width='80px'><i className='fa fa-2x cart-control fa-square-o mx-auto' style={{color: 'lightseagreen'}}></i></td>
+    <td width='80px'><i className='fa fa-2x cart-control fa-square-o mx-auto' style={{ color: 'lightseagreen' }} /></td>
   </tr>
 ))
 
