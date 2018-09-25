@@ -1,7 +1,8 @@
 
 import React from 'react'
 import Layout from 'pages/Layout'
-import { LabeledInput, InputWithButton } from 'components/FormUtils'
+import { LabeledInput } from 'components/FormUtils'
+import styles from './style.scss'
 
 const Form = props => (
   <Layout>
@@ -10,7 +11,7 @@ const Form = props => (
         <div className='col-md-8 offset-md-2'>
           <h2><i className='fa fa-book mx-3' />我要賣書</h2>
 
-          <hr />
+          <div className='col-12 my-4'><hr /></div>
 
           <form ref={props.formRef}>
             <LabeledInput label='書籍名稱'>
@@ -23,7 +24,7 @@ const Form = props => (
                   type='text'
                   required
                 />
-                <div className='input-group-btn'>
+                <div className='input-group-append'>
                   <button className='btn btn-success' >搜尋</button>
                 </div>
               </div>
@@ -57,7 +58,7 @@ const Form = props => (
                 onChange={props.onFileUpload}
               />
               <div
-                className='text-center clickable upload-picture p-5'
+                className={`text-center clickable ${styles.uploadPicture} p-5`}
                 onClick={() => props.imageUploadRef.current.click()}
               >
                 {
@@ -101,21 +102,24 @@ const Form = props => (
             </LabeledInput>
 
             <h4><span className='text-center' /></h4>
-            <div>
-              <LabeledInput label='適用課程'>
-                <InputWithButton
-                  placeholder='搜尋課名（交大專用）'
-                  button_content='搜尋'
+
+            <LabeledInput label='適用課程'>
+              <div className='input-group'>
+                <input
+                  className='form-control'
+                  placeholder='選填 / 搜尋課名（交大專用）'
                 />
-              </LabeledInput>
-            </div>
-            <div className='row'>
-              <div className='col-md-10'>
-                <a hidden>展開</a>
+                <div className='input-group-append'>
+                  <button className='btn btn-default' >搜尋</button>
+                </div>
               </div>
+            </LabeledInput>
+
+            <div className='col-12 my-4'><hr /></div>
+
+            <div className='col-12 pull-right'>
+              <button type='submit' className='btn btn-primary pull-right' onClick={props.onSubmit}>立即刊登</button>
             </div>
-            <hr />
-            <button type='submit' className='btn btn-primary pull-right' onClick={props.onSubmit}>立即刊登</button>
           </form>
         </div>
       </div>
