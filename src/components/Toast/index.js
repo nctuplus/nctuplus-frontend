@@ -27,9 +27,6 @@ const getter = {
 class Toast extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {
-      open: true
-    }
     this.handleClose = this.handleClose.bind(this)
   }
   componentDidMount () {
@@ -38,16 +35,13 @@ class Toast extends React.Component {
       setTimeout(this.handleClose, autoHideDuration)
     }
   }
-  componentWillUnmount () {
-    this.setState({open: false})
-  }
   handleClose () {
     this.props.close(this.props.id)
   }
   render () {
     return (
       <div
-        className={classNames(styles.toast, styles[`toast-${this.props.type}`], !this.state.open && null)}
+        className={classNames(styles.toast, styles[`toast-${this.props.type}`])}
         onClick={this.handleClose}
       >
         {this.props.children}
@@ -96,7 +90,7 @@ class ToastWrapper extends React.Component {
                 id={notification.id}
                 close={this.removeToast}
                 type={notification.type || 'success'}
-                autoHide={notification.autoHide | 5}
+                autoHide={notification.autoHide || 5}
                 static={notification.static}
               >
                 {notification.content}
