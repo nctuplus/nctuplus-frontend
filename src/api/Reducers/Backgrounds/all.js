@@ -7,8 +7,24 @@ const initialState = {
   status: FETCHING_STATUS.IDLE
 }
 
+
 export default handleActions({
-  FETCH_BACKGROUNDS_START: (state) => ({ ...state, status: FETCHING_STATUS.FETCHING }),
-  UPDATE_BACKGROUNDS: (state, action) => ({ ...state, data: action.payload }),
-  FETCH_BACKGROUNDS_DONE: (state) => ({ ...state, status: FETCHING_STATUS.DONE })
+  BACKGROUNDS:{
+    FETCH:{
+      SET_STATUS:(state, action) => {
+        switch(action.payload){
+          case 'start':
+            return { ...state, status: FETCHING_STATUS.FETCHING }
+            break;
+          case 'done':
+            return { ...state, status: FETCHING_STATUS.DONE }
+            break;
+          default:
+            console.log('Unknown payload');
+            break;
+        }
+      }
+    },
+    UPDATE:(state, action) => ({ ...state, data: action.payload })
+  }
 }, initialState)

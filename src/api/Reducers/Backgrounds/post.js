@@ -8,7 +8,24 @@ const initialState = {
 }
 
 export default handleActions({
-  POST_BACKGROUND_START: (state) => ({ ...state, status: FETCHING_STATUS.FETCHING }),
-  POST_BACKGROUND_DONE: (state) => ({ ...state, status: FETCHING_STATUS.DONE }),
-  POST_BACKGROUND_RESET: (state) => ({ ...state, status: FETCHING_STATUS.IDLE })
+  BACKGROUNDS:{
+    POST:{
+      SET_STATUS:(state, action) => {
+        switch(action.payload){
+          case 'start':
+            return { ...state, status: FETCHING_STATUS.FETCHING }
+            break;
+          case 'done':
+            return { ...state, status: FETCHING_STATUS.DONE }
+            break;
+          case 'reset':
+            return { ...state, status: FETCHING_STATUS.IDLE }
+            break;
+          default:
+            console.log('Unknown payload');
+            break;
+        }
+      }
+    }
+  }
 }, initialState)
