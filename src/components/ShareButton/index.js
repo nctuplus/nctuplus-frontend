@@ -1,6 +1,7 @@
 
 import React from 'react'
 import Modal from 'components/Modal'
+import {toast, ToastWrapper} from 'components/Toast'
 import styles from './style.scss'
 
 import { connect } from 'react-redux'
@@ -22,6 +23,7 @@ const ShareModal = connect(mapStateToProps)((props) => {
   let shareURL = `https://plus.nctu.edu.tw/shares/${hash}`
   return (
     <Modal close={props.close}>
+      <ToastWrapper />
       <div className='modal-header'>
         <h5 className='modal-title'>分享</h5>
       </div>
@@ -32,7 +34,7 @@ const ShareModal = connect(mapStateToProps)((props) => {
         <hr />
         <p className='input-group'>
           <span id='shareURL' className='input-group-prepend input-group-text mr-3'>{`https://plus.nctu.edu.tw/shares/${hash}`}</span>
-          <span className='btn'><i className={`fa fa-copy ${styles.copy}`} /></span>
+          <span className='btn' onClick={() => toast('已複製至剪貼簿')}><i className={`fa fa-copy ${styles.copy}`} /></span>
         </p>
       </div>
     </Modal>
