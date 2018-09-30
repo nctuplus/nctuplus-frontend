@@ -30,6 +30,7 @@ const enhance = compose(
 
 const Index = ({ pastExams, updatePage }) => (
   <Layout>
+    {console.log(pastExams)}
     <div className='container pt-3'>
       <div className='row'>
         <div className='col-12 col-md-3'>
