@@ -15,18 +15,18 @@ export const actions = createActions({
 })
 
 export const fetchBackgrounds = () => dispatch => {
-  dispatch(action.background.fetch.setStatus(FETCHING_STATUS.START))
+  dispatch(actions.background.fetch.setStatus(FETCHING_STATUS.START))
   fetch(`${SERVER_URL}/api/v1/backgrounds`)
     .then(response => response.json())
     .then(json => {
-      dispatch(action.background.update(json))
-      dispatch(action.background.fetch.setStatus(FETCHING_STATUS.DONE))
+      dispatch(actions.background.update(json))
+      dispatch(actions.background.fetch.setStatus(FETCHING_STATUS.DONE))
     })
     .catch(error => console.log(error))
 }
 
 export const postBackground = (payload) => dispatch => {
-  dispatch(action.background.post.setStatus(FETCHING_STATUS.START))
+  dispatch(actions.background.post.setStatus(FETCHING_STATUS.START))
   fetch(`${SERVER_URL}/api/v1/backgrounds/`, {
     method: 'POST',
     body: JSON.stringify(payload),
@@ -35,6 +35,6 @@ export const postBackground = (payload) => dispatch => {
     }
   })
     .then(response => response.json())
-    .then(json => dispatch(action.background.post.setStatus(FETCHING_STATUS.DONE)))
+    .then(json => dispatch(actions.background.post.setStatus(FETCHING_STATUS.DONE)))
     .catch(error => console.log(error))
 }
