@@ -11,19 +11,7 @@ const initialState = {
 export default handleActions({
   BACKGROUNDS:{
     FETCH:{
-      SET_STATUS:(state, action) => {
-        switch(action.payload){
-          case 'start':
-            return { ...state, status: FETCHING_STATUS.FETCHING }
-            break;
-          case 'done':
-            return { ...state, status: FETCHING_STATUS.DONE }
-            break;
-          default:
-            console.log('Unknown payload');
-            break;
-        }
-      }
+      SET_STATUS:(state, action) => ({...state, status : action.payload})
     },
     UPDATE:(state, action) => ({ ...state, data: action.payload })
   }
