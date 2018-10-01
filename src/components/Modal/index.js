@@ -22,7 +22,8 @@ const getter = {
 
 const Modal = (props) => (
   <div className={classNames('modal-dialog', 'modal-dialog-centered')} >
-    <div className={classNames('modal-content', 'border-0', 'rounded-0', styles.modalContent)}
+    <div 
+      className={classNames('modal-content', 'border-0', 'rounded-0', styles.modalContent)}
       onClick={e => e.stopPropagation()}
     >
       {props.children}
