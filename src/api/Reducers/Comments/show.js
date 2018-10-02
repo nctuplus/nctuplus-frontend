@@ -8,7 +8,10 @@ const initialState = {
 }
 
 export default handleActions({
-  GET_COMMENT_START: (state) => ({ ...state, status: FETCHING_STATUS.FETCHING }),
-  GET_COMMENT_DONE: (state) => ({ ...state, status: FETCHING_STATUS.DONE }),
-  STORE_COMMENT: (state, action) => ({ ...state, data: action.payload })
+  COMMENTS:{
+    GET:{
+      SET_STATUS:(state, action) => ({ ...state, status: action.payload }),
+      STORE:(state, action) => ({ ...state, data: action.payload })
+    }
+  }
 }, initialState)
