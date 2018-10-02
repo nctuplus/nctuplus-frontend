@@ -13,7 +13,7 @@ jobs:
       directories:
         - node_modules
       script:
-        - npm lint
-        - npm run test
+        - npm run lint
+        - npm test
       after_failure:
         - cat travis.log

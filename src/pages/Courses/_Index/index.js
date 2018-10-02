@@ -4,6 +4,7 @@ import Layout from 'pages/Layout'
 import { SearchCourse } from 'components/Search'
 import * as Course from 'components/Course'
 import Spinner from 'components/Spinner'
+import classNames from 'classnames'
 import styles from './style.scss'
 
 import { connect } from 'react-redux'
@@ -13,7 +14,7 @@ import { compose, lifecycle } from 'recompose'
 const Index = ({ courses, updatePage }) => (
   <Layout className={styles.course}>
     <div className='container'>
-      <div className={styles.searchWrapper}>
+      <div className={classNames('text-center', styles.searchWrapper)}>
         <SearchCourse show_semester />
       </div>
       {

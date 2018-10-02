@@ -10,21 +10,25 @@ const Row = withRouter((props) => (
     className='clickable'
     onClick={() => props.history.push(`/courses/${props.id}`)}
   >
-    <td className='d-none d-table-cell'>{convertSemesterToString(props.semester)}</td>
-    <td className='d-none d-table-cell'>
-      {props.department}{props.remarks ? ` / ${props.remarks}` : '' }
-    </td>
-    <td>{props.permanent_course.name}</td>
-    <td>
+    <td className='d-none d-table-cell pl-2' width='100px'>{convertSemesterToString(props.semester)}</td>
+    <td width='300px'>{props.permanent_course.name}</td>
+    <td width='105px'>
       {
         props.teachers
           .map(teacher => teacher.name)
           .join(', ')
       }
     </td>
-    <td>{props.credit}</td>
-    <td>{convertTimeSlotsToString(props.time_slots)}</td>
-    <td>{props.grade}</td>
+    <td className='d-none d-table-cell' width='260px'>
+      {props.department}{props.remarks ? ` / ${props.remarks}` : '' }
+      <br />
+      <span className='badge badge-success mr-1' data-toggle='tooltip' data-placement='bottom' title='自然/基礎(96 )'> 自然/基礎</span>
+      <span className='badge badge-secondary mr-1' data-toggle='tooltip' data-placement='bottom' title='自然/基礎(96 )'> 通識校基本</span>
+    </td>
+    <td width='80px'>{props.credit}</td>
+    <td width='130px'>{convertTimeSlotsToString(props.time_slots)}</td>
+    <td width='80px'>{props.grade}</td>
+    <td width='80px'><i className='fa fa-2x cart-control fa-square-o mx-auto' style={{ color: 'lightseagreen' }} /></td>
   </tr>
 ))
 
@@ -33,13 +37,14 @@ const Table = ({ data, page, maxPage, updatePage }) => (
     <table className='table table-sm table-hover bg-white'>
       <thead>
         <tr>
-          <th className='c'>學期</th>
-          <th className='d-none d-table-cell'>系所/摘要</th>
+          <th className='pl-2'>學期</th>
           <th>課名</th>
           <th>老師</th>
+          <th className='d-none d-table-cell'>系所/摘要</th>
           <th>學分</th>
           <th>時間</th>
           <th>年級</th>
+          <th>收藏</th>
         </tr>
       </thead>
       <tbody>

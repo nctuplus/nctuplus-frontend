@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import { Link } from 'react-router-dom'
 import CourseConfig from 'components/Course/config'
 import ReactTooltip from 'react-tooltip'
-import {ShareModal} from 'components/ShareButton'
+import { ShareModal } from 'components/ShareButton'
 import styles from './style.scss'
 
 import { connect } from 'react-redux'
@@ -79,7 +79,7 @@ function transformTimetableStructure (courses) {
 
 // 以html2canvas截下課表，並以png格式匯出
 function exportTimetable () {
-  html2canvas(document.getElementById('timetable'), {logging: false}).then(canvas => {
+  html2canvas(document.getElementById('timetable'), { logging: false }).then(canvas => {
     let dataUrl = canvas.toDataURL('image/png')
     let exportTable = document.createElement('a')
     exportTable.href = dataUrl

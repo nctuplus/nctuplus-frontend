@@ -65,7 +65,7 @@ const Ratings = (props) => (
         percentage={props.depth || 0}
         initialAnimation
       />
-    <div className={`${styles.people} text-center`}>深度({ props.depth_people || 0 }人)</div>
+      <div className={`${styles.people} text-center`}>深度({ props.depth_people || 0 }人)</div>
     </div>
   </div>
 )

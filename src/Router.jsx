@@ -7,7 +7,7 @@ import {
   Redirect
 } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { validateToken } from 'api/controller'
+import { validateToken } from 'api/Controllers/user'
 
 import Index from 'pages/Index'
 import * as Admin from 'pages/Admin'
@@ -36,7 +36,14 @@ const enhance = compose(
 const Router = enhance(({ currentUser }) => {
   const checkOrRedirect = (user, check) => (Component) => {
     if (check(user)) return () => <Component />
-    else return () => <Redirect to='/login' />
+    else {
+      return () => (
+        <Redirect to={{
+          pathname: '/login',
+          state: { redirected: true }
+        }} />
+      )
+    }
   }
   const loginOnly = checkOrRedirect(currentUser, user => user)
   const adminOnly = checkOrRedirect(currentUser, user => user && user.role === 1)

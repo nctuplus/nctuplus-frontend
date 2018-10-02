@@ -13,8 +13,15 @@ const Item = withRouter((props) => {
         </div>
         <div className='card-body text-center'>
           <div>{props.name}</div>
-          <div>作者: {props.author}</div>
-          <div>課程: {}</div>
+          <div>作者: {props.authors}</div>
+          <div>
+            課程: {
+              props.courses &&
+              props.courses
+                .map(course => course.permanent_course.name)
+                .join(', ')
+            }
+          </div>
         </div>
 
         <div className='card-footer mt-1 p-2' >
