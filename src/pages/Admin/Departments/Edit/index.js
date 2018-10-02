@@ -2,7 +2,7 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { compose, withState, withProps, withHandlers, lifecycle } from 'recompose'
-import { getDepartment, patchDepartment, patchDepartmentReset } from 'api/Actions/Departments'
+import { getDepartment, patchDepartment, actions } from 'api/Actions/Departments'
 import { FETCHING_STATUS } from 'utilities/constants'
 import Form from 'components/Admin/Department/Form'
 
@@ -15,7 +15,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getDepartment: (id) => dispatch(getDepartment(id)),
   patchDepartment: (payload) => dispatch(patchDepartment(payload)),
-  patchDepartmentReset: () => dispatch(patchDepartmentReset())
+  patchDepartmentReset: () => dispatch(actions.department.patch.setStatus(FETCHING_STATUS.IDLE))
 })
 
 const enhance = compose(

@@ -2,7 +2,7 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { compose, withState, withProps, withHandlers, lifecycle } from 'recompose'
-import { postDepartment, postDepartmentReset } from 'api/Actions/Departments'
+import { postDepartment, actions } from 'api/Actions/Departments'
 import { FETCHING_STATUS } from 'utilities/constants'
 import Form from 'components/Admin/Department/Form'
 
@@ -12,7 +12,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   postDepartment: (payload) => dispatch(postDepartment(payload)),
-  postDepartmentReset: () => dispatch(postDepartmentReset())
+  postDepartmentReset: () => dispatch(actions.department.post.setStatus(FETCHING_STATUS.IDLE))
 })
 
 const enhance = compose(

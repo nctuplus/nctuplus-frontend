@@ -8,7 +8,10 @@ const initialState = {
 }
 
 export default handleActions({
-  FETCH_DEPARTMENTS_START: (state) => ({ ...state, status: FETCHING_STATUS.FETCHING }),
-  FETCH_DEPARTMENTS_DONE: (state) => ({ ...state, status: FETCHING_STATUS.DONE }),
-  UPDATE_DEPARTMENTS: (state, action) => ({ ...state, data: action.payload })
+  DEPARTMENT:{
+    FETCH:{
+      SET_STATUS: (state, action) => ({ ...state, status: action.payload }),
+      UPDATE: (state, action) => ({ ...state, data: action.payload })
+    }
+  }
 }, initialState)

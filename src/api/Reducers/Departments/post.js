@@ -8,7 +8,9 @@ const initialState = {
 }
 
 export default handleActions({
-  POST_DEPARTMENT_START: (state) => ({ ...state, status: FETCHING_STATUS.FETCHING }),
-  POST_DEPARTMENT_DONE: (state) => ({ ...state, status: FETCHING_STATUS.DONE }),
-  POST_DEPARTMENT_RESET: (state) => ({ ...state, status: FETCHING_STATUS.IDLE })
+  DEPARTMENT:{
+    POST:{
+      SET_STATUS:(state, action) => ({ ...state, status: action.payload })
+    },
+  }
 }, initialState)
