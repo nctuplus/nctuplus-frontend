@@ -5,7 +5,6 @@ import { compose, withState, withHandlers, lifecycle } from 'recompose'
 import { getCourseMap, patchCourseMap, actions } from 'api/Actions/CourseMaps'
 import { FETCHING_STATUS } from 'utilities/constants'
 import Form from 'components/Admin/CourseMap/EditForm'
-import { FETCHING_STATUS as fstat } from 'utilities/constants'
 
 const mapStateToProps = (state) => ({
   courseMap: state.courseMaps.show.data,
@@ -16,7 +15,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getCourseMap: (id) => dispatch(getCourseMap(id)),
   patchCourseMap: (payload, id) => dispatch(patchCourseMap(payload, id)),
-  patchCourseMapReset: () => dispatch(actions.courseMaps.patch.setStatus(fstat.IDLE))
+  patchCourseMapReset: () => dispatch(actions.courseMaps.patch.setStatus(FETCHING_STATUS.IDLE))
 })
 
 const enhance = compose(
