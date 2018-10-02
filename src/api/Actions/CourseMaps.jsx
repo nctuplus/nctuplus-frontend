@@ -1,47 +1,52 @@
 
 import fetch from 'isomorphic-fetch'
-import { createAction } from 'redux-actions'
+import { createActions } from 'redux-actions'
+import { FETCHING_STATUS as fstat } from 'utilities/constants'
 
-export const fetchCourseMapsStart = createAction('FETCH_COURSE_MAPS_START')
-export const fetchCourseMapsDone = createAction('FETCH_COURSE_MAPS_DONE')
-export const updateCourseMaps = createAction('UPDATE_COURSE_MAPS')
+export const actions = createActions({
+  COURSE_MAPS:{
+    FETCH:{
+      SET_STATUS:null,
+      UPDATE:null
+    },
+    GET:{
+      SET_STATUS:null,
+      STORE:null
+    },
+    POST:{
+      SET_STATUS:null
+    },
+    PATCH:{
+      SET_STATUS:null
+    }
+  }
+});
 
-export const getCourseMapStart = createAction('GET_COURSE_MAP_START')
-export const storeCourseMap = createAction('STORE_COURSE_MAP')
-export const getCourseMapDone = createAction('GET_COURSE_MAP_DONE')
-
-export const postCourseMapStart = createAction('POST_COURSE_MAP_START')
-export const postCourseMapDone = createAction('POST_COURSE_MAP_DONE')
-export const postCourseMapReset = createAction('POST_COURSE_MAP_RESET')
-
-export const patchCourseMapStart = createAction('PATCH_COURSE_MAP_START')
-export const patchCourseMapDone = createAction('PATCH_COURSE_MAP_DONE')
-export const patchCourseMapReset = createAction('PATCH_COURSE_MAP_RESET')
 
 export const fetchCourseMaps = (category = 0) => dispatch => {
-  dispatch(fetchCourseMapsStart())
+  dispatch(actions.courseMaps.fetch.setStatus(fstat.FETCHING))
   fetch(`${SERVER_URL}/api/v1/course_maps/`)
     .then(response => response.json())
     .then(json => {
-      dispatch(updateCourseMaps(json))
-      dispatch(fetchCourseMapsDone())
+      dispatch(actions.courseMaps.fetch.update(json))
+      dispatch(actions.courseMaps.fetch.setStatus(fstat.DONE))
     })
     .catch(error => console.log(error))
 }
 
 export const getCourseMap = (id) => dispatch => {
-  dispatch(getCourseMapStart())
+  dispatch(actions.courseMaps.get.setStatus(fstat.FETCHING))
   fetch(`${SERVER_URL}/api/v1/course_maps/${id}`)
     .then(response => response.json())
     .then(json => {
-      dispatch(storeCourseMap(json))
-      dispatch(getCourseMapDone())
+      dispatch(actions.courseMaps.get.store(json))
+      dispatch(actions.courseMaps.get.setStatus(fstat.DONE))
     })
     .catch(error => console.log(error))
 }
 
 export const postCourseMap = (payload) => dispatch => {
-  dispatch(postCourseMapStart())
+  dispatch(actions.courseMaps.post.setStatus(fstat.FETCHING))
   fetch(`${SERVER_URL}/api/v1/course_maps/`, {
     method: 'POST',
     body: JSON.stringify(payload),
@@ -50,12 +55,12 @@ export const postCourseMap = (payload) => dispatch => {
     }
   })
     .then(response => response.json())
-    .then(json => dispatch(postCourseMapDone()))
+    .then(json => dispatch(actions.courseMaps.post.setStatus(fstat.DONE)))
     .catch(error => console.log(error))
 }
 
 export const patchCourseMap = (payload, id) => dispatch => {
-  dispatch(patchCourseMapStart())
+  dispatch(actions.courseMaps.patch.setStatus(fstat.FETCHING))
   fetch(`${SERVER_URL}/api/v1/course_maps/${id}`, {
     method: 'PATCH',
     body: JSON.stringify(payload),
@@ -64,6 +69,6 @@ export const patchCourseMap = (payload, id) => dispatch => {
     }
   })
     .then(response => response.json())
-    .then(json => dispatch(patchCourseMapDone()))
+    .then(json => dispatch(actions.courseMaps.patch.setStatus(fstat.FETCHING)))
     .catch(error => console.log(error))
 }
