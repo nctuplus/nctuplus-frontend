@@ -1,47 +1,54 @@
 
 import fetch from 'isomorphic-fetch'
-import { createAction } from 'redux-actions'
+import { createActions } from 'redux-actions'
+import { FETCHING_STATUS as fstat } from 'utilities/constants'
 
-export const fetchDepartmentsStart = createAction('FETCH_DEPARTMENTS_START')
-export const fetchDepartmentsDone = createAction('FETCH_DEPARTMENTS_DONE')
-export const updateDepartments = createAction('UPDATE_DEPARTMENTS')
+export const actions = createActions({
+  DEPARTMENT:{
+    FETCH:{
+      SET_STATUS:null,
+      UPDATE:null
+    },
+    GET:{
+      SET_STATUS:null,
+      STORE:null
+    },
+    POST:{
+      SET_STATUS:null
+    },
+    PATCH:{
+      SET_STATUS:null
+    }
+  }
+});
 
-export const getDepartmentStart = createAction('GET_DEPARTMENT_START')
-export const storeDepartment = createAction('STORE_DEPARTMENT')
-export const getDepartmentDone = createAction('GET_DEPARTMENT_DONE')
-
-export const postDepartmentStart = createAction('POST_DEPARTMENT_START')
-export const postDepartmentDone = createAction('POST_DEPARTMENT_DONE')
-export const postDepartmentReset = createAction('POST_DEPARTMENT_RESET')
-
-export const patchDepartmentStart = createAction('PATCH_DEPARTMENT_START')
-export const patchDepartmentDone = createAction('PATCH_DEPARTMENT_DONE')
-export const patchDepartmentReset = createAction('PATCH_DEPARTMENT_RESET')
+export const postDepartmentReset = actions.department.post.setStatus(fstat.IDLE)
+export const patchDepartmentReset = actions.department.patch.setStatus(fstat.IDLE)
 
 export const fetchDepartments = (page = 1) => dispatch => {
-  dispatch(fetchDepartmentsStart())
+  dispatch(actions.department.fetch.setStatus(fstat.FETCHING))
   fetch(`${SERVER_URL}/api/v1/departments`)
     .then(response => response.json())
     .then(json => {
-      dispatch(updateDepartments(json))
-      dispatch(fetchDepartmentsDone())
+      dispatch(actions.department.fetch.update(json))
+      dispatch(actions.department.fetch.setStatus(fstat.DONE))
     })
     .catch(error => console.log(error))
 }
 
 export const getDepartment = (id) => dispatch => {
-  dispatch(getDepartmentStart())
+  dispatch(actions.department.get.setStatus(fstat.FETCHING))
   fetch(`${SERVER_URL}/api/v1/departments/${id}`)
     .then(response => response.json())
     .then(json => {
-      dispatch(storeDepartment(json))
-      dispatch(getDepartmentDone())
+      dispatch(actions.department.get.store(json))
+      dispatch(actions.department.get.setStatus(fstat.DONE))
     })
     .catch(error => console.log(error))
 }
 
 export const postDepartment = (payload) => dispatch => {
-  dispatch(postDepartmentStart())
+  dispatch(actions.department.post.setStatus(fstat.FETCHING))
   fetch(`${SERVER_URL}/api/v1/departments/`, {
     method: 'POST',
     body: JSON.stringify(payload),
@@ -50,12 +57,12 @@ export const postDepartment = (payload) => dispatch => {
     }
   })
     .then(response => response.json())
-    .then(json => dispatch(postDepartmentDone()))
+    .then(json => dispatch(actions.department.post.setStatus(fstat.DONE)))
     .catch(error => console.log(error))
 }
 
 export const patchDepartment = (payload, id) => dispatch => {
-  dispatch(patchDepartmentStart())
+  dispatch(actions.department.patch.setStatus(fstat.FETCHING))
   fetch(`${SERVER_URL}/api/v1/departments/${id}`, {
     method: 'PATCH',
     body: JSON.stringify(payload),
@@ -64,6 +71,6 @@ export const patchDepartment = (payload, id) => dispatch => {
     }
   })
     .then(response => response.json())
-    .then(json => dispatch(patchDepartmentDone()))
+    .then(json => dispatch(actions.department.patch.setStatus(fstat.DONE)))
     .catch(error => console.log(error))
 }

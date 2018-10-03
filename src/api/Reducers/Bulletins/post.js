@@ -8,7 +8,9 @@ const initialState = {
 }
 
 export default handleActions({
-  POST_BULLETIN_START: (state) => ({ ...state, status: FETCHING_STATUS.FETCHING }),
-  POST_BULLETIN_DONE: (state) => ({ ...state, status: FETCHING_STATUS.DONE }),
-  POST_BULLETIN_RESET: (state) => ({ ...state, status: FETCHING_STATUS.IDLE })
+  BULLETINS:{
+    POST:{
+      SET_STATUS:(state, action) => ({ ...state, status: action.payload })
+    },
+  }
 }, initialState)

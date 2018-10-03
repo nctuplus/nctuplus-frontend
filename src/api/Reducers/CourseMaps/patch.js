@@ -8,7 +8,9 @@ const initialState = {
 }
 
 export default handleActions({
-  PATCH_COURSE_MAP_START: (state) => ({ ...state, status: FETCHING_STATUS.FETCHING }),
-  PATCH_COURSE_MAP_DONE: (state) => ({ ...state, status: FETCHING_STATUS.DONE }),
-  PATCH_COURSE_MAP_RESET: (state) => ({ ...state, status: FETCHING_STATUS.IDLE })
+  COURSE_MAPS:{
+    PATCH:{
+      SET_STATUS:(state, action) => ({ ...state, status: action.payload })
+    },
+  }
 }, initialState)

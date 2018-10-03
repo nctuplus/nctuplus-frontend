@@ -15,7 +15,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getDepartment: (id) => dispatch(getDepartment(id)),
   patchDepartment: (payload) => dispatch(patchDepartment(payload)),
-  patchDepartmentReset: () => dispatch(patchDepartmentReset())
+  patchDepartmentReset: () => dispatch(patchDepartmentReset)
 })
 
 const enhance = compose(

@@ -8,7 +8,9 @@ const initialState = {
 }
 
 export default handleActions({
-  POST_BACKGROUND_START: (state) => ({ ...state, status: FETCHING_STATUS.FETCHING }),
-  POST_BACKGROUND_DONE: (state) => ({ ...state, status: FETCHING_STATUS.DONE }),
-  POST_BACKGROUND_RESET: (state) => ({ ...state, status: FETCHING_STATUS.IDLE })
+  BACKGROUNDS:{
+    POST:{
+      SET_STATUS:(state, action) => ({...state, status : action.payload})
+    }
+  }
 }, initialState)

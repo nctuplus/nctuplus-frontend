@@ -10,9 +10,11 @@ const initialState = {
 }
 
 export default handleActions({
-  FETCH_USERS_START: (state) => ({ ...state, status: FETCHING_STATUS.FETCHING }),
-  FETCH_USERS_DONE: (state) => ({ ...state, status: FETCHING_STATUS.DONE }),
-  UPDATE_USERS: (state, action) => ({ ...state, data: action.payload.data, maxPage: action.payload.total_pages }),
-  UPDATE_USERS_PAGE: (state, action) => ({ ...state, page: action.payload }),
-  RESET_USERS_PAGE: (state) => ({ ...state, page: 1 })
+  USERS:{
+    FETCH:{
+      SET_STATUS:(state, action) => ({ ...state, status: action.payload }),
+      UPDATE:(state, action) => ({ ...state, data: action.payload.data, maxPage: action.payload.total_pages })
+    },
+    SET_PAGE:(state, action) => ({ ...state, page: action.payload }),
+  }
 }, initialState)

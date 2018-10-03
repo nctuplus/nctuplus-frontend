@@ -1,28 +1,32 @@
-
 import fetch from 'isomorphic-fetch'
-import { createAction } from 'redux-actions'
+import { createActions } from 'redux-actions'
+import { FETCHING_STATUS } from 'utilities/constants'
 
-export const fetchBackgroundsStart = createAction('FETCH_BACKGROUNDS_START')
-export const fetchBackgroundsDone = createAction('FETCH_BACKGROUNDS_DONE')
-export const updateBackgrounds = createAction('UPDATE_BACKGROUNDS')
-
-export const postBackgroundStart = createAction('POST_BACKGROUND_START')
-export const postBackgroundDone = createAction('POST_BACKGROUND_DONE')
-export const postBackgroundReset = createAction('POST_BACKGROUND_RESET')
+export const actions = createActions({
+  BACKGROUND: {
+    FETCH:{
+      SET_STATUS:null  //FETCHING_STATUS.FETCHING, DONE
+    },
+    UPDATE:null,
+    POST:{
+      SET_STATUS:null  //FETCHING_STATUS.FETCHING, DONE, IDLE
+    }
+  }
+})
 
 export const fetchBackgrounds = () => dispatch => {
-  dispatch(fetchBackgroundsStart())
+  dispatch(actions.background.fetch.setStatus(FETCHING_STATUS.START))
   fetch(`${SERVER_URL}/api/v1/backgrounds`)
     .then(response => response.json())
     .then(json => {
-      dispatch(updateBackgrounds(json))
-      dispatch(fetchBackgroundsDone())
+      dispatch(actions.background.update(json))
+      dispatch(actions.background.fetch.setStatus(FETCHING_STATUS.DONE))
     })
     .catch(error => console.log(error))
 }
 
 export const postBackground = (payload) => dispatch => {
-  dispatch(postBackgroundStart())
+  dispatch(actions.background.post.setStatus(FETCHING_STATUS.START))
   fetch(`${SERVER_URL}/api/v1/backgrounds/`, {
     method: 'POST',
     body: JSON.stringify(payload),
@@ -31,6 +35,6 @@ export const postBackground = (payload) => dispatch => {
     }
   })
     .then(response => response.json())
-    .then(json => dispatch(postBackgroundDone()))
+    .then(json => dispatch(actions.background.post.setStatus(FETCHING_STATUS.DONE)))
     .catch(error => console.log(error))
 }

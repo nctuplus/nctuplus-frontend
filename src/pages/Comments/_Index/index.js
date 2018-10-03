@@ -13,7 +13,7 @@ import { InputWithButton } from 'components/FormUtils'
 import Spinner from 'components/Spinner'
 
 import { connect } from 'react-redux'
-import { updateCommentsPage, fetchComments } from 'api/Actions/Comments'
+import { actions, fetchComments } from 'api/Actions/Comments'
 
 const Index = (props) => {
   props.comments.status || props.fetch_data()
@@ -73,7 +73,7 @@ const mapStateToProps = (state) => ({
 })
 const mapDispatchToProps = (dispatch) => ({
   fetch_data: (page) => dispatch(fetchComments(page)),
-  update_page: (page) => dispatch(updateCommentsPage(page))
+  update_page: (page) => dispatch(actions.comments.fetch.updatePage(page))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index)

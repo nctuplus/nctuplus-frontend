@@ -1,21 +1,28 @@
 
 import fetch from 'isomorphic-fetch'
-import { createAction } from 'redux-actions'
+import { createActions } from 'redux-actions'
+import { FETCHING_STATUS as fstat } from 'utilities/constants'
 
-export const fetchUsersStart = createAction('FETCH_USERS_START')
-export const fetchUsersDone = createAction('FETCH_USERS_DONE')
-export const updateUsers = createAction('UPDATE_USERS')
+export const actions = createActions({
+  USERS:{
+    FETCH:{
+      SET_STATUS:null,
+      UPDATE:null
+    },
+    SET_PAGE:null,
+  }
+});
 
-export const updateUsersPage = createAction('UPDATE_USERS_PAGE')
-export const resetUsersPage = createAction('RESET_USERS_PAGE')
+export const updateUsersPage = page => actions.users.setPage(page)
+export const resetUsersPage = actions.users.setPage(1)
 
 export const fetchUsers = (page = 1) => dispatch => {
-  dispatch(fetchUsersStart())
+  dispatch(actions.users.fetch.setStatus(fstat.FETCHING))
   fetch(`${SERVER_URL}/api/v1/users?page=${page}`)
     .then(response => response.json())
     .then(json => {
-      dispatch(updateUsers(json))
-      dispatch(fetchUsersDone())
+      dispatch(actions.users.fetch.update(json))
+      dispatch(actions.users.fetch.setStatus(fstat.DONE))
     })
     .catch(error => console.log(error))
 }

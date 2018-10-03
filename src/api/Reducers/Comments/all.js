@@ -10,9 +10,12 @@ const initialState = {
 }
 
 export default handleActions({
-  FETCH_COMMENTS_START: (state) => ({ ...state, status: FETCHING_STATUS.FETCHING }),
-  FETCH_COMMENTS_DONE: (state) => ({ ...state, status: FETCHING_STATUS.DONE }),
-  UPDATE_COMMENTS_PAGE: (state, action) => ({ ...state, page: action.payload }),
-  UPDATE_COMMENTS: (state, action) => ({ ...state, data: action.payload })
+  COMMENTS:{
+    FETCH:{
+      SET_STATUS:(state, action) => ({ ...state, status: action.payload }),
+      UPDATE:(state, action) => ({ ...state, data: action.payload }),
+      UPDATE_PAGE:(state, action) => ({ ...state, page: action.payload })
+    },
+  }
 
 }, initialState)

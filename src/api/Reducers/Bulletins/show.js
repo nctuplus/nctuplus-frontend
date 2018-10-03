@@ -8,7 +8,10 @@ const initialState = {
 }
 
 export default handleActions({
-  GET_BULLETIN_START: (state) => ({ ...state, status: FETCHING_STATUS.FETCHING }),
-  GET_BULLETIN_DONE: (state) => ({ ...state, status: FETCHING_STATUS.DONE }),
-  STORE_BULLETIN: (state, action) => ({ ...state, data: action.payload })
+  BULLETINS:{
+    GET:{
+      SET_STATUS:(state, action) => ({ ...state, status: action.payload }),
+      STORE:(state, action) => ({ ...state, data: action.payload })
+    },
+  }
 }, initialState)
