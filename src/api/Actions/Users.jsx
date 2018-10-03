@@ -1,6 +1,7 @@
 
 import fetch from 'isomorphic-fetch'
 import { createActions } from 'redux-actions'
+import { FETCHING_STATUS as fstat } from 'utilities/constants'
 
 export const actions = createActions({
   USERS:{
