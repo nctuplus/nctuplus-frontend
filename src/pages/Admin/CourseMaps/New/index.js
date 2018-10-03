@@ -2,7 +2,7 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { compose, withState, withHandlers, lifecycle } from 'recompose'
-import { postCourseMap, actions } from 'api/Actions/CourseMaps'
+import { postCourseMap, postCourseMapsReset } from 'api/Actions/CourseMaps'
 import { FETCHING_STATUS } from 'utilities/constants'
 import Form from 'components/Admin/CourseMap/NewForm'
 
@@ -12,7 +12,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   postCourseMap: (payload) => dispatch(postCourseMap(payload)),
-  postCourseMapReset: () => dispatch(actions.courseMaps.post.setStatus(FETCHING_STATUS.IDLE))
+  postCourseMapReset: () => dispatch(postCourseMapsReset)
 })
 
 const enhance = compose(

@@ -8,7 +8,9 @@ const initialState = {
 }
 
 export default handleActions({
-  POST_SLOGAN_START: (state) => ({ ...state, status: FETCHING_STATUS.FETCHING }),
-  POST_SLOGAN_DONE: (state) => ({ ...state, status: FETCHING_STATUS.DONE }),
-  POST_SLOGAN_RESET: (state) => ({ ...state, status: FETCHING_STATUS.IDLE })
+  SLOGANS:{
+    POST:{
+      SET_STATUS:(state, action) => ({ ...state, status: action.payload })
+    },
+  }
 }, initialState)

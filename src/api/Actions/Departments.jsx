@@ -22,6 +22,9 @@ export const actions = createActions({
   }
 });
 
+export const postDepartmentReset = actions.department.post.setStatus(fstat.IDLE)
+export const patchDepartmentReset = actions.department.patch.setStatus(fstat.IDLE)
+
 export const fetchDepartments = (page = 1) => dispatch => {
   dispatch(actions.department.fetch.setStatus(fstat.FETCHING))
   fetch(`${SERVER_URL}/api/v1/departments`)

@@ -23,6 +23,9 @@ export const actions = createActions({
 });
 
 
+export const postCourseMapsReset = actions.courseMaps.post.setStatus(fstat.IDLE)
+export const patchCourseMapsReset = actions.courseMaps.patch.setStatus(fstat.IDLE)
+
 export const fetchCourseMaps = (category = 0) => dispatch => {
   dispatch(actions.courseMaps.fetch.setStatus(fstat.FETCHING))
   fetch(`${SERVER_URL}/api/v1/course_maps/`)

@@ -8,7 +8,10 @@ const initialState = {
 }
 
 export default handleActions({
-  GET_SLOGAN_START: (state) => ({ ...state, status: FETCHING_STATUS.FETCHING }),
-  GET_SLOGAN_DONE: (state) => ({ ...state, status: FETCHING_STATUS.DONE }),
-  STORE_SLOGAN: (state, action) => ({ ...state, data: action.payload })
+  SLOGANS:{
+    GET:{
+      SET_STATUS:(state, action) => ({ ...state, status: action.payload }),
+      STORE:(state, action) => ({ ...state, data: action.payload })
+    },
+  }
 }, initialState)
