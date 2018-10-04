@@ -25,7 +25,7 @@ class NavDropdown extends React.Component {
       >
         <a
           className={classNames('nav-link', ' dropdown-toggle', this.state.open && 'show')}
-          onClick={() => this.setState({ open: !this.state.open })}
+          //onClick={() => this.setState({ open: !this.state.open })}
         >
           { this.props.title }
         </a>
