@@ -2,7 +2,6 @@
 import React from 'react'
 import Layout from 'pages/Layout'
 import { Sidebar, SidebarItem } from 'components/Sidebar'
-import { ShareButton } from 'components/ShareButton'
 import * as Course from 'components/Course'
 import { Ratings, PersonalRating } from 'components/Ratings'
 import * as PastExam from 'components/PastExam'
@@ -77,7 +76,9 @@ class Show extends React.Component {
                       <small>最後同步時間 { this.props.course.updated_at }</small>
                     </div>
                     <div className='col-md-2 pull-right mt-5'>
-                      <ShareButton />
+                      <button className='btn btn-primary'>
+                        <i className='fa fa-export' />分享
+                      </button>
                     </div>
                   </div>
 

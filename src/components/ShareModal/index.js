@@ -1,6 +1,5 @@
 
 import React from 'react'
-import Modal from 'components/Modal'
 import {toast, ToastWrapper} from 'components/Toast'
 import styles from './style.scss'
 
@@ -18,11 +17,10 @@ const mapStateToProps = (state) => ({
 })
 
 const ShareModal = connect(mapStateToProps)((props) => {
-  console.log(props)
   let hash = getHash(props.userID, props.semesterID)
   let shareURL = `https://plus.nctu.edu.tw/shares/${hash}`
   return (
-    <Modal close={props.close}>
+    <React.Fragment>
       <ToastWrapper />
       <div className='modal-header'>
         <h5 className='modal-title'>分享</h5>
@@ -37,17 +35,8 @@ const ShareModal = connect(mapStateToProps)((props) => {
           <span className='btn' onClick={() => toast('已複製至剪貼簿')}><i className={`fa fa-copy ${styles.copy}`} /></span>
         </p>
       </div>
-    </Modal>
+    </React.Fragment>
   )
 })
 
-const ShareButton = () => (
-  <div>
-    <button className='btn btn-primary'>
-      <i className='fa fa-export' />分享
-    </button>
-    {/* <ShareModal /> */}
-  </div>
-)
-
-export { ShareModal, ShareButton }
+export default ShareModal
