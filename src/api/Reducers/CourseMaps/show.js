@@ -8,10 +8,10 @@ const initialState = {
 }
 
 export default handleActions({
-  COURSE_MAPS:{
-    GET:{
-      SET_STATUS:(state, action) => ({ ...state, status: action.payload }),
-      STORE:(state, action) => ({ ...state, data: action.payload })
-    },
+  COURSE_MAPS: {
+    GET: {
+      SET_STATUS: (state, action) => ({ ...state, status: action.payload }),
+      STORE: (state, action) => ({ ...state, data: action.payload })
+    }
   }
 }, initialState)

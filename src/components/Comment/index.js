@@ -1,7 +1,6 @@
 
 import React from 'react'
 import classNames from 'classnames'
-import { ShareButton } from 'components/ShareButton'
 
 const CommentReply = (props) => (
   <div className='row justify-content-end'>
@@ -60,7 +59,9 @@ const Comment = (props) => (
       </div>
       <div className='col-md-5'>
         <div className='pull-right'>
-          <ShareButton />
+          <button className='btn btn-primary'>
+            <i className='fa fa-export' />分享
+          </button>
         </div>
       </div>
     </div>

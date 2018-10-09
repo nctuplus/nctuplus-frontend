@@ -7,12 +7,11 @@ const initialState = {
   status: FETCHING_STATUS.IDLE
 }
 
-
 export default handleActions({
-  BACKGROUNDS:{
-    FETCH:{
-      SET_STATUS:(state, action) => ({...state, status : action.payload})
+  BACKGROUNDS: {
+    FETCH: {
+      SET_STATUS: (state, action) => ({...state, status: action.payload})
     },
-    UPDATE:(state, action) => ({ ...state, data: action.payload })
+    UPDATE: (state, action) => ({ ...state, data: action.payload })
   }
 }, initialState)

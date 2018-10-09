@@ -66,6 +66,7 @@ class ToastWrapper extends React.Component {
       .add(id => this.removeToast(id))
   }
   componentWillUnmount () {
+    this.setState = () => {}
     getter.remove()
   }
   addToast (notification) {

@@ -8,9 +8,9 @@ const initialState = {
 }
 
 export default handleActions({
-  BACKGROUNDS:{
-    POST:{
-      SET_STATUS:(state, action) => ({...state, status : action.payload})
+  BACKGROUNDS: {
+    POST: {
+      SET_STATUS: (state, action) => ({...state, status: action.payload})
     }
   }
 }, initialState)

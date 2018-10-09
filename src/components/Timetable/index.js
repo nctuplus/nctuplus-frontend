@@ -4,7 +4,7 @@ import classNames from 'classnames'
 import { Link } from 'react-router-dom'
 import CourseConfig from 'components/Course/config'
 import ReactTooltip from 'react-tooltip'
-import { ShareModal } from 'components/ShareButton'
+import ShareModal from 'components/ShareModal'
 import styles from './style.scss'
 
 import { connect } from 'react-redux'
@@ -17,6 +17,7 @@ import {
 } from 'api/Actions/Timetable'
 
 import html2canvas from 'html2canvas'
+import {modal, ModalWrapper} from 'components/Modal'
 
 const codes = ['M', 'N', 'A', 'B', 'C', 'D', 'X', 'E', 'F', 'G', 'H', 'Y', 'I', 'J', 'K', 'L']
 const canBeHidden = ['M', 'N', 'Y', 'I', 'J', 'K', 'L']
@@ -131,6 +132,7 @@ class Timetable extends React.Component {
   render () {
     return (
       <div className='card mb-3'>
+        <ModalWrapper />
         <ReactTooltip effect='solid' globalEventOff='click' />
         <div className='card-heading bg-blue text-white p-2'>
           <h4 className='text-center'>
@@ -154,11 +156,10 @@ class Timetable extends React.Component {
             <button
               className='btn btn-lg btn-secondary col'
               data-tip='分享課表'
-              onClick={this.props.shareToggle}
+              onClick={() => modal(<ShareModal />)}
             >
               <i className='fa fa-share mr-1' />
             </button>
-            { this.props.shareModal && <ShareModal semesterID='22' close={this.props.shareToggle} /> }
             <button className='btn btn-lg btn-secondary col' data-tip='下載/匯出' onClick={exportTimetable}>
               <i className='fa fa-download mr-1' />
             </button>

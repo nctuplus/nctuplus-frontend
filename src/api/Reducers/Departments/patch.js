@@ -8,9 +8,9 @@ const initialState = {
 }
 
 export default handleActions({
-  DEPARTMENT:{
-    PATCH:{
-      SET_STATUS:(state, action) => ({ ...state, status: action.payload })
-    },
+  DEPARTMENT: {
+    PATCH: {
+      SET_STATUS: (state, action) => ({ ...state, status: action.payload })
+    }
   }
 }, initialState)

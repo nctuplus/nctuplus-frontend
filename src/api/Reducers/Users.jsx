@@ -10,11 +10,11 @@ const initialState = {
 }
 
 export default handleActions({
-  USERS:{
-    FETCH:{
-      SET_STATUS:(state, action) => ({ ...state, status: action.payload }),
-      UPDATE:(state, action) => ({ ...state, data: action.payload.data, maxPage: action.payload.total_pages })
+  USERS: {
+    FETCH: {
+      SET_STATUS: (state, action) => ({ ...state, status: action.payload }),
+      UPDATE: (state, action) => ({ ...state, data: action.payload.data, maxPage: action.payload.total_pages })
     },
-    SET_PAGE:(state, action) => ({ ...state, page: action.payload }),
+    SET_PAGE: (state, action) => ({ ...state, page: action.payload })
   }
 }, initialState)

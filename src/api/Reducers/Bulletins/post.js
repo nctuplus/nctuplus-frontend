@@ -8,9 +8,9 @@ const initialState = {
 }
 
 export default handleActions({
-  BULLETINS:{
-    POST:{
-      SET_STATUS:(state, action) => ({ ...state, status: action.payload })
-    },
+  BULLETINS: {
+    POST: {
+      SET_STATUS: (state, action) => ({ ...state, status: action.payload })
+    }
   }
 }, initialState)

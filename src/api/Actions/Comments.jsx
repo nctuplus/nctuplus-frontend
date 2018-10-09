@@ -4,18 +4,18 @@ import { createActions } from 'redux-actions'
 import { FETCHING_STATUS as fstat } from 'utilities/constants'
 
 export const actions = createActions({
-  COMMENTS:{
-    FETCH:{
-      SET_STATUS:null,
-      UPDATE:null,
-      UPDATE_PAGE:null
+  COMMENTS: {
+    FETCH: {
+      SET_STATUS: null,
+      UPDATE: null,
+      UPDATE_PAGE: null
     },
-    GET:{
-      SET_STATUS:null,
-      STORE:null,
+    GET: {
+      SET_STATUS: null,
+      STORE: null
     }
   }
-});
+})
 
 export const fetchComments = (page = 1) => dispatch => {
   dispatch(actions.comments.fetch.setStatus(fstat.FETCHING))

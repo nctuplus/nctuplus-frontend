@@ -8,9 +8,9 @@ const initialState = {
 }
 
 export default handleActions({
-  DEPARTMENT:{
-    POST:{
-      SET_STATUS:(state, action) => ({ ...state, status: action.payload })
-    },
+  DEPARTMENT: {
+    POST: {
+      SET_STATUS: (state, action) => ({ ...state, status: action.payload })
+    }
   }
 }, initialState)

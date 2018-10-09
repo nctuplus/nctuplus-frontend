@@ -8,10 +8,10 @@ const initialState = {
 }
 
 export default handleActions({
-  DEPARTMENT:{
-    GET:{
-      SET_STATUS:(state, action) => ({ ...state, status: action.payload }),
-      STORE:(state, action) => ({ ...state, data: action.payload })
-    },
+  DEPARTMENT: {
+    GET: {
+      SET_STATUS: (state, action) => ({ ...state, status: action.payload }),
+      STORE: (state, action) => ({ ...state, data: action.payload })
+    }
   }
 }, initialState)

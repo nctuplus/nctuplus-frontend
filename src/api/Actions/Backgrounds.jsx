@@ -4,12 +4,12 @@ import { FETCHING_STATUS } from 'utilities/constants'
 
 export const actions = createActions({
   BACKGROUND: {
-    FETCH:{
-      SET_STATUS:null  //FETCHING_STATUS.FETCHING, DONE
+    FETCH: {
+      SET_STATUS: null // FETCHING_STATUS.FETCHING, DONE
     },
-    UPDATE:null,
-    POST:{
-      SET_STATUS:null  //FETCHING_STATUS.FETCHING, DONE, IDLE
+    UPDATE: null,
+    POST: {
+      SET_STATUS: null // FETCHING_STATUS.FETCHING, DONE, IDLE
     }
   }
 })
