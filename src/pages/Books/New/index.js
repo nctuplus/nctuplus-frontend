@@ -29,8 +29,10 @@ class New extends React.Component {
         price: '',
         cover_image: '',
         info: '',
-        contact_way: ''
+        contact_way: '',
+        courses: []
       },
+      courseSearchWord: '',
       fileUploadStatus: 'none',
       uploadedImageUrl: null
     }
@@ -56,6 +58,12 @@ class New extends React.Component {
       })
   }
 
+  onSearch (event) {
+    if (this.state.courseSearch) {
+      event.preventDefault()
+    }
+  }
+
   onSubmit (event) {
     let payload = this.state.payload
     // only works on chrome, but who care others? ;)
@@ -79,6 +87,8 @@ class New extends React.Component {
         imageUploadRef={this.imageUploadRef}
         updatePayload={(payload) => this.setState({ payload: { ...this.state.payload, ...payload } })}
         onFileUpload={() => this.onFileUpload()}
+        updateSearchWord={(word) => this.setState({ courseSearchWord: word })}
+        onSearch={(event) => this.onSearch(event)}
         onSubmit={(event) => this.onSubmit(event)}
       />
     )

@@ -15,19 +15,14 @@ const Form = props => (
 
           <form ref={props.formRef}>
             <LabeledInput label='書籍名稱'>
-              <div className='input-group'>
-                <input
-                  value={props.payload.name}
-                  onChange={e => props.updatePayload({ name: e.target.value })}
-                  className='form-control'
-                  placeholder='必填 / 利用搜尋可快速填入其他資訊'
-                  type='text'
-                  required
-                />
-                <div className='input-group-append'>
-                  <button className='btn btn-success' >搜尋</button>
-                </div>
-              </div>
+              <input
+                value={props.payload.name}
+                onChange={e => props.updatePayload({ name: e.target.value })}
+                className='form-control'
+                placeholder='必填'
+                type='text'
+                required
+              />
             </LabeledInput>
 
             <LabeledInput label='作者'>
@@ -100,27 +95,30 @@ const Form = props => (
                 required
               />
             </LabeledInput>
+          </form>
 
-            <h4><span className='text-center' /></h4>
-
+          <form>
             <LabeledInput label='適用課程'>
               <div className='input-group'>
                 <input
+                  value={props.courseSearchWord}
+                  onChange={e => props.updateSearchWord(e.target.value)}
                   className='form-control'
                   placeholder='選填 / 搜尋課名（交大專用）'
+                  required
                 />
                 <div className='input-group-append'>
-                  <button className='btn btn-default' >搜尋</button>
+                  <button className='btn btn-default' onClick={props.onSearch}>搜尋</button>
                 </div>
               </div>
             </LabeledInput>
-
-            <div className='col-12 my-4'><hr /></div>
-
-            <div className='col-12 pull-right'>
-              <button type='submit' className='btn btn-primary pull-right' onClick={props.onSubmit}>立即刊登</button>
-            </div>
           </form>
+
+          <div className='col-12 my-4'><hr /></div>
+
+          <div className='col-12 pull-right'>
+            <button type='submit' className='btn btn-primary pull-right' onClick={props.onSubmit}>立即刊登</button>
+          </div>          
         </div>
       </div>
     </div>
