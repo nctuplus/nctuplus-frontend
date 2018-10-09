@@ -4,24 +4,23 @@ import { createActions } from 'redux-actions'
 import { FETCHING_STATUS as fstat } from 'utilities/constants'
 
 export const actions = createActions({
-  COURSE_MAPS:{
-    FETCH:{
-      SET_STATUS:null,
-      UPDATE:null
+  COURSE_MAPS: {
+    FETCH: {
+      SET_STATUS: null,
+      UPDATE: null
     },
-    GET:{
-      SET_STATUS:null,
-      STORE:null
+    GET: {
+      SET_STATUS: null,
+      STORE: null
     },
-    POST:{
-      SET_STATUS:null
+    POST: {
+      SET_STATUS: null
     },
-    PATCH:{
-      SET_STATUS:null
+    PATCH: {
+      SET_STATUS: null
     }
   }
-});
-
+})
 
 export const postCourseMapsReset = actions.courseMaps.post.setStatus(fstat.IDLE)
 export const patchCourseMapsReset = actions.courseMaps.patch.setStatus(fstat.IDLE)

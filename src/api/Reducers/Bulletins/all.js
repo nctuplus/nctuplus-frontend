@@ -8,8 +8,8 @@ const initialState = {
 }
 
 export default handleActions({
-  BULLETINS:{
-    FETCH:{
+  BULLETINS: {
+    FETCH: {
       SET_STATUS: (state, action) => ({ ...state, status: action.payload }),
       UPDATE: (state, action) => ({ ...state, data: action.payload })
     }

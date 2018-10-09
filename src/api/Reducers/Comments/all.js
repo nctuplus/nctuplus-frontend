@@ -10,12 +10,12 @@ const initialState = {
 }
 
 export default handleActions({
-  COMMENTS:{
-    FETCH:{
-      SET_STATUS:(state, action) => ({ ...state, status: action.payload }),
-      UPDATE:(state, action) => ({ ...state, data: action.payload }),
-      UPDATE_PAGE:(state, action) => ({ ...state, page: action.payload })
-    },
+  COMMENTS: {
+    FETCH: {
+      SET_STATUS: (state, action) => ({ ...state, status: action.payload }),
+      UPDATE: (state, action) => ({ ...state, data: action.payload }),
+      UPDATE_PAGE: (state, action) => ({ ...state, page: action.payload })
+    }
   }
 
 }, initialState)

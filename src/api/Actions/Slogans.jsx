@@ -4,23 +4,23 @@ import { createActions } from 'redux-actions'
 import { FETCHING_STATUS as fstat } from 'utilities/constants'
 
 export const actions = createActions({
-  SLOGANS:{
-    FETCH:{
-      SET_STATUS:null,
-      UPDATE:null
+  SLOGANS: {
+    FETCH: {
+      SET_STATUS: null,
+      UPDATE: null
     },
-    GET:{
-      SET_STATUS:null,
-      STORE:null
+    GET: {
+      SET_STATUS: null,
+      STORE: null
     },
-    POST:{
-      SET_STATUS:null
+    POST: {
+      SET_STATUS: null
     },
-    PATCH:{
-      SET_STATUS:null
+    PATCH: {
+      SET_STATUS: null
     }
   }
-});
+})
 
 export const postSloganReset = actions.slogans.post.setStatus(fstat.IDLE)
 export const patchSloganReset = actions.slogans.patch.setStatus(fstat.IDLE)

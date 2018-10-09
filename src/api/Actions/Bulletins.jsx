@@ -4,24 +4,23 @@ import { createActions } from 'redux-actions'
 import { FETCHING_STATUS as fstat } from 'utilities/constants'
 
 export const actions = createActions({
-  BULLETINS:{
-    FETCH:{
-      SET_STATUS:null,
-      UPDATE:null
+  BULLETINS: {
+    FETCH: {
+      SET_STATUS: null,
+      UPDATE: null
     },
-    GET:{
-      SET_STATUS:null,
-      STORE:null
+    GET: {
+      SET_STATUS: null,
+      STORE: null
     },
-    POST:{
-      SET_STATUS:null
+    POST: {
+      SET_STATUS: null
     },
-    PATCH:{
-      SET_STATUS:null
+    PATCH: {
+      SET_STATUS: null
     }
   }
-});
-
+})
 
 export const fetchBulletins = (category = 0) => dispatch => {
   dispatch(actions.bulletins.fetch.setStatus(fstat.FETCHING))

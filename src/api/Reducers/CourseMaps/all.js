@@ -8,8 +8,8 @@ const initialState = {
 }
 
 export default handleActions({
-  COURSE_MAPS:{
-    FETCH:{
+  COURSE_MAPS: {
+    FETCH: {
       SET_STATUS: (state, action) => ({ ...state, status: action.payload }),
       UPDATE: (state, action) => ({ ...state, data: action.payload })
     }

@@ -8,9 +8,9 @@ const initialState = {
 }
 
 export default handleActions({
-  COURSE_MAPS:{
-    POST:{
-      SET_STATUS:(state, action) => ({ ...state, status: action.payload })
-    },
+  COURSE_MAPS: {
+    POST: {
+      SET_STATUS: (state, action) => ({ ...state, status: action.payload })
+    }
   }
 }, initialState)
