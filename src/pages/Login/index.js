@@ -9,7 +9,7 @@ import { login } from 'api/Controllers/user'
 import Layout from 'pages/Layout'
 import styles from './style.scss'
 import coverStyles from 'components/Cover/style.scss'
-import {toast, ToastWrapper} from 'components/Toast'
+import { toast, ToastWrapper } from 'components/Toast'
 
 const image = [
   'https://plus.nctu.edu.tw/assets/new-index/bg-login-ffb5ed42d0a4d4b1e40e29c273db0a4e.jpg'
@@ -36,7 +36,7 @@ const enhance = compose(
 class Login extends React.Component {
   componentDidMount () {
     if (this.props.location.state) {
-      toast('請先登入，謝謝!', {type: 'warning'})
+      toast('請先登入，謝謝!', { type: 'warning' })
     }
   }
   render () {

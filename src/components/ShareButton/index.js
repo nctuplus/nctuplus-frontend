@@ -1,7 +1,7 @@
 
 import React from 'react'
 import Modal from 'components/Modal'
-import {toast, ToastWrapper} from 'components/Toast'
+import { toast, ToastWrapper } from 'components/Toast'
 import styles from './style.scss'
 
 import { connect } from 'react-redux'
