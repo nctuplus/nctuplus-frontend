@@ -13,6 +13,12 @@ class Simulation extends React.Component {
     this.state = { open: true }
   }
 
+  handleShownAlert () {
+    this.setState({
+      open: false
+    })
+  }
+
   render () {
     return (
       <Layout>
@@ -21,7 +27,7 @@ class Simulation extends React.Component {
             <div className='col-12'>
               <div>
                 {this.state.open && <div className={`alert alert-warning ${styles.alert}`}
-                  onClick={() => this.setState({ open: false })}>
+                  onClick={this.handleShownAlert.bind(this)}>
                   <span className='bold'>Warning!</span> 因為學校真的很煩, 很抱歉目前識別新制通識的功能正在努力趕工中, 並且106學年度暫時無法搜尋通識的一當代五向度資料, 造成不便, 敬請見諒!
                 </div>}
               </div>
