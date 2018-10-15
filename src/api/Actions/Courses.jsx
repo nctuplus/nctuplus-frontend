@@ -11,6 +11,11 @@ export default createActions({
     SHOW: {
       SET_STATUS: null,
       STORE: null
+    },
+    SEARCH: {
+      SET_STATUS: null,
+      STORE: null,
+      UPDATE_PAGE: null
     }
   }
 })

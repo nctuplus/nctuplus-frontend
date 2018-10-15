@@ -24,3 +24,14 @@ export const getCourse = (id) => dispatch => {
     })
     .catch(() => dispatch(actions.courses.show.setStatus(FETCHING_STATUS.FAIL)))
 }
+
+export const getSearchCourses = (page = 1) => dispatch => {
+  dispatch(actions.courses.search.setStatus(FETCHING_STATUS.FETCHING))
+  server.public
+    .get(`/api/v1/courses?page=${page}`)
+    .then(({ data: courses }) => {
+      dispatch(actions.courses.search.store(courses))
+      dispatch(actions.courses.search.setStatus(FETCHING_STATUS.DONE))
+    })
+    .catch(() => dispatch(actions.courses.search.setStatus(FETCHING_STATUS.FAIL)))
+}
