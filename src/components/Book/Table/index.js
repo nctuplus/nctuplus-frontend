@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import Pagination from 'components/Pagination'
 import styles from './style.scss'
 
@@ -8,13 +8,18 @@ const Item = withRouter((props) => {
   return (
     <div className='col-4 col-md-4 mb-3' onClick={() => props.history.push(`/books/${props.id}`)}>
       <div className={`${styles.bookItem} card clickable`} >
+        <div style={{ position: 'absolute' }}>
+          <Link to={`/books/${props.id}/edit`}>
+            <button className='btn btn-warning'><i className='fa fa-pencil' /></button>
+          </Link>
+        </div>
         <div className='text-center'>
           <img className='d-inline-block' alt='尚無圖片!' height='150' src={`${SERVER_URL}${props.cover_image.url}`} />
         </div>
         <div className='card-body text-center'>
-          <div>{props.name}</div>
-          <div>作者: {props.authors}</div>
-          <div>
+          <div className='ellipsis'>{props.name}</div>
+          <div className='ellipsis'>作者: {props.authors}</div>
+          <div className='ellipsis'>
             課程: {
               props.courses &&
               props.courses

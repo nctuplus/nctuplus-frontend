@@ -71,12 +71,12 @@ class ToastWrapper extends React.Component {
   }
   addToast (notification) {
     let updatedList = this.state.notifyList
-    updatedList.push({...notification, id: this.state.seq})
-    this.setState({seq: this.state.seq + 1, notifyList: [...updatedList]})
+    updatedList.push({ ...notification, id: this.state.seq })
+    this.setState({ seq: this.state.seq + 1, notifyList: [...updatedList] })
   }
   removeToast (id) {
     let updatedList = this.state.notifyList.filter(notification => notification.id !== id)
-    this.setState({notifyList: [...updatedList]})
+    this.setState({ notifyList: [...updatedList] })
   }
   render () {
     return (
@@ -104,7 +104,7 @@ class ToastWrapper extends React.Component {
 }
 
 const toast = (content, options) => {
-  getter.func[0]({content: content, ...options})
+  getter.func[0]({ content: content, ...options })
 }
 
-export {ToastWrapper, Toast, toast}
+export { ToastWrapper, Toast, toast }

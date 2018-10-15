@@ -22,7 +22,8 @@ const getter = {
 
 const Modal = (props) => (
   <div className={classNames('modal-dialog', 'modal-dialog-centered')} >
-    <div className={classNames('modal-content', 'border-0', 'rounded-0', styles.modalContent)}
+    <div
+      className={classNames('modal-content', styles.modalContent)}
       onClick={e => e.stopPropagation()}
     >
       {props.children}
@@ -51,11 +52,11 @@ class ModalWrapper extends React.Component {
   }
   addModal (content) {
     document.body.style.overflowY = 'hidden'
-    this.setState({open: true, modal: content})
+    this.setState({ open: true, modal: content })
   }
   removeModal () {
     document.body.style.overflowY = 'auto'
-    this.setState({open: false})
+    this.setState({ open: false })
   }
   render () {
     return (
@@ -75,4 +76,4 @@ const modal = (content) => {
   getter.func[0](content)
 }
 
-export {ModalWrapper, Modal, modal}
+export { ModalWrapper, Modal, modal }

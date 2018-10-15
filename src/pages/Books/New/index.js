@@ -4,17 +4,21 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { base64encode } from 'utilities'
 import { FETCHING_STATUS } from 'utilities/constants'
-import { postBook, postBookReset } from 'api/Actions/Books'
+import { postBook } from 'api/Controllers/books'
+import actions from 'api/Actions/Books'
+
 import Form from 'components/Book/Form'
+import SearchList from 'components/Course/SearchList'
+import { modal } from 'components/Modal'
 
 const mapStateToProps = (state) => ({
-  book: state.books.post.data,
-  status: state.books.post.status
+  book: state.books.new.data,
+  status: state.books.new.status
 })
 
 const mapDispatchToProps = (dispatch) => ({
   postBook: (payload) => dispatch(postBook(payload)),
-  postBookReset: () => dispatch(postBookReset())
+  postBookReset: () => dispatch(actions.books.new.setStatus(FETCHING_STATUS.IDLE))
 })
 
 class New extends React.Component {
@@ -23,13 +27,15 @@ class New extends React.Component {
     this.state = {
       payload: {
         name: '',
-        author: '',
+        authors: '',
         isbn: '',
         price: '',
         cover_image: '',
-        condition: '',
-        contact_way: ''
+        info: '',
+        contact_way: '',
+        courses: []
       },
+      courseSearchWord: '',
       fileUploadStatus: 'none',
       uploadedImageUrl: null
     }
@@ -55,6 +61,13 @@ class New extends React.Component {
       })
   }
 
+  onSearch (event) {
+    if (this.state.courseSearchWord) {
+      event.preventDefault()
+      modal(<SearchList data={this.props.courses} />)
+    }
+  }
+
   onSubmit (event) {
     let payload = this.state.payload
     // only works on chrome, but who care others? ;)
@@ -63,7 +76,7 @@ class New extends React.Component {
     // 檔案還沒上傳並編碼完前不送出
     if (this.state.fileUploadStatus === 'uploading') return
 
-    if (payload.name && payload.author && payload.price && payload.condition && payload.contact_way) {
+    if (payload.name && payload.authors && payload.price && payload.info && payload.contact_way) {
       // 讓表單不要照預設方法送出
       event.preventDefault()
       this.props.postBook(payload)
@@ -78,6 +91,8 @@ class New extends React.Component {
         imageUploadRef={this.imageUploadRef}
         updatePayload={(payload) => this.setState({ payload: { ...this.state.payload, ...payload } })}
         onFileUpload={() => this.onFileUpload()}
+        updateSearchWord={(word) => this.setState({ courseSearchWord: word })}
+        onSearch={(event) => this.onSearch(event)}
         onSubmit={(event) => this.onSubmit(event)}
       />
     )

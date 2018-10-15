@@ -9,7 +9,7 @@ import Spinner from 'components/Spinner'
 
 import scrollToComponent from 'react-scroll-to-component'
 import { connect } from 'react-redux'
-import courseActions from 'api/Actions/Courses'
+import { getCourse } from 'api/Controllers/courses'
 
 const Section = (props) => (
   <div className='py-4' ref={props.domref}>
@@ -179,7 +179,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchData: (id) => dispatch(courseActions.show.fetch(id))
+  fetchData: (id) => dispatch(getCourse(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Show)

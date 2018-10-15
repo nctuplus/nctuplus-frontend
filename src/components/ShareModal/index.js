@@ -1,6 +1,6 @@
 
 import React from 'react'
-import {toast, ToastWrapper} from 'components/Toast'
+import { toast, ToastWrapper } from 'components/Toast'
 import styles from './style.scss'
 
 import { connect } from 'react-redux'

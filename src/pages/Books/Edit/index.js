@@ -4,19 +4,22 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { base64encode } from 'utilities'
 import { FETCHING_STATUS } from 'utilities/constants'
-import { getBook, patchBook, patchBookReset } from 'api/Actions/Books'
+import { getBook, patchBook } from 'api/Controllers/books'
+import actions from 'api/Actions/Books'
 import Form from 'components/Book/Form'
+import SearchList from 'components/Course/SearchList'
+import { modal } from 'components/Modal'
 
 const mapStateToProps = (state) => ({
   book: state.books.show.data,
   status: state.books.show.status,
-  bookUpdateStatus: state.books.patch.status
+  bookUpdateStatus: state.books.edit.status
 })
 
 const mapDispatchToProps = (dispatch) => ({
   getBook: (id) => dispatch(getBook(id)),
   patchBook: (payload, id) => dispatch(patchBook(payload, id)),
-  patchBookReset: () => dispatch(patchBookReset())
+  patchBookReset: () => dispatch(actions.books.edit.setStatus(FETCHING_STATUS.IDLE))
 })
 
 class Edit extends React.Component {
@@ -25,13 +28,15 @@ class Edit extends React.Component {
     this.state = {
       payload: {
         name: '',
-        author: '',
+        authors: '',
         isbn: '',
         price: '',
         cover_image: '',
-        condition: '',
-        contact_way: ''
+        info: '',
+        contact_way: '',
+        courses: []
       },
+      courseSearchWord: '',
       synced: false,
       fileUploadStatus: 'none',
       uploadedImageUrl: null
@@ -71,6 +76,13 @@ class Edit extends React.Component {
       })
   }
 
+  onSearch (event) {
+    if (this.state.courseSearchWord) {
+      event.preventDefault()
+      modal(<SearchList data={this.props.courses} />)
+    }
+  }
+
   onSubmit (event) {
     let payload = this.state.payload
     // only works on chrome, but who care others? ;)
@@ -79,7 +91,7 @@ class Edit extends React.Component {
     // 檔案還沒上傳並編碼完前不送出
     if (this.state.fileUploadStatus === 'uploading') return
 
-    if (payload.name && payload.author && payload.price && payload.condition && payload.contact_way) {
+    if (payload.name && payload.authors && payload.price && payload.info && payload.contact_way) {
       // 讓表單不要照預設方法送出
       event.preventDefault()
       this.props.patchBook(payload, this.props.match.params.id)
@@ -94,6 +106,8 @@ class Edit extends React.Component {
         imageUploadRef={this.imageUploadRef}
         updatePayload={(payload) => this.setState({ payload: { ...this.state.payload, ...payload } })}
         onFileUpload={() => this.onFileUpload()}
+        updateSearchWord={(word) => this.setState({ courseSearchWord: word })}
+        onSearch={(event) => this.onSearch(event)}
         onSubmit={(event) => this.onSubmit(event)}
       />
     )

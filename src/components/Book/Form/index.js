@@ -1,7 +1,9 @@
 
 import React from 'react'
 import Layout from 'pages/Layout'
-import { LabeledInput, InputWithButton } from 'components/FormUtils'
+import { LabeledInput } from 'components/FormUtils'
+import { ModalWrapper } from 'components/Modal'
+import styles from './style.scss'
 
 const Form = props => (
   <Layout>
@@ -10,29 +12,24 @@ const Form = props => (
         <div className='col-md-8 offset-md-2'>
           <h2><i className='fa fa-book mx-3' />我要賣書</h2>
 
-          <hr />
+          <div className='col-12 my-4'><hr /></div>
 
           <form ref={props.formRef}>
             <LabeledInput label='書籍名稱'>
-              <div className='input-group'>
-                <input
-                  value={props.payload.name}
-                  onChange={e => props.updatePayload({ name: e.target.value })}
-                  className='form-control'
-                  placeholder='必填 / 利用搜尋可快速填入其他資訊'
-                  type='text'
-                  required
-                />
-                <div className='input-group-btn'>
-                  <button className='btn btn-success' >搜尋</button>
-                </div>
-              </div>
+              <input
+                value={props.payload.name}
+                onChange={e => props.updatePayload({ name: e.target.value })}
+                className='form-control'
+                placeholder='必填'
+                type='text'
+                required
+              />
             </LabeledInput>
 
             <LabeledInput label='作者'>
               <input
-                value={props.payload.author}
-                onChange={e => props.updatePayload({ author: e.target.value })}
+                value={props.payload.authors}
+                onChange={e => props.updatePayload({ authors: e.target.value })}
                 className='form-control'
                 placeholder='必填'
                 type='text'
@@ -57,7 +54,7 @@ const Form = props => (
                 onChange={props.onFileUpload}
               />
               <div
-                className='text-center clickable upload-picture p-5'
+                className={`text-center clickable ${styles.uploadPicture} p-5`}
                 onClick={() => props.imageUploadRef.current.click()}
               >
                 {
@@ -81,8 +78,8 @@ const Form = props => (
 
             <LabeledInput label='書況說明'>
               <textarea
-                value={props.payload.condition}
-                onChange={e => props.updatePayload({ condition: e.target.value })}
+                value={props.payload.info}
+                onChange={e => props.updatePayload({ info: e.target.value })}
                 className='form-control'
                 placeholder='必填'
                 required
@@ -99,24 +96,31 @@ const Form = props => (
                 required
               />
             </LabeledInput>
-
-            <h4><span className='text-center' /></h4>
-            <div>
-              <LabeledInput label='適用課程'>
-                <InputWithButton
-                  placeholder='搜尋課名（交大專用）'
-                  button_content='搜尋'
-                />
-              </LabeledInput>
-            </div>
-            <div className='row'>
-              <div className='col-md-10'>
-                <a hidden>展開</a>
-              </div>
-            </div>
-            <hr />
-            <button type='submit' className='btn btn-primary pull-right' onClick={props.onSubmit}>立即刊登</button>
           </form>
+
+          <form>
+            <LabeledInput label='適用課程'>
+              <div className='input-group'>
+                <input
+                  value={props.courseSearchWord}
+                  onChange={e => props.updateSearchWord(e.target.value)}
+                  className='form-control'
+                  placeholder='選填 / 搜尋課名（交大專用）'
+                  required
+                />
+                <div className='input-group-append'>
+                  <button className='btn btn-default' onClick={props.onSearch}>搜尋</button>
+                </div>
+              </div>
+            </LabeledInput>
+          </form>
+          <ModalWrapper />
+
+          <div className='col-12 my-4'><hr /></div>
+
+          <div className='col-12 pull-right'>
+            <button type='submit' className='btn btn-primary pull-right' onClick={props.onSubmit}>立即刊登</button>
+          </div>
         </div>
       </div>
     </div>

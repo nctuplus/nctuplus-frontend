@@ -17,7 +17,7 @@ import {
 } from 'api/Actions/Timetable'
 
 import html2canvas from 'html2canvas'
-import {modal, ModalWrapper} from 'components/Modal'
+import { modal, ModalWrapper } from 'components/Modal'
 
 const codes = ['M', 'N', 'A', 'B', 'C', 'D', 'X', 'E', 'F', 'G', 'H', 'Y', 'I', 'J', 'K', 'L']
 const canBeHidden = ['M', 'N', 'Y', 'I', 'J', 'K', 'L']

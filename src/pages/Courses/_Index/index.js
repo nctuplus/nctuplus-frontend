@@ -9,6 +9,7 @@ import styles from './style.scss'
 
 import { connect } from 'react-redux'
 import courseActions from 'api/Actions/Courses'
+import { getCourses } from 'api/Controllers/courses'
 import { compose, lifecycle } from 'recompose'
 
 const Index = ({ courses, updatePage }) => (
@@ -27,12 +28,12 @@ const Index = ({ courses, updatePage }) => (
 )
 
 const mapStateToProps = (state) => ({
-  courses: state.courses.all
+  courses: state.courses.index
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchData: (page) => dispatch(courseActions.index.fetch(page)),
-  updatePage: (page) => dispatch(courseActions.index.updatePage(page))
+  fetchData: (page) => dispatch(getCourses(page)),
+  updatePage: (page) => dispatch(courseActions.courses.index.updatePage(page))
 })
 
 const enhance = compose(
