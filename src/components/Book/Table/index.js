@@ -12,9 +12,9 @@ const Item = withRouter((props) => {
           <img className='d-inline-block' alt='尚無圖片!' height='150' src={`${SERVER_URL}${props.cover_image.url}`} />
         </div>
         <div className='card-body text-center'>
-          <div>{props.name}</div>
-          <div>作者: {props.authors}</div>
-          <div>
+          <div className='ellipsis'>{props.name}</div>
+          <div className='ellipsis'>作者: {props.authors}</div>
+          <div className='ellipsis'>
             課程: {
               props.courses &&
               props.courses

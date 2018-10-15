@@ -37,7 +37,7 @@ class Index extends React.Component {
       <Layout>
         <div className='container pt-3'>
           <div className='row'>
-            <div className='col-12 col-md-3'>
+            <div className='col-12 col-md-3 pl-0'>
               <SearchPanel>
                 <InputWithButton
                   placeholder='書名/作者/課名'
