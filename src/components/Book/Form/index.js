@@ -2,6 +2,7 @@
 import React from 'react'
 import Layout from 'pages/Layout'
 import { LabeledInput } from 'components/FormUtils'
+import { ModalWrapper } from 'components/Modal'
 import styles from './style.scss'
 
 const Form = props => (
@@ -113,12 +114,13 @@ const Form = props => (
               </div>
             </LabeledInput>
           </form>
+          <ModalWrapper />
 
           <div className='col-12 my-4'><hr /></div>
 
           <div className='col-12 pull-right'>
             <button type='submit' className='btn btn-primary pull-right' onClick={props.onSubmit}>立即刊登</button>
-          </div>          
+          </div>
         </div>
       </div>
     </div>

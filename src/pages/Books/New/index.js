@@ -6,7 +6,10 @@ import { base64encode } from 'utilities'
 import { FETCHING_STATUS } from 'utilities/constants'
 import { postBook } from 'api/Controllers/books'
 import actions from 'api/Actions/Books'
+
 import Form from 'components/Book/Form'
+import SearchList from 'components/Course/SearchList'
+import { modal } from 'components/Modal'
 
 const mapStateToProps = (state) => ({
   book: state.books.new.data,
@@ -59,8 +62,9 @@ class New extends React.Component {
   }
 
   onSearch (event) {
-    if (this.state.courseSearch) {
+    if (this.state.courseSearchWord) {
       event.preventDefault()
+      modal(<SearchList data={this.props.courses} />)
     }
   }
 
