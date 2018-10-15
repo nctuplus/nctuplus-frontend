@@ -7,6 +7,8 @@ import { FETCHING_STATUS } from 'utilities/constants'
 import { getBook, patchBook } from 'api/Controllers/books'
 import actions from 'api/Actions/Books'
 import Form from 'components/Book/Form'
+import SearchList from 'components/Course/SearchList'
+import { modal } from 'components/Modal'
 
 const mapStateToProps = (state) => ({
   book: state.books.show.data,
@@ -31,8 +33,10 @@ class Edit extends React.Component {
         price: '',
         cover_image: '',
         info: '',
-        contact_way: ''
+        contact_way: '',
+        courses: []
       },
+      courseSearchWord: '',
       synced: false,
       fileUploadStatus: 'none',
       uploadedImageUrl: null
@@ -72,6 +76,13 @@ class Edit extends React.Component {
       })
   }
 
+  onSearch (event) {
+    if (this.state.courseSearchWord) {
+      event.preventDefault()
+      modal(<SearchList data={this.props.courses} />)
+    }
+  }
+
   onSubmit (event) {
     let payload = this.state.payload
     // only works on chrome, but who care others? ;)
@@ -95,6 +106,8 @@ class Edit extends React.Component {
         imageUploadRef={this.imageUploadRef}
         updatePayload={(payload) => this.setState({ payload: { ...this.state.payload, ...payload } })}
         onFileUpload={() => this.onFileUpload()}
+        updateSearchWord={(word) => this.setState({ courseSearchWord: word })}
+        onSearch={(event) => this.onSearch(event)}
         onSubmit={(event) => this.onSubmit(event)}
       />
     )
