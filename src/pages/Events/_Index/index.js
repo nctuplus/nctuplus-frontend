@@ -110,7 +110,7 @@ const Index = enhance((props) =>
         </div>
         <div className='control-wrapper col-6 col-sm-3 col-md-2'>
           <button
-            className='btn btn-info full-width'
+            className='btn btn-success full-width'
             onClick={() => props.setVisible(visible => !visible)}
           >
             我的活動

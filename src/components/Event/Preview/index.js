@@ -3,11 +3,22 @@ import React from 'react'
 import classNames from 'classnames'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
+import style from './style.scss'
 
 const Preview = (props) => (
   <div className='col-12 col-sm-6 col-md-3 mb-3'>
-    <div className='card bg-white'>
-
+    <div className={classNames('card', style.cardBackground)}>
+      <div className='text-right pr-2'>
+        <span className={classNames('bold', 'date', moment().isBetween(props.begin_time, props.end_time) ? 'text-red' : 'text-grey')}>
+          {
+            (props.begin_time && props.end_time)
+              ? (moment().isBetween(props.begin_time, props.end_time)
+                ? '進行中'
+                : props.begin_time.slice(0, 10))
+              : '?????'
+          }
+        </span>
+      </div>
       <Link to={`/events/${props.id}`}>
         <img
           alt='poster'
@@ -17,23 +28,12 @@ const Preview = (props) => (
       </Link>
 
       <div className='card-text p-2'>
-        <div className='pull-right'>
-          <span className={classNames('bold', 'date', moment().isBetween(props.begin_time, props.end_time) && 'text-red')}>
-            {
-              (props.begin_time && props.end_time)
-                ? (moment().isBetween(props.begin_time, props.end_time)
-                  ? '進行中'
-                  : props.begin_time.slice(0, 10))
-                : '?????'
-            }
-          </span>
-        </div>
         <br />
-        <div className='card-title bold'>{ props.title }</div>
+        <div className={classNames('card-title', 'bold', 'pt-1', style.eventTitle)}>{ props.title }</div>
 
         <div className='info'>
-          <div className='info-item'>單位: { props.organization }</div>
-          <div className='info-item'>地點: { props.location }</div>
+          <div className={classNames('info-item', 'ellipsis', style.eventInfo)}>單位: { props.organization }</div>
+          <div className={classNames('info-item', 'ellipsis', style.eventInfo)}>地點: { props.location }</div>
         </div>
       </div>
     </div>
