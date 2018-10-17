@@ -38,7 +38,16 @@ const mapDispatchToProps = (dispatch) => ({
 
 const enhance = compose(
   connect(mapStateToProps, mapDispatchToProps),
-  lifecycle({ componentDidMount () { this.props.fetchData() } })
+  lifecycle({
+    componentDidMount () {
+      this.props.fetchData(1)
+    },
+    componentDidUpdate (prevProps) {
+      if (this.props.courses.page !== prevProps.courses.page) {
+        this.props.fetchData(this.props.courses.page)
+      }
+    }
+  })
 )
 
 export default enhance(Index)
