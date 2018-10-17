@@ -1,0 +1,10 @@
+.exit{
+		opacity: 1;
+		&.exitActive{
+			transition: 800ms;
+			opacity: 0; 
+		}
+	}
+	.exitDone{
+		display: none;
+	}

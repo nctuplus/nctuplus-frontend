@@ -5,7 +5,8 @@ import { SearchCourse } from 'components/Search'
 import { List } from 'components/Course'
 import Timetable from 'components/Timetable'
 import styles from './style.scss'
-
+import fade from './fade.scss'
+import { CSSTransition } from 'react-transition-group'
 // @todo: connect course list data
 class Simulation extends React.Component {
   constructor (props) {
@@ -25,12 +26,17 @@ class Simulation extends React.Component {
         <div className='container pt-3'>
           <div className='row'>
             <div className='col-12'>
-              <div>
-                {this.state.open && <div className={`alert alert-warning ${styles.alert}`}
-                  onClick={this.handleShownAlert.bind(this)}>
-                  <span className='bold'>Warning!</span> 因為學校真的很煩, 很抱歉目前識別新制通識的功能正在努力趕工中, 並且106學年度暫時無法搜尋通識的一當代五向度資料, 造成不便, 敬請見諒!
-                </div>}
-              </div>
+              <CSSTransition
+                in={this.state.open}
+                timeout={800}
+                classNames={fade}>
+                <div>
+                  <div className={`alert alert-warning ${styles.alert}`}
+                    onClick={this.handleShownAlert.bind(this)}>
+                    <span className='bold'>Warning!</span> 因為學校真的很煩, 很抱歉目前識別新制通識的功能正在努力趕工中, 並且106學年度暫時無法搜尋通識的一當代五向度資料, 造成不便, 敬請見諒!
+                  </div>
+                </div>
+              </CSSTransition>
             </div>
             <div className='col-12 col-lg-6'>
               <div className='card'>
