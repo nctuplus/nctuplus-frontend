@@ -60,7 +60,7 @@ const Index = (props) => (
           </div>
           <div className='col-6 text-center mt-5'>
             <div className={`${styles.slogan} d-inline-block text-right`}>
-              <pre>{ '手邊有用不到的教科書嗎？\n快登入使用二手書平台！' }</pre>
+              <pre className='text-white'>{ '手邊有用不到的教科書嗎？\n快登入使用二手書平台！' }</pre>
             </div>
           </div>
         </div>
