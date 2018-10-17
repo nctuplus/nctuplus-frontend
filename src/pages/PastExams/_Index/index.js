@@ -13,14 +13,15 @@ import { InputWithButton } from 'components/FormUtils'
 import Spinner from 'components/Spinner'
 
 import { connect } from 'react-redux'
-import pastExamsActions from 'api/Actions/PastExams'
+import actions from 'api/Actions/PastExams'
+import { getPastExams } from 'api/Controllers/pastExams'
 import { compose, lifecycle } from 'recompose'
 import moment from 'moment'
 
-const mapStateToProps = (state) => ({ pastExams: state.pastExams })
+const mapStateToProps = (state) => ({ pastExams: state.pastExams.index })
 const mapDispatchToProps = (dispatch) => ({
-  fetchData: (page) => dispatch(pastExamsActions.index.fetch(page)),
-  updatePage: (page) => dispatch(pastExamsActions.index.updatePage(page))
+  fetchData: (page) => dispatch(getPastExams(page)),
+  updatePage: (page) => dispatch(actions.pastExams.index.updatePage(page))
 })
 
 const enhance = compose(
@@ -30,7 +31,6 @@ const enhance = compose(
 
 const Index = ({ pastExams, updatePage }) => (
   <Layout>
-    {console.log(pastExams)}
     <div className='container pt-3'>
       <div className='row'>
         <div className='col-12 col-md-3'>

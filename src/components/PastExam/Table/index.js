@@ -6,7 +6,6 @@ import { convertSemesterToString } from 'utilities'
 
 const Row = ({ file, course, uploader, description }) => (
   <tr className='clickable' onClick={() => window.open(`${SERVER_URL}${file.url}`)}>
-    {console.log(file)}
     <td>
       { course.permanent_course.name }
       /
