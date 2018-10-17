@@ -26,7 +26,16 @@ const mapDispatchToProps = (dispatch) => ({
 
 const enhance = compose(
   connect(mapStateToProps, mapDispatchToProps),
-  lifecycle({ componentDidMount () { this.props.fetchData() } })
+  lifecycle({
+    componentDidMount () {
+      this.props.fetchData(1)
+    },
+    componentDidUpdate (prevProps) {
+      if (this.props.pastExams.page !== prevProps.pastExams.page) {
+        this.props.fetchData(this.props.pastExams.page)
+      }
+    }
+  })
 )
 
 const Index = ({ pastExams, updatePage }) => (
