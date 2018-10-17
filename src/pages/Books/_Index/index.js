@@ -19,12 +19,21 @@ import actions from 'api/Actions/Books'
 
 class Index extends React.Component {
   componentDidMount () {
-    this.props.fetchData(1)
+    this.props.fetchData({
+      page: 1,
+      sort: this.props.books.filters.descend ? 'desc' : 'asc',
+      by: this.props.books.filters.sort_by
+    })
   }
 
   componentDidUpdate (prevProps) {
-    if (this.props.books.page !== prevProps.books.page) {
-      this.props.fetchData(this.props.books.page)
+    if (this.props.books.page !== prevProps.books.page || this.props.books.filters !== prevProps.books.filters) {
+      console.log(this.props.books.filters)
+      this.props.fetchData({
+        page: this.props.books.page,
+        sort: this.props.books.filters.descend ? 'desc' : 'asc',
+        by: this.props.books.filters.sort_by
+      })
     }
   }
 
@@ -68,12 +77,12 @@ class Index extends React.Component {
                       }
                     </button>
                     <button
-                      onClick={() => this.props.updateFilters({ sort_by: 'date' })}
-                      className={this.props.books.filters.sort_by === 'date' ? 'btn btn-primary' : 'btn btn-default'}
+                      onClick={() => this.props.updateFilters({ sort_by: 'created_at' })}
+                      className={this.props.books.filters.sort_by === 'created_at' ? 'btn btn-primary' : 'btn btn-default'}
                     >
                       日期
                       {
-                        this.props.books.filters.sort_by === 'date' &&
+                        this.props.books.filters.sort_by === 'created_at' &&
                         <span onClick={() => this.props.updateFilters({ descend: !this.props.books.filters.descend })}>
                           { this.props.books.filters.descend ? '▼' : '▲' }
                         </span>
@@ -107,7 +116,7 @@ const mapStateToProps = (state) => ({
   books: state.books.index
 })
 const mapDispatchToProps = (dispatch) => ({
-  fetchData: (page) => dispatch(getBooks(page)),
+  fetchData: (payload) => dispatch(getBooks(payload)),
   updateFilters: (filters) => dispatch(actions.books.index.updateFilters(filters)),
   updatePage: (page) => dispatch(actions.books.index.updatePage(page))
 })

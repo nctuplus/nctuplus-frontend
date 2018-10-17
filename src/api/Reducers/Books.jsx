@@ -9,7 +9,7 @@ const initialState = {
     page: 1,
     maxPage: 1,
     filters: {
-      sort_by: 'date',
+      sort_by: 'created_at',
       descend: true
     }
   },
