@@ -73,7 +73,7 @@ const enhance = compose(
         setTimeout(() => props.setPayload(payload => ({ ...payload, ...props.event })), 100)
 
         if (props.event.cover_image) {
-          props.setUploadedImageUrl(props.event.cover_image.url)
+          props.setUploadedImageUrl(`${SERVER_URL}${props.event.cover_image.url}`)
         }
         props.setSynced(true)
       }
