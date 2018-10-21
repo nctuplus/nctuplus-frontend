@@ -11,6 +11,7 @@
 
 .modalBG{
     background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: auto !important;
 }
 
 .modalContent{
@@ -19,8 +20,4 @@
     animation: fadeInUp .2s ease-in-out;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 6px;
-}
-
-.modalBackground{
-	background-color: rgba(0, 0, 0, 0.5);
 }
