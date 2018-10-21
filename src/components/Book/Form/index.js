@@ -71,7 +71,7 @@ const Form = props => (
                 onChange={e => props.updatePayload({ price: e.target.value })}
                 className='form-control integer-only'
                 placeholder='必填'
-                type='text'
+                type='number'
                 required
               />
             </LabeledInput>
