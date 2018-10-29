@@ -53,8 +53,8 @@ class Edit extends React.Component {
     if (this.props.status === FETCHING_STATUS.DONE && !this.state.synced) {
       this.setState({ payload: { ...this.state.payload, ...this.props.book } })
 
-      if (this.state.payload.cover_image) {
-        this.setState({ uploadedImageUrl: this.state.book.cover_image.url })
+      if (this.props.book.cover_image) {
+        this.setState({ uploadedImageUrl: `${SERVER_URL}${this.props.book.cover_image.url}` })
       }
       this.setState({ synced: true })
     }
@@ -70,7 +70,7 @@ class Edit extends React.Component {
     const file = this.imageUploadRef.current.files[0]
     base64encode(file)
       .then(encoded => {
-        this.setState({ ...this.state.payload, cover_image: encoded })
+        this.setState({ payload: { ...this.state.payload, cover_image: encoded } })
         this.setState({ fileUploadStatus: 'done' })
         this.setState({ uploadedImageUrl: URL.createObjectURL(file) })
       })

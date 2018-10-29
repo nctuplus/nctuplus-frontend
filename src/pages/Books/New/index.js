@@ -55,7 +55,7 @@ class New extends React.Component {
     const file = this.imageUploadRef.current.files[0]
     base64encode(file)
       .then(encoded => {
-        this.setState({ ...this.state.payload, cover_image: encoded })
+        this.setState({ payload: { ...this.state.payload, cover_image: encoded } })
         this.setState({ fileUploadStatus: 'done' })
         this.setState({ uploadedImageUrl: URL.createObjectURL(file) })
       })

@@ -4,7 +4,9 @@ import Layout from 'pages/Layout'
 
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
+import { Link } from 'react-router-dom'
 import { getBook } from 'api/Controllers/books'
+import style from './style.scss'
 
 class Show extends React.Component {
   componentDidMount () {
@@ -47,7 +49,13 @@ class Show extends React.Component {
                       </tr>
                       <tr>
                         <td>連絡方式</td>
-                        <td><a href={book.contact_way}>Facebook</a></td>
+                        <td>
+                          {
+                            book.contact_way && book.contact_way.includes('@')
+                              ? book.contact_way
+                              : <a href={book.contact_way}>Facebook</a>
+                          }
+                        </td>
                       </tr>
                       <tr>
                         <td>書況</td>
@@ -69,6 +77,18 @@ class Show extends React.Component {
                   </table>
                 </div>
               </div>
+            </div>
+          </div>
+          <div className={style.fixedMenu}>
+            <div className='pull-right'>
+              <Link to={`/books/${this.props.match.params.id}/edit`} className='flat-link'>
+                <button className='btn btn-primary' >
+                  編輯
+                </button>
+              </Link>
+              <button className='btn btn-danger'>
+                售出
+              </button>
             </div>
           </div>
         </div>

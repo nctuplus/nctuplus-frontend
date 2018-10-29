@@ -9,6 +9,57 @@ function base64encode (file) {
   })
 }
 
+function queryBuilder (payload, controller) {
+  let num = 0
+  let params = '?'
+  let customSearchField = ''
+
+  switch (controller) {
+    case 'Book':
+      customSearchField = 'name_or_authors_cont'
+      break
+    case 'Course':
+      customSearchField = ''
+      break
+    case 'Comment':
+      customSearchField = ''
+      break
+    case 'PastExam':
+      customSearchField = ''
+      break
+    case 'Event':
+      customSearchField = 'title_or_location_or_organization_cont'
+      break
+    default:
+      break
+  }
+
+  Object.entries(payload).forEach(([key, value]) => {
+    if (key === 'q') {
+      Object.entries(value).forEach(([key, value]) => {
+        if (key === 'sort') {
+          if ((++num) > 1) params += '&'
+          params += `q[s]=${value['by']}+${value['order']}`
+        } else {
+          Object.entries(value).forEach(([key, value]) => {
+            if (key === 'custom_search') {
+              if ((++num) > 1) params += '&'
+              params += `q[${customSearchField}]=${value}`
+            } else if (key === 'class') {
+              if ((++num) > 1) params += '&'
+              params += `q[college_id_eq]=${value}`
+            }
+          })
+        }
+      })
+    } else {
+      if ((++num) > 1) params += '&'
+      params += `${key}=${value}`
+    }
+  })
+  return params
+}
+
 function convertTimeSlotsToString (timeSlots) {
   return timeSlots
     ? Object
@@ -39,5 +90,6 @@ export {
   convertTimeSlotsToString,
   convertSemesterToString,
   base64encode,
+  queryBuilder,
   debug
 }

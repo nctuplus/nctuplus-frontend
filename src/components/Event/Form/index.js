@@ -6,7 +6,7 @@ import { LabeledInput } from 'components/FormUtils'
 import styles from './style.scss'
 
 const Form = props => (
-  <Layout>
+  <Layout scroll={false}>
     <div className='container bg-white pt-5'>
       <div className='row'>
         <div className='col-md-9 offset-1'>

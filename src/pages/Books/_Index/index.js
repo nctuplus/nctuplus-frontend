@@ -19,20 +19,48 @@ import actions from 'api/Actions/Books'
 
 class Index extends React.Component {
   componentDidMount () {
-    this.props.fetchData(1)
+    let books = this.props.books
+    this.props.fetchData({
+      page: books.page,
+      q: {
+        sort: {
+          order: books.filters.descend ? 'desc' : 'asc',
+          by: books.filters.sort_by
+        },
+        filters: {
+          custom_search: books.filters.search_by
+        }
+      }
+    })
   }
 
   componentDidUpdate (prevProps) {
-    if (this.props.books.page !== prevProps.books.page) {
-      this.props.fetchData(this.props.books.page)
+    let books = this.props.books
+    if (books.page !== prevProps.books.page || books.filters !== prevProps.books.filters) {
+      this.props.fetchData({
+        page: books.page,
+        q: {
+          sort: {
+            order: books.filters.descend ? 'desc' : 'asc',
+            by: books.filters.sort_by
+          },
+          filters: {
+            custom_search: books.filters.search_by
+          }
+        }
+      })
     }
   }
 
   componentWillUnmount () {
     this.props.updatePage(1)
+    this.props.updateFilters({ sort_by: 'created_at' })
+    this.props.updateFilters({ descend: true })
+    this.props.updateFilters({ search_by: '' })
   }
 
   render () {
+    let filters = this.props.books.filters
     return (
       <Layout>
         <div className='container pt-3'>
@@ -43,6 +71,7 @@ class Index extends React.Component {
                   placeholder='書名/作者/課名'
                   button_style='primary'
                   button_content={<i className='fa fa-search' />}
+                  onClick={(value) => this.props.updateFilters({ search_by: value })}
                 />
                 <SearchPanelButtonGroup
                   new_title='新增商品'
@@ -57,25 +86,25 @@ class Index extends React.Component {
                   <div className={`btn-group ${styles.filterGroup}`} >
                     <button
                       onClick={() => this.props.updateFilters({ sort_by: 'price' })}
-                      className={this.props.books.filters.sort_by === 'price' ? 'btn btn-primary' : 'btn btn-default'}
+                      className={filters.sort_by === 'price' ? 'btn btn-primary' : 'btn btn-default'}
                     >
                       價錢
                       {
-                        this.props.books.filters.sort_by === 'price' &&
-                        <span onClick={() => this.props.updateFilters({ descend: !this.props.books.filters.descend })}>
-                          { this.props.books.filters.descend ? '▼' : '▲' }
+                        filters.sort_by === 'price' &&
+                        <span onClick={() => this.props.updateFilters({ descend: !filters.descend })}>
+                          { filters.descend ? '▼' : '▲' }
                         </span>
                       }
                     </button>
                     <button
-                      onClick={() => this.props.updateFilters({ sort_by: 'date' })}
-                      className={this.props.books.filters.sort_by === 'date' ? 'btn btn-primary' : 'btn btn-default'}
+                      onClick={() => this.props.updateFilters({ sort_by: 'created_at' })}
+                      className={filters.sort_by === 'created_at' ? 'btn btn-primary' : 'btn btn-default'}
                     >
                       日期
                       {
-                        this.props.books.filters.sort_by === 'date' &&
-                        <span onClick={() => this.props.updateFilters({ descend: !this.props.books.filters.descend })}>
-                          { this.props.books.filters.descend ? '▼' : '▲' }
+                        filters.sort_by === 'created_at' &&
+                        <span onClick={() => this.props.updateFilters({ descend: !filters.descend })}>
+                          { filters.descend ? '▼' : '▲' }
                         </span>
                       }
                     </button>
@@ -107,7 +136,7 @@ const mapStateToProps = (state) => ({
   books: state.books.index
 })
 const mapDispatchToProps = (dispatch) => ({
-  fetchData: (page) => dispatch(getBooks(page)),
+  fetchData: (payload) => dispatch(getBooks(payload)),
   updateFilters: (filters) => dispatch(actions.books.index.updateFilters(filters)),
   updatePage: (page) => dispatch(actions.books.index.updatePage(page))
 })

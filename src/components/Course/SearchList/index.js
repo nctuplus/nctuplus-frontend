@@ -20,7 +20,7 @@ const SearchList = props => (
             <th>老師</th>
           </tr>
           {
-            props.courses.data.slice(0, 10).map((course, index) => (
+            props.courses.data.map((course, index) => (
               <tr key={index}>
                 <td><input type='checkbox' /></td>
                 <td>{course.permanent_course.name}</td>

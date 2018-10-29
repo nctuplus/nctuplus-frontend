@@ -9,8 +9,9 @@ const initialState = {
     page: 1,
     maxPage: 1,
     filters: {
-      sort_by: 'date',
-      descend: true
+      sort_by: 'created_at',
+      descend: true,
+      search_by: ''
     }
   },
   show: {

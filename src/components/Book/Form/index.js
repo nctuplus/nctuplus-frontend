@@ -6,7 +6,7 @@ import { ModalWrapper } from 'components/Modal'
 import styles from './style.scss'
 
 const Form = props => (
-  <Layout>
+  <Layout scroll={false}>
     <div className='container bg-white p-5'>
       <div className='row'>
         <div className='col-md-8 offset-md-2'>
@@ -71,7 +71,7 @@ const Form = props => (
                 onChange={e => props.updatePayload({ price: e.target.value })}
                 className='form-control integer-only'
                 placeholder='必填'
-                type='text'
+                type='number'
                 required
               />
             </LabeledInput>

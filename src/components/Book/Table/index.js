@@ -30,7 +30,7 @@ const Item = withRouter((props) => {
         </div>
 
         <div className='card-footer mt-1 p-2' >
-          <span>{props.updated_at.slice(0, 10)}</span>
+          <span>{props.created_at.slice(0, 10)}</span>
           <span className={`pull-right bold ${styles.price}`}>
             <i className='fa fa-dollar' />{ props.price }
           </span>

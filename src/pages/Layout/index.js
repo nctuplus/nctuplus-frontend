@@ -4,8 +4,10 @@ import styles from './style.scss'
 import Navbar from 'components/Navbar'
 import Footer from 'components/Footer'
 
-const Layout = ({ className, children }) => {
-  window.scroll({ top: 0, left: 0, behavior: 'smooth' })
+const Layout = ({ className, children, scroll = true }) => {
+  if (scroll) {
+    window.scroll({ top: 0, left: 0, behavior: 'smooth' })
+  }
   return (
     <div>
       <Navbar />

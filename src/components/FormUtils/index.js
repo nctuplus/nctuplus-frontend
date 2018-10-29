@@ -2,16 +2,33 @@
 import React from 'react'
 import classNames from 'classnames'
 
-const InputWithButton = (props) => (
-  <div className={classNames('input-group', props.className)}>
-    <input className='form-control' placeholder={props.placeholder} type='text' />
-    <div className='input-group-append'>
-      <button className={`btn btn-${props.button_style}`} >
-        { props.button_content }
-      </button>
-    </div>
-  </div>
-)
+class InputWithButton extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = { value: '' }
+  }
+
+  render () {
+    return (
+      <div className={classNames('input-group', this.props.className)}>
+        <input
+          className='form-control'
+          placeholder={this.props.placeholder}
+          type='text'
+          onChange={(e) => this.setState({ value: e.target.value })}
+        />
+        <div className='input-group-append'>
+          <button
+            className={`btn btn-${this.props.button_style}`}
+            onClick={() => this.props.onClick(this.state.value)}
+          >
+            { this.props.button_content }
+          </button>
+        </div>
+      </div>
+    )
+  }
+}
 
 const LabeledInput = (props) => (
   <div className='form-group'>
