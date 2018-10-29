@@ -20,19 +20,26 @@ import actions from 'api/Actions/Books'
 class Index extends React.Component {
   componentDidMount () {
     this.props.fetchData({
-      page: 1,
-      sort: this.props.books.filters.descend ? 'desc' : 'asc',
-      by: this.props.books.filters.sort_by
+      page: this.props.books.page,
+      q: {
+        sort: {
+          order: this.props.books.filters.descend ? 'desc' : 'asc',
+          by: this.props.books.filters.sort_by
+        }
+      }
     })
   }
 
   componentDidUpdate (prevProps) {
     if (this.props.books.page !== prevProps.books.page || this.props.books.filters !== prevProps.books.filters) {
-      console.log(this.props.books.filters)
       this.props.fetchData({
         page: this.props.books.page,
-        sort: this.props.books.filters.descend ? 'desc' : 'asc',
-        by: this.props.books.filters.sort_by
+        q: {
+          sort: {
+            order: this.props.books.filters.descend ? 'desc' : 'asc',
+            by: this.props.books.filters.sort_by
+          }
+        }
       })
     }
   }

@@ -2,12 +2,12 @@
 import actions from 'api/Actions/Books'
 import { server } from 'api/Controllers'
 import { FETCHING_STATUS } from 'utilities/constants'
+import { queryBuilder } from 'utilities'
 
 export const getBooks = (payload) => dispatch => {
-  const { page, sort, by } = payload
   dispatch(actions.books.index.setStatus(FETCHING_STATUS.FETCHING))
   server.public
-    .get(`/api/v1/books?q[s]=${by}+${sort}&&page=${page}`)
+    .get(`/api/v1/books${queryBuilder(payload)}`)
     .then(({ data: books }) => {
       dispatch(actions.books.index.store(books))
       dispatch(actions.books.index.setStatus(FETCHING_STATUS.DONE))

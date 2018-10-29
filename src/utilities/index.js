@@ -9,6 +9,24 @@ function base64encode (file) {
   })
 }
 
+function queryBuilder (payload) {
+  let query = '?'; let num = 0
+  Object.entries(payload).forEach(([key, value]) => {
+    if (key === 'q') {
+      Object.entries(value).forEach(([key, value]) => {
+        if (key === 'sort') {
+          if ((++num) > 1) query += '&'
+          query += `q[s]=${value['by']}+${value['order']}`
+        }
+      })
+    } else {
+      if ((++num) > 1) query += '&'
+      query += `${key}=${value}`
+    }
+  })
+  return query
+}
+
 function convertTimeSlotsToString (timeSlots) {
   return timeSlots
     ? Object
@@ -39,5 +57,6 @@ export {
   convertTimeSlotsToString,
   convertSemesterToString,
   base64encode,
+  queryBuilder,
   debug
 }
