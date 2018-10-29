@@ -7,7 +7,7 @@ import { queryBuilder } from 'utilities'
 export const getBooks = (payload) => dispatch => {
   dispatch(actions.books.index.setStatus(FETCHING_STATUS.FETCHING))
   server.public
-    .get(`/api/v1/books${queryBuilder(payload)}`)
+    .get(`/api/v1/books${queryBuilder(payload, 'Book')}`)
     .then(({ data: books }) => {
       dispatch(actions.books.index.store(books))
       dispatch(actions.books.index.setStatus(FETCHING_STATUS.DONE))
