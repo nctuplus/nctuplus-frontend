@@ -20,17 +20,17 @@ class Show extends React.Component {
       <Layout>
         <div className='container'>
           <div className='row bg-white'>
-            <div className='col-12 col-md-11 offset-md-1'>
+            <div className='col-10 offset-1'>
               <div className='row'>
-                <div className='col-12 col-md-3 offset-md-1'>
+                <div className='col-12 col-md-5 col-lg-4 pt-3'>
                   <img
                     className='img-preview'
                     alt='尚無圖片!'
-                    width='100%'
+                    style={{ maxWidth: '200px' }}
                     src={book.cover_image && `${SERVER_URL}${book.cover_image.url}`}
                   />
                 </div>
-                <div className='col-8'>
+                <div className='col-12 col-md-7 col-lg-8'>
                   <table className='table'>
                     <tbody>
                       <tr>
@@ -79,16 +79,18 @@ class Show extends React.Component {
               </div>
             </div>
           </div>
-          <div className={style.fixedMenu}>
-            <div className='pull-right'>
-              <Link to={`/books/${this.props.match.params.id}/edit`} className='flat-link'>
-                <button className='btn btn-primary' >
-                  編輯
+          <div className='row'>
+            <div className={style.fixedMenu}>
+              <div className='pull-right'>
+                <Link to={`/books/${this.props.match.params.id}/edit`} className='flat-link'>
+                  <button className='btn btn-primary' >
+                    編輯
+                  </button>
+                </Link>
+                <button className='btn btn-danger'>
+                  售出
                 </button>
-              </Link>
-              <button className='btn btn-danger'>
-                售出
-              </button>
+              </div>
             </div>
           </div>
         </div>
