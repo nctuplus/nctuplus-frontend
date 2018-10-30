@@ -65,7 +65,7 @@ class Index extends React.Component {
       <Layout>
         <div className='container pt-3'>
           <div className='row'>
-            <div className='col-12 col-md-3 pl-0'>
+            <div className='col-md-12 col-lg-3'>
               <SearchPanel>
                 <InputWithButton
                   placeholder='書名/作者/課名'
@@ -122,7 +122,7 @@ class Index extends React.Component {
                 </SearchPanelNewsFeed>
               </SearchPanel>
             </div>
-            <div className='col-12 col-md-9'>
+            <div className='col-md-12 col-lg-9'>
               <Books.Table {...this.props.books} updatePage={this.props.updatePage.bind(this)} />
             </div>
           </div>
