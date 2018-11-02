@@ -1,48 +1,46 @@
+.bannerWrapper {
+	max-height: 555px;
+	overflow: hidden;
+}
 
-	.bannerWrapper{
-		max-height: 555px;
-		overflow: hidden;
+.eventTitle{
+	position: relative;
+	top: -35px;
+	padding: 10px 30px;
+	background-color: rgba(239,239,239,0.9);
+	font-weight: bold;
+	font-size: large;
+}
+.eventInfoWrapper{
+	margin-top: -25px;
+	padding: 50px 30px 30px 30px;
+}
+.infoBox{
+	display: inline-block;
+	border-radius: 10px;
+	border: 2px solid #d1d1e0;
+	padding: 15px 10px;
+	margin-left: 5px;
+}
+.divideHorizontal {
+	width: 100%;
+	text-align: center;
+	border-bottom: 1px solid #d2d2d2;
+	line-height: 0.1em;
+	margin: 10px 0 20px;
+	span {
+		background: #fff;
+		color: #d2d2d2;
+		padding: 0 10px;
 	}
-	.eventTitle{
-		position: relative;
-    top: -50px;
-    padding: 10px 30px;
-    background-color: rgba(239,239,239,0.9);
-    font-weight: bold;
-    font-size: large;
+}
+.fixedMenu{
+	width: 100%;
+	bottom: 0;
+	margin-bottom: 0;
+	border-width: 1px 0 0;
+	button{
+		width: 100px;
+		margin: 5px;
 	}
-	.eventInfoWrapper{
-		margin-top: -25px;
-		padding: 50px 30px 30px 30px;
-	}
-	.infoBox{
-		display: inline-block;
-	    border-radius: 10px;
-	    border: 2px solid #d1d1e0;
-	    padding: 15px 10px;
-	    margin-left: 5px;
-	}
-	.divideHorizontal {
-	    width: 100%;
-	    text-align: center;
-	    border-bottom: 1px solid #d2d2d2;
-	    line-height: 0.1em;
-	    margin: 10px 0 20px;
-    span {
-	    background: #fff;
-	    color: #d2d2d2;
-	    padding: 0 10px;
-		}
-	}
-	.fixedMenu{
-		background-color: rgba(255,255,255,0.7);
-		width: 100%;
-		bottom: 0;
-	    margin-bottom: 0;
-	    border-width: 1px 0 0;
-	    z-index: 5;
-	    button{
-	    	width: 150px;
-	    	margin: 5px;
-	    }
-	}
+}
