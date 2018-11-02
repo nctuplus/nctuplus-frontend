@@ -7,9 +7,9 @@ import styles from './style.scss'
 
 const Form = props => (
   <Layout scroll={false}>
-    <div className='container bg-white p-5'>
+    <div className='container bg-white p-3 p-md-4'>
       <div className='row'>
-        <div className='col-md-8 offset-md-2'>
+        <div className='col-12 col-md-8 offset-md-2'>
           <h2><i className='fa fa-book mx-3' />我要賣書</h2>
 
           <div className='col-12 my-4'><hr /></div>
