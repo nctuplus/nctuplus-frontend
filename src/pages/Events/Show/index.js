@@ -62,13 +62,13 @@ class Show extends React.Component {
           <span className={styles.eventTitle}>[{type}] {event.title}</span>
           <div className={`${styles.eventInfoWrapper} bg-white`}>
             <div className='row'>
-              <div className='col-7'>
+              <div className='col-12 col-lg-8'>
                 <p><i className='fa fa-calendar' /> 時間: <strong>{event.begin_time} ~ {event.end_time}</strong></p>
                 <p><i className='fa fa-cubes' /> 主辦單位: {event.organization}</p>
                 <p><i className='fa fa-location-arrow' /> 地點: {event.location}</p>
                 <p><i className='fa fa-share-alt' /> 活動網址: <a href={event.url} target='blank'>點這裡</a></p>
               </div>
-              <div className='col-5'>
+              <div className='col-12 col-lg-4'>
                 <p className={styles.infoBox}><i className='fa fa-eye' /> 觀看次數: <strong>{event.view_count}</strong></p>
                 <p className={styles.infoBox}><i className='fa fa-rss' /> 關注人數: <strong>{event.follow_count}</strong>
                 </p>

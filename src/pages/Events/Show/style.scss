@@ -1,8 +1,15 @@
-.bannerWrapper {
-	max-height: 555px;
-	overflow: hidden;
+@media (min-width: 768px){
+	.bannerWrapper {
+		max-height: 555px;
+		overflow: hidden;
+	}
 }
-
+@media (max-width: 768px){
+	.bannerWrapper {
+		max-height: 360px;
+		overflow: hidden;
+	}
+}
 .eventTitle{
 	position: relative;
 	top: -35px;
@@ -15,12 +22,14 @@
 	margin-top: -25px;
 	padding: 50px 30px 30px 30px;
 }
-.infoBox{
-	display: inline-block;
-	border-radius: 10px;
-	border: 2px solid #d1d1e0;
-	padding: 15px 10px;
-	margin-left: 5px;
+@media (min-width: 950px){
+	.infoBox{
+		display: inline-block;
+		border-radius: 10px;
+		border: 2px solid #d1d1e0;
+		padding: 15px 10px;
+		margin-left: 5px;
+	}
 }
 .divideHorizontal {
 	width: 100%;
