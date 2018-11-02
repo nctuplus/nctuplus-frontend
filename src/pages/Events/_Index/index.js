@@ -69,7 +69,7 @@ const enhance = compose(
 
 const Index = enhance((props) =>
   <Layout>
-    <div className={`container pt-3 ${styles.event}`}>
+    <div className={`container py-3 ${styles.event}`}>
       <div className='m-1'>
         <Slider
           infinite
@@ -103,12 +103,12 @@ const Index = enhance((props) =>
         </Slider>
       </div>
       <div className={`row ${styles.formWrapper} p-3`}>
-        <div className='control-wrapper col-6 col-sm-3 col-md-2'>
+        <div className='control-wrapper col-6 col-sm-3 col-md-2 p-2'>
           <Link to='/events/new' className='flat-link'>
             <button className='btn btn-info full-width'>新增活動</button>
           </Link>
         </div>
-        <div className='control-wrapper col-6 col-sm-3 col-md-2'>
+        <div className='control-wrapper col-6 col-sm-3 col-md-2 p-2'>
           <button
             className='btn btn-success full-width'
             onClick={() => props.setVisible(visible => !visible)}
@@ -116,7 +116,7 @@ const Index = enhance((props) =>
             我的活動
           </button>
         </div>
-        <div className='control-wrapper col-12 col-sm-6 col-md-8'>
+        <div className='control-wrapper col-12 col-sm-6 col-md-8 p-2'>
           <InputWithButton
             placeholder='輸入活動名稱/地點/組織'
             button_style='primary'
@@ -125,7 +125,7 @@ const Index = enhance((props) =>
         </div>
       </div>
 
-      <div className={`row ${styles.eventBlock} p-4 mb-3`}>
+      <div className={`row ${styles.eventBlock} p-3 mb-3`}>
         <div className='col-12'>
           <h1 className='my-3'>近期活動</h1>
         </div>
@@ -136,7 +136,7 @@ const Index = enhance((props) =>
         }
       </div>
 
-      <div className={`row ${styles.eventBlock} p-4 mb-3`}>
+      <div className={`row ${styles.eventBlock} p-3`}>
         <div className='col-12'>
           <h1 className='my-3'>已結束活動</h1>
         </div>

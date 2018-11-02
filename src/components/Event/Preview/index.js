@@ -6,9 +6,9 @@ import moment from 'moment'
 import style from './style.scss'
 
 const Preview = (props) => (
-  <div className='col-12 col-sm-6 col-md-3 mb-3'>
+  <div className='col-12 col-sm-6 col-md-4 col-lg-3 mb-3'>
     <div className={classNames('card', 'p-2', style.cardBackground)}>
-      <div className='text-right pr-2'>
+      <div className='text-right'>
         <span className={classNames('bold', 'date', moment().isBetween(props.begin_time, props.end_time) ? 'text-red' : 'text-grey')}>
           {
             (props.begin_time && props.end_time)
@@ -24,7 +24,7 @@ const Preview = (props) => (
           alt='poster'
           className='card-img-top clickable'
           src={`${SERVER_URL}${props.cover_image.url}`}
-          style={{ width: '100%', height: '10vw', objectFit: 'cover' }}
+          style={{ width: '100%', height: '130px', objectFit: 'cover' }}
         />
       </Link>
 
