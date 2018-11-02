@@ -83,7 +83,7 @@ const Index = enhance((props) =>
         >
           {
             props.events.data
-              .slice(0, 5)
+              .filter(event => moment().isBetween(event.begin_time, event.end_time))
               .map((event, index) =>
                 <div key={index}>
                   <Link to={`/events/${event.id}`}>
