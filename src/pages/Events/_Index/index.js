@@ -55,6 +55,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   fetchData: (page) => dispatch(fetchEvents(page)),
   fetchFollowEvents: () => dispatch(fetchFollowEvents()),
+  updateFilters: (filters) => dispatch(actions.events.index.updateFilters(filters)),
   updatePage: (page) => dispatch(actions.events.index.updatePage(page))
 })
 
@@ -64,13 +65,33 @@ const enhance = compose(
   withState('visible', 'setVisible', false),
   lifecycle({
     componentDidMount: function () {
-      this.props.fetchData(1)
+      let events = this.props.events
+      this.props.fetchData({
+        page: events.page,
+        q: {
+          filters: {
+            custom_search: events.filters.search_by
+          }
+        }
+      })
       this.props.fetchFollowEvents()
     },
     componentDidUpdate (prevProps) {
-      if (this.props.events.page !== prevProps.events.page) {
-        this.props.fetchData(this.props.events.page)
+      let events = this.props.events
+      if (events.page !== prevProps.events.page || events.filters !== prevProps.events.filters) {
+        this.props.fetchData({
+          page: events.page,
+          q: {
+            filters: {
+              custom_search: events.filters.search_by
+            }
+          }
+        })
       }
+    },
+    componentWillUnmount () {
+      this.props.updatePage(1)
+      this.props.updateFilters({ search_by: '' })
     }
   })
 )
@@ -129,6 +150,7 @@ const Index = enhance((props) =>
             placeholder='輸入活動名稱/地點/組織'
             button_style='primary'
             button_content={<i className='fa fa-search' />}
+            onClick={(value) => props.updateFilters({ search_by: value })}
           />
         </div>
       </div>

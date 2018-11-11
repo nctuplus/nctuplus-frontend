@@ -7,7 +7,10 @@ const initialState = {
     data: [],
     status: FETCHING_STATUS.IDLE,
     page: 1,
-    maxPage: 1
+    maxPage: 1,
+    filters: {
+      search_by: ''
+    }
   },
   show: {
     data: {},
@@ -34,7 +37,8 @@ export default handleActions({
     INDEX: {
       SET_STATUS: (state, action) => ({ ...state, index: { ...state.index, status: action.payload } }),
       STORE: (state, action) => ({ ...state, index: { ...state.index, data: action.payload.data, maxPage: action.payload.total_pages } }),
-      UPDATE_PAGE: (state, action) => ({ ...state, index: { ...state.index, page: action.payload } })
+      UPDATE_PAGE: (state, action) => ({ ...state, index: { ...state.index, page: action.payload } }),
+      UPDATE_FILTERS: (state, action) => ({ ...state, index: { ...state.index, filters: { ...state.index.filters, ...action.payload } } })
     },
     SHOW: {
       SET_STATUS: (state, action) => ({ ...state, show: { ...state.show, status: action.payload } }),
