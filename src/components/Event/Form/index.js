@@ -40,12 +40,12 @@ const Form = props => (
                     required
                   >
                     <option value=''>類型</option>
-                    <option value='1'>校友週</option>
-                    <option value='2'>講座</option>
-                    <option value='3'>表演</option>
-                    <option value='4'>擺攤</option>
-                    <option value='5'>比賽</option>
-                    <option value='6'>其他</option>
+                    <option value='0'>校友週</option>
+                    <option value='1'>講座</option>
+                    <option value='2'>表演</option>
+                    <option value='3'>擺攤</option>
+                    <option value='4'>比賽</option>
+                    <option value='5'>其他</option>
                   </select>
                 </div>
                 <input

@@ -26,22 +26,22 @@ class Show extends React.Component {
     const followIndex = followEvents.findIndex(e => e.id === event.id)
     let type
     switch (event.event_type) {
-      case 1:
+      case 0:
         type = '校友週'
         break
-      case 2:
+      case 1:
         type = '表演'
         break
-      case 3:
+      case 2:
         type = '講座'
         break
-      case 4:
+      case 3:
         type = '擺攤'
         break
-      case 5:
+      case 4:
         type = '比賽'
         break
-      case 6:
+      case 5:
         type = '其他'
         break
       default:
