@@ -5,7 +5,9 @@ import { FETCHING_STATUS } from 'utilities/constants'
 const initialState = {
   index: {
     data: [],
-    status: FETCHING_STATUS.IDLE
+    status: FETCHING_STATUS.IDLE,
+    page: 1,
+    maxPage: 1
   },
   show: {
     data: {},
@@ -31,7 +33,8 @@ export default handleActions({
   EVENTS: {
     INDEX: {
       SET_STATUS: (state, action) => ({ ...state, index: { ...state.index, status: action.payload } }),
-      STORE: (state, action) => ({ ...state, index: { ...state.index, data: action.payload } })
+      STORE: (state, action) => ({ ...state, index: { ...state.index, data: action.payload.data, maxPage: action.payload.total_pages } }),
+      UPDATE_PAGE: (state, action) => ({ ...state, index: { ...state.index, page: action.payload } })
     },
     SHOW: {
       SET_STATUS: (state, action) => ({ ...state, show: { ...state.show, status: action.payload } }),
