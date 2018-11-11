@@ -8,8 +8,10 @@ import { compose, withState, lifecycle } from 'recompose'
 import moment from 'moment'
 import Layout from 'pages/Layout'
 import Preview from 'components/Event/Preview'
+import Pagination from 'components/Pagination'
 import { InputWithButton } from 'components/FormUtils'
 import { fetchEvents, fetchFollowEvents } from 'api/Controllers/events'
+import actions from 'api/Actions/Events'
 import styles from './style.scss'
 
 const CustomArrowLeft = (props) => (
@@ -52,7 +54,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchData: (page) => dispatch(fetchEvents(page)),
-  fetchFollowEvents: () => dispatch(fetchFollowEvents())
+  fetchFollowEvents: () => dispatch(fetchFollowEvents()),
+  updatePage: (page) => dispatch(actions.events.index.updatePage(page))
 })
 
 const enhance = compose(
@@ -61,8 +64,13 @@ const enhance = compose(
   withState('visible', 'setVisible', false),
   lifecycle({
     componentDidMount: function () {
-      this.props.fetchData()
+      this.props.fetchData(1)
       this.props.fetchFollowEvents()
+    },
+    componentDidUpdate (prevProps) {
+      if (this.props.events.page !== prevProps.events.page) {
+        this.props.fetchData(this.props.events.page)
+      }
     }
   })
 )
@@ -145,6 +153,9 @@ const Index = enhance((props) =>
             .filter(event => moment().isAfter(event.end_time))
             .map((event, index) => <Preview {...event} key={index} />)
         }
+      </div>
+      <div className='text-center'>
+        <Pagination page={props.events.page} maxPage={props.events.maxPage} to={props.updatePage} />
       </div>
     </div>
 
