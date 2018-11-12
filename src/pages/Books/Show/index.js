@@ -24,9 +24,8 @@ class Show extends React.Component {
               <div className='row'>
                 <div className='col-12 col-md-5 col-lg-4 pt-3'>
                   <img
-                    className='img-preview'
+                    className='img-preview img-fluid'
                     alt='尚無圖片!'
-                    style={{ maxWidth: '200px' }}
                     src={book.cover_image && `${SERVER_URL}${book.cover_image.url}`}
                   />
                 </div>

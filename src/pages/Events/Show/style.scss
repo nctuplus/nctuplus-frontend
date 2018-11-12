@@ -1,15 +1,12 @@
-@media (min-width: 768px){
+@import '~assets/styles/common';
+
+@include media-breakpoint-up(md){
 	.bannerWrapper {
 		max-height: 555px;
 		overflow: hidden;
 	}
 }
-@media (max-width: 768px){
-	.bannerWrapper {
-		max-height: 360px;
-		overflow: hidden;
-	}
-}
+
 .eventTitle{
 	position: relative;
 	top: -35px;
@@ -22,7 +19,7 @@
 	margin-top: -25px;
 	padding: 50px 30px 30px 30px;
 }
-@media (min-width: 950px){
+@include media-breakpoint-up(lg){
 	.infoBox{
 		display: inline-block;
 		border-radius: 10px;

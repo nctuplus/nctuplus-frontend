@@ -54,8 +54,9 @@ class Show extends React.Component {
         <div className='container'>
           <div className={styles.bannerWrapper}>
             <img
-              alt='No image'
+              className='img-fluid'
               width='100%'
+              alt='No image'
               src={event.cover_image && `${SERVER_URL}${event.cover_image.url}`}
             />
           </div>
