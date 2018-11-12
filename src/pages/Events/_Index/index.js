@@ -8,8 +8,10 @@ import { compose, withState, lifecycle } from 'recompose'
 import moment from 'moment'
 import Layout from 'pages/Layout'
 import Preview from 'components/Event/Preview'
+import Pagination from 'components/Pagination'
 import { InputWithButton } from 'components/FormUtils'
 import { fetchEvents, fetchFollowEvents } from 'api/Controllers/events'
+import actions from 'api/Actions/Events'
 import styles from './style.scss'
 
 const CustomArrowLeft = (props) => (
@@ -52,7 +54,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchData: (page) => dispatch(fetchEvents(page)),
-  fetchFollowEvents: () => dispatch(fetchFollowEvents())
+  fetchFollowEvents: () => dispatch(fetchFollowEvents()),
+  updateFilters: (filters) => dispatch(actions.events.index.updateFilters(filters)),
+  updatePage: (page) => dispatch(actions.events.index.updatePage(page))
 })
 
 const enhance = compose(
@@ -61,15 +65,40 @@ const enhance = compose(
   withState('visible', 'setVisible', false),
   lifecycle({
     componentDidMount: function () {
-      this.props.fetchData()
+      let events = this.props.events
+      this.props.fetchData({
+        page: events.page,
+        q: {
+          filters: {
+            custom_search: events.filters.search_by
+          }
+        }
+      })
       this.props.fetchFollowEvents()
+    },
+    componentDidUpdate (prevProps) {
+      let events = this.props.events
+      if (events.page !== prevProps.events.page || events.filters !== prevProps.events.filters) {
+        this.props.fetchData({
+          page: events.page,
+          q: {
+            filters: {
+              custom_search: events.filters.search_by
+            }
+          }
+        })
+      }
+    },
+    componentWillUnmount () {
+      this.props.updatePage(1)
+      this.props.updateFilters({ search_by: '' })
     }
   })
 )
 
 const Index = enhance((props) =>
   <Layout>
-    <div className={`container pt-3 ${styles.event}`}>
+    <div className={`container py-3 ${styles.event}`}>
       <div className='m-1'>
         <Slider
           infinite
@@ -83,7 +112,7 @@ const Index = enhance((props) =>
         >
           {
             props.events.data
-              .slice(0, 5)
+              .filter(event => moment().isBetween(event.begin_time, event.end_time))
               .map((event, index) =>
                 <div key={index}>
                   <Link to={`/events/${event.id}`}>
@@ -103,12 +132,12 @@ const Index = enhance((props) =>
         </Slider>
       </div>
       <div className={`row ${styles.formWrapper} p-3`}>
-        <div className='control-wrapper col-6 col-sm-3 col-md-2'>
+        <div className='control-wrapper col-6 col-sm-3 col-md-2 p-2'>
           <Link to='/events/new' className='flat-link'>
             <button className='btn btn-info full-width'>新增活動</button>
           </Link>
         </div>
-        <div className='control-wrapper col-6 col-sm-3 col-md-2'>
+        <div className='control-wrapper col-6 col-sm-3 col-md-2 p-2'>
           <button
             className='btn btn-success full-width'
             onClick={() => props.setVisible(visible => !visible)}
@@ -116,16 +145,17 @@ const Index = enhance((props) =>
             我的活動
           </button>
         </div>
-        <div className='control-wrapper col-12 col-sm-6 col-md-8'>
+        <div className='control-wrapper col-12 col-sm-6 col-md-8 p-2'>
           <InputWithButton
             placeholder='輸入活動名稱/地點/組織'
             button_style='primary'
             button_content={<i className='fa fa-search' />}
+            onClick={(value) => props.updateFilters({ search_by: value })}
           />
         </div>
       </div>
 
-      <div className={`row ${styles.eventBlock} p-4 mb-3`}>
+      <div className={`row ${styles.eventBlock} p-3 mb-3`}>
         <div className='col-12'>
           <h1 className='my-3'>近期活動</h1>
         </div>
@@ -136,7 +166,7 @@ const Index = enhance((props) =>
         }
       </div>
 
-      <div className={`row ${styles.eventBlock} p-4 mb-3`}>
+      <div className={`row ${styles.eventBlock} p-3`}>
         <div className='col-12'>
           <h1 className='my-3'>已結束活動</h1>
         </div>
@@ -145,6 +175,9 @@ const Index = enhance((props) =>
             .filter(event => moment().isAfter(event.end_time))
             .map((event, index) => <Preview {...event} key={index} />)
         }
+      </div>
+      <div className='text-center'>
+        <Pagination page={props.events.page} maxPage={props.events.maxPage} to={props.updatePage} />
       </div>
     </div>
 

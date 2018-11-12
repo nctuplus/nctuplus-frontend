@@ -6,7 +6,7 @@ import styles from './style.scss'
 
 const Item = withRouter((props) => {
   return (
-    <div className='col-4 col-md-4 mb-3' onClick={() => props.history.push(`/books/${props.id}`)}>
+    <div className='col-sm-6 col-md-4 mb-3' onClick={() => props.history.push(`/books/${props.id}`)}>
       <div className={`${styles.bookItem} card clickable`} >
         <div style={{ position: 'absolute' }}>
           <Link to={`/books/${props.id}/edit`}>

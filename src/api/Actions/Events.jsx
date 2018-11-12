@@ -5,7 +5,9 @@ export default createActions({
   EVENTS: {
     INDEX: {
       SET_STATUS: null,
-      STORE: null
+      STORE: null,
+      UPDATE_PAGE: null,
+      UPDATE_FILTERS: null
     },
     SHOW: {
       SET_STATUS: null,

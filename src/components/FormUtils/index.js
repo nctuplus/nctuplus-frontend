@@ -33,8 +33,8 @@ class InputWithButton extends React.Component {
 const LabeledInput = (props) => (
   <div className='form-group'>
     <div className='row'>
-      <label className='col-2 text-right align-self-center'>{ props.label }</label>
-      <div className='col-10'>
+      <label className='col-4 col-md-3 col-lg-2 text-md-right align-self-center'>{ props.label }</label>
+      <div className='col-12 col-md-9 col-lg-10'>
         {props.children}
       </div>
     </div>

@@ -10,7 +10,7 @@ const Form = props => (
     <div className='container bg-white pt-5'>
       <div className='row'>
         <div className='col-md-9 offset-1'>
-          <div className='h3 offset-1'>
+          <div className='h3 offset-md-1'>
             新增活動
           </div>
           <form ref={props.formRef}>
@@ -40,12 +40,12 @@ const Form = props => (
                     required
                   >
                     <option value=''>類型</option>
-                    <option value='1'>校友週</option>
-                    <option value='2'>講座</option>
-                    <option value='3'>表演</option>
-                    <option value='4'>擺攤</option>
-                    <option value='5'>比賽</option>
-                    <option value='6'>其他</option>
+                    <option value='0'>校友週</option>
+                    <option value='1'>講座</option>
+                    <option value='2'>表演</option>
+                    <option value='3'>擺攤</option>
+                    <option value='4'>比賽</option>
+                    <option value='5'>其他</option>
                   </select>
                 </div>
                 <input
@@ -69,8 +69,8 @@ const Form = props => (
             </LabeledInput>
             <div className='form-group'>
               <div className='row'>
-                <label className='col-sm-2 control-label text-right' >主辦單位</label>
-                <div className='col-4'>
+                <label className='col-4 col-md-3 col-lg-2 text-md-right align-self-center' >主辦單位</label>
+                <div className='col-12 col-md-9 col-lg-4'>
                   <input
                     value={props.payload.organization || ''}
                     onChange={e => props.updatePayload({ organization: e.target.value })}
@@ -80,8 +80,8 @@ const Form = props => (
                     required
                   />
                 </div>
-                <label className='col-sm-2 control-label text-right'>地點</label>
-                <div className='col-4'>
+                <label className='col-4 col-md-3 col-lg-2 mt-3 mt-lg-0 text-md-right align-self-center'>地點</label>
+                <div className='col-12 col-md-9 col-lg-4 mt-md-3 mt-lg-0'>
                   <input
                     value={props.payload.location || ''}
                     onChange={e => props.updatePayload({ location: e.target.value })}
@@ -95,8 +95,8 @@ const Form = props => (
             </div>
             <div className='form-group'>
               <div className='row'>
-                <label className='col-sm-2 control-label text-right'>開始時間</label>
-                <div className='col-4'>
+                <label className='col-4 col-md-3 col-lg-2 text-md-right align-self-center'>開始時間</label>
+                <div className='col-12 col-md-9 col-lg-4'>
                   <input
                     value={props.payload.begin_time || ''}
                     onChange={e => props.updatePayload({ begin_time: e.target.value })}
@@ -106,8 +106,8 @@ const Form = props => (
                     required
                   />
                 </div>
-                <label className='col-sm-2 control-label text-right'>結束時間</label>
-                <div className='col-4'>
+                <label className='col-4 col-md-3 col-lg-2 mt-3 mt-lg-0 text-md-right align-self-center'>結束時間</label>
+                <div className='col-12 col-md-9 col-lg-4 mt-md-3 mt-lg-0'>
                   <input
                     value={props.payload.end_time || ''}
                     onChange={e => props.updatePayload({ end_time: e.target.value })}

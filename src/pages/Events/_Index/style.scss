@@ -1,69 +1,66 @@
-
-
 .event{
-	.formWrapper{ background-color: rgba(100, 100, 100, 0.7); }
-	.title {
-		position: relative;
-		bottom: 100px;
-	}
+    .formWrapper{ background-color: rgba(100, 100, 100, 0.7); }
+    .title {
+        position: relative;
+        bottom: 100px;
+    }
 
-	.eventBlock{
-		background-image: url('https://plus.nctu.edu.tw/assets/events/bg_symphony-d25b030449a0be7f00703cf16a587f72.png');
-	}
+    .eventBlock{
+        background-image: url('https://plus.nctu.edu.tw/assets/events/bg_symphony-d25b030449a0be7f00703cf16a587f72.png');
+    }
 
-	.customArrow{
-		background-color: rgba(161, 163, 164, 0.6);
-			width: 5%;
-			height: 60px;
-			position: absolute;
-			top: 40%;
-			font-size: 40px;
-		text-align: center;
-		line-height: 65px;
-		text-shadow: 0 1px 2px rgba(0,0,0,0.6);
-		cursor: pointer;
+    .customArrow{
+        background-color: rgba(161, 163, 164, 0.6);
+        height: 60px;
+        position: absolute;
+        top: 40%;
+        font-size: 40px;
+        text-align: center;
+        line-height: 65px;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+        cursor: pointer;
 
-		&:hover{
-			background-color: rgba(161, 163, 164, 0.9);
-		}
-	}
-	.customArrowLeft{
-		left: 5%;
-		z-index: 2;
-	}
-	.customArrowRight{
-		right: 5%;
-	}
+        &:hover{
+            background-color: rgba(161, 163, 164, 0.9);
+        }
+    }
+    .customArrowLeft{
+        left: 5%;
+        z-index: 2;
+    }
+    .customArrowRight{
+        right: 5%;
+    }
 }
 
 #footer{
-	background: rgba(177, 177, 177, 0.7);
-	position:fixed;
-	left: 0px;
-	bottom: 0px;
-	height: 150px;
-	width: 100%;
-	-webkit-transition: all 0.3s ease;
-		-moz-transition: all 0.3s ease;
-		transition: transform 0.3s ease-out;
+    background: rgba(177, 177, 177, 0.7);
+    position:fixed;
+    left: 0px;
+    bottom: 0px;
+    height: 150px;
+    width: 100%;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: transform 0.3s ease-out;
 }
 
 .myActivity{
-	height: 150px;
-	padding: 20px;
-	margin: 0;
-	text-indent: 20px;
-	font-family: 'Open Sans', '微軟正黑體';
-	font-size: 1.9em;
-	font-weight: lighter;
-	color: #FBFDFF;
-	background: rgba(82,82,82,0.7);
+    height: 150px;
+    padding: 20px;
+    margin: 0;
+    text-indent: 20px;
+    font-family: 'Open Sans', '微軟正黑體';
+    font-size: 1.9em;
+    font-weight: lighter;
+    color: #FBFDFF;
+    background: rgba(82,82,82,0.7);
 }
 
 #footer.slideIn {
-	transform: translate(0, 0);
+    transform: translate(0, 0);
 }
 
 #footer.slideOut {
-	transform: translate(0, 100%);
+    transform: translate(0, 100%);
 }
