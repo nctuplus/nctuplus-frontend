@@ -3,7 +3,7 @@
 
 .cover{
 	height: calc(100vh - #{$navbar-height});
-	width: 100vw;
+	width: 100%;
 	.container {
 		padding-top: 25vh;
 		color: white;

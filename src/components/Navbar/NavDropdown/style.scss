@@ -1,30 +1,91 @@
 
 @import "~assets/styles/_common";
 
-
-.dropdown{
-	color: white;
-	.dropdownMenu{
-		background-color: rgba(0,0,0,0);
-		border: none;
-		.dropdownItem {
-			display: block;
-			min-width: 160px;
-			max-width: 90vw;
-			line-height: 28px;
-			background-color: rgba(0, 0, 0, 0.6);
-			color: white;
-			padding-left: 10px;
-			border-bottom: 1px solid white;
-			transition: background-color 0.5s;
-			&:hover{
-				background-color: #AAAAAA;
-				cursor: pointer;
-			}
-			a{
-				text-decoration: none;
+@include for-pc(){
+	.dropdown{
+		height: $navbar-height;
+		line-height: $navbar-height;
+		color: white;
+		padding: 0;
+		padding: 0 15px;
+		.dropdownMenu{
+			background-color: rgba(0,0,0,0);
+			border: none;
+			padding: 0;
+			margin: 0;
+			.dropdownItem {
+				display: block;
+				min-width: 160px;
+				line-height: 28px;
+				background-color: rgba(0, 0, 0, 0.6);
 				color: white;
+				padding-left: 10px;
+				border-bottom: 1px solid white;
+				transition: background-color 0.5s;
+				&:hover{
+					background-color: #AAAAAA;
+					cursor: pointer;
+				}
+				a{
+					text-decoration: none;
+					color: white;
+				}
 			}
 		}
 	}
 }
+@include for-mobile(){
+	.dropdown{
+		color: white;
+		width: 100%;
+		line-height: $navbar-height;
+		position: relative;
+		left: -5px;
+		padding: 0 2%;
+		border-left: 5px solid $theme-color;
+		&:hover{
+			left: 0;
+			transition: .2s ease-in;
+		}
+		.dropdownMenu{
+			width: 100%;
+			position: relative;
+			background-color: rgba(0,0,0,0);
+			border: none;
+			padding: 0;
+			display: block;
+			overflow: hidden;
+			top: -10px;
+			opacity: 0;
+			height: 0;
+			padding: 0;
+			margin: 0;
+			.dropdownItem {
+				line-height: $navbar-height * 0.5;
+				display: block;
+				color: white;
+				padding-left: 10px;
+				border-bottom: 1px solid white;
+				transition: background-color 0.5s;
+				background-color: rgba(0, 0, 0, 0.6);
+				&:hover{
+					background-color: #AAAAAA;
+					transition: .2s;
+					cursor: pointer;
+				}
+				a{
+					text-decoration: none;
+					color: white;
+
+				}
+			}
+		}
+		.dropdownMenu:global(.show){
+			top: 0;
+			opacity: 1;
+			height: auto;
+			transition: .2s ease-in;
+		}
+	}
+}
+
