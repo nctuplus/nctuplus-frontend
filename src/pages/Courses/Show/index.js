@@ -67,17 +67,17 @@ class Show extends React.Component {
         <div className='container'>
           <div className='offset-2 py-4'>
             {
-              this.props.fetching.status !== 2
-                ? <div className='text-center pt-3'><Spinner size={64} color='grey' /></div>
-                : <div>
+              this.props.fetching.status !== 2?
+                <div className='text-center pt-3'><Spinner size={64} color='grey' /></div>:
+                <div>
                   <div className='row'>
                     <div className='col-md-10'>
-                      <h1>{ this.props.course.name }</h1>
+                      <h1>{ this.props.course.permanent_course.name }</h1>
                       <small>最後同步時間 { this.props.course.updated_at }</small>
                     </div>
                     <div className='col-md-2 pull-right mt-5'>
-                      <button className='btn btn-primary'>
-                        <i className='fa fa-export' />分享
+                      <button className='btn btn-info m-1 d-flex justify-content-center align-items-center' >
+                        <i className='fa fa-star' /><span className="ml-1">收藏課程</span>
                       </button>
                     </div>
                   </div>
@@ -89,9 +89,9 @@ class Show extends React.Component {
                       <div className='col-12 col-md-7'>
                         <Ratings rating={this.ratings} />
                       </div>
-                      <div className='col-12 col-md-5'>
+                      {/* <div className='col-12 col-md-5'>
                         <PersonalRating />
-                      </div>
+                      </div> */}
                     </div>
                   </Section>
 
