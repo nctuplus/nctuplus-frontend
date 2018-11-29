@@ -1,21 +1,19 @@
 
 @import "~assets/styles/_common";
 
-.rating {
-  width: 120px;
-  height: 120px;
-  margin: 15px;
-
-  @include media-breakpoint-up(lg) {
-    width: 110px;
-    height: 110px;
-    margin: 10px;
-  }
-
-  .people {
-    width: 100%;
-    color: #455a64;
-  }
+.rating{
+	width: 120px;
+	min-height: 120px;
+	margin: 15px;
+  	@include media-breakpoint-up(lg){
+  		width: 110px;
+  		min-height: 110px;
+  		margin: 10px;
+  	}
+	.people{
+		width: 100%;
+		color: #455A64;
+	}
 }
 
 .ratingRar {
