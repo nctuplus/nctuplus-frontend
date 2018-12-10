@@ -23,15 +23,22 @@ const SearchList = props => (
         <tbody>
           {
             props.courses.data.map((course, index) => (
-              <tr key={index}>
+              <tr key={course.id}>
                 <td className='py-0 align-middle'>
-                  <input type='checkbox' id={index} />
+                  <input
+                    type='checkbox'
+                    id={course.id}
+                    defaultChecked={props.findSearchCourse(course.id)}
+                    onClick={() => props.findSearchCourse(course.id)
+                      ? props.removeSearchCourse(course.id)
+                      : props.addSearchCourse({ id: course.id, name: course.permanent_course.name })}
+                  />
                 </td>
                 <td className='p-0 align-middle'>
-                  <label className='p-2 m-0' htmlFor={index}>{course.permanent_course.name}</label>
+                  <label className='p-2 m-0 w-100' htmlFor={course.id}>{course.permanent_course.name}</label>
                 </td>
                 <td className='p-0 align-middle'>
-                  <label className='p-2 m-0' htmlFor={index}>{course.teacher}</label>
+                  <label className='p-2 m-0 w-100' htmlFor={course.id}>{course.teacher}</label>
                 </td>
               </tr>
             ))

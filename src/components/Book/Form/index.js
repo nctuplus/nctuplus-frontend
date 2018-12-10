@@ -113,6 +113,20 @@ const Form = props => (
                 </div>
               </div>
             </LabeledInput>
+            {
+              props.payload.courses.map((course, index) => (
+                <div className='row m-0' key={index}>
+                  <div className='col-12 col-md-9 col-lg-10 offset-md-3 offset-lg-2'>
+                    <i
+                      className='fa fa-times mx-2 text-blue pointer'
+                      style={{ 'cursor': 'pointer' }}
+                      onClick={() => props.removeSearchCourse(course.id)}
+                    />
+                    {course.name}
+                  </div>
+                </div>
+              ))
+            }
           </form>
           <ModalWrapper />
 

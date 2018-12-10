@@ -64,7 +64,14 @@ class New extends React.Component {
   onSearch (event) {
     if (this.state.courseSearchWord) {
       event.preventDefault()
-      modal(<SearchList data={this.props.courses} />)
+      modal(
+        <SearchList
+          searchWord={this.state.courseSearchWord}
+          addSearchCourse={(course) => this.addSearchCourse(course)}
+          removeSearchCourse={(id) => this.removeSearchCourse(id)}
+          findSearchCourse={(id) => this.findSearchCourse(id)}
+        />
+      )
     }
   }
 
@@ -83,6 +90,24 @@ class New extends React.Component {
     }
   }
 
+  addSearchCourse (course) {
+    let newCourses = [...this.state.payload.courses]
+    newCourses.push(course)
+    this.setState({ payload: { ...this.state.payload, courses: newCourses } })
+  }
+
+  removeSearchCourse (id) {
+    let newCourses = [...this.state.payload.courses]
+    let index = newCourses.findIndex(course => course.id === id)
+    newCourses.splice(index, 1)
+    this.setState({ payload: { ...this.state.payload, courses: newCourses } })
+  }
+
+  findSearchCourse (id) {
+    let index = this.state.payload.courses.findIndex(course => course.id === id)
+    return index !== -1
+  }
+
   render () {
     return (
       <Form
@@ -94,6 +119,7 @@ class New extends React.Component {
         updateSearchWord={(word) => this.setState({ courseSearchWord: word })}
         onSearch={(event) => this.onSearch(event)}
         onSubmit={(event) => this.onSubmit(event)}
+        removeSearchCourse={(id) => this.removeSearchCourse(id)}
       />
     )
   }
