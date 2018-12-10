@@ -13,18 +13,26 @@ const SearchList = props => (
     </div>
     <div className='modal-body'>
       <table className='table table-hover'>
-        <tbody>
+        <thead>
           <tr>
-            <td />
+            <th />
             <th>課程</th>
             <th>老師</th>
           </tr>
+        </thead>
+        <tbody>
           {
             props.courses.data.map((course, index) => (
               <tr key={index}>
-                <td><input type='checkbox' /></td>
-                <td>{course.permanent_course.name}</td>
-                <td>{course.teacher}</td>
+                <td className='py-0 align-middle'>
+                  <input type='checkbox' id={index} />
+                </td>
+                <td className='p-0 align-middle'>
+                  <label className='p-2 m-0' htmlFor={index}>{course.permanent_course.name}</label>
+                </td>
+                <td className='p-0 align-middle'>
+                  <label className='p-2 m-0' htmlFor={index}>{course.teacher}</label>
+                </td>
               </tr>
             ))
           }
