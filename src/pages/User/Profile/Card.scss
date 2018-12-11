@@ -1,3 +1,22 @@
+
 .photo{
 	display: inline-block;
+}
+.card{
+	display: flex;
+	background-color: white;
+}
+.cardbody{
+	background-color: #e9eaed;
+}
+.card-footer{
+	float: left;
+}
+.cardbtn{
+	width: 90px;
+	height: 31px;
+}
+.cardbtntext{
+	width: 85px;
+	color: white;
 }
