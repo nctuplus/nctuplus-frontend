@@ -87,7 +87,7 @@ var tempData = {
   'this_semester': {
     'basic': {
       'service_one': 0, // 服學 可討論
-      'service_two': 0,
+      'service_two': 1,
       'art_one': 0, // 藝文賞析分上下 討論ㄍ
       'art_two': 1,
       'pe_basic': 0, // 大一體育
@@ -100,6 +100,7 @@ var tempData = {
       'advanced': 2
     },
     'general': {
+      'total': 2,
       'contemporary': 0,
       'civil': 0,
       'group': 2,

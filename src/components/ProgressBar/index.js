@@ -2,6 +2,11 @@ import React from 'react'
 import styles from './style.scss'
 class ProgressBar extends React.Component {
   getLength (goal, progress, past) {
+    /*
+    goal: the total length,
+    progress: the length of this bar,
+    past: the length of another bar
+    */
     if (past >= goal) {
       return '0%'
     } else if (progress + past >= goal) {
