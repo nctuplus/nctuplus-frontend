@@ -1,9 +1,12 @@
 .progressBar{
 	background-color: gray;
-	height: 25px;
+	height: 15px;
+	border-radius: 3px 3px 3px 3px;
 }
 
 .bar{
 	position: relative;
-	height: 25px;
+	height: 15px;
+	border-radius: 3px 3px 3px 3px;
+	transition: width 0.6s;
 }

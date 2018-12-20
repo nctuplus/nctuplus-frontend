@@ -2,17 +2,11 @@ import React from 'react'
 import styles from './style.scss'
 class ProgressBar extends React.Component {
   getLength (goal, progress, past) {
-    if (progress === 0) {
-      console.log('XD')
-      return '0.75%'
-    } else if (past >= goal) {
-      console.log('XDD')
+    if (past >= goal) {
       return '0%'
     } else if (progress + past >= goal) {
-      console.log('XDDD')
       return ((goal - past) / goal) * 100 + '%'
     } else {
-      console.log('XDDDD')
       return (progress / goal) * 100 + '%'
     }
   }
@@ -20,20 +14,20 @@ class ProgressBar extends React.Component {
     let goal = this.props.goal
     let passed = this.props.passed
     let current = this.props.current
+    let barTopShift = '-15px'
+    let secondBarLength = (this.props.switched)? 0 : 1 ;  // same effect as condition render to the second bar
     return (
       <div className={styles.progressBar}>
         <Bar myLength={this.getLength(goal, passed, 0)}
-          leftShift='0px'
-          topShift='0px'
-          barColor='red'
+          barColor='linear-gradient(10deg, #0da1d4 0%, #1dd07e 100%)'
+          borderRadius= '3px 0px 0px 3px'
         />
-        {!this.props.switched &&
-        <Bar myLength={this.getLength(goal, current, passed)}
+        <Bar myLength={this.getLength(goal, current*secondBarLength, passed) }
           leftShift={this.getLength(goal, passed)}
-          topShift='-25px'
-          barColor='orange'
+          topShift={barTopShift}
+          barColor='linear-gradient(10deg, #FFCF00,#E8A700,#FF9E00,#E87600,#FF6000)'
+          borderRadius= '0px 3px 3px 0px'
         />
-        }
       </div>
     )
   }
@@ -41,13 +35,14 @@ class ProgressBar extends React.Component {
 
 export default ProgressBar
 
-const Bar = ({ myLength, leftShift, topShift, barColor }) => (
+const Bar = ({ myLength, leftShift='0px', topShift='0px', barColor, borderRadius }) => (
   <div className={styles.bar}
     style={{
       width: myLength,
       left: leftShift,
       top: topShift,
-      backgroundColor: barColor
+      backgroundImage: barColor,
+      borderRadius: borderRadius
     }}
   />
 )
