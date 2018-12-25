@@ -122,7 +122,7 @@ const Form = props => (
                       style={{ 'cursor': 'pointer' }}
                       onClick={() => props.removeSearchCourse(course.id)}
                     />
-                    {course.name}
+                    {course.course_name}
                   </div>
                 </div>
               ))

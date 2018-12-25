@@ -70,7 +70,14 @@ class Show extends React.Component {
                       </tr>
                       <tr>
                         <td>適用課程</td>
-                        <td />
+                        <td>
+                          {
+                            book.courses &&
+                            book.courses.map((course, index) =>
+                              <div key={index}>{course.course_name}</div>
+                            )
+                          }
+                        </td>
                       </tr>
                     </tbody>
                   </table>

@@ -34,7 +34,7 @@ const Item = withRouter((props) => {
             課程: {
               props.courses &&
               props.courses
-                .map(course => course.permanent_course.name)
+                .map(course => course.course_name)
                 .join(', ')
             }
           </div>

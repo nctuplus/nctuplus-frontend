@@ -31,7 +31,7 @@ const SearchList = props => (
                     defaultChecked={props.findSearchCourse(course.id)}
                     onClick={() => props.findSearchCourse(course.id)
                       ? props.removeSearchCourse(course.id)
-                      : props.addSearchCourse({ id: course.id, name: course.permanent_course.name })}
+                      : props.addSearchCourse({ course_id: course.id, course_name: course.permanent_course.name })}
                   />
                 </td>
                 <td className='p-0 align-middle'>
