@@ -131,9 +131,16 @@ const Form = props => (
           <ModalWrapper />
 
           <div className='col-12 my-4'><hr /></div>
-
-          <div className='col-12 pull-right'>
-            <button type='submit' className='btn btn-primary pull-right' onClick={props.onSubmit}>立即刊登</button>
+          <div className={styles.fixedMenu}>
+            <div className='pull-right'>
+              <button type='submit' className='btn btn-primary' onClick={props.onSubmit}>立即刊登</button>
+              {
+                // 編輯表單才會有售出按鈕
+                props.formType === 'edit'
+                  ? <button className='btn btn-danger' onClick={props.onSell}>售出</button>
+                  : ''
+              }
+            </div>
           </div>
         </div>
       </div>

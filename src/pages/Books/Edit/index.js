@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { base64encode } from 'utilities'
 import { FETCHING_STATUS } from 'utilities/constants'
-import { getBook, patchBook } from 'api/Controllers/books'
+import { getBook, patchBook, sellBook } from 'api/Controllers/books'
 import actions from 'api/Actions/Books'
 import Form from 'components/Book/Form'
 import SearchList from 'components/Course/SearchList'
@@ -13,13 +13,16 @@ import { modal } from 'components/Modal'
 const mapStateToProps = (state) => ({
   book: state.books.show.data,
   status: state.books.show.status,
-  bookUpdateStatus: state.books.edit.status
+  bookUpdateStatus: state.books.edit.status,
+  bookSellStatus: state.books.sell.status
 })
 
 const mapDispatchToProps = (dispatch) => ({
   getBook: (id) => dispatch(getBook(id)),
   patchBook: (payload, id) => dispatch(patchBook(payload, id)),
-  patchBookReset: () => dispatch(actions.books.edit.setStatus(FETCHING_STATUS.IDLE))
+  patchBookReset: () => dispatch(actions.books.edit.setStatus(FETCHING_STATUS.IDLE)),
+  sellBook: (payload, id) => dispatch(sellBook(payload, id)),
+  sellBookReset: () => dispatch(actions.books.sell.setStatus(FETCHING_STATUS.IDLE))
 })
 
 class Edit extends React.Component {
@@ -59,9 +62,16 @@ class Edit extends React.Component {
       this.setState({ synced: true })
     }
 
+    // 編輯完成
     if (this.props.bookUpdateStatus === FETCHING_STATUS.DONE) {
       this.props.patchBookReset()
       this.props.history.push(`/books/${this.props.book.id}`)
+    }
+
+    // 售出完成
+    if (this.props.bookSellStatus === FETCHING_STATUS.DONE) {
+      this.props.sellBookReset()
+      this.props.history.push('/books/')
     }
   }
 
@@ -105,6 +115,11 @@ class Edit extends React.Component {
     }
   }
 
+  onSell () {
+    // { status: 1 } 表示改為售出
+    this.props.sellBook({ status: 1 }, this.props.match.params.id)
+  }
+
   addSearchCourse (course) {
     let newCourses = [...this.state.payload.courses]
     newCourses.push(course)
@@ -127,6 +142,7 @@ class Edit extends React.Component {
     return (
       <Form
         {...this.state}
+        formType='edit'
         formRef={this.formRef}
         imageUploadRef={this.imageUploadRef}
         updatePayload={(payload) => this.setState({ payload: { ...this.state.payload, ...payload } })}
@@ -134,6 +150,7 @@ class Edit extends React.Component {
         updateSearchWord={(word) => this.setState({ courseSearchWord: word })}
         onSearch={(event) => this.onSearch(event)}
         onSubmit={(event) => this.onSubmit(event)}
+        onSell={() => this.onSell()}
         removeSearchCourse={(id) => this.removeSearchCourse(id)}
       />
     )

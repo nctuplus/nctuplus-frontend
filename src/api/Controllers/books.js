@@ -52,3 +52,11 @@ export const deleteBook = (id) => dispatch => {
     .then(() => dispatch(actions.books.delete.setStatus(FETCHING_STATUS.DONE)))
     .catch(() => dispatch(actions.books.delete.setStatus(FETCHING_STATUS.FAIL)))
 }
+
+export const sellBook = (payload, id) => dispatch => {
+  dispatch(actions.books.sell.setStatus(FETCHING_STATUS.FETCHING))
+  server.protected
+    .patch(`/api/v1/books/${id}/status`, payload)
+    .then(() => dispatch(actions.books.sell.setStatus(FETCHING_STATUS.DONE)))
+    .catch(() => dispatch(actions.books.sell.setStatus(FETCHING_STATUS.FAIL)))
+}

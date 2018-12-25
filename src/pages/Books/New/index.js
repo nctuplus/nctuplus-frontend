@@ -112,6 +112,7 @@ class New extends React.Component {
     return (
       <Form
         {...this.state}
+        formType='new'
         formRef={this.formRef}
         imageUploadRef={this.imageUploadRef}
         updatePayload={(payload) => this.setState({ payload: { ...this.state.payload, ...payload } })}

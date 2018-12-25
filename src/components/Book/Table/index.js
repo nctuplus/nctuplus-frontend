@@ -9,11 +9,15 @@ const Item = withRouter((props) => {
     <div className='col-sm-6 col-md-4 mb-3' onClick={() => props.history.push(`/books/${props.id}`)}>
       <div className={`${styles.bookItem} card clickable`} >
         <div className='p-1'>
-          <div style={{ position: 'absolute' }}>
-            <Link to={`/books/${props.id}/edit`} onClick={(e) => e.stopPropagation()}>
-              <button className='btn btn-warning btn-sm'><i className='fa fa-pencil' /></button>
-            </Link>
-          </div>
+          {
+            props.status === 0
+              ? <div style={{ position: 'absolute' }}>
+                <Link to={`/books/${props.id}/edit`} onClick={(e) => e.stopPropagation()}>
+                  <button className='btn btn-warning btn-sm'><i className='fa fa-pencil' /></button>
+                </Link>
+              </div>
+              : ''
+          }
           <div className='text-center'>
             <img
               className='d-inline-block'

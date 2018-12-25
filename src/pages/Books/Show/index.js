@@ -86,9 +86,6 @@ class Show extends React.Component {
                     編輯
                   </button>
                 </Link>
-                <button className='btn btn-danger'>
-                  售出
-                </button>
               </div>
             </div>
           </div>
