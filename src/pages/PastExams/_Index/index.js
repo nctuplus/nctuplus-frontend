@@ -83,7 +83,7 @@ const Index = ({ pastExams, updatePage }) => (
             </SearchPanelNewsFeed>
           </SearchPanel>
         </div>
-        <div className='col-12 col-md-9'>
+        <div className='col-12'>
           <PastExam.Table {...pastExams} updatePage={updatePage} />
         </div>
       </div>

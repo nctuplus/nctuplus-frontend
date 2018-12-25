@@ -19,7 +19,7 @@ const Row = ({ file, course, uploader, description }) => (
 
 const Table = (props) => (
   <div>
-    <table className='table table-sm table-hover bg-white'>
+    <table className='table table-hover bg-white'>
       <thead>
         <tr>
           <th>課程/教授</th>

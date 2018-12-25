@@ -125,8 +125,8 @@ const SearchPanelNews = (props) => (
 
 const SearchPanelNewsFeed = (props) => (
   <div>
-    <h4 className={`text-center d-none d-md-block ${styles.title}`}>最新動態</h4>
-    <div className='row d-none d-md-block'>
+    <h4 className={`text-center ${styles.title}`}>最新動態</h4>
+    <div className='row'>
       <div className='list-group'>
         { props.children }
       </div>
@@ -177,11 +177,37 @@ const SearchPanelButtonGroup = (props) => (
   </div>
 )
 
-const SearchPanel = (props) => (
-  <div className={styles.searchPanel}>
-    { props.children }
-  </div>
-)
+class SearchPanel extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      open: false
+    }
+    this.toggleOpen = this.toggleOpen.bind(this)
+    this.toggleClose = this.toggleClose.bind(this)
+  }
+  toggleOpen (e) {
+    this.setState({ open: true })
+    document.body.style.overflowY = 'hidden'
+    e.stopPropagation()
+  }
+  toggleClose (e) {
+    this.setState({ open: false })
+    document.body.style.overflowY = 'auto'
+    e.stopPropagation()
+  }
+  render () {
+    return (
+      <div className={classNames(styles.searchPanel, this.state.open && 'show')} >
+        <div className={classNames(styles.panelOpen, this.state.open && 'show')} onClick={this.toggleOpen}>
+          <i className='fa fa-filter' />
+        </div>
+        <div className={classNames(styles.panelClose, this.state.open && 'show')} onClick={this.toggleClose} />
+        { this.props.children }
+      </div>
+    )
+  }
+}
 
 export {
   SearchCourse,
