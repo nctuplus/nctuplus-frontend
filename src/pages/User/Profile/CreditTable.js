@@ -13,41 +13,62 @@ class CreditTable extends React.Component {
   getSwitchState (switchState) {
     this.setState({ switched: switchState })
   }
+
   render () {
     let user = this.props.user
     let current = this.props.user.this_semester
-    let switched = this.state.switched
-    let serviceOne = switched ? user.service_one : current.basic.service_one + user.service_one
-    let serviceTwo = switched ? user.service_two : current.basic.service_two + user.service_two
-    let artOne = switched ? user.art_one : current.basic.art_one + user.art_one
-    let artTwo = switched ? user.art_two : current.basic.art_two + user.art_two
+    let switched = this.state.switched? 1 : 0
 
-    let peBasic = switched ? user.pe_basic : current.basic.pe_basic + user.pe_basic
-    let peAdvance = switched ? user.pe : current.basic.pe + user.pe
+    /* for all classes, class[0] is current+passed, class[1] is passed*/
+
+    let serviceOne = [current.basic.service_one + user.service_one, user.service_one]
+    let serviceTwo = [current.basic.service_two+user.service_two, user.service_two]
+    let artOne = [current.basic.art_one + user.art_one, user.art_one]
+    let artTwo = [current.basic.art_two + user.art_two, user.art_two]
+
+    let peBasic = [current.basic.pe_basic + user.pe_basic, user.pe_basic]
+    let peAdvance = [current.basic.pe + user.pe, user.pe]
 
     let languagePassed = user.language.total
     let languageCurrent = current.language.total
-    let language = switched ? languagePassed : languagePassed + languageCurrent
+    let language = [languagePassed + languageCurrent, languagePassed]
 
-    let gnrlContemporary = switched ? user.general.contemporary : current.general.contemporary + user.general.contemporary
-    let gnrlCivil = switched ? user.general.civil : current.general.civil + user.general.civil
-    let gnrlGroup = switched ? user.general.group : current.general.group + user.general.group
-    let gnrlHistory = switched ? user.general.history : current.general.history + user.general.history
-    let gnrlCulture = switched ? user.general.culture : current.general.culture + user.general.culture
-    let gnrlScience = switched ? user.general.science : current.general.science + user.general.science
+    let gnrlContemporary = [current.general.contemporary + user.general.contemporary, user.general.contemporary]
+    let gnrlCivil = [current.general.civil + user.general.civil, user.general.civil]
+    let gnrlGroup = [current.general.group + user.general.group, user.general.group]
+    let gnrlHistory = [current.general.history + user.general.history, user.general.history]
+    let gnrlCulture = [current.general.culture + user.general.culture, user.general.culture]
+    let gnrlScience = [current.general.science + user.general.science, user.general.science]
     let gnrlPassed = user.general.total
     let gnrlCurrent = current.general.total
 
-    let newGnrlHuman = switched ? user.new_general.core.human : current.new_general.core.human + user.new_general.core.human
-    let newGnrlSociety = switched ? user.new_general.core.society : current.new_general.core.society + user.new_general.core.society
-    let newGnrlScience = switched ? user.new_general.core.science : current.new_general.core.science + user.new_general.core.science
-    let newGnrlBasic = switched ? user.new_general.basic : current.new_general.basic + user.new_general.basic
-    let newGnrlCross = switched ? user.new_general.cross : current.new_general.cross + user.new_general.cross
-
+    let newGnrlHuman = [current.new_general.core.human + user.new_general.core.human, user.new_general.core.human]
+    let newGnrlSociety = [current.new_general.core.society + user.new_general.core.society, user.new_general.core.society]
+    let newGnrlScience = [current.new_general.core.science + user.new_general.core.science, user.new_general.core.science]
+    let newGnrlBasic = [current.new_general.basic + user.new_general.basic, user.new_general.basic]
+    let newGnrlCross = [current.new_general.cross + user.new_general.cross, user.new_general.cross]
+    let newGnrlCoreTotal = [user.new_general.core.total + current.new_general.core.total, user.new_general.core.total]
     let newGnrlPassed = user.new_general.total
     let newGnrlCurrent = current.new_general.total
-    let newGnrlCoreTotal = switched ? user.new_general.core.total : user.new_general.core.total + current.new_general.core.total
 
+    // define 3 types of checkmark color
+    let CheckMarkPassed = '#5cb85c'
+    let CheckMarkCurrent = '#ff8800'
+    let CheckMarkBlank = '#ffffff'
+
+    function getTableContent(classes, threshold){
+      /*
+      Input: class array, checkmark threshold
+      Output: this function will return a proper content to the table block
+              ex: blank, different color checkmark, or number
+      */
+      if ( classes[switched] > threshold ){
+        return classes[1] > threshold ? <CheckMark color={CheckMarkPassed} /> : <CheckMark color={CheckMarkCurrent} />
+      }
+      else{
+        return <CheckMark color={CheckMarkBlank} />
+      }
+    }
     return (
       <div className='bg-white p-2'>
         <div className='toggleLine'>
@@ -64,8 +85,8 @@ class CreditTable extends React.Component {
               <td colSpan='6'>二</td>
             </tr>
             <tr>
-              <td colSpan='6'>{serviceOne > 0 ? <CheckMark color={'#5cb85c'} /> : <CheckMark color={'#ffffff'} />}</td>
-              <td colSpan='6'>{serviceTwo > 0 ? <CheckMark color={'#5cb85c'} /> : <CheckMark color={'#ffffff'} />}</td>
+              <td colSpan='6'>{getTableContent(serviceOne, 0, false)}</td>
+              <td colSpan='6'>{getTableContent(serviceTwo, 0, false)}</td>
             </tr>
             <tr>
               <td rowSpan='2'>藝文賞析</td>
@@ -73,8 +94,8 @@ class CreditTable extends React.Component {
               <td colSpan='6'>下</td>
             </tr>
             <tr>
-              <td colSpan='6'>{artOne > 0 ? <CheckMark color={'#5cb85c'} /> : <CheckMark color={'#ffffff'} />}</td>
-              <td colSpan='6'>{artTwo > 0 ? <CheckMark color={'#5cb85c'} /> : <CheckMark color={'#ffffff'} />}</td>
+              <td colSpan='6'>{getTableContent(artOne, 0, false)}</td>
+              <td colSpan='6'>{getTableContent(artTwo, 0, false)}</td>
             </tr>
             <tr>
               <td rowSpan='2'>體育</td>
@@ -86,12 +107,12 @@ class CreditTable extends React.Component {
               <td colSpan='2'>選修</td>
             </tr>
             <tr>
-              <td colSpan='2'>{peBasic > 0 ? <CheckMark color={'#5cb85c'} /> : <CheckMark color={'#ffffff'} />}</td>
-              <td colSpan='2'>{peBasic > 1 ? <CheckMark color={'#5cb85c'} /> : <CheckMark color={'#ffffff'} />}</td>
-              <td colSpan='2'>{peAdvance > 0 ? <CheckMark color={'#5cb85c'} /> : <CheckMark color={'#ffffff'} />}</td>
-              <td colSpan='2'>{peAdvance > 1 ? <CheckMark color={'#5cb85c'} /> : <CheckMark color={'#ffffff'} />}</td>
-              <td colSpan='2'>{peAdvance > 2 ? <CheckMark color={'#5cb85c'} /> : <CheckMark color={'#ffffff'} />}</td>
-              <td colSpan='2'>{peAdvance > 3 ? <CheckMark color={'#5cb85c'} /> : <CheckMark color={'#ffffff'} />}</td>
+              <td colSpan='2'>{getTableContent(peBasic, 0, false)}</td>
+              <td colSpan='2'>{getTableContent(peBasic, 1, false)}</td>
+              <td colSpan='2'>{getTableContent(peAdvance, 0, false)}</td>
+              <td colSpan='2'>{getTableContent(peAdvance, 1, false)}</td>
+              <td colSpan='2'>{getTableContent(peAdvance, 2, false)}</td>
+              <td colSpan='2'>{getTableContent(peAdvance, 3, false)}</td>
             </tr>
             <tr>
               <td rowSpan='3'>外文</td>
@@ -101,10 +122,10 @@ class CreditTable extends React.Component {
               <td colSpan='3'>進階</td>
             </tr>
             <tr>
-              <td colSpan='3'>{language > 1 ? <CheckMark color={'#5cb85c'} /> : <CheckMark color={'#ffffff'} />}</td>
-              <td colSpan='3'>{language > 3 ? <CheckMark color={'#5cb85c'} /> : <CheckMark color={'#ffffff'} />}</td>
-              <td colSpan='3'>{language > 5 ? <CheckMark color={'#5cb85c'} /> : <CheckMark color={'#ffffff'} />}</td>
-              <td colSpan='3'>{language > 7 ? <CheckMark color={'#5cb85c'} /> : <CheckMark color={'#ffffff'} />}</td>
+              <td colSpan='3'>{getTableContent(language, 1, false)}</td>
+              <td colSpan='3'>{getTableContent(language, 3, false)}</td>
+              <td colSpan='3'>{getTableContent(language, 5, false)}</td>
+              <td colSpan='3'>{getTableContent(language, 7, false)}</td>
             </tr>
             <tr>
               <td colSpan='12'>
@@ -126,12 +147,12 @@ class CreditTable extends React.Component {
               <td colSpan='2'>自然</td>
             </tr>
             <tr>
-              <td colSpan='2'>{gnrlContemporary > 0 ? <CheckMark color={'#5cb85c'} /> : <CheckMark color={'#ffffff'} />}</td>
-              <td colSpan='2'>{gnrlCivil > 0 ? <CheckMark color={'#5cb85c'} /> : <CheckMark color={'#ffffff'} />}</td>
-              <td colSpan='2'>{gnrlGroup > 0 ? <CheckMark color={'#5cb85c'} /> : <CheckMark color={'#ffffff'} />}</td>
-              <td colSpan='2'>{gnrlHistory > 0 ? <CheckMark color={'#5cb85c'} /> : <CheckMark color={'#ffffff'} />}</td>
-              <td colSpan='2'>{gnrlCulture > 0 ? <CheckMark color={'#5cb85c'} /> : <CheckMark color={'#ffffff'} />}</td>
-              <td colSpan='2'>{gnrlScience > 0 ? <CheckMark color={'#5cb85c'} /> : <CheckMark color={'#ffffff'} />}</td>
+              <td colSpan='2'>{getTableContent(gnrlContemporary, 0, false)}</td>
+              <td colSpan='2'>{getTableContent(gnrlCivil, 0, false)}</td>
+              <td colSpan='2'>{getTableContent(gnrlGroup, 0, false)}</td>
+              <td colSpan='2'>{getTableContent(gnrlHistory, 0, false)}</td>
+              <td colSpan='2'>{getTableContent(gnrlCulture, 0, false)}</td>
+              <td colSpan='2'>{getTableContent(gnrlScience, 0, false)}</td>
             </tr>
             <tr>
               <td colSpan='12'>
@@ -145,9 +166,9 @@ class CreditTable extends React.Component {
             </tr>
             <tr>
               <td rowSpan='4'>新制通識</td>
-              <td colSpan='6' rowSpan='1'>核心  {newGnrlCoreTotal}/6</td>
-              <td colSpan='3' rowSpan='2' >校基本  <br />{newGnrlBasic}/6</td>
-              <td colSpan='3' rowSpan='2' >跨院  <br />{newGnrlCross}/6</td>
+              <td colSpan='6' rowSpan='1'>核心  {newGnrlCoreTotal[switched]}/6</td>
+              <td colSpan='3' rowSpan='2' >校基本  <br />{newGnrlBasic[switched]}/6</td>
+              <td colSpan='3' rowSpan='2' >跨院  <br />{newGnrlCross[switched]}/6</td>
             </tr>
             <tr>
               <td colSpan='2'>人文 </td>
@@ -156,11 +177,12 @@ class CreditTable extends React.Component {
 
             </tr>
             <tr>
-              <td colSpan='2'>{newGnrlHuman > 0 ? <CheckMark color={'#5cb85c'} /> : newGnrlHuman}</td>
-              <td colSpan='2'>{newGnrlSociety > 0 ? <CheckMark color={'#5cb85c'} /> : newGnrlSociety}</td>
-              <td colSpan='2'>{newGnrlScience > 0 ? <CheckMark color={'#5cb85c'} /> : newGnrlScience}</td>
-              <td colSpan='3'>{newGnrlBasic > 5 ? <CheckMark color={'#5cb85c'} /> : newGnrlBasic}</td>
-              <td colSpan='3'>{newGnrlCross > 5 ? <CheckMark color={'#5cb85c'} /> : newGnrlCross}</td>
+              {/*new general classes cannot use the getTableContent function, because in some cases it need a number but not a CheckMark*/}
+              <td colSpan='2'>{newGnrlHuman[switched] > 0 ? (newGnrlHuman[1] > 0 ? <CheckMark color={CheckMarkPassed} /> : <CheckMark color={CheckMarkCurrent} />): newGnrlHuman[switched]}</td>
+              <td colSpan='2'>{newGnrlSociety[switched] > 0 ? (newGnrlSociety[1] > 0 ? <CheckMark color={CheckMarkPassed} /> : <CheckMark color={CheckMarkCurrent} />) : newGnrlSociety[switched]}</td>
+              <td colSpan='2'>{newGnrlScience > 0 ? (newGnrlScience[1] > 0 ? <CheckMark color={CheckMarkPassed} /> : <CheckMark color={CheckMarkCurrent} />): newGnrlScience[switched]}</td>
+              <td colSpan='3'>{newGnrlBasic > 5 ? (newGnrlBasic[1] > 5 ? <CheckMark color={CheckMarkPassed} /> : <CheckMark color={CheckMarkCurrent} />): newGnrlBasic[switched]}</td>
+              <td colSpan='3'>{newGnrlCross > 5 ? (newGnrlCross[1] > 5 ? <CheckMark color={CheckMarkPassed} /> : <CheckMark color={CheckMarkCurrent} />): newGnrlCross[switched]}</td>
             </tr>
             <tr>
               <td colSpan='12'>
