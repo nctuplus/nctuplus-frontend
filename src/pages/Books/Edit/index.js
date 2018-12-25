@@ -71,7 +71,10 @@ class Edit extends React.Component {
     // 售出完成
     if (this.props.bookSellStatus === FETCHING_STATUS.DONE) {
       this.props.sellBookReset()
-      this.props.history.push('/books/')
+      this.props.history.push({
+        pathname: '/books/',
+        state: { sell: true }
+      })
     }
   }
 

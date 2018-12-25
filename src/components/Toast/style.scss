@@ -41,10 +41,10 @@ $danger: #dc3545;
     position: fixed;
     top: calc(56px + 1em);
     left: 1em;
+    z-index: 10;
     .toast{
         position: relative;
         top: 0;
-        z-index: 11;
         width: 280px;
         height: 58px;
         border-radius: 2px;

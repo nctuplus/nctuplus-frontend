@@ -10,6 +10,7 @@ import {
 import Layout from 'pages/Layout'
 import * as Books from 'components/Book'
 import { InputWithButton } from 'components/FormUtils'
+import { toast, ToastWrapper } from 'components/Toast'
 import moment from 'moment'
 import styles from './style.scss'
 
@@ -19,6 +20,11 @@ import actions from 'api/Actions/Books'
 
 class Index extends React.Component {
   componentDidMount () {
+    // 判斷是不是從售出完成後導向過來的
+    if (this.props.location.state && this.props.location.state.sell) {
+      toast('成功售出!', { type: 'success' })
+    }
+
     let books = this.props.books
     this.props.fetchData({
       page: books.page,
@@ -63,6 +69,7 @@ class Index extends React.Component {
     let filters = this.props.books.filters
     return (
       <Layout>
+        <ToastWrapper />
         <div className='container pt-3'>
           <div className='row'>
             <div className='col-md-12 col-lg-3'>
