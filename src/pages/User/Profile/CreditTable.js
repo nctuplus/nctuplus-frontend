@@ -17,12 +17,12 @@ class CreditTable extends React.Component {
   render () {
     let user = this.props.user
     let current = this.props.user.this_semester
-    let switched = this.state.switched? 1 : 0
+    let switched = this.state.switched ? 1 : 0
 
-    /* for all classes, class[0] is current+passed, class[1] is passed*/
+    /* for all classes, class[0] is current+passed, class[1] is passed */
 
     let serviceOne = [current.basic.service_one + user.service_one, user.service_one]
-    let serviceTwo = [current.basic.service_two+user.service_two, user.service_two]
+    let serviceTwo = [current.basic.service_two + user.service_two, user.service_two]
     let artOne = [current.basic.art_one + user.art_one, user.art_one]
     let artTwo = [current.basic.art_two + user.art_two, user.art_two]
 
@@ -56,16 +56,15 @@ class CreditTable extends React.Component {
     let CheckMarkCurrent = '#ff8800'
     let CheckMarkBlank = '#ffffff'
 
-    function getTableContent(classes, threshold){
+    function getTableContent (classes, threshold) {
       /*
       Input: class array, checkmark threshold
       Output: this function will return a proper content to the table block
               ex: blank, different color checkmark, or number
       */
-      if ( classes[switched] > threshold ){
+      if (classes[switched] > threshold) {
         return classes[1] > threshold ? <CheckMark color={CheckMarkPassed} /> : <CheckMark color={CheckMarkCurrent} />
-      }
-      else{
+      } else {
         return <CheckMark color={CheckMarkBlank} />
       }
     }
@@ -177,12 +176,12 @@ class CreditTable extends React.Component {
 
             </tr>
             <tr>
-              {/*new general classes cannot use the getTableContent function, because in some cases it need a number but not a CheckMark*/}
-              <td colSpan='2'>{newGnrlHuman[switched] > 0 ? (newGnrlHuman[1] > 0 ? <CheckMark color={CheckMarkPassed} /> : <CheckMark color={CheckMarkCurrent} />): newGnrlHuman[switched]}</td>
+              {/* new general classes cannot use the getTableContent function, because in some cases it need a number but not a CheckMark */}
+              <td colSpan='2'>{newGnrlHuman[switched] > 0 ? (newGnrlHuman[1] > 0 ? <CheckMark color={CheckMarkPassed} /> : <CheckMark color={CheckMarkCurrent} />) : newGnrlHuman[switched]}</td>
               <td colSpan='2'>{newGnrlSociety[switched] > 0 ? (newGnrlSociety[1] > 0 ? <CheckMark color={CheckMarkPassed} /> : <CheckMark color={CheckMarkCurrent} />) : newGnrlSociety[switched]}</td>
-              <td colSpan='2'>{newGnrlScience > 0 ? (newGnrlScience[1] > 0 ? <CheckMark color={CheckMarkPassed} /> : <CheckMark color={CheckMarkCurrent} />): newGnrlScience[switched]}</td>
-              <td colSpan='3'>{newGnrlBasic > 5 ? (newGnrlBasic[1] > 5 ? <CheckMark color={CheckMarkPassed} /> : <CheckMark color={CheckMarkCurrent} />): newGnrlBasic[switched]}</td>
-              <td colSpan='3'>{newGnrlCross > 5 ? (newGnrlCross[1] > 5 ? <CheckMark color={CheckMarkPassed} /> : <CheckMark color={CheckMarkCurrent} />): newGnrlCross[switched]}</td>
+              <td colSpan='2'>{newGnrlScience[switched] > 0 ? (newGnrlScience[1] > 0 ? <CheckMark color={CheckMarkPassed} /> : <CheckMark color={CheckMarkCurrent} />) : newGnrlScience[switched]}</td>
+              <td colSpan='3'>{newGnrlBasic[switched] > 5 ? (newGnrlBasic[1] > 5 ? <CheckMark color={CheckMarkPassed} /> : <CheckMark color={CheckMarkCurrent} />) : newGnrlBasic[switched]}</td>
+              <td colSpan='3'>{newGnrlCross[switched] > 5 ? (newGnrlCross[1] > 5 ? <CheckMark color={CheckMarkPassed} /> : <CheckMark color={CheckMarkCurrent} />) : newGnrlCross[switched]}</td>
             </tr>
             <tr>
               <td colSpan='12'>
