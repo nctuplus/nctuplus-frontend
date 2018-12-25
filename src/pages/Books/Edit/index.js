@@ -37,7 +37,8 @@ class Edit extends React.Component {
         cover_image: '',
         info: '',
         contact_way: '',
-        courses: []
+        courses: [],
+        status: ''
       },
       courseSearchWord: '',
       synced: false,

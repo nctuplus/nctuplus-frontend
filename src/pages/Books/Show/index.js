@@ -85,17 +85,21 @@ class Show extends React.Component {
               </div>
             </div>
           </div>
-          <div className='row'>
-            <div className={style.fixedMenu}>
-              <div className='pull-right'>
-                <Link to={`/books/${this.props.match.params.id}/edit`} className='flat-link'>
-                  <button className='btn btn-primary' >
-                    編輯
-                  </button>
-                </Link>
+          {
+            book.status === 0
+              ? <div className='row'>
+                <div className={style.fixedMenu}>
+                  <div className='pull-right'>
+                    <Link to={`/books/${this.props.match.params.id}/edit`} className='flat-link'>
+                      <button className='btn btn-primary'>
+                        編輯
+                      </button>
+                    </Link>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+              : ''
+          }
         </div>
       </Layout>
     )

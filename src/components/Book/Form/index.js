@@ -137,7 +137,13 @@ const Form = props => (
               {
                 // 編輯表單才會有售出按鈕
                 props.formType === 'edit'
-                  ? <button className='btn btn-danger' onClick={props.onSell}>售出</button>
+                  ? <button
+                    className='btn btn-danger'
+                    disabled={props.payload.status !== 0}
+                    onClick={props.onSell}
+                  >
+                    售出
+                  </button>
                   : ''
               }
             </div>
