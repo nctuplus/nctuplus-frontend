@@ -1,7 +1,6 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-import MediaQuery from 'react-responsive'
 import { withState, withHandlers, compose } from 'recompose'
 import { NavDropdown, NavDropdownLink } from './NavDropdown'
 import { logout } from 'api/Controllers/user'
@@ -14,11 +13,11 @@ const mapDispatchToProps = (dispatch) => ({ logout: () => dispatch(logout()) })
 const enhance = compose(
   connect(mapStateToProps, mapDispatchToProps),
   withState('show', 'setDropdown', false),
-  withHandlers({ toggleDropdown: ({ setDropdown, show }) => () => setDropdown(!show) })
+  withHandlers({ toggleDropdown: ({ setDropdown, show }) => () => { setDropdown(!show); if (!show) { document.body.style.overflowY = 'hidden' } else { document.body.style.overflowY = 'auto' } } })
 )
 
 const NavItem = ({ children }) => (
-  <div className={`nav-item ${styles.navItem} mx-md-1 mx-lg-2`}>
+  <div className={styles.navItem}>
     { children }
   </div>
 )
@@ -34,20 +33,13 @@ const NavLink = ({ external, to, children }) => (
   </NavItem>
 )
 
-const NavbarContent = enhance(({ toggleDropdown, show, currentUser, logout }) => (
-  <nav className={`navbar navbar-expand-md ${styles.navbarCustom} pt-1`}>
-    <div className={`navbar-brand ${styles.brand}`}>
-      <Link to='/'>NCTU+</Link>
-    </div>
-    <button
-      className={`navbar-toggler ${styles.navbarToggler} mx-2`}
-      type='button'
-      onClick={toggleDropdown}
-    >
-      <i className='fa fa-bars' />
-    </button>
-    <div className={`collapse navbar-collapse ${styles.navbarCollapse} ${show && 'show'}`}>
-      <div className='navbar-nav mr-auto'>
+const Navbar = enhance(({ toggleDropdown, show, currentUser, logout }) => (
+  <nav className={styles.navbar}>
+    <div className={`${styles.navList} ${show && styles.show}`}>
+      <div className={styles.leftList}>
+        <div className={styles.brand}>
+          <Link to='/'>NCTU+</Link>
+        </div>
         {
           currentUser && currentUser.role === 1
             ? <NavDropdown title='管理'>
@@ -69,9 +61,9 @@ const NavbarContent = enhance(({ toggleDropdown, show, currentUser, logout }) =>
         <NavLink to='/books'>二手書</NavLink>
         <NavLink to='/events'>活動吧</NavLink>
       </div>
-      <div className='navbar-nav'>
+      <div className={styles.rightList}>
         <NavLink external to='https://www.facebook.com/messages/t/nctuplus' target='_blank'>
-          問題回報
+            問題回報
         </NavLink>
         {
           currentUser
@@ -82,28 +74,20 @@ const NavbarContent = enhance(({ toggleDropdown, show, currentUser, logout }) =>
               </span>
             }>
               <NavDropdownLink to='/user/profile'>個人資料</NavDropdownLink>
-              <span className='dropdown-item' onClick={logout}>
-                登出
-              </span>
+              <div className={`${styles.dropdown} dropdown-item`} onClick={logout}>
+                  登出
+              </div>
             </NavDropdown>
             : <NavLink to='/login'>登入</NavLink>
         }
       </div>
     </div>
+    <div className={`${styles.hamburgerIcon} ${show && styles.show}`} onClick={toggleDropdown} >
+      <div />
+      <div />
+      <div />
+    </div>
   </nav>
 ))
-
-const Navbar = () => (
-  <div className={styles.navbarContainer}>
-    <MediaQuery minDeviceWidth={768} >
-      <div className='container'>
-        <NavbarContent />
-      </div>
-    </MediaQuery>
-    <MediaQuery maxDeviceWidth={767} >
-      <NavbarContent />
-    </MediaQuery>
-  </div>
-)
 
 export default Navbar
