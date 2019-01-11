@@ -70,7 +70,14 @@ class Show extends React.Component {
                       </tr>
                       <tr>
                         <td>適用課程</td>
-                        <td />
+                        <td>
+                          {
+                            book.courses &&
+                            book.courses.map((course, index) =>
+                              <div key={index}>{course.course_name}</div>
+                            )
+                          }
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -78,20 +85,21 @@ class Show extends React.Component {
               </div>
             </div>
           </div>
-          <div className='row'>
-            <div className={style.fixedMenu}>
-              <div className='pull-right'>
-                <Link to={`/books/${this.props.match.params.id}/edit`} className='flat-link'>
-                  <button className='btn btn-primary' >
-                    編輯
-                  </button>
-                </Link>
-                <button className='btn btn-danger'>
-                  售出
-                </button>
+          {
+            book.status === 0
+              ? <div className='row'>
+                <div className={style.fixedMenu}>
+                  <div className='pull-right'>
+                    <Link to={`/books/${this.props.match.params.id}/edit`} className='flat-link'>
+                      <button className='btn btn-primary'>
+                        編輯
+                      </button>
+                    </Link>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+              : ''
+          }
         </div>
       </Layout>
     )

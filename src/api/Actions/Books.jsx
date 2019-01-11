@@ -22,6 +22,9 @@ export default createActions({
     },
     DELETE: {
       SET_STATUS: null
+    },
+    SELL: {
+      SET_STATUS: null
     }
   }
 })

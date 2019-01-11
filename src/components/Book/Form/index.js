@@ -113,13 +113,39 @@ const Form = props => (
                 </div>
               </div>
             </LabeledInput>
+            {
+              props.payload.courses.map((course, index) => (
+                <div className='row m-0' key={course.id}>
+                  <div className='col-12 col-md-9 col-lg-10 offset-md-3 offset-lg-2'>
+                    <i
+                      className='fa fa-times mx-2 text-blue pointer'
+                      onClick={() => props.removeSearchCourse(course.id)}
+                    />
+                    {course.course_name}
+                  </div>
+                </div>
+              ))
+            }
           </form>
           <ModalWrapper />
 
           <div className='col-12 my-4'><hr /></div>
-
-          <div className='col-12 pull-right'>
-            <button type='submit' className='btn btn-primary pull-right' onClick={props.onSubmit}>立即刊登</button>
+          <div className={styles.fixedMenu}>
+            <div className='pull-right'>
+              <button type='submit' className='btn btn-primary' onClick={props.onSubmit}>立即刊登</button>
+              {
+                // 編輯表單才會有售出按鈕
+                props.formType === 'edit'
+                  ? <button
+                    className='btn btn-danger'
+                    disabled={props.payload.status !== 0}
+                    onClick={props.onSell}
+                  >
+                    售出
+                  </button>
+                  : ''
+              }
+            </div>
           </div>
         </div>
       </div>

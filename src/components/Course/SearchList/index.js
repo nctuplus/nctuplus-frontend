@@ -13,18 +13,33 @@ const SearchList = props => (
     </div>
     <div className='modal-body'>
       <table className='table table-hover'>
-        <tbody>
+        <thead>
           <tr>
-            <td />
+            <th />
             <th>課程</th>
             <th>老師</th>
           </tr>
+        </thead>
+        <tbody>
           {
             props.courses.data.map((course, index) => (
-              <tr key={index}>
-                <td><input type='checkbox' /></td>
-                <td>{course.permanent_course.name}</td>
-                <td>{course.teacher}</td>
+              <tr key={course.id}>
+                <td className='py-0 align-middle'>
+                  <input
+                    type='checkbox'
+                    id={course.id}
+                    defaultChecked={props.findSearchCourse(course.id)}
+                    onClick={() => props.findSearchCourse(course.id)
+                      ? props.removeSearchCourse(course.id)
+                      : props.addSearchCourse({ course_id: course.id, course_name: course.permanent_course.name })}
+                  />
+                </td>
+                <td className='p-0 align-middle'>
+                  <label className='p-2 m-0 w-100' htmlFor={course.id}>{course.permanent_course.name}</label>
+                </td>
+                <td className='p-0 align-middle'>
+                  <label className='p-2 m-0 w-100' htmlFor={course.id}>{course.teacher}</label>
+                </td>
               </tr>
             ))
           }

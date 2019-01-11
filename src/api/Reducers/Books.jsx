@@ -27,6 +27,9 @@ const initialState = {
   },
   delete: {
     status: FETCHING_STATUS.IDLE
+  },
+  sell: {
+    status: FETCHING_STATUS.IDLE
   }
 }
 
@@ -51,6 +54,9 @@ export default handleActions({
     },
     DELETE: {
       SET_STATUS: (state, action) => ({ ...state, delete: { ...state.delete, status: action.payload } })
+    },
+    SELL: {
+      SET_STATUS: (state, action) => ({ ...state, sell: { ...state.sell, status: action.payload } })
     }
   }
 }, initialState)
