@@ -8,13 +8,24 @@ const Item = withRouter((props) => {
   return (
     <div className='col-sm-6 col-md-4 mb-3' onClick={() => props.history.push(`/books/${props.id}`)}>
       <div className={`${styles.bookItem} card clickable`} >
-        <div style={{ position: 'absolute' }}>
-          <Link to={`/books/${props.id}/edit`}>
-            <button className='btn btn-warning'><i className='fa fa-pencil' /></button>
-          </Link>
-        </div>
-        <div className='text-center'>
-          <img className='d-inline-block' alt='尚無圖片!' height='150' src={`${SERVER_URL}${props.cover_image.url}`} />
+        <div className='p-1'>
+          {
+            props.status === 0
+              ? <div position-absolute>
+                <Link to={`/books/${props.id}/edit`} onClick={(e) => e.stopPropagation()}>
+                  <button className='btn btn-warning btn-sm'><i className='fa fa-pencil' /></button>
+                </Link>
+              </div>
+              : ''
+          }
+          <div className='text-center'>
+            <img
+              className='d-inline-block'
+              alt='尚無圖片!'
+              height='150'
+              src={`${SERVER_URL}${props.cover_image.url}`}
+            />
+          </div>
         </div>
         <div className='card-body text-center'>
           <div className='ellipsis'>{props.name}</div>
@@ -23,7 +34,7 @@ const Item = withRouter((props) => {
             課程: {
               props.courses &&
               props.courses
-                .map(course => course.permanent_course.name)
+                .map(course => course.course_name)
                 .join(', ')
             }
           </div>
