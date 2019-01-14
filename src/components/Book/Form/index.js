@@ -115,11 +115,11 @@ const Form = props => (
             </LabeledInput>
             {
               props.payload.courses.map((course, index) => (
-                <div className='row m-0' key={course.id}>
+                <div className='row m-0' key={course.course_id}>
                   <div className='col-12 col-md-9 col-lg-10 offset-md-3 offset-lg-2'>
                     <i
                       className='fa fa-times mx-2 text-blue pointer'
-                      onClick={() => props.removeSearchCourse(course.id)}
+                      onClick={() => props.removeSearchCourse(course.course_id)}
                     />
                     {course.course_name}
                   </div>
@@ -138,7 +138,7 @@ const Form = props => (
                 props.formType === 'edit'
                   ? <button
                     className='btn btn-danger'
-                    disabled={props.payload.status !== 0}
+                    disabled={props.payload.sold_at !== null}
                     onClick={props.onSell}
                   >
                     售出
