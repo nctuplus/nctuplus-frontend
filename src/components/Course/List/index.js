@@ -3,33 +3,38 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import CourseConfig from '../config'
 
+const Devider = ()=>(
+  <span style={{padding:"0 2px", fontSize:'14'}}>｜</span>
+)
+
 const Item = (props) => (
   <tr>
     <td>
       <p>
-        <Link to={`/courses/${props.id}`} >{ props.course_name }</Link>
+        <Link to={`/courses/${props.id}`} >{ props.course_name } </Link>
         { props.category } { props.teacher }
         <span className='pull-right'>
           <button className='btn btn-info btn-circle'>
             <i className='fa fa-star' />
           </button>
+          {' '}
           <button className='btn btn-warning btn-circle'>
             <i className='fa fa-minus' />
           </button>
         </span>
       </p>
       <p className='text-right'>
-        <span className='d-inline-block'>{ props.requirement }</span>
-        <span className='d-inline-block'>年級: { props.grade } </span>
+        <span className='d-inline-block'>{ props.requirement }</span><Devider/>
+        <span className='d-inline-block'>年級: { props.grade } </span><Devider/>
         <span className='d-inline-block bold'>
           { `${props.class_time}/${props.classroom}` }
-        </span>
+        </span><Devider/>
         <span className='d-inline-block bold'>
-          <i className='fa fa-user' />
+          <i className='fa fa-user' />{' '}
           { `${props.current_enroll}/${props.max_enroll}` }
-        </span>
+        </span><Devider/>
         <span className='d-inline-block bold'>
-          <i className='fa fa-graduation-cap' />
+          <i className='fa fa-graduation-cap' />{' '}
           { props.credit }
         </span>
       </p>
