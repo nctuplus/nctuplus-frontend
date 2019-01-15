@@ -3,8 +3,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import CourseConfig from '../config'
 
-const Devider = ()=>(
-  <span style={{padding:"0 2px", fontSize:'14'}}>｜</span>
+const Devider = () => (
+  <span style={{ padding: '0 2px', fontSize: '14' }}>｜</span>
 )
 
 const Item = (props) => (
@@ -24,15 +24,15 @@ const Item = (props) => (
         </span>
       </p>
       <p className='text-right'>
-        <span className='d-inline-block'>{ props.requirement }</span><Devider/>
-        <span className='d-inline-block'>年級: { props.grade } </span><Devider/>
+        <span className='d-inline-block'>{ props.requirement }</span><Devider />
+        <span className='d-inline-block'>年級: { props.grade } </span><Devider />
         <span className='d-inline-block bold'>
           { `${props.class_time}/${props.classroom}` }
-        </span><Devider/>
+        </span><Devider />
         <span className='d-inline-block bold'>
           <i className='fa fa-user' />{' '}
           { `${props.current_enroll}/${props.max_enroll}` }
-        </span><Devider/>
+        </span><Devider />
         <span className='d-inline-block bold'>
           <i className='fa fa-graduation-cap' />{' '}
           { props.credit }

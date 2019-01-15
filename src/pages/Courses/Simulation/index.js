@@ -10,94 +10,94 @@ import ReactTooltip from 'react-tooltip'
 
 const 假資料_必修 = [
   {
-    id:1,
-    course_name:'電磁學',
-    category:'電機系',
-    teacher:'邱一',
-    requirement:'必修',
-    grade:'三',
-    class_time:'1ef3cd',
-    classroom:'ED104',
-    current_enroll:5,
-    max_enroll:25,
-    credit:3,
+    id: 1,
+    course_name: '電磁學',
+    category: '電機系',
+    teacher: '邱一',
+    requirement: '必修',
+    grade: '三',
+    class_time: '1ef3cd',
+    classroom: 'ED104',
+    current_enroll: 5,
+    max_enroll: 25,
+    credit: 3
   }
 ]
 const 假資料_選修 = [
   {
-    id:2,
-    course_name:'JAVA',
-    category:'電機系',
-    teacher:'蔡媽',
-    requirement:'選修',
-    grade:'二',
-    class_time:'2efg',
-    classroom:'ED208',
-    current_enroll:15,
-    max_enroll:25,
-    credit:3,
+    id: 2,
+    course_name: 'JAVA',
+    category: '電機系',
+    teacher: '蔡媽',
+    requirement: '選修',
+    grade: '二',
+    class_time: '2efg',
+    classroom: 'ED208',
+    current_enroll: 15,
+    max_enroll: 25,
+    credit: 3
   }
 ]
 const 假資料_外文 = [
   {
-    id:3,
-    course_name:'日文',
-    category:'語言中心',
-    teacher:'花澤香菜',
-    requirement:'外文',
-    grade:'all',
-    class_time:'2cd',
-    classroom:'A502',
-    current_enroll:60,
-    max_enroll:60,
-    credit:2,
+    id: 3,
+    course_name: '日文',
+    category: '語言中心',
+    teacher: '花澤香菜',
+    requirement: '外文',
+    grade: 'all',
+    class_time: '2cd',
+    classroom: 'A502',
+    current_enroll: 60,
+    max_enroll: 60,
+    credit: 2
   }
 ]
 const 假資料收藏_必修 = [
   {
-    id:4,
-    course_name:'電子學',
-    category:'電機系',
-    teacher:'陳龍英',
-    requirement:'必修',
-    grade:'三',
-    class_time:'1ef3cd',
-    classroom:'ED104',
-    current_enroll:55,
-    max_enroll:55,
-    credit:3,
+    id: 4,
+    course_name: '電子學',
+    category: '電機系',
+    teacher: '陳龍英',
+    requirement: '必修',
+    grade: '三',
+    class_time: '1ef3cd',
+    classroom: 'ED104',
+    current_enroll: 55,
+    max_enroll: 55,
+    credit: 3
   }
 ]
 const 假資料收藏_通識 = [
   {
-    id:5,
-    course_name:'偶像養成導論',
-    category:'通識中心',
-    teacher:'佐賀偶像',
-    requirement:'通識',
-    grade:'all',
-    class_time:'5gh',
-    classroom:'A104',
-    current_enroll:65,
-    max_enroll:65,
-    credit:2,
+    id: 5,
+    course_name: '偶像養成導論',
+    category: '通識中心',
+    teacher: '佐賀偶像',
+    requirement: '通識',
+    grade: 'all',
+    class_time: '5gh',
+    classroom: 'A104',
+    current_enroll: 65,
+    max_enroll: 65,
+    credit: 2
   }
 ]
 
-class Simulation extends React.Component{
-  constructor(props){
-    super(props);
+class Simulation extends React.Component {
+  constructor (props) {
+    super(props)
     this.state = {
-      listStatus:0
+      listStatus: 0
     }
   }
-  changeListStatus(index){
+  changeListStatus (index) {
     this.setState({
-      listStatus:index
+      listStatus: index
     })
   }
-  render(){
-    return(
+  render () {
+    return (
       <Layout>
         <ReactTooltip effect='solid' globalEventOff='click' />
         <div className='container pt-3'>
@@ -112,10 +112,10 @@ class Simulation extends React.Component{
                 <div className='card-heading bg-blue text-white p-2'>
                   <h4 className='text-center'>
                     <span className='pull-left'>
-                      <button className='btn btn-info btn-circle m-1' onClick={()=>this.changeListStatus(0)} data-tip='已選課程'>
+                      <button className='btn btn-info btn-circle m-1' onClick={() => this.changeListStatus(0)} data-tip='已選課程'>
                         <i className='fa fa-check' />
                       </button>
-                      <button className='btn btn-info btn-circle m-1' onClick={()=>this.changeListStatus(1)} data-tip='收藏課程'>
+                      <button className='btn btn-info btn-circle m-1' onClick={() => this.changeListStatus(1)} data-tip='收藏課程'>
                         <i className='fa fa-star' />
                       </button>
                     </span>
@@ -144,13 +144,13 @@ class Simulation extends React.Component{
                     </div>
                   </div>
                   <div className='scrollable'>
-                    {this.state.listStatus === 0?
-                      <React.Fragment>
+                    {this.state.listStatus === 0
+                      ? <React.Fragment>
                         <List type='required' data={假資料_必修} />
                         <List type='general' data={假資料_選修} />
                         <List type='foreign' data={假資料_外文} />
-                      </React.Fragment>:
-                      <React.Fragment>
+                      </React.Fragment>
+                      : <React.Fragment>
                         <List type='required' data={假資料收藏_必修} />
                         <List type='general' data={假資料收藏_通識} />
                       </React.Fragment>

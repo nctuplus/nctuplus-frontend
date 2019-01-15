@@ -86,7 +86,7 @@ class Show extends React.Component {
             </div>
           </div>
           {
-            book.status === 0
+            book.sold_at === null
               ? <div className='row'>
                 <div className={style.fixedMenu}>
                   <div className='pull-right'>

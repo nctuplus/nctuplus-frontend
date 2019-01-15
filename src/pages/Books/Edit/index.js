@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch) => ({
   getBook: (id) => dispatch(getBook(id)),
   patchBook: (payload, id) => dispatch(patchBook(payload, id)),
   patchBookReset: () => dispatch(actions.books.edit.setStatus(FETCHING_STATUS.IDLE)),
-  sellBook: (payload, id) => dispatch(sellBook(payload, id)),
+  sellBook: (id) => dispatch(sellBook(id)),
   sellBookReset: () => dispatch(actions.books.sell.setStatus(FETCHING_STATUS.IDLE))
 })
 
@@ -38,7 +38,7 @@ class Edit extends React.Component {
         info: '',
         contact_way: '',
         courses: [],
-        status: ''
+        sold_at: ''
       },
       courseSearchWord: '',
       synced: false,
@@ -120,8 +120,7 @@ class Edit extends React.Component {
   }
 
   onSell () {
-    // { status: 1 } 表示改為售出
-    this.props.sellBook({ status: 1 }, this.props.match.params.id)
+    this.props.sellBook(this.props.match.params.id)
   }
 
   addSearchCourse (course) {
