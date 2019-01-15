@@ -30,6 +30,10 @@ const initialState = {
   },
   sell: {
     status: FETCHING_STATUS.IDLE
+  },
+  latestNews: {
+    data: [],
+    status: FETCHING_STATUS.IDLE
   }
 }
 
@@ -57,6 +61,10 @@ export default handleActions({
     },
     SELL: {
       SET_STATUS: (state, action) => ({ ...state, sell: { ...state.sell, status: action.payload } })
+    },
+    LATEST_NEWS: {
+      SET_STATUS: (state, action) => ({ ...state, latestNews: { ...state.latestNews, status: action.payload } }),
+      STORE: (state, action) => ({ ...state, latestNews: { ...state.latestNews, data: action.payload } })
     }
   }
 }, initialState)
