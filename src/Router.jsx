@@ -75,6 +75,9 @@ const Router = enhance(({ currentUser }) => {
         {/* admin user route */}
         <Route path='/admin/users' component={adminOnly(Admin.Users)} />
 
+        {/* admin statistics route */}
+        <Route path='/admin/statistics' component={Admin.Statistics} />
+
         {/* admin department route group */}
         <Route exact path='/admin/departments' component={adminOnly(Admin.Departments.Index)} />
         <Route path='/admin/departments/new' component={adminOnly(Admin.Departments.New)} />
