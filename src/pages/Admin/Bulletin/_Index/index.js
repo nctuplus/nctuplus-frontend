@@ -3,19 +3,18 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import Bulletin from 'components/Admin/Bulletin'
-import { fetchBulletins } from 'api/Actions/Bulletins'
+import { getBulletins } from 'api/Controllers/bulletins'
 
 const mapStateToProps = (state) => ({
-  bulletins: state.bulletins.all
+  bulletins: state.bulletins.index
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchData: (category) => dispatch(fetchBulletins(category))
+  fetchData: (payload) => dispatch(getBulletins(payload))
 })
 
 class Index extends React.Component {
   componentDidMount () {
-    this.props.fetchData(0)
   }
 
   render () {

@@ -2,17 +2,17 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { compose, withState, withProps, withHandlers, lifecycle } from 'recompose'
-import { postBulletin, postBulletinReset } from 'api/Actions/Bulletins'
+import { postBulletin } from 'api/Controllers/bulletins'
 import { FETCHING_STATUS } from 'utilities/constants'
 import Form from 'components/Admin/Bulletin/Form'
 
 const mapStateToProps = (state) => ({
-  status: state.bulletins.post.status
+  bulletin: state.bulletins.new.data,
+  status: state.bulletins.new.status
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  postBulletin: (payload) => dispatch(postBulletin(payload)),
-  postBulletinReset: () => dispatch(postBulletinReset())
+  postBulletin: (payload) => dispatch(postBulletin(payload))
 })
 
 const enhance = compose(
@@ -28,7 +28,6 @@ const enhance = compose(
   lifecycle({
     componentDidUpdate: function () {
       if (this.props.status === FETCHING_STATUS.DONE) {
-        this.props.postBulletinReset()
         this.props.history.push('/admin/bulletin/')
       }
     }
