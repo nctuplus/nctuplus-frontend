@@ -50,7 +50,7 @@ const StatisticCharts = (props) => (
         </BarChart>
       </ResponsiveContainer>
     </div>
-    <div className='row' style={{paddingLeft:'5%'}}>
+    <div className='row' style={{ paddingLeft: '5%' }}>
       <StatisticBlock value={props.avg_score}>本課程平均成績</StatisticBlock>
       <StatisticBlock value={props.highest_score}>同類課程最高成績</StatisticBlock>
       <StatisticBlock value={props.teacher}>同類課程最高分老師</StatisticBlock>
