@@ -1,23 +1,23 @@
 
 import React from 'react'
 import { convertSemesterToString, convertTimeSlotsToString } from 'utilities'
-import styles from './style.scss';
-import classNames from 'classnames';
+import styles from './style.scss'
+import classNames from 'classnames'
 
-class Info extends React.Component{
-  constructor(props){
-    super(props);
+class Info extends React.Component {
+  constructor (props) {
+    super(props)
     this.state = {
-      tableFolded:true
+      tableFolded: true
     }
   }
-  render(){
-    const course_infos = this.props.course_infos || [];
-    const 當期課號 = course_infos[0]?course_infos[0].code:"";
-    return(
-      <div className="container">
-        <div className="row">
-          <table className={classNames('table', styles.tableBorderless, "col-md-6")}>
+  render () {
+    const courseInfos = this.props.course_infos || []
+    const 當期課號 = courseInfos[0] ? courseInfos[0].code : ''
+    return (
+      <div className='container'>
+        <div className='row'>
+          <table className={classNames('table', styles.tableBorderless, 'col-md-6')}>
             <tbody>
               <tr>
                 <td>當期課號：<strong>{當期課號}</strong></td>
@@ -28,14 +28,14 @@ class Info extends React.Component{
                   永久課號：<strong>{this.props.permanent_course.code}</strong>
                 </td>
                 <td>
-                  <a href={this.props.href} target='_blank'>課程綱要 <i className="fas fa-external-link-alt"></i></a>
+                  <a href={this.props.href} target='_blank'>課程綱要 <i className='fas fa-external-link-alt' /></a>
                 </td>
 
               </tr>
             </tbody>
           </table>
         </div>
-        <div className="table-responsive">
+        <div className='table-responsive'>
           <table className='table table-striped table-hover'>
             <thead>
               <tr>
@@ -52,15 +52,15 @@ class Info extends React.Component{
               </tr>
             </thead>
             <tbody>
-              {course_infos.map((item, index)=>{
-                let trStyle = "";
+              {courseInfos.map((item, index) => {
+                let trStyle = ''
 
-                const semester = course_infos[0]?course_infos[0].semester : {}
-                if((JSON.stringify(item.semester) !== JSON.stringify(semester)) && this.state.tableFolded){
-                  trStyle = styles.fold;
+                const semester = courseInfos[0] ? courseInfos[0].semester : {}
+                if ((JSON.stringify(item.semester) !== JSON.stringify(semester)) && this.state.tableFolded) {
+                  trStyle = styles.fold
                 }
                 return (
-                  <tr key={index} className = {trStyle}>
+                  <tr key={index} className={trStyle}>
                     <td>{convertSemesterToString(item.semester)}</td>
                     <td>{item.department}</td>
                     <td>{item.code}</td>
@@ -71,7 +71,7 @@ class Info extends React.Component{
                     <td>{item.grade}</td>
                     <td>{item.remark}</td>
                   </tr>
-                );
+                )
               })}
               <tr>
                 <td>{convertSemesterToString(this.props.semester)}</td>
@@ -100,7 +100,7 @@ class Info extends React.Component{
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 

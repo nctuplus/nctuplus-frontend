@@ -57,7 +57,7 @@ const Tips = () => (
       </div>
     </div>
     <div className='d-flex flex-column py-3 align-items-stretch'>
-      {/*** 這邊之後放資料 ***/}
+      {/** * 這邊之後放資料 ***/}
       <p className='text-center no-data my-0'><strong>尚無資料</strong></p>
     </div>
   </div>

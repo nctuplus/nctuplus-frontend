@@ -3,7 +3,7 @@ import React from 'react'
 import Layout from 'pages/Layout'
 import { Sidebar, SidebarItem } from 'components/Sidebar'
 import * as Course from 'components/Course'
-import { Ratings, PersonalRating } from 'components/Ratings'
+import { Ratings } from 'components/Ratings'
 import * as PastExam from 'components/PastExam'
 import Spinner from 'components/Spinner'
 
@@ -67,9 +67,9 @@ class Show extends React.Component {
         <div className='container'>
           <div className='offset-2 py-4'>
             {
-              this.props.fetching.status !== 2?
-                <div className='text-center pt-3'><Spinner size={64} color='grey' /></div>:
-                <div>
+              this.props.fetching.status !== 2
+                ? <div className='text-center pt-3'><Spinner size={64} color='grey' /></div>
+                : <div>
                   <div className='row'>
                     <div className='col-md-10'>
                       <h1>{ this.props.course.permanent_course.name }</h1>
@@ -77,7 +77,7 @@ class Show extends React.Component {
                     </div>
                     <div className='col-md-2 pull-right mt-5'>
                       <button className='btn btn-info m-1 d-flex justify-content-center align-items-center' >
-                        <i className='fa fa-star' /><span className="ml-1">收藏課程</span>
+                        <i className='fa fa-star' /><span className='ml-1'>收藏課程</span>
                       </button>
                     </div>
                   </div>
