@@ -3,9 +3,9 @@
 
 footer{
 	bottom: 0px;
-	height: $footer-height;	
+	height: $footer-height;
 	width: 100%;
-	background-color: #000000; 
+	background-color: #000000;
 	color: white;
 	span{
 		margin-left: 5px;
@@ -13,11 +13,10 @@ footer{
 	}
 	a{
 		text-decoration: none;
-		color: white; 
+		color: white;
 		line-height: $footer-height;
 		&:hover{
 			color: #00BBFF;
 		}
 	}
 }
-
