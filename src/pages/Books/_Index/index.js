@@ -15,7 +15,7 @@ import moment from 'moment'
 import styles from './style.scss'
 
 import { connect } from 'react-redux'
-import { getBooks } from 'api/Controllers/books'
+import { getBooks, getBooksLatestNews } from 'api/Controllers/books'
 import actions from 'api/Actions/Books'
 
 class Index extends React.Component {
@@ -38,6 +38,7 @@ class Index extends React.Component {
         }
       }
     })
+    this.props.fetchLatestNews()
   }
 
   componentDidUpdate (prevProps) {
@@ -55,6 +56,7 @@ class Index extends React.Component {
           }
         }
       })
+      this.props.fetchLatestNews()
     }
   }
 
@@ -120,9 +122,12 @@ class Index extends React.Component {
                 <SearchPanelCollegeList />
                 <SearchPanelNewsFeed >
                   {
-                    this.props.books.data.slice(0, 10).map((book, index) => (
-                      <SearchPanelNews href={`/books/${book.id}`} key={index}>
-                        { moment(book.updated_at).fromNow() } 售出了 { book.name }
+                    // 這裡因為最新動態可能會有同一本書的新增和編輯，所以key不能用book id
+                    this.props.latestNews.data.map((book, index) => (
+                      <SearchPanelNews href={`/books/${book.id}`} status={book.status} key={index}>
+                        { moment(book.time).fromNow() }
+                        { book.status ? '售出了' : '新增了' }
+                        { book.name }
                       </SearchPanelNews>
                     ))
                   }
@@ -140,12 +145,14 @@ class Index extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  books: state.books.index
+  books: state.books.index,
+  latestNews: state.books.latestNews
 })
 const mapDispatchToProps = (dispatch) => ({
   fetchData: (payload) => dispatch(getBooks(payload)),
   updateFilters: (filters) => dispatch(actions.books.index.updateFilters(filters)),
-  updatePage: (page) => dispatch(actions.books.index.updatePage(page))
+  updatePage: (page) => dispatch(actions.books.index.updatePage(page)),
+  fetchLatestNews: () => dispatch(getBooksLatestNews())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index)

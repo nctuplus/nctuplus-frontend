@@ -117,11 +117,21 @@ class SearchCourse extends React.Component {
   }
 }
 
-const SearchPanelNews = (props) => (
-  <Link to={props.href} className='list-group-item list-group-item-success'>
-    { props.children }
-  </Link>
-)
+const SearchPanelNews = (props) => {
+  if (props.status) {
+    return (
+      <div to={props.href} className='list-group-item list-group-item-success'>
+        { props.children }
+      </div>
+    )
+  } else {
+    return (
+      <Link to={props.href} className='list-group-item list-group-item-light'>
+        { props.children }
+      </Link>
+    )
+  }
+}
 
 const SearchPanelNewsFeed = (props) => (
   <div>
