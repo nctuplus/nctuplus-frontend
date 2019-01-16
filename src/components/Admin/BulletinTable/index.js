@@ -53,7 +53,12 @@ const BulletinTable = props => (
                         </Link>
                         : <div />
                     }
-                    <button className='btn btn-danger ml-3' >刪除</button>
+                    <button
+                      className='btn btn-danger ml-3'
+                      onClick={() => props.onDelete(data.id)}
+                    >
+                      刪除
+                    </button>
                   </td>
                 </tr>
               ))

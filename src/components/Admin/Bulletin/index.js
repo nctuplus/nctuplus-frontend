@@ -36,7 +36,7 @@ const Bulletin = props => (
           </div>
           <div className='row'>
             <div className='col-12 pr-0'>
-              <BulletinTable type={props.type} data={props.data} />
+              <BulletinTable type={props.type} data={props.data} onDelete={props.onDelete} />
             </div>
           </div>
         </div>
