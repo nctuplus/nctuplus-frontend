@@ -1,40 +1,18 @@
-import fetch from 'isomorphic-fetch'
-import { createActions } from 'redux-actions'
-import { FETCHING_STATUS } from 'utilities/constants'
 
-export const actions = createActions({
-  BACKGROUND: {
-    FETCH: {
-      SET_STATUS: null // FETCHING_STATUS.FETCHING, DONE
+import { createActions } from 'redux-actions'
+
+export default createActions({
+  BACKGROUNDS: {
+    INDEX: {
+      SET_STATUS: null,
+      STORE: null
     },
-    UPDATE: null,
-    POST: {
-      SET_STATUS: null // FETCHING_STATUS.FETCHING, DONE, IDLE
+    NEW: {
+      SET_STATUS: null,
+      STORE: null
+    },
+    DELETE: {
+      SET_STATUS: null
     }
   }
 })
-
-export const fetchBackgrounds = () => dispatch => {
-  dispatch(actions.background.fetch.setStatus(FETCHING_STATUS.START))
-  fetch(`${SERVER_URL}/api/v1/backgrounds`)
-    .then(response => response.json())
-    .then(json => {
-      dispatch(actions.background.update(json))
-      dispatch(actions.background.fetch.setStatus(FETCHING_STATUS.DONE))
-    })
-    .catch(error => console.log(error))
-}
-
-export const postBackground = (payload) => dispatch => {
-  dispatch(actions.background.post.setStatus(FETCHING_STATUS.START))
-  fetch(`${SERVER_URL}/api/v1/backgrounds/`, {
-    method: 'POST',
-    body: JSON.stringify(payload),
-    headers: {
-      'content-type': 'application/json'
-    }
-  })
-    .then(response => response.json())
-    .then(json => dispatch(actions.background.post.setStatus(FETCHING_STATUS.DONE)))
-    .catch(error => console.log(error))
-}
