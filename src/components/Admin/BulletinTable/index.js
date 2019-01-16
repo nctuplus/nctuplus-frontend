@@ -33,7 +33,12 @@ const BulletinTable = props => (
                     {
                       props.type !== 'background'
                         ? data.title
-                        : <img src={data.url} />
+                        : <img
+                          className='d-inline-block'
+                          alt='尚無圖片!'
+                          height='100'
+                          src={`${SERVER_URL}${data.cover_image.url}`}
+                        />
                     }
                   </td>
                   <td>{ data.created_at.slice(0, 10) }</td>

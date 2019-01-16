@@ -3,14 +3,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import Bulletin from 'components/Admin/Bulletin'
-import { fetchBackgrounds } from 'api/Actions/Backgrounds'
+import { getBackgrounds } from 'api/Controllers/backgrounds'
 
 const mapStateToProps = (state) => ({
-  backgrounds: state.backgrounds.all
+  backgrounds: state.backgrounds.index
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchData: () => dispatch(fetchBackgrounds())
+  fetchData: () => dispatch(getBackgrounds())
 })
 
 class Index extends React.Component {
