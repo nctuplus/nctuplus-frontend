@@ -14,7 +14,7 @@
 	letter-spacing: 1px;
 	text-shadow: 0px 0px 8px rgba(0,0,0,0.7);
 }
-@media screen and (max-width:767px) {
+@include media-breakpoint-down(sm) {
 	.sloganWrapper{
 		display: none;
 	}
