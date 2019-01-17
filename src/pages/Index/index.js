@@ -34,7 +34,7 @@ const mapStateToProps = (state) => ({
   bulletins: state.bulletins.index
 })
 const mapDispatchToProps = (dispatch) => ({
-  fetchData: (category) => dispatch(getBulletins(category))
+  fetchData: (payload) => dispatch(getBulletins(payload))
 })
 
 const enhance = compose(

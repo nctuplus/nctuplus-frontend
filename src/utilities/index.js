@@ -10,6 +10,8 @@ function base64encode (file) {
 }
 
 function queryBuilder (payload, controller) {
+  if (!payload) return ''
+
   let num = 0
   let params = '?'
   let customSearchField = ''
@@ -35,24 +37,32 @@ function queryBuilder (payload, controller) {
   }
 
   Object.entries(payload).forEach(([key, value]) => {
-    if (key === 'q') {
+    if (key === 'q') { // for ransack
       Object.entries(value).forEach(([key, value]) => {
         if (key === 'sort') {
           if ((++num) > 1) params += '&'
           params += `q[s]=${value['by']}+${value['order']}`
-        } else {
+        }
+        if (key === 'filters') {
           Object.entries(value).forEach(([key, value]) => {
-            if (key === 'custom_search') {
-              if ((++num) > 1) params += '&'
-              params += `q[${customSearchField}]=${value}`
-            } else if (key === 'class') {
-              if ((++num) > 1) params += '&'
-              params += `q[college_id_eq]=${value}`
+            if ((++num) > 1) params += '&'
+            switch (key) {
+              case 'custom_search': // 二手書、心得、活動吧等頁面的輸入搜尋
+                params += `q[${customSearchField}]=${value}`
+                break
+              case 'class': // 二手書、心得等頁面的系/院分類
+                params += `q[college_id_eq]=${value}`
+                break
+              case 'category': // for bulletin
+                params += `q[category_eq]=${value}`
+                break
+              default:
+                break
             }
           })
         }
       })
-    } else {
+    } else { // for normal parameter
       if ((++num) > 1) params += '&'
       params += `${key}=${value}`
     }

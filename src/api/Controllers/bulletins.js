@@ -1,12 +1,13 @@
+
 import actions from 'api/Actions/Bulletins'
 import { FETCHING_STATUS } from 'utilities/constants'
-
+import { queryBuilder } from 'utilities'
 import { server } from 'api/Controllers'
 
-export const getBulletins = (category = 0) => dispatch => {
+export const getBulletins = (payload) => dispatch => {
   dispatch(actions.bulletins.index.setStatus(FETCHING_STATUS.FETCHING))
   server.public
-    .get(`/api/v1/bulletins?category=${category}`)
+    .get(`/api/v1/bulletins${queryBuilder(payload, 'Bulletin')}`)
     .then(({ data: bulletins }) => {
       dispatch(actions.bulletins.index.store(bulletins))
       dispatch(actions.bulletins.index.setStatus(FETCHING_STATUS.DONE))

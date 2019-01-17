@@ -11,8 +11,8 @@ const Bulletin = (props) => (
   </span>
 )
 
-const TAB_UPDATE_LOG = 0
-const TAB_NEWS = 1
+const TAB_UPDATE_LOG = 1
+const TAB_NEWS = 0
 
 class BulletinBoard extends React.Component {
   constructor (props) {

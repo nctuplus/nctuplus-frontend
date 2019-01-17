@@ -15,6 +15,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 class Index extends React.Component {
   componentDidMount () {
+    this.props.fetchData()
   }
 
   render () {
