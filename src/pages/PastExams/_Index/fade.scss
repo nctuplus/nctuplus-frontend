@@ -1,0 +1,20 @@
+.enter{
+	left: -120%;
+	&.enterActive{
+		left: 0px;
+		transition: all 500ms;
+	}
+}
+.enterDone{
+	left:0;
+}
+.exit{
+	left: 0;
+	&.exitActive{
+		left: -120%;
+		transition: all 500ms;
+	}
+}
+.exitDone{
+	left: -120%;
+}
