@@ -3,6 +3,7 @@
 
 .bulletinBoard{
 	width: 400px;
+	max-width: 100%;
 	height: 220px;
 	position: relative;
 	hr{
@@ -32,6 +33,7 @@
 	}
 	.bulletins{
 		width: 400px;
+		max-width: 100%;
 		height: 150px;
 		background-color: black;
 		overflow: scroll;
