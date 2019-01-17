@@ -28,7 +28,7 @@ const enhance = compose(
     end_time: '',
     schedule: false
   }),
-  withProps({ action: '新增', formRef: React.createRef() }),
+  withProps({ formRef: React.createRef() }),
   withHandlers({
     updatePayload: ({ setPayload }) => payload => setPayload(previous => ({ ...previous, ...payload })),
     onSubmit: ({ formRef, payload, postBulletin }) => event => {

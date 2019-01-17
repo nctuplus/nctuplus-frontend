@@ -12,6 +12,7 @@ const Form = props => (
             <div className='form-group'>
               <select
                 className='form-control'
+                value={props.payload.category}
                 onChange={e => props.updatePayload({ category: e.target.value })}
                 required
               >
@@ -22,6 +23,7 @@ const Form = props => (
             <div className='form-group'>
               <textarea
                 className='form-control'
+                value={props.payload.title}
                 onChange={e => props.updatePayload({ title: e.target.value })}
                 placeholder='公告標題'
                 required
@@ -31,12 +33,14 @@ const Form = props => (
               <label className='mr-2'>排程發佈</label>
               <input
                 type='checkbox'
+                checked={props.payload.schedule}
                 onChange={e => props.updatePayload({ schedule: !props.payload.schedule })}
               />
             </div>
             <div className='form-group text-center' hidden={!props.payload.schedule}>
               <label className='mr-2'>上線時間</label>
               <input
+                value={props.payload.begin_time || ''}
                 onChange={e => props.updatePayload({ begin_time: e.target.value })}
                 type='date'
               />
@@ -44,6 +48,7 @@ const Form = props => (
             <div className='form-group text-center' hidden={!props.payload.schedule}>
               <label className='mr-2'>下線時間</label>
               <input
+                value={props.payload.end_time || ''}
                 onChange={e => props.updatePayload({ end_time: e.target.value })}
                 type='date'
               />
@@ -54,9 +59,9 @@ const Form = props => (
                 className='btn btn-warning mr-3'
                 onClick={props.onSubmit}
               >
-                {props.action}
+                送出
               </button>
-              <Link to='/admin/bulletin/'>
+              <Link to='/admin/bulletin'>
                 <button className='btn btn-primary'>返回</button>
               </Link>
             </div>

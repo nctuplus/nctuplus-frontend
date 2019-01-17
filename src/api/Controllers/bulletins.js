@@ -20,6 +20,8 @@ export const getBulletin = (id) => dispatch => {
   server.public
     .get(`/api/v1/bulletins/${id}`)
     .then(({ data: bulletin }) => {
+      bulletin.begin_time = bulletin.begin_time.slice(0, 10)
+      bulletin.end_time = bulletin.end_time.slice(0, 10)
       dispatch(actions.bulletins.show.store(bulletin))
       dispatch(actions.bulletins.show.setStatus(FETCHING_STATUS.DONE))
     })
