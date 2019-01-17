@@ -20,9 +20,8 @@ const BulletinTable = props => (
               <th>{ Title[props.type] }</th>
               <th>{ props.type === 'bulletin' ? '上線時間' : '建立時間' }</th>
               <th>{ props.type === 'bulletin' ? '下線時間' : '修改時間' }</th>
-              { props.type === 'bulletin' ? <th>發文者</th> : ''}
-              { /* 這裏condition render 後面不知道要放什麼才不會有warning */ }
-              { props.type === 'slogan' ? <th>狀態</th> : '' }
+              { props.type === 'bulletin' ? <th>發文者</th> : null }
+              { props.type === 'slogan' ? <th>狀態</th> : null }
               <th />
             </tr>
           </thead>
@@ -44,19 +43,18 @@ const BulletinTable = props => (
                   </td>
                   <td className={classNames(styles.trBefore)} data-th='上線時間'>{ data.created_at.slice(0, 10) }</td>
                   <td className={classNames(styles.trBefore)} data-th='下線時間'>{ data.updated_at.slice(0, 10) }</td>
-                  {props.type === 'bulletin' ? <td className={classNames(styles.trBefore)} data-th='發文者'>{ data.author.name }</td> : ''}
-                  { /* 這裏condition render 後面不知道要放什麼才不會有warning */ }
-                  { props.type === 'slogan' ? <td className={classNames(styles.trBefore)} data-th='顯示'>顯示</td> : '' }
+                  { props.type === 'bulletin' ? <td className={classNames(styles.trBefore)} data-th='發文者'>{ data.author.name }</td> : null }
+                  { props.type === 'slogan' ? <td className={classNames(styles.trBefore)} data-th='顯示'>顯示</td> : null }
                   <td>
                     {
                       props.type !== 'background'
-                        ? <Link to={`/admin/${props.type}/${data.id}/edit`} className='ml-lg-0 ml-md-auto'>
+                        ? <Link to={`/admin/${props.type}/${data.id}/edit`} className='ml-3'>
                           <button className='btn btn-primary' >編輯</button>
                         </Link>
                         : <div />
                     }
                     <button
-                      className='btn btn-danger ml-3 mt-lg-auto'
+                      className='btn btn-danger ml-3'
                       onClick={() => props.onDelete(data.id)}
                     >
                       刪除
