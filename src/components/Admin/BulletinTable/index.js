@@ -41,8 +41,18 @@ const BulletinTable = props => (
                         />
                     }
                   </td>
-                  <td className={classNames(styles.trBefore)} data-th='上線時間'>{ data.created_at.slice(0, 10) }</td>
-                  <td className={classNames(styles.trBefore)} data-th='下線時間'>{ data.updated_at.slice(0, 10) }</td>
+                  <td className={classNames(styles.trBefore)} data-th='上線時間'>
+                    { props.type === 'bulletin'
+                      ? data.begin_time.slice(0, 10)
+                      : data.created_at.slice(0, 10)
+                    }
+                  </td>
+                  <td className={classNames(styles.trBefore)} data-th='下線時間'>
+                    { props.type === 'bulletin'
+                      ? data.end_time.slice(0, 10)
+                      : data.updated_at.slice(0, 10)
+                    }
+                  </td>
                   { props.type === 'bulletin' ? <td className={classNames(styles.trBefore)} data-th='發文者'>{ data.author.name }</td> : null }
                   { props.type === 'slogan' ? <td className={classNames(styles.trBefore)} data-th='顯示'>顯示</td> : null }
                   <td>
