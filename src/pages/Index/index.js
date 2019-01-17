@@ -11,7 +11,7 @@ import About from 'components/About'
 import BulletinBoard from 'components/Bulletin'
 import styles from './style.scss'
 import coverStyles from 'components/Cover/style.scss'
-import classNames from 'classnames';
+import classNames from 'classnames'
 
 const CoverImageUrls = [
   'https://plus.nctu.edu.tw/backgrounds/%E8%95%AD%E7%AB%8B%E5%93%81-1.jpg',
@@ -21,9 +21,9 @@ const CoverImageUrls = [
 ]
 
 const Feature = withRouter(({ history, to, image, title, isNew, children }) => (
-  <div className={`${styles.introItem} col-3 clickable`} onClick={() => history.push(to)}>
-    <img className='img-fluid p-5' src={image} />
-    <h4 className='mt-3'>{ title }</h4>
+  <div className={`${styles.introItem} col-md-3 col-sm-6 col-12 clickable`} onClick={() => history.push(to)}>
+    <img className={classNames(styles.featureIcon, 'my-4')} src={image} />
+    <h4 className='my-3'>{ title }</h4>
     { isNew && <span className={styles.introNewFeature}>NCTU+新功能!</span> }
     <div className='mb-5'>
       { children }

@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from './style.scss'
-import classNames from 'classnames';
 
 const About = (props) => (
   <section className={`${styles.about} py-5`}>
