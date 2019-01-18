@@ -3,14 +3,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import Bulletin from 'components/Admin/Bulletin'
-import { fetchSlogans } from 'api/Actions/Slogans'
+import { getSlogans } from 'api/Controllers/slogans'
 
 const mapStateToProps = (state) => ({
-  slogans: state.slogans.all
+  slogans: state.slogans.index
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchData: () => dispatch(fetchSlogans())
+  fetchData: () => dispatch(getSlogans())
 })
 
 class Index extends React.Component {
