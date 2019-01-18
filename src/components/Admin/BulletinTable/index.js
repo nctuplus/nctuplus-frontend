@@ -54,7 +54,7 @@ const BulletinTable = props => (
                     }
                   </td>
                   { props.type === 'bulletin' ? <td className={classNames(styles.trBefore)} data-th='發文者'>{ data.author.name }</td> : null }
-                  { props.type === 'slogan' ? <td className={classNames(styles.trBefore)} data-th='顯示'>顯示</td> : null }
+                  { props.type === 'slogan' ? <td className={classNames(styles.trBefore)} data-th='顯示'>{ data.display ? '顯示' : '隱藏' }</td> : null }
                   <td>
                     {
                       props.type !== 'background'
