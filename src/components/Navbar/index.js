@@ -38,7 +38,7 @@ const Navbar = enhance(({ toggleDropdown, show, currentUser, logout }) => (
     <div className={`${styles.navList} ${show && styles.show}`}>
       <div className={styles.leftList}>
         <div className={styles.brand}>
-          <Link to='/'>首頁</Link>
+          <Link to='/'>NCTU+</Link>
         </div>
         {
           currentUser && currentUser.role === 1
