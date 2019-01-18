@@ -5,47 +5,72 @@ import classNames from 'classnames'
 import styles from './style.scss'
 
 const BulletinNavbar = props => (
-  <div className={`nav nav-pills ${styles.navPills} bulletin-nav`}>
-    <div className={`nav-item ${styles.navItem} m-auto`}>
-      <Link
-        className={classNames('nav-link', 'px-5', props.url === '/admin/bulletin' && 'active')}
-        to='/admin/bulletin'
-      >
-        全部文章
-      </Link>
-    </div>
-    <div className={`nav-item ${styles.navItem} m-auto`}>
-      <Link
-        className={classNames('nav-link', 'px-5', props.url === '/admin/bulletin/latest_news' && 'active')}
-        to='/admin/bulletin/latest_news'
-      >
-        最新消息
-      </Link>
-    </div>
-    <div className={`nav-item ${styles.navItem} m-auto`}>
-      <Link
-        className={classNames('nav-link', 'px-5', props.url === '/admin/bulletin/website_revision' && 'active')}
-        to='/admin/bulletin/website_revision'
-      >
-        網站改版
-      </Link>
-    </div>
-    <div className={`nav-item ${styles.navItem} m-auto`}>
-      <Link
-        className={classNames('nav-link', 'px-5', props.url === '/admin/slogan' && 'active')}
-        to='/admin/slogan'
-      >
-        首頁標語
-      </Link>
-    </div>
-    <div className={`nav-item ${styles.navItem} m-auto`}>
-      <Link
-        className={classNames('nav-link', 'px-5', props.url === '/admin/background' && 'active')}
-        to='/admin/background'
-      >
-        首頁背景
-      </Link>
-    </div>
+  <div className={classNames('nav', 'nav-pills', styles.navPills)}>
+    <Link
+      className={classNames(
+        'nav-item',
+        'nav-link',
+        'col-12',
+        'text-center',
+        styles.navLink,
+        props.url === '/admin/bulletin' && styles.navLinkActive
+      )}
+      to='/admin/bulletin'
+    >
+      全部文章
+    </Link>
+    <Link
+      className={classNames(
+        'nav-item',
+        'nav-link',
+        'col-12',
+        'text-center',
+        styles.navLink,
+        props.url === '/admin/bulletin/latest_news' && styles.navLinkActive
+      )}
+      to='/admin/bulletin/latest_news'
+    >
+      最新消息
+    </Link>
+    <Link
+      className={classNames(
+        'nav-item',
+        'nav-link',
+        'col-12',
+        'text-center',
+        styles.navLink,
+        props.url === '/admin/bulletin/website_revision' && styles.navLinkActive
+      )}
+      to='/admin/bulletin/website_revision'
+    >
+      網站改版
+    </Link>
+    <Link
+      className={classNames(
+        'nav-item',
+        'nav-link',
+        'col-12',
+        'text-center',
+        styles.navLink,
+        props.url === '/admin/slogan' && styles.navLinkActive
+      )}
+      to='/admin/slogan'
+    >
+      首頁標語
+    </Link>
+    <Link
+      className={classNames(
+        'nav-item',
+        'nav-link',
+        'col-12',
+        'text-center',
+        styles.navLink,
+        props.url === '/admin/background' && styles.navLinkActive
+      )}
+      to='/admin/background'
+    >
+      首頁背景
+    </Link>
   </div>
 )
 
