@@ -5,7 +5,12 @@
 	height: calc(100vh - #{$navbar-height});
 	width: 100%;
 	.container {
-		padding-top: 25vh;
+		// min-width: 100%;
+		min-height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
 		color: white;
 		h1{
 			font-size: 65px;
@@ -27,5 +32,3 @@
 		}
 	}
 }
-
-	

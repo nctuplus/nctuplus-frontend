@@ -47,7 +47,7 @@ class Login extends React.Component {
         <div className={styles.login}>
           <Cover images={image} >
             <div className={`${styles.loginArea} container ${coverStyles.container}`}>
-              <div className='text-center'>
+              <div className='text-center align-self-stretch'>
                 <h1 className='text-white'>NCTU+</h1>
                 <div className='m-3'>
                   <small className='text-white'>是交大學生嗎？請用單一入口登入享用完整功能。</small>
