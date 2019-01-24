@@ -54,9 +54,12 @@
 		width: 100%;
 		.navItem{
 			padding: 0 15px;
-			.navLink:hover { 
-				color: #003469; 
+			.navLink:hover {
+				color: #003469;
 			}
+		}
+		.brand a:hover { 
+			color: #003469;
 		}
 	}
 	.hamburgerIcon{

@@ -51,20 +51,20 @@ const Navbar = enhance(({ toggleDropdown, show, currentUser, logout }) => (
             </NavDropdown>
             : null
         }
-        <NavDropdown title='全校課程'>
+        <NavDropdown title='課程資訊'>
           <NavDropdownLink to='/courses'>全校課程</NavDropdownLink>
           <NavDropdownLink to='/comments'>心得</NavDropdownLink>
           <NavDropdownLink to='/past_exams'>考古題</NavDropdownLink>
-          <NavDropdownLink to='/courses/tutorial'>選課教學</NavDropdownLink>
+          {/* <NavDropdownLink to='/courses/tutorial'>選課教學</NavDropdownLink> */}
         </NavDropdown>
         <NavLink to='/courses/simulation'>模擬排課</NavLink>
         <NavLink to='/books'>二手書</NavLink>
         <NavLink to='/events'>活動吧</NavLink>
       </div>
       <div className={styles.rightList}>
-        <NavLink external to='https://www.facebook.com/messages/t/nctuplus' target='_blank'>
+        {/* <NavLink external to='https://www.facebook.com/messages/t/nctuplus' target='_blank'>
             問題回報
-        </NavLink>
+        </NavLink> */}
         {
           currentUser
             ? <NavDropdown title={
