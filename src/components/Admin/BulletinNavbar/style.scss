@@ -1,15 +1,14 @@
 .navPills {
-	.navItem {
-		a {
-			border-radius: 4px;
-			color: #337ab7;
-			&.active {
-				background-color: #337ab7;
-			}
-			&:not(.active):hover {
-				color: #23527c;
-				background-color: #eeeeee;
-			}
+	.navLink {
+		border-radius: 4px;
+		color: #337ab7;
+		&:not(.active):hover {
+			color: #23527c;
+			background-color: #eeeeee;
 		}
+	}
+	.navLinkActive {
+		color: #ffffff !important;
+		background-color: #337ab7 !important;
 	}
 }

@@ -24,19 +24,18 @@ const Bulletin = props => (
   <Layout>
     <div className='container pt-4'>
       <div className='row'>
-        <div className='col-2'>
+        <div className='col-lg-2 col-md-12'>
           <BulletinNavbar url={props.url} />
         </div>
-        <div className='col-10'>
-          <div className='row mb-3'>
-            <div className='ml-auto' />
-            <Link to={Button[props.type].url}>
-              <button className='btn btn-warning'>{Button[props.type].title}</button>
+        <div className='col-lg-10 col-md-12'>
+          <div className='row mb-3 justify-content-end'>
+            <Link to={Button[props.type].url} className='col-lg-2 col-md-12'>
+              <button className='btn btn-warning w-100'>{Button[props.type].title}</button>
             </Link>
           </div>
           <div className='row'>
             <div className='col-12 pr-0'>
-              <BulletinTable type={props.type} data={props.data} />
+              <BulletinTable type={props.type} data={props.data} onDelete={props.onDelete} />
             </div>
           </div>
         </div>

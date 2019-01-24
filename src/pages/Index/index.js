@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchBulletins } from 'api/Actions/Bulletins'
+import { getBulletins } from 'api/Controllers/bulletins'
 import { withRouter } from 'react-router-dom'
 import { lifecycle, compose } from 'recompose'
 
@@ -32,11 +32,10 @@ const Feature = withRouter(({ history, to, image, title, isNew, children }) => (
 ))
 
 const mapStateToProps = (state) => ({
-  bulletins: state.bulletins.all.data,
-  fetchingStatus: state.bulletins.all.status
+  bulletins: state.bulletins.index
 })
 const mapDispatchToProps = (dispatch) => ({
-  fetchData: () => dispatch(fetchBulletins())
+  fetchData: (payload) => dispatch(getBulletins(payload))
 })
 
 const enhance = compose(
@@ -52,10 +51,8 @@ const Index = (props) => (
           <div className='col-12 col-md-6 d-flex flex-column align-items-md-start align-items-center'>
             <h1>NCTU+</h1>
             <h3>交大智慧校園系統</h3>
-            <h4>
-              Brilliant College Life
-            </h4>
-            <BulletinBoard bulletins={props.bulletins} />
+            <h4>Brilliant College Life</h4>
+            <BulletinBoard bulletins={props.bulletins.data} />
           </div>
           <div className={classNames('col-12 col-md-6 text-center mt-5', styles.sloganWrapper)}>
             <div className={`${styles.slogan} d-inline-block text-right`}>
