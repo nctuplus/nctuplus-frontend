@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './style.scss'
-import classNames from 'classnames';
+import classNames from 'classnames'
 
 const Footer = (props) => {
   /* if current page is login page, the footer should be bottom-fixed. */
