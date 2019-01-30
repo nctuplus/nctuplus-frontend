@@ -1,5 +1,6 @@
 
 import React from 'react'
+import { connect } from 'react-redux'
 import {
   SearchPanel,
   SearchPanelButtonGroup,
@@ -8,72 +9,103 @@ import {
   SearchPanelNewsFeed
 } from 'components/Search'
 import Layout from 'pages/Layout'
-import { CommentsTable } from 'components/CommentsTable'
+import * as Comments from 'components/Comment'
 import { InputWithButton } from 'components/FormUtils'
 import Spinner from 'components/Spinner'
+import { getComments } from 'api/Controllers/comments'
+import actions from 'api/Actions/Comments'
 
-import { connect } from 'react-redux'
-import { actions, fetchComments } from 'api/Actions/Comments'
+class Index extends React.Component {
+  componentDidMount () {
+    let comments = this.props.comments
+    this.props.fetchData({
+      page: comments.page,
+      q: {
+        filters: {
+          custom_search: comments.filters.search_by
+        }
+      }
+    })
+  }
 
-const Index = (props) => {
-  props.comments.status || props.fetch_data()
-  return (
-    <Layout>
-      <div className='container pt-3'>
-        <div className='row'>
-          <div className='col-12 col-md-3'>
-            <SearchPanel>
-              <InputWithButton
-                placeholder='課名/老師/標題'
-                button_style='primary'
-                button_content={<i className='fa fa-search' />}
-              />
-              <SearchPanelButtonGroup
-                new_title='新增文章'
-                new_link='/comments/new'
-                new_btn_type='info'
-                mine_title='我的文章'
-                mine_link='/comments/?mine=true'
-                mine_btn_type='primary'
-              />
-              <SearchPanelCollegeList />
-              <SearchPanelNewsFeed>
-                {
-                  props.comments.data.length
-                    ? props.comments.data.slice(0, 10).map((comment, index) => (
-                      <SearchPanelNews href={`/comments/${comment.id}`} key={index}>
-                        {
-                          /* get diff of date */
-                          Math.ceil((Date.now() - Date.parse(comment.updated_at)) / 864000000)
-                        }
-                        天前 { comment.user.name } 新增了
-                        <strong>{ comment.course }</strong>
-                        的文章-{ comment.title }
-                      </SearchPanelNews>
-                    )
-                    )
-                    : <div className='text-center'>
-                      <Spinner size={32} color='grey' />
-                    </div>
-                }
-              </SearchPanelNewsFeed>
-            </SearchPanel>
-          </div>
-          <div className='col-12 col-md-9'>
-            <CommentsTable {...props.comments} update_page={props.update_page} />
+  componentDidUpdate (prevProps) {
+    let comments = this.props.comments
+    if (comments.page !== prevProps.comments.page || comments.filters !== prevProps.comments.filters) {
+      this.props.fetchData({
+        page: comments.page,
+        q: {
+          filters: {
+            custom_search: comments.filters.search_by
+          }
+        }
+      })
+    }
+  }
+
+  componentWillUnmount () {
+    this.props.updatePage(1)
+    this.props.updateFilters({ search_by: '' })
+  }
+
+  render () {
+    return (
+      <Layout>
+        <div className='container pt-3'>
+          <div className='row'>
+            <div className='col-12 col-md-3'>
+              <SearchPanel>
+                <InputWithButton
+                  placeholder='課名/老師/標題'
+                  button_style='primary'
+                  button_content={<i className='fa fa-search' />}
+                />
+                <SearchPanelButtonGroup
+                  new_title='新增文章'
+                  new_link='/comments/new'
+                  new_btn_type='info'
+                  mine_title='我的文章'
+                  mine_link='/comments/?mine=true'
+                  mine_btn_type='primary'
+                />
+                <SearchPanelCollegeList />
+                <SearchPanelNewsFeed>
+                  {
+                    this.props.comments.data.length
+                      ? this.props.comments.data.slice(0, 10).map((comment, index) => (
+                        <SearchPanelNews href={`/comments/${comment.id}`} key={comment.id}>
+                          {
+                            /* get diff of date */
+                            Math.ceil((Date.now() - Date.parse(comment.created_at)) / 864000000)
+                          }
+                          天前 { comment.user.name } 新增了
+                          <strong>{ comment.course.course_name }</strong>
+                          的文章-{ comment.title }
+                        </SearchPanelNews>
+                      ))
+                      : <div className='text-center'>
+                        <Spinner size={32} color='grey' />
+                      </div>
+                  }
+                </SearchPanelNewsFeed>
+              </SearchPanel>
+            </div>
+            <div className='col-12 col-md-9'>
+              <Comments.Table {...this.props.comments} updatePage={this.props.updatePage} />
+            </div>
           </div>
         </div>
-      </div>
-    </Layout>
-  )
+      </Layout>
+    )
+  }
 }
 
 const mapStateToProps = (state) => ({
-  comments: state.comments.all
+  comments: state.comments.index
 })
 const mapDispatchToProps = (dispatch) => ({
-  fetch_data: (page) => dispatch(fetchComments(page)),
-  update_page: (page) => dispatch(actions.comments.fetch.updatePage(page))
+  fetchData: (payload) => dispatch(getComments(payload)),
+  updatePage: (page) => dispatch(actions.comments.index.updatePage(page)),
+  updateFilters: (filters) => dispatch(actions.comments.index.updateFilters(filters))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index)

@@ -5,11 +5,10 @@ import Spinner from 'components/Spinner'
 
 const CommentsTableRow = (props) => (
   <tr id={props.id} className='clickable'>
-    <td className='ct_name'>{ `${props.course}/${props.teacher}` }</td>
-    <td className='title'>{props.title}</td>
-    <td className='user_name d-none d-table-cell'>{props.user.name}</td>
-    <td className='user_id d-none d-table-cell'>{props.user.id}</td>
-    <td className='d-none d-table-cell'>{props.updated_at}</td>
+    <td>{ `${props.course.course_name}/${props.teacher}` }</td>
+    <td>{props.title}</td>
+    <td className='d-none d-table-cell'>{props.anonymity ? '匿名' : props.user.name}</td>
+    <td className='d-none d-table-cell'>{props.created_at.slice(0, 10)}</td>
   </tr>
 )
 
@@ -18,7 +17,7 @@ const CommentsTable = (props) => (
     <table className='table table-sm table-hover bg-white'>
       <thead>
         <tr className='clickable'>
-          <th>課程</th>
+          <th>課程/教授</th>
           <th>標題</th>
           <th className='d-none d-table-cell'>作者</th>
           <th className='d-none d-table-cell'>時間</th>
@@ -27,12 +26,9 @@ const CommentsTable = (props) => (
       <tbody>
         {
           props.data.length
-            ? props.data.map((value, index) => (
-              <CommentsTableRow
-                key={index}
-                {...value}
-              />)
-            )
+            ? props.data.map((comment) => (
+              <CommentsTableRow key={comment.id} {...comment} />
+            ))
             : <tr className='text-center'>
               <td colSpan='4'>
                 <Spinner size={48} color='grey' />
@@ -42,9 +38,9 @@ const CommentsTable = (props) => (
       </tbody>
     </table>
     <div className='text-center'>
-      <Pagination page={props.page} maxPage={props.maxPage} to={props.update_page} />
+      <Pagination page={props.page} maxPage={props.maxPage} to={props.updatePage} />
     </div>
   </div>
 )
 
-export { CommentsTable, CommentsTableRow }
+export default CommentsTable
