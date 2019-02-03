@@ -24,7 +24,7 @@ function queryBuilder (payload, controller) {
       customSearchField = ''
       break
     case 'Comment':
-      customSearchField = 'title_cont'
+      customSearchField = 'title_or_permanent_course_name_or_teachers_name_cont'
       break
     case 'PastExam':
       customSearchField = ''

@@ -58,6 +58,7 @@ class Index extends React.Component {
                   placeholder='課名/老師/標題'
                   button_style='primary'
                   button_content={<i className='fa fa-search' />}
+                  onClick={(value) => this.props.updateFilters({ search_by: value })}
                 />
                 <SearchPanelButtonGroup
                   new_title='新增文章'
