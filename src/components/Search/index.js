@@ -135,8 +135,8 @@ const SearchPanelNews = (props) => {
 
 const SearchPanelNewsFeed = (props) => (
   <div>
-    <h4 className={`text-center d-none d-md-block ${styles.title}`}>最新動態</h4>
-    <div className='row d-none d-md-block'>
+    <h4 className={`text-center d-none d-lg-block ${styles.title}`}>最新動態</h4>
+    <div className='row d-none d-lg-block'>
       <div className='list-group'>
         { props.children }
       </div>
@@ -145,7 +145,7 @@ const SearchPanelNewsFeed = (props) => (
 )
 
 const SearchPanelCollegeList = (props) => (
-  <div className={`d-none d-md-block ${styles.collegeGroup}`}>
+  <div className={`d-md-block ${styles.collegeGroup}`}>
     <h4 className='text-center'>分類</h4>
     <button className={`btn btn-default ${styles.college}`} >共同課程</button>
     <button className={`btn btn-default ${styles.college}`} >資訊學院</button>

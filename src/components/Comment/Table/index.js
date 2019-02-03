@@ -1,16 +1,28 @@
 
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 import Pagination from 'components/Pagination'
 import Spinner from 'components/Spinner'
 
-const CommentsTableRow = (props) => (
-  <tr id={props.id} className='clickable'>
-    <td>{ `${props.course.course_name}/${props.teacher}` }</td>
+const CommentsTableRow = withRouter((props) => (
+  <tr className='clickable' onClick={() => props.history.push(`/comments/${props.id}`)}>
+    <td>
+      { props.course && props.course.course_name }
+      /
+      { props.course &&
+        props.course.teachers.length
+        ? <React.Fragment>
+          { props.course.teachers[0] }
+          { props.course.teachers.slice(1).map((name) => `,${name}`) }
+        </React.Fragment>
+        : 'N/A'
+      }
+    </td>
     <td>{props.title}</td>
     <td className='d-none d-table-cell'>{props.anonymity ? '匿名' : props.user.name}</td>
     <td className='d-none d-table-cell'>{props.created_at.slice(0, 10)}</td>
   </tr>
-)
+))
 
 const CommentsTable = (props) => (
   <div>
