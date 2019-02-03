@@ -1,11 +1,14 @@
 
-.comment{
-    .user-profile{
-        background-color: #f5f5f5;
-        color: #333333;
+@import '~assets/styles/common';
+
+@include media-breakpoint-up(md) {
+    .btnBar {
+        float: right !important;
     }
-    p {
-      white-space: pre;
-      font-size: 16px;
+}
+@include media-breakpoint-down(md) {
+    .btnBar {
+    	margin-top: 10px;
+        float: left !important;
     }
 }

@@ -1,25 +1,17 @@
 
 import React from 'react'
-import classNames from 'classnames'
+import { Link } from 'react-router-dom'
+import style from './style.scss'
 
 const CommentReply = (props) => (
-  <div className='row justify-content-end'>
-    <div className='col-1 text-center'>
-      <img
-        src='http://placeimg.com/45/45/any'
-        alt='Picture?type=large&amp;redirect=true&amp;width=140&amp;height=140'
-        height='45'
-        width='45'
-        className='d-inline-block'
-      />
-    </div>
-    <div className='col-11'>
+  <div className='row justify-content-end mt-5'>
+    <div className='col-md-12'>
       <textarea className='form-control' placeholder='內容...' rows='5' />
     </div>
     <div className='m-3 text-center'>
       <div className='d-inline-block m-1' >
         <label>
-          <input type='checkbox' /> 匿名
+          <input type='checkbox' />匿名
         </label>
       </div>
       <button className='btn btn-primary m-1'>送出</button>
@@ -28,75 +20,111 @@ const CommentReply = (props) => (
 )
 
 const SubComment = (props) => (
-  <div className={classNames('row', props.decorate && 'border-left-green')}>
-    <div className='col-1'>
-      <a href={props.user_link}>
-        <img
-          src={props.user_image}
-          alt='Picture?type=large&amp;redirect=true&amp;width=140&amp;height=140'
-          width='45'
-        />
-      </a>
-    </div>
-    <div className='col-8'>
-      <p>{ props.created_at }</p>
-      <p>{ props.content }</p>
-    </div>
-  </div>
-)
-
-const Comment = (props) => (
-  <div className={classNames('bg-white', props.decorate && ' border-left-cyan')}>
-    <div className='row p-4'>
-      <div className='col-md-1'>
-        <a href={props.user_link} target='_blank'>
-          <img alt='Picture?type=large&amp;redirect=true&amp;width=140&amp;height=140' src={props.user_image} height='50' width='50' />
-        </a>
+  <div className='mt-4'>
+    <div className='row align-items-end'>
+      <div className='col-lg-1 col-sm-2 col-4'>
+        <img alt='' src={props.userImage} height='50' width='50' />
       </div>
-      <div className='col-md-6'>
-        <h4>{ props.title }</h4>
-        <p>{ props.created_at }</p>
-      </div>
-      <div className='col-md-5'>
-        <div className='pull-right'>
-          <button className='btn btn-primary'>
-            <i className='fa fa-export' />分享
-          </button>
+      <div className='col-lg-3 col-sm-4 col-8'>
+        <div>
+          { props.user && (props.anonymity ? '匿名' : props.user.name) }
+          <br />
+          { props.created_at.slice(0, 10) }
         </div>
       </div>
     </div>
-
-    <hr />
-
-    <div className='row'>
+    <div className='row mt-3'>
       <div className='col-md-12'>
-        <p className='p-3'>
-          { props.content }
-        </p>
+        <p className='fa-lg'>{ props.content }</p>
       </div>
     </div>
-
-    <hr />
-    {
-      props.sub_comments &&
-      (
-        <div className='py-3 pl-5'>
-          {
-            props.sub_comments.map((comment, index) => (
-              <SubComment {...comment} key={index} />)
-            )
-          }
-        </div>
-      )
-    }
-    {
-      props.enable_reply &&
-      (
-        <div className='py-3 pl-5'>
-          <CommentReply />
-        </div>
-      )
-    }
   </div>
 )
+
+class Comment extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = { replyOpen: false }
+    this.handleReplyClick = this.handleReplyClick.bind(this)
+  }
+
+  handleReplyClick () {
+    this.setState({ replyOpen: !this.state.replyOpen })
+  }
+
+  render () {
+    return (
+      <div className='bg-white px-5 py-4'>
+        <div className='row align-items-end'>
+          <div className='col-lg-1 col-sm-2 col-4'>
+            <img alt='' src={this.props.userImage} height='50' width='50' />
+          </div>
+          <div className='col-lg-3 col-sm-4 col-8'>
+            <div>
+              { this.props.user && (this.props.anonymity ? '匿名' : this.props.user.name) }
+              <br />
+              { this.props.created_at }
+            </div>
+          </div>
+          <div className='col-lg-8 col-md-6 col-12'>
+            <div className={`${style.btnBar}`}>
+              <button className='btn btn-info'>
+                <i className='fa fa-pencil' />修改
+              </button>
+              <button className='btn btn-success m-1' onClick={this.handleReplyClick}>
+                <i className='fa fa-reply' />回覆
+              </button>
+              <button className='btn btn-primary'>
+                <i className='fa fa-export' />分享
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <hr />
+
+        <div className='row mt-3'>
+          <div className='col-md-12'>
+            <h4 className='m-0'>{ this.props.title }</h4>
+            <Link to={`/courses/${this.props.course && this.props.course.course_id}`}>
+              <div className='text-primary'>
+                { this.props.course && this.props.course.course_name }
+                /
+                { this.props.course &&
+                  this.props.course.teachers.length
+                  ? <React.Fragment>
+                    { this.props.course.teachers[0] }
+                    { this.props.course.teachers.slice(1).map((name) => `,${name}`) }
+                  </React.Fragment>
+                  : 'N/A'
+                }
+              </div>
+            </Link>
+          </div>
+        </div>
+        <div className='row mt-3'>
+          <div className='col-md-12'>
+            <p className='fa-lg'>{ this.props.content }</p>
+          </div>
+        </div>
+
+        <hr />
+
+        {
+          this.props.sub_comments &&
+          this.props.sub_comments.map((comment) => (
+            <div key={comment.id}>
+              <SubComment {...comment} />
+              <hr />
+            </div>
+          ))
+        }
+        {
+          this.state.replyOpen &&
+          <CommentReply />
+        }
+      </div>
+    )
+  }
+}
 export default Comment
