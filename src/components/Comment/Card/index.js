@@ -104,7 +104,7 @@ class Comment extends React.Component {
         </div>
         <div className='row mt-3'>
           <div className='col-md-12'>
-            <p className='fa-lg'>{ this.props.content }</p>
+            <span className={`fa-lg ${style.content}`}>{ this.props.content }</span>
           </div>
         </div>
 
