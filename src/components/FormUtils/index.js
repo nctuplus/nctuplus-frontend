@@ -16,6 +16,7 @@ class InputWithButton extends React.Component {
           placeholder={this.props.placeholder}
           type='text'
           onChange={(e) => this.setState({ value: e.target.value })}
+          onKeyDown={(e) => { if (e.keyCode === 13) { this.props.onClick(this.state.value) } }}
         />
         <div className='input-group-append'>
           <button

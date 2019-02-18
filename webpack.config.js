@@ -10,6 +10,7 @@ const plugins = [
   new webpack.DefinePlugin({
     SERVER_URL: env === 'production'
       ? '"https://plus.nctu.edu.tw/api"'
+      // : '"http://jpvpn.haohao.in:3056"'
       : '"http://plus-test-1.haohao.in:3000"'
   }),
   new webpack.NoEmitOnErrorsPlugin(),

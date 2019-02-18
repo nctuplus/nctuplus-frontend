@@ -13,6 +13,7 @@ import pastExams from './PastExams'
 import events from './Events'
 import timetable from './Timetable'
 import user from './User'
+import searchPanel from './SearchPanel'
 
 export default combineReducers({
   bulletins,
@@ -27,5 +28,6 @@ export default combineReducers({
   events,
   pastExams,
   timetable,
-  user
+  user,
+  searchPanel
 })

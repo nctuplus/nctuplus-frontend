@@ -6,7 +6,7 @@ const initialState = {
   index: {
     data: [],
     status: FETCHING_STATUS.IDLE,
-    filter: {},
+    filter: { search_by: '' },
     page: 1,
     maxPage: 1
   }
@@ -20,7 +20,8 @@ export default handleActions({
         const { data, current_page: page, total_pages: maxPage } = action.payload
         return { ...state, index: { ...state.index, data, page, maxPage } }
       },
-      UPDATE_PAGE: (state, action) => ({ ...state, index: { ...state.index, page: action.payload } })
+      UPDATE_PAGE: (state, action) => ({ ...state, index: { ...state.index, page: action.payload } }),
+      UPDATE_FILTERS: (state, action) => ({ ...state, index: { ...state.index, filter: { ...state.index.filters, ...action.payload } } })
     }
   }
 }, initialState)

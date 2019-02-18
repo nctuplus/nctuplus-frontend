@@ -18,9 +18,10 @@ import { getPastExams } from 'api/Controllers/pastExams'
 import { compose, lifecycle } from 'recompose'
 import moment from 'moment'
 
-const mapStateToProps = (state) => ({ pastExams: state.pastExams.index })
+const mapStateToProps = (state) => ({ pastExams: state.pastExams.index, college: state.searchPanel.college })
 const mapDispatchToProps = (dispatch) => ({
   fetchData: (page) => dispatch(getPastExams(page)),
+  updateFilters: (filters) => dispatch(actions.pastExams.index.updateFilters(filters)),
   updatePage: (page) => dispatch(actions.pastExams.index.updatePage(page))
 })
 
@@ -28,26 +29,46 @@ const enhance = compose(
   connect(mapStateToProps, mapDispatchToProps),
   lifecycle({
     componentDidMount () {
-      this.props.fetchData(1)
+      this.props.fetchData({
+        page: 1,
+        q: {
+          sort: {
+            order: 'desc',
+            by: 'id'
+          },
+          filters: {
+            custom_search: ''
+          }
+        }
+      })
     },
     componentDidUpdate (prevProps) {
-      if (this.props.pastExams.page !== prevProps.pastExams.page) {
-        this.props.fetchData(this.props.pastExams.page)
+      if (this.props.pastExams.page !== prevProps.pastExams.page || this.props.pastExams.filter !== prevProps.pastExams.filter || this.props.college !== prevProps.college) {
+        this.props.fetchData({
+          page: this.props.pastExams.page,
+          q: {
+            filters: {
+              custom_search: this.props.pastExams.filter.search_by,
+              class: this.props.college
+            }
+          }
+        })
       }
     }
   })
 )
 
-const Index = ({ pastExams, updatePage }) => (
+const Index = ({ pastExams, updatePage, updateFilters }) => (
   <Layout>
     <div className='container pt-3'>
       <div className='row'>
         <div className='col-12 col-md-3'>
           <SearchPanel>
             <InputWithButton
-              placeholder='課名/老師/檔名'
+              placeholder='課名/老師'
               button_style='primary'
               button_content={<i className='fa fa-search' />}
+              onClick={(value) => updateFilters({ search_by: value })}
             />
             <SearchPanelButtonGroup
               new_title='上傳考古題'
@@ -69,9 +90,9 @@ const Index = ({ pastExams, updatePage }) => (
                         key={index}
                       >
                         { moment(pastExam.updated_at).fromNow() }
-                        { pastExam.uploader.name}
+                        { pastExam.uploader}
                           上傳了
-                        <strong>{ pastExam.course.permanent_course.name }</strong>
+                        <strong>{ pastExam.course.name }</strong>
                           的考古題
                       </SearchPanelNews>
                     )

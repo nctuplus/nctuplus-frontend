@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import classNames from 'classnames'
 import { InputWithButton } from 'components/FormUtils'
 import styles from './style.scss'
+import { connect } from 'react-redux'
+import actions from 'api/Actions/SearchPanel'
 
 class SearchCourse extends React.Component {
   constructor (props) {
@@ -144,19 +146,33 @@ const SearchPanelNewsFeed = (props) => (
   </div>
 )
 
-const SearchPanelCollegeList = (props) => (
+const mapStateToProps = (state) => ({
+  college: state.searchPanel.college
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  updateCollege: (payload) => dispatch(actions.searchPanel.updateCollege(payload))
+})
+
+const SearchPanelCollegeBtn = connect(mapStateToProps, mapDispatchToProps)((props) => (
+  <button
+    className={props.value === props.college ? `btn btn-primary text-white ${styles.college} ` : `btn btn-default ${styles.college}`}
+    onClick={() => props.updateCollege(props.value)}>{props.title}</button>
+))
+
+const SearchPanelCollegeList = () => (
   <div className={`d-none d-md-block ${styles.collegeGroup}`}>
     <h4 className='text-center'>分類</h4>
-    <button className={`btn btn-default ${styles.college}`} >共同課程</button>
-    <button className={`btn btn-default ${styles.college}`} >資訊學院</button>
-    <button className={`btn btn-default ${styles.college}`} >電機學院</button>
-    <button className={`btn btn-default ${styles.college}`} >工學院</button>
-    <button className={`btn btn-default ${styles.college}`} >理學院</button>
-    <button className={`btn btn-default ${styles.college}`} >光電學院</button>
-    <button className={`btn btn-default ${styles.college}`} >生科學院</button>
-    <button className={`btn btn-default ${styles.college}`} >管理學院</button>
-    <button className={`btn btn-default ${styles.college}`} >人社學院</button>
-    <button className={`btn btn-default ${styles.college}`} >客家文化學院</button>
+    <SearchPanelCollegeBtn title='共同課程' value={0} />
+    <SearchPanelCollegeBtn title='資訊學院' value={3} />
+    <SearchPanelCollegeBtn title='電機學院' value={5} />
+    <SearchPanelCollegeBtn title='工學院' value={4} />
+    <SearchPanelCollegeBtn title='理學院' value={9} />
+    <SearchPanelCollegeBtn title='光電學院' value={8} />
+    <SearchPanelCollegeBtn title='生科學院' value={2} />
+    <SearchPanelCollegeBtn title='管理學院' value={7} />
+    <SearchPanelCollegeBtn title='人社學院' value={1} />
+    <SearchPanelCollegeBtn title='客家文化學院' value={6} />
   </div>
 )
 

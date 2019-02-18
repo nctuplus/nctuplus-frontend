@@ -3,23 +3,39 @@ import React from 'react'
 import Pagination from 'components/Pagination'
 import Spinner from 'components/Spinner'
 import { convertSemesterToString } from 'utilities'
+import classNames from 'classnames'
+import styles from './styles.scss'
 
-const Row = ({ file, course, uploader, description }) => (
-  <tr className='clickable' onClick={() => window.open(`${SERVER_URL}${file.url}`)}>
-    <td>
-      { course.permanent_course.name }
-      /
-      { course.teachers.map(teacher => teacher.name).join(',') }
-    </td>
-    <td>{ convertSemesterToString(course.semester) }</td>
-    <td>{ description }</td>
-    <td>{ uploader.name }</td>
-  </tr>
-)
+class Row extends React.Component {
+  constructor (props) {
+    super(props)
+    this.download = this.download.bind(this)
+  }
+  download (url, fn) {
+    let file = document.createElement('a')
+    file.href = url
+    file.download = fn
+    let win = file.click()
+    win.close()
+  }
+  render () {
+    const { file, course, uploader, description } = this.props
+    return (
+      <tr className={classNames('clickable', styles.row)} onClick={() => this.download(`${SERVER_URL}${file.url}`)}>
+        <td>
+          { course.name } / { course.teacher.join(',') }
+        </td>
+        <td>{ convertSemesterToString(course.semester) }</td>
+        <td>{ description }</td>
+        <td>{ uploader }</td>
+      </tr>
+    )
+  }
+}
 
 const Table = (props) => (
   <div>
-    <table className='table table-hover bg-white'>
+    <table className='table bg-white'>
       <thead>
         <tr>
           <th>課程/教授</th>
