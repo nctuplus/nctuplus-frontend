@@ -22,6 +22,9 @@ const initialState = {
   },
   edit: {
     status: FETCHING_STATUS.IDLE
+  },
+  delete: {
+    status: FETCHING_STATUS.IDLE
   }
 }
 
@@ -43,6 +46,9 @@ export default handleActions({
     },
     EDIT: {
       SET_STATUS: (state, action) => ({ ...state, edit: { ...state.edit, status: action.payload } })
+    },
+    DELETE: {
+      SET_STATUS: (state, action) => ({ ...state, delete: { ...state.delete, status: action.payload } })
     }
   }
 }, initialState)

@@ -43,8 +43,14 @@ export const patchComment = (payload, id) => dispatch => {
   dispatch(actions.comments.edit.setStatus(FETCHING_STATUS.FETCHING))
   server.protected
     .patch(`/api/v1/comments/${id}`, payload)
-    .then(({ data: comment }) => {
-      dispatch(actions.comments.edit.setStatus(FETCHING_STATUS.DONE))
-    })
+    .then(({ data: comment }) => dispatch(actions.comments.edit.setStatus(FETCHING_STATUS.DONE)))
     .catch(() => dispatch(actions.comments.edit.setStatus(FETCHING_STATUS.FAIL)))
+}
+
+export const deleteComment = (id) => dispatch => {
+  dispatch(actions.comments.delete.setStatus(FETCHING_STATUS.FETCHING))
+  server.protected
+    .delete(`/api/v1/comments/${id}`)
+    .then(() => dispatch(actions.comments.delete.setStatus(FETCHING_STATUS.DONE)))
+    .catch(() => dispatch(actions.comments.delete.setStatus(FETCHING_STATUS.FAIL)))
 }

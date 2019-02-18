@@ -19,6 +19,9 @@ export default createActions({
     },
     EDIT: {
       SET_STATUS: null
+    },
+    DELETE: {
+      SET_STATUS: null
     }
   }
 })

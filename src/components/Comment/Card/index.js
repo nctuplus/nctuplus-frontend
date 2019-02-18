@@ -46,7 +46,12 @@ class Comment extends React.Component {
   constructor (props) {
     super(props)
     this.state = { replyOpen: false }
+    this.handleDeleteClick = this.handleDeleteClick.bind(this)
     this.handleReplyClick = this.handleReplyClick.bind(this)
+  }
+
+  handleDeleteClick () {
+    this.props.deleteComment(this.props.id)
   }
 
   handleReplyClick () {
@@ -74,11 +79,11 @@ class Comment extends React.Component {
                   <i className='fa fa-pencil' />修改
                 </button>
               </Link>
-              <button className='btn btn-success m-1' onClick={this.handleReplyClick}>
-                <i className='fa fa-reply' />回覆
+              <button className='btn btn-danger m-1' onClick={this.handleDeleteClick}>
+                <i className='fa fa-trash' />刪除
               </button>
-              <button className='btn btn-primary'>
-                <i className='fa fa-export' />分享
+              <button className='btn btn-success' onClick={this.handleReplyClick}>
+                <i className='fa fa-reply' />回覆
               </button>
             </div>
           </div>
@@ -130,4 +135,5 @@ class Comment extends React.Component {
     )
   }
 }
+
 export default withRouter(Comment)
