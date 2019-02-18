@@ -21,6 +21,10 @@ class Index extends React.Component {
     this.props.fetchData({
       page: comments.page,
       q: {
+        sort: {
+          order: 'desc',
+          by: 'created_at'
+        },
         filters: {
           custom_search: comments.filters.search_by
         }
