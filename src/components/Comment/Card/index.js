@@ -1,6 +1,7 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router'
 import style from './style.scss'
 
 const CommentReply = (props) => (
@@ -68,9 +69,11 @@ class Comment extends React.Component {
           </div>
           <div className='col-lg-8 col-md-6 col-12'>
             <div className={`${style.btnBar}`}>
-              <button className='btn btn-info'>
-                <i className='fa fa-pencil' />修改
-              </button>
+              <Link to={`/comments/${this.props.id}/edit`}>
+                <button className='btn btn-info'>
+                  <i className='fa fa-pencil' />修改
+                </button>
+              </Link>
               <button className='btn btn-success m-1' onClick={this.handleReplyClick}>
                 <i className='fa fa-reply' />回覆
               </button>
@@ -127,4 +130,4 @@ class Comment extends React.Component {
     )
   }
 }
-export default Comment
+export default withRouter(Comment)

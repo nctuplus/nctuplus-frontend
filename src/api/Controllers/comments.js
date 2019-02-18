@@ -43,6 +43,8 @@ export const patchComment = (payload, id) => dispatch => {
   dispatch(actions.comments.edit.setStatus(FETCHING_STATUS.FETCHING))
   server.protected
     .patch(`/api/v1/comments/${id}`, payload)
-    .then(({ data: comment }) => dispatch(actions.comments.edit.setStatus(FETCHING_STATUS.DONE)))
+    .then(({ data: comment }) => {
+      dispatch(actions.comments.edit.setStatus(FETCHING_STATUS.DONE))
+    })
     .catch(() => dispatch(actions.comments.edit.setStatus(FETCHING_STATUS.FAIL)))
 }
