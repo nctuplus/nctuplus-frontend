@@ -12,7 +12,7 @@ import Layout from 'pages/Layout'
 import * as Comments from 'components/Comment'
 import { InputWithButton } from 'components/FormUtils'
 import Spinner from 'components/Spinner'
-import { getComments } from 'api/Controllers/comments'
+import { getComments, getCommentsLatestNews } from 'api/Controllers/comments'
 import actions from 'api/Actions/Comments'
 
 class Index extends React.Component {
@@ -27,6 +27,15 @@ class Index extends React.Component {
         },
         filters: {
           custom_search: comments.filters.search_by
+        }
+      }
+    })
+    this.props.fetchLatestNews({
+      page: 1,
+      q: {
+        sort: {
+          order: 'desc',
+          by: 'created_at'
         }
       }
     })
@@ -75,8 +84,8 @@ class Index extends React.Component {
                 <SearchPanelCollegeList />
                 <SearchPanelNewsFeed>
                   {
-                    this.props.comments.data.length
-                      ? this.props.comments.data.slice(0, 10).map((comment, index) => (
+                    this.props.latestNews.data.length
+                      ? this.props.latestNews.data.slice(0, 10).map((comment, index) => (
                         <SearchPanelNews href={`/comments/${comment.id}`} key={comment.id}>
                           {
                             /* get diff of date */
@@ -105,12 +114,14 @@ class Index extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  comments: state.comments.index
+  comments: state.comments.index,
+  latestNews: state.comments.latestNews
 })
 const mapDispatchToProps = (dispatch) => ({
   fetchData: (payload) => dispatch(getComments(payload)),
   updatePage: (page) => dispatch(actions.comments.index.updatePage(page)),
-  updateFilters: (filters) => dispatch(actions.comments.index.updateFilters(filters))
+  updateFilters: (filters) => dispatch(actions.comments.index.updateFilters(filters)),
+  fetchLatestNews: (payload) => dispatch(getCommentsLatestNews(payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index)

@@ -25,6 +25,10 @@ const initialState = {
   },
   delete: {
     status: FETCHING_STATUS.IDLE
+  },
+  latestNews: {
+    data: [],
+    status: FETCHING_STATUS.IDLE
   }
 }
 
@@ -49,6 +53,10 @@ export default handleActions({
     },
     DELETE: {
       SET_STATUS: (state, action) => ({ ...state, delete: { ...state.delete, status: action.payload } })
+    },
+    LATEST_NEWS: {
+      SET_STATUS: (state, action) => ({ ...state, latestNews: { ...state.latestNews, status: action.payload } }),
+      STORE: (state, action) => ({ ...state, latestNews: { ...state.latestNews, data: action.payload.data } })
     }
   }
 }, initialState)

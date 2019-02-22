@@ -22,6 +22,10 @@ export default createActions({
     },
     DELETE: {
       SET_STATUS: null
+    },
+    LATEST_NEWS: {
+      SET_STATUS: null,
+      STORE: null
     }
   }
 })

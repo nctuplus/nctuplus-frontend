@@ -54,3 +54,14 @@ export const deleteComment = (id) => dispatch => {
     .then(() => dispatch(actions.comments.delete.setStatus(FETCHING_STATUS.DONE)))
     .catch(() => dispatch(actions.comments.delete.setStatus(FETCHING_STATUS.FAIL)))
 }
+
+export const getCommentsLatestNews = (payload) => dispatch => {
+  dispatch(actions.comments.latestNews.setStatus(FETCHING_STATUS.FETCHING))
+  server.public
+    .get(`/api/v1/comments${queryBuilder(payload, 'Comment')}`)
+    .then(({ data: comments }) => {
+      dispatch(actions.comments.latestNews.store(comments))
+      dispatch(actions.comments.latestNews.setStatus(FETCHING_STATUS.DONE))
+    })
+    .catch(() => dispatch(actions.comments.lastest_news.setStatus(FETCHING_STATUS.FAIL)))
+}
