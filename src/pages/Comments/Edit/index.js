@@ -101,6 +101,11 @@ class Edit extends React.Component {
   onSubmit (event) {
     let payload = this.state.payload
 
+    if (!payload.course_id) {
+      toast('請先選擇適用課程', { type: 'warning' })
+      return
+    }
+
     // only works on chrome, but who care others? ;)
     this.formRef.current.reportValidity()
 
@@ -112,7 +117,6 @@ class Edit extends React.Component {
   }
 
   render () {
-    console.log(this.state.payload)
     return (
       <Comments.Form
         {...this.state}

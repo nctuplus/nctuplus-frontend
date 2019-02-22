@@ -82,6 +82,11 @@ class New extends React.Component {
   onSubmit (event) {
     let payload = this.state.payload
 
+    if (!payload.course_id) {
+      toast('請先選擇適用課程', { type: 'warning' })
+      return
+    }
+
     // only works on chrome, but who care others? ;)
     this.formRef.current.reportValidity()
 
