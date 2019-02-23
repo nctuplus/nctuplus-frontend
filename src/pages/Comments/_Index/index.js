@@ -14,6 +14,7 @@ import { InputWithButton } from 'components/FormUtils'
 import Spinner from 'components/Spinner'
 import { getComments, getCommentsLatestNews } from 'api/Controllers/comments'
 import actions from 'api/Actions/Comments'
+import { timeDifference } from 'utilities'
 
 class Index extends React.Component {
   componentDidMount () {
@@ -87,11 +88,8 @@ class Index extends React.Component {
                     this.props.latestNews.data.length
                       ? this.props.latestNews.data.slice(0, 10).map((comment, index) => (
                         <SearchPanelNews href={`/comments/${comment.id}`} key={comment.id}>
-                          {
-                            /* get diff of date */
-                            Math.ceil((Date.now() - Date.parse(comment.created_at)) / 86400000)
-                          }
-                          天前 { comment.anonymity ? '匿名' : comment.user.name } 新增了
+                          { timeDifference(comment.created_at) }
+                          前 { comment.anonymity ? '匿名' : comment.user.name } 新增了
                           <strong>{ comment.course.name }</strong>
                           的文章-{ comment.title }
                         </SearchPanelNews>
