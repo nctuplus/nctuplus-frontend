@@ -17,7 +17,7 @@ const UserNavigation = (props) => (
         <i className='fa fa-calendar mx-1' />歷年課程
       </Link>
       <Link className={checkMatch(props.match.params.url, 'collections')} to='/user/collections'>
-        <i className='fa fa-heart mx-2' />收藏課表
+        <i className='fa fa-heart mx-2' />朋友
       </Link>
     </div>
   </div>
