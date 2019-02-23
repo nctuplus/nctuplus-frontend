@@ -7,7 +7,7 @@ import Spinner from 'components/Spinner'
 const CommentsTableRow = withRouter((props) => (
   <tr className='clickable' onClick={() => props.history.push(`/comments/${props.id}`)}>
     <td>
-      { props.course && props.course.course_name }
+      { props.course && props.course.name }
       /
       { props.course &&
         props.course.teachers.length
@@ -20,7 +20,7 @@ const CommentsTableRow = withRouter((props) => (
     </td>
     <td>{props.title}</td>
     <td className='d-none d-table-cell'>{props.anonymity ? '匿名' : props.user.name}</td>
-    <td className='d-none d-table-cell'>{props.created_at.slice(0, 10)}</td>
+    <td className='d-none d-table-cell'>{props.created_at && props.created_at.slice(0, 10)}</td>
   </tr>
 ))
 

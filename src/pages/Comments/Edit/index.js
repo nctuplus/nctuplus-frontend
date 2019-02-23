@@ -30,7 +30,7 @@ class Edit extends React.Component {
         title: '',
         content: '★修課年度★\n\n￡教了什麼￡\n\n◆上課方式◆\n\n▼考試作業▼\n\n￥其他￥\n\n＆誰適合修這門課＆\n',
         rating: '000',
-        course_id: '',
+        course: '',
         anonymity: false
       },
       courseSearchWord: '',
@@ -47,12 +47,12 @@ class Edit extends React.Component {
   }
 
   componentDidUpdate () {
+    // 把該心得的資訊複製到payload
     if (this.props.fetchStatus === FETCHING_STATUS.DONE && !this.state.synced) {
       this.setState({
         payload: {
           ...this.state.payload,
-          ...this.props.comment,
-          course_id: this.props.comment.course.course_id
+          ...this.props.comment
         }
       })
       this.setState({ synced: true })
@@ -82,7 +82,16 @@ class Edit extends React.Component {
     let content = `已選擇${course.permanent_course.name}/${course.teachers[0].name}`
     content += course.teachers.slice(1).map((teacher) => `,${teacher.name}`)
 
-    this.setState({ payload: { ...this.state.payload, course_id: course.id } })
+    this.setState({
+      payload: {
+        ...this.state.payload,
+        course: {
+          id: course.id,
+          name: course.permanent_course.name,
+          teacher: course.teachers
+        }
+      }
+    })
     toast(content, { type: 'success' })
   }
 
@@ -101,7 +110,7 @@ class Edit extends React.Component {
   onSubmit (event) {
     let payload = this.state.payload
 
-    if (!payload.course_id) {
+    if (!payload.course.id) {
       toast('請先選擇適用課程', { type: 'warning' })
       return
     }
@@ -109,7 +118,7 @@ class Edit extends React.Component {
     // only works on chrome, but who care others? ;)
     this.formRef.current.reportValidity()
 
-    if (payload.title && payload.content && payload.rating && payload.course_id) {
+    if (payload.title && payload.content && payload.rating && payload.course.id) {
       // 讓表單不要照預設方法送出
       event.preventDefault()
       this.props.patchComment(payload, this.props.match.params.id)

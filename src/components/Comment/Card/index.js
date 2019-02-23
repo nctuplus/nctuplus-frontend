@@ -30,7 +30,7 @@ const SubComment = (props) => (
         <div>
           { props.user && (props.anonymity ? '匿名' : props.user.name) }
           <br />
-          { props.created_at.slice(0, 10) }
+          { props.created_at && props.created_at.slice(0, 10) }
         </div>
       </div>
     </div>
@@ -67,9 +67,9 @@ class Comment extends React.Component {
           </div>
           <div className='col-lg-3 col-sm-4 col-8'>
             <div>
-              { this.props.user && (this.props.anonymity ? '匿名' : this.props.user.name) }
+              { this.props.anonymity ? '匿名' : (this.props.user && this.props.user.name) }
               <br />
-              { this.props.created_at }
+              { this.props.created_at && this.props.created_at.slice(0, 10) }
             </div>
           </div>
           <div className='col-lg-8 col-md-6 col-12'>
@@ -94,9 +94,9 @@ class Comment extends React.Component {
         <div className='row mt-3'>
           <div className='col-md-12'>
             <h4 className='m-0'>{ this.props.title }</h4>
-            <Link to={`/courses/${this.props.course && this.props.course.course_id}`}>
+            <Link to={`/courses/${this.props.course && this.props.course.id}`}>
               <div className='text-primary'>
-                { this.props.course && this.props.course.course_name }
+                { this.props.course && this.props.course.name }
                 /
                 { this.props.course &&
                   this.props.course.teachers.length

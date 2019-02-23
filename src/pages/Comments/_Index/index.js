@@ -89,10 +89,10 @@ class Index extends React.Component {
                         <SearchPanelNews href={`/comments/${comment.id}`} key={comment.id}>
                           {
                             /* get diff of date */
-                            Math.ceil((Date.now() - Date.parse(comment.created_at)) / 864000000)
+                            Math.ceil((Date.now() - Date.parse(comment.created_at)) / 86400000)
                           }
-                          天前 { comment.user.name } 新增了
-                          <strong>{ comment.course.course_name }</strong>
+                          天前 { comment.anonymity ? '匿名' : comment.user.name } 新增了
+                          <strong>{ comment.course.name }</strong>
                           的文章-{ comment.title }
                         </SearchPanelNews>
                       ))
