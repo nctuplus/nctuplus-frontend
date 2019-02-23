@@ -20,8 +20,6 @@ export const getComment = (id) => dispatch => {
   server.public
     .get(`/api/v1/comments/${id}`)
     .then(({ data: comment }) => {
-      comment.created_at = comment.created_at.slice(0, 10)
-      comment.updated_at = comment.updated_at.slice(0, 10)
       dispatch(actions.comments.show.store(comment))
       dispatch(actions.comments.show.setStatus(FETCHING_STATUS.DONE))
     })
@@ -63,5 +61,5 @@ export const getCommentsLatestNews = (payload) => dispatch => {
       dispatch(actions.comments.latestNews.store(comments))
       dispatch(actions.comments.latestNews.setStatus(FETCHING_STATUS.DONE))
     })
-    .catch(() => dispatch(actions.comments.lastest_news.setStatus(FETCHING_STATUS.FAIL)))
+    .catch(() => dispatch(actions.comments.lastestNews.setStatus(FETCHING_STATUS.FAIL)))
 }
