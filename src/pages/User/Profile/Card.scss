@@ -1,0 +1,46 @@
+
+.photo{
+	display: inline-block;
+}
+.card{
+	display: flex;
+	background-color: #e9eaed;
+}
+.cardbody{
+	font-size: 14px;
+}
+.cardFooter{
+	float: left;
+}
+.cardbtn{
+	width: 90px;
+	height: 31px;
+}
+.cardbtntext{
+	width: 85px;
+	color: white;
+}
+.cardLeft{
+	background-color: #e9eaed; 
+}
+.cardRight{
+	background-color: white;
+}
+.btnCustomPrimary{
+	padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+	border-radius: 3px;
+	color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+.btnCustomWarning{
+	padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+	border-radius: 3px;
+	color: #fff;
+    background-color: #f0ad4e;
+    border-color: #f0ad4e;
+}

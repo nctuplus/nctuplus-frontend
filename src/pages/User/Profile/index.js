@@ -1,4 +1,3 @@
-
 import React from 'react'
 import Timetable from 'components/Timetable'
 import { connect } from 'react-redux'
