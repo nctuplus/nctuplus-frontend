@@ -23,6 +23,17 @@ export default createActions({
     DELETE: {
       SET_STATUS: null
     },
+    REPLY: {
+      NEW: {
+        SET_STATUS: null
+      },
+      EDIT: {
+        SET_STATUS: null
+      },
+      DELETE: {
+        SET_STATUS: null
+      }
+    },
     LATEST_NEWS: {
       SET_STATUS: null,
       STORE: null

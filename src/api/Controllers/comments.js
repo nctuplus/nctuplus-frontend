@@ -53,6 +53,30 @@ export const deleteComment = (id) => dispatch => {
     .catch(() => dispatch(actions.comments.delete.setStatus(FETCHING_STATUS.FAIL)))
 }
 
+export const postCommentReply = (payload, id) => dispatch => {
+  dispatch(actions.comments.reply.new.setStatus(FETCHING_STATUS.FETCHING))
+  server.protected
+    .post(`/api/v1/comments/${id}/reply`, payload)
+    .then(() => dispatch(actions.comments.reply.new.setStatus(FETCHING_STATUS.DONE)))
+    .catch(() => dispatch(actions.comments.reply.new.setStatus(FETCHING_STATUS.FAIL)))
+}
+
+export const patchCommentReply = (payload, commentId, replyId) => dispatch => {
+  dispatch(actions.comments.reply.edit.setStatus(FETCHING_STATUS.FETCHING))
+  server.protected
+    .patch(`/api/v1/comments/${commentId}/reply/${replyId}`, payload)
+    .then(() => dispatch(actions.comments.reply.edit.setStatus(FETCHING_STATUS.DONE)))
+    .catch(() => dispatch(actions.comments.reply.edit.setStatus(FETCHING_STATUS.FAIL)))
+}
+
+export const deleteCommentReply = (commentId, replyId) => dispatch => {
+  dispatch(actions.comments.reply.delete.setStatus(FETCHING_STATUS.FETCHING))
+  server.protected
+    .delete(`/api/v1/comments/${commentId}/reply/${replyId}`)
+    .then(() => dispatch(actions.comments.reply.delete.setStatus(FETCHING_STATUS.DONE)))
+    .catch(() => dispatch(actions.comments.reply.delete.setStatus(FETCHING_STATUS.FAIL)))
+}
+
 export const getCommentsLatestNews = (payload) => dispatch => {
   dispatch(actions.comments.latestNews.setStatus(FETCHING_STATUS.FETCHING))
   server.public
