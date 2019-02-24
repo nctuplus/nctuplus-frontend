@@ -2,45 +2,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { withRouter } from 'react-router'
+import * as Reply from 'components/Comment/Reply'
 import style from './style.scss'
-
-const CommentReply = (props) => (
-  <div className='row justify-content-end mt-5'>
-    <div className='col-md-12'>
-      <textarea className='form-control' placeholder='內容...' rows='5' />
-    </div>
-    <div className='m-3 text-center'>
-      <div className='d-inline-block m-1' >
-        <label>
-          <input type='checkbox' />匿名
-        </label>
-      </div>
-      <button className='btn btn-primary m-1'>送出</button>
-    </div>
-  </div>
-)
-
-const SubComment = (props) => (
-  <div className='mt-4'>
-    <div className='row align-items-end'>
-      <div className='col-lg-1 col-sm-2 col-4'>
-        <img alt='' src={props.userImage} height='50' width='50' />
-      </div>
-      <div className='col-lg-3 col-sm-4 col-8'>
-        <div>
-          { props.user && (props.anonymity ? '匿名' : props.user.name) }
-          <br />
-          { props.created_at && props.created_at.slice(0, 10) }
-        </div>
-      </div>
-    </div>
-    <div className='row mt-3'>
-      <div className='col-md-12'>
-        <p className='fa-lg'>{ props.content }</p>
-      </div>
-    </div>
-  </div>
-)
 
 class Comment extends React.Component {
   constructor (props) {
@@ -73,10 +36,10 @@ class Comment extends React.Component {
             </div>
           </div>
           <div className='col-lg-8 col-md-6 col-12'>
-            <div className={`${style.btnBar}`}>
+            <div className={style.btnBar}>
               <Link to={`/comments/${this.props.id}/edit`}>
                 <button className='btn btn-info'>
-                  <i className='fa fa-pencil' />修改
+                  <i className='fa fa-pencil' />編輯
                 </button>
               </Link>
               <button className='btn btn-danger m-1' onClick={this.handleDeleteClick}>
@@ -112,24 +75,24 @@ class Comment extends React.Component {
         </div>
         <div className='row mt-3'>
           <div className='col-md-12'>
-            <span className={`fa-lg ${style.content}`}>{ this.props.content }</span>
+            <span className={style.content}>{ this.props.content }</span>
           </div>
         </div>
 
         <hr />
 
         {
-          this.props.sub_comments &&
-          this.props.sub_comments.map((comment) => (
-            <div key={comment.id}>
-              <SubComment {...comment} />
+          this.props.reply &&
+          this.props.reply.map((reply) => (
+            <div key={reply.id}>
+              <Reply.Index data={{ ...reply }} />
               <hr />
             </div>
           ))
         }
         {
           this.state.replyOpen &&
-          <CommentReply />
+          <Reply.New handleReplyClose={this.handleReplyClick} />
         }
       </div>
     )
