@@ -3,8 +3,14 @@ import axios from 'axios'
 
 // custom instances
 export const server = {
-  public: axios.create({ baseURL: SERVER_URL }),
-  protected: axios.create({ baseURL: SERVER_URL })
+  public: axios.create({
+    baseURL: SERVER_URL,
+    headers: { 'Content-Type': 'application/json' }
+  }),
+  protected: axios.create({
+    baseURL: SERVER_URL,
+    headers: { 'Content-Type': 'application/json' }
+  })
 }
 
 // interceptors related to auth
