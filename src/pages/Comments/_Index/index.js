@@ -1,6 +1,7 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
+import moment from 'moment'
 import {
   SearchPanel,
   SearchPanelButtonGroup,
@@ -14,7 +15,6 @@ import { InputWithButton } from 'components/FormUtils'
 import Spinner from 'components/Spinner'
 import { getComments, getCommentsLatestNews } from 'api/Controllers/comments'
 import actions from 'api/Actions/Comments'
-import { timeDifference } from 'utilities'
 
 class Index extends React.Component {
   componentDidMount () {
@@ -31,15 +31,7 @@ class Index extends React.Component {
         }
       }
     })
-    this.props.fetchLatestNews({
-      page: 1,
-      q: {
-        sort: {
-          order: 'desc',
-          by: 'created_at'
-        }
-      }
-    })
+    this.props.fetchLatestNews()
   }
 
   componentDidUpdate (prevProps) {
@@ -85,11 +77,18 @@ class Index extends React.Component {
                 <SearchPanelCollegeList />
                 <SearchPanelNewsFeed>
                   {
+                    this.props.latestNews.data &&
                     this.props.latestNews.data.length
-                      ? this.props.latestNews.data.slice(0, 10).map((comment, index) => (
-                        <SearchPanelNews href={`/comments/${comment.id}`} key={comment.id}>
-                          { timeDifference(comment.created_at) }
-                          前 { comment.anonymity ? '匿名' : comment.user.name } 新增了
+                      ? this.props.latestNews.data.map((comment, index) => (
+                        // 這裡因為最新動態可能會有同一篇心得的新增和回覆，所以key不能用comment id
+                        <SearchPanelNews
+                          href={`/comments/${comment.id}`}
+                          status={comment.status}
+                          clickable
+                          key={index}
+                        >
+                          { moment(comment.time).fromNow() }
+                          前 { comment.anonymity ? '匿名' : comment.user.name } { comment.status ? '回覆了' : '新增了' }
                           <strong>{ comment.course.name }</strong>
                           的文章-{ comment.title }
                         </SearchPanelNews>
@@ -119,7 +118,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchData: (payload) => dispatch(getComments(payload)),
   updatePage: (page) => dispatch(actions.comments.index.updatePage(page)),
   updateFilters: (filters) => dispatch(actions.comments.index.updateFilters(filters)),
-  fetchLatestNews: (payload) => dispatch(getCommentsLatestNews(payload))
+  fetchLatestNews: () => dispatch(getCommentsLatestNews())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Index)

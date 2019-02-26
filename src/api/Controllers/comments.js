@@ -77,10 +77,10 @@ export const deleteCommentReply = (commentId, replyId) => dispatch => {
     .catch(() => dispatch(actions.comments.reply.delete.setStatus(FETCHING_STATUS.FAIL)))
 }
 
-export const getCommentsLatestNews = (payload) => dispatch => {
+export const getCommentsLatestNews = () => dispatch => {
   dispatch(actions.comments.latestNews.setStatus(FETCHING_STATUS.FETCHING))
   server.public
-    .get(`/api/v1/comments${queryBuilder(payload, 'Comment')}`)
+    .get('/api/v1/comments/latest_news')
     .then(({ data: comments }) => {
       dispatch(actions.comments.latestNews.store(comments))
       dispatch(actions.comments.latestNews.setStatus(FETCHING_STATUS.DONE))

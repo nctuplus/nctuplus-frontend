@@ -124,7 +124,12 @@ class Index extends React.Component {
                   {
                     // 這裡因為最新動態可能會有同一本書的新增和編輯，所以key不能用book id
                     this.props.latestNews.data.map((book, index) => (
-                      <SearchPanelNews href={`/books/${book.id}`} status={book.status} key={index}>
+                      <SearchPanelNews
+                        href={`/books/${book.id}`}
+                        status={book.status}
+                        clickable={book.status === 0}
+                        key={index}
+                      >
                         { moment(book.time).fromNow() }
                         { book.status ? '售出了' : '新增了' }
                         { book.name }

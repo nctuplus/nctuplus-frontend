@@ -78,7 +78,7 @@ export default handleActions({
     },
     LATEST_NEWS: {
       SET_STATUS: (state, action) => ({ ...state, latestNews: { ...state.latestNews, status: action.payload } }),
-      STORE: (state, action) => ({ ...state, latestNews: { ...state.latestNews, data: action.payload.data } })
+      STORE: (state, action) => ({ ...state, latestNews: { ...state.latestNews, data: action.payload } })
     }
   }
 }, initialState)

@@ -94,17 +94,6 @@ function convertSemesterToString (semester) {
   return `${semester.year}${term}`
 }
 
-function timeDifference (date) {
-  let time = (Date.now() - Date.parse(date)) / 60000
-  if (time < 60) {
-    return `${Math.floor(time)}分鐘`
-  } else if (time < 3600) {
-    return `${Math.floor(time / 60)}小時`
-  } else {
-    return `${Math.floor(time / 1440)}天`
-  }
-}
-
 const debug = withProps(p => console.log(p))
 
 export {
@@ -112,6 +101,5 @@ export {
   convertSemesterToString,
   base64encode,
   queryBuilder,
-  timeDifference,
   debug
 }

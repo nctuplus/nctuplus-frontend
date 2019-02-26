@@ -118,17 +118,19 @@ class SearchCourse extends React.Component {
 }
 
 const SearchPanelNews = (props) => {
-  if (props.status) {
+  const color = props.status ? 'list-group-item-success' : 'list-group-item-light'
+
+  if (props.clickable) {
     return (
-      <div to={props.href} className='list-group-item list-group-item-success'>
+      <Link to={props.href} className={`list-group-item ${color}`}>
         { props.children }
-      </div>
+      </Link>
     )
   } else {
     return (
-      <Link to={props.href} className='list-group-item list-group-item-light'>
+      <div className={`list-group-item ${color}`}>
         { props.children }
-      </Link>
+      </div>
     )
   }
 }
