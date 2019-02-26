@@ -88,7 +88,8 @@ class Index extends React.Component {
                           key={index}
                         >
                           { moment(comment.time).fromNow() }
-                          前 { comment.anonymity ? '匿名' : comment.user.name } { comment.status ? '回覆了' : '新增了' }
+                          { comment.anonymity ? '匿名' : comment.user.name }
+                          { comment.status ? '回覆了' : '新增了' }
                           <strong>{ comment.course.name }</strong>
                           的文章-{ comment.title }
                         </SearchPanelNews>

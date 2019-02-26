@@ -42,7 +42,7 @@ class Index extends React.Component {
             </div>
           </div>
           {
-            // 是當前使用者的回覆且不是匿名 才會有編輯刪除按鈕
+            // 是當前使用者的回覆且不是匿名 才會有刪除按鈕
             this.props.currentUser && data.user &&
             this.props.currentUser.id === data.user.id && (
               <div className='col-lg-8 col-md-6 col-12'>

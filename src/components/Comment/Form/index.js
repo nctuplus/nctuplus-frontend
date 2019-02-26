@@ -121,17 +121,21 @@ class Form extends React.Component {
               </form>
 
               <div className='col-md-12 text-right mt-4'>
-                <div className='d-inline-block mx-1'>
-                  <label>
-                    <input
-                      checked={payload.anonymity}
-                      onChange={e => this.props.updatePayload({ anonymity: !payload.anonymity })}
-                      className='mx-2'
-                      type='checkbox'
-                    />
-                    匿名
-                  </label>
-                </div>
+                {
+                  this.props.formType === 'new' && (
+                    <div className='d-inline-block mx-1'>
+                      <label>
+                        <input
+                          checked={payload.anonymity}
+                          onChange={e => this.props.updatePayload({ anonymity: !payload.anonymity })}
+                          className='mx-2'
+                          type='checkbox'
+                        />
+                        匿名
+                      </label>
+                    </div>
+                  )
+                }
                 <button className='btn btn-success btn-large mx-1'>預覽</button>
                 <button type='submit' className='btn btn-primary btn-large mx-1' onClick={this.props.onSubmit}>送出</button>
               </div>
