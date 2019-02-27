@@ -1,40 +1,42 @@
 
-import fetch from 'isomorphic-fetch'
 import { createActions } from 'redux-actions'
-import { FETCHING_STATUS as fstat } from 'utilities/constants'
 
-export const actions = createActions({
+export default createActions({
   COMMENTS: {
-    FETCH: {
+    INDEX: {
       SET_STATUS: null,
-      UPDATE: null,
-      UPDATE_PAGE: null
+      STORE: null,
+      UPDATE_PAGE: null,
+      UPDATE_FILTERS: null
     },
-    GET: {
+    SHOW: {
+      SET_STATUS: null,
+      STORE: null
+    },
+    NEW: {
+      SET_STATUS: null,
+      STORE: null
+    },
+    EDIT: {
+      SET_STATUS: null
+    },
+    DELETE: {
+      SET_STATUS: null
+    },
+    REPLY: {
+      NEW: {
+        SET_STATUS: null
+      },
+      EDIT: {
+        SET_STATUS: null
+      },
+      DELETE: {
+        SET_STATUS: null
+      }
+    },
+    LATEST_NEWS: {
       SET_STATUS: null,
       STORE: null
     }
   }
 })
-
-export const fetchComments = (page = 1) => dispatch => {
-  dispatch(actions.comments.fetch.setStatus(fstat.FETCHING))
-  fetch(`${SERVER_URL}/api/v1/comments?_limit=30&_page=${page}`)
-    .then(response => response.json())
-    .then(json => {
-      dispatch(actions.comments.fetch.update(json))
-      dispatch(actions.comments.fetch.setStatus(fstat.DONE))
-    })
-    .catch(error => console.log(error))
-}
-
-export const getComment = (id) => dispatch => {
-  dispatch(actions.comments.get.setStatus(fstat.FETCHING))
-  fetch(`${SERVER_URL}/api/v1/comments/${id}`)
-    .then(response => response.json())
-    .then(json => {
-      dispatch(actions.comments.get.store(json))
-      dispatch(actions.comments.get.setStatus(fstat.DONE))
-    })
-    .catch(error => console.log(error))
-}

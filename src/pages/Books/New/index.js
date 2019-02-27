@@ -8,7 +8,7 @@ import { postBook } from 'api/Controllers/books'
 import actions from 'api/Actions/Books'
 
 import Form from 'components/Book/Form'
-import SearchList from 'components/Course/SearchList'
+import { SearchListMultiple } from 'components/Course/SearchList'
 import { modal } from 'components/Modal'
 
 const mapStateToProps = (state) => ({
@@ -65,7 +65,7 @@ class New extends React.Component {
     if (this.state.courseSearchWord) {
       event.preventDefault()
       modal(
-        <SearchList
+        <SearchListMultiple
           searchWord={this.state.courseSearchWord}
           addSearchCourse={(course) => this.addSearchCourse(course)}
           removeSearchCourse={(id) => this.removeSearchCourse(id)}
