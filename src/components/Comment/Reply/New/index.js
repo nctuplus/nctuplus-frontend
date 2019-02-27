@@ -2,7 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import * as Reply from 'components/Comment/Reply'
+import * as Comments from 'components/Comment'
 import { postCommentReply, getComment } from 'api/Controllers/comments'
 import actions from 'api/Actions/Comments'
 import { FETCHING_STATUS } from 'utilities/constants'
@@ -70,7 +70,7 @@ class New extends React.Component {
 
   render () {
     return (
-      <Reply.Form
+      <Comments.Reply.Form
         {...this.state}
         formType='new'
         formRef={this.formRef}
