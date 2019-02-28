@@ -47,7 +47,11 @@ module.exports = {
         test: /\.css$/,
         use: [
           { loader: 'style-loader' },
-          { loader: 'css-loader' }
+          { loader: 'css-loader' },
+          {
+            loader: 'postcss-loader',
+            options: { plugins: () => [ require('autoprefixer') ] }
+          }
         ]
       },
       {
@@ -62,8 +66,11 @@ module.exports = {
               localIdentName: '[name]__[local]___[hash:base64:5]'
             }
           },
-          { loader: 'sass-loader' },
-          { loader: 'postcss-loader', options: { plugins: () => [require('autoprefixer')] } }
+          {
+            loader: 'postcss-loader',
+            options: { plugins: () => [ require('autoprefixer') ] }
+          },
+          { loader: 'sass-loader' }
         ],
         exclude: [Path.resolve(__dirname, 'src/assets/styles')]
       },
@@ -72,8 +79,11 @@ module.exports = {
         use: [
           env === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
           { loader: 'css-loader' },
-          { loader: 'sass-loader' },
-          { loader: 'postcss-loader', options: { plugins: () => [require('autoprefixer')] } }
+          {
+            loader: 'postcss-loader',
+            options: { plugins: () => [ require('autoprefixer') ] }
+          },
+          { loader: 'sass-loader' }
         ],
         include: [Path.resolve(__dirname, 'src/assets/styles')]
       },
