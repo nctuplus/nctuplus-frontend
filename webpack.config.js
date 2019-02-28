@@ -19,8 +19,10 @@ const plugins = [
     inject: 'body'
   })
 ]
-if (env === 'development') { plugins.push(new webpack.HotModuleReplacementPlugin()) }
 
+if (env === 'development') {
+  plugins.push(new webpack.HotModuleReplacementPlugin())
+}
 if (env === 'production') {
   plugins.push(new MiniCssExtractPlugin({
     filename: '[name].css',
@@ -44,7 +46,8 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          require.resolve('style-loader')
+          { loader: 'style-loader' },
+          { loader: 'css-loader' }
         ]
       },
       {
