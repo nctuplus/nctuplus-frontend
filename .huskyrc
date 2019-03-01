@@ -1,6 +1,6 @@
 {
   "hooks": {
-    "pre-commit": "standard",
+    "pre-commit": "standard && stylelint '**/*.(css|scss)'",
     "pre-push": "npm test"
   } 
 }

@@ -6,9 +6,9 @@ nctuplus-frontend
 - npm install
 
 ### linter
-使用 `standard` 這個 linter
+使用 `standard` 和 `stylelint` 這兩個 linter
 <br />
-pre-commit hooks 會在 commit 前用 standard 這個套件檢查 coding style
+pre-commit hooks 會在 commit 前用這兩個套件檢查 js 和 css 的 coding style
 <br />
 請在 commit 之前下 `npm run lint` 或 `yarn lint` 自動修正 coding style
 <br />

@@ -1,36 +1,38 @@
 
 @import "~assets/styles/_common";
 
-.rating{
-	width: 120px;
-	height: 120px;
-	margin: 15px;
-  	@include media-breakpoint-up(lg){
-  		width: 110px;
-  		height: 110px;
-  		margin: 10px;
-  	}
-	.people{
-		width: 100%;
-		color: #455A64;
-	}
+.rating {
+  width: 120px;
+  height: 120px;
+  margin: 15px;
+
+  @include media-breakpoint-up(lg) {
+    width: 110px;
+    height: 110px;
+    margin: 10px;
+  }
+
+  .people {
+    width: 100%;
+    color: #455a64;
+  }
 }
 
-.ratingRar{
-	span{
-		font-size: 20px;
-		padding-left: 10px;
-	}
+.ratingRar {
+  span {
+    font-size: 20px;
+    padding-left: 10px;
+  }
 }
 
-.personalRating{
-	background-color: white;
-	line-height: 25px;
-	padding: 15px;
-	font-size: 18px;
-	.myRating{
-		font-size: 20px;
-		margin: 10px;
-	}
+.personalRating {
+  background-color: white;
+  line-height: 25px;
+  padding: 15px;
+  font-size: 18px;
 
+  .myRating {
+    font-size: 20px;
+    margin: 10px;
+  }
 }
