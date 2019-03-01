@@ -1,16 +1,18 @@
 
+.timetable {
+  td {
+    user-select: none;
+  }
 
-.timetable{
-	td{
-		user-select: none;
-	}
-	.selected{
-		border: 3px solid #428bca ;
-	}
-	a{
-		color: #000;
-		&:hover{
-			text-decoration: none;
-		}
-	}
+  .selected {
+    border: 3px solid #428bca;
+  }
+
+  a {
+    color: #000;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }

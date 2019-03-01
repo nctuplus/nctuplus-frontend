@@ -1,18 +1,19 @@
 
 @import '~assets/styles/common';
 
-.uploadPicture{
-    border: 3px dotted $theme-color;
-    border-radius: .5rem;
+.uploadPicture {
+  border: 3px dotted $theme-color;
+  border-radius: 0.5rem;
 }
 
-.fixedMenu{
-    width: 100%;
-    bottom: 0;
-    margin-bottom: 0;
-    border-width: 1px 0 0;
-    button{
-        width: 120px;
-        margin: 5px;
-    }
+.fixedMenu {
+  width: 100%;
+  bottom: 0;
+  margin-bottom: 0;
+  border-width: 1px 0 0;
+
+  button {
+    width: 120px;
+    margin: 5px;
+  }
 }

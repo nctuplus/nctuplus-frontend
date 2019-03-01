@@ -1,25 +1,28 @@
 
 @import "~assets/styles/_common";
 
-.introItem{
-	&:hover{ background-color: $color-grey; }
-}
-.introNewFeature{
-	color: red;
-	font-weight: bold;
+.introItem {
+  &:hover { background-color: $color-grey; }
 }
 
-.slogan{
-	font-size: 1.5rem;
-	letter-spacing: 1px;
-	text-shadow: 0px 0px 8px rgba(0,0,0,0.7);
+.introNewFeature {
+  color: red;
+  font-weight: bold;
 }
+
+.slogan {
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+}
+
 @include media-breakpoint-down(sm) {
-	.sloganWrapper{
-		display: none;
-	}
+  .sloganWrapper {
+    display: none;
+  }
 }
+
 .featureIcon {
-	max-width: 65%;
-	height:auto;
+  max-width: 65%;
+  height: auto;
 }

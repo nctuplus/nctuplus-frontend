@@ -2,19 +2,20 @@
 @import '~assets/styles/common';
 
 @include media-breakpoint-up(md) {
-    .btnBar {
-        float: right !important;
-    }
+  .btnBar {
+    float: right !important;
+  }
 }
+
 @include media-breakpoint-down(md) {
-    .btnBar {
-        margin-top: 10px;
-        float: left !important;
-    }
+  .btnBar {
+    margin-top: 10px;
+    float: left !important;
+  }
 }
 
 .content {
-    white-space: pre-line;
-    line-height: 28px;
-    font-size: 18px;
+  white-space: pre-line;
+  line-height: 28px;
+  font-size: 18px;
 }

@@ -4,21 +4,23 @@
 
 $navbar-height: 56px;
 $footer-height: 56px;
-$theme-color: #00A6FF;
-$color-grey: #DDDDDD;
+$theme-color: #00a6ff;
+$color-grey: #ddd;
 $break-point: 768px;
-*{
-    font-family: '微軟正黑體','Microsoft JhengHei';
-    font-size: 15px;
+
+* {
+  font-family: '微軟正黑體', 'Microsoft JhengHei', sans-serif;
+  font-size: 15px;
 }
+
 @mixin for-pc() {
-    @media all and (min-width: $break-point) {
-      @content;
-    }
+  @media all and (min-width: $break-point) {
+    @content;
   }
+}
 
 @mixin for-mobile() {
-    @media all and (max-width: $break-point) {
-        @content;
-    }
+  @media all and (max-width: $break-point) {
+    @content;
+  }
 }
