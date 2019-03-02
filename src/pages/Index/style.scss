@@ -26,12 +26,3 @@
   max-width: 65%;
   height: auto;
 }
-@include media-breakpoint-down(sm) {
-	.sloganWrapper{
-		display: none;
-	}
-}
-.featureIcon {
-	max-width: 65%;
-	height:auto;
-}
