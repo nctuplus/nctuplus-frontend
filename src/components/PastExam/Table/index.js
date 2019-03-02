@@ -1,9 +1,9 @@
 
 import React from 'react'
+import classNames from 'classnames'
 import Pagination from 'components/Pagination'
 import Spinner from 'components/Spinner'
 import { convertSemesterToString } from 'utilities'
-import classNames from 'classnames'
 import styles from './styles.scss'
 
 class Row extends React.Component {
@@ -11,20 +11,26 @@ class Row extends React.Component {
     super(props)
     this.download = this.download.bind(this)
   }
+
   download (url, fn) {
-    let file = document.createElement('a')
-    file.href = url
-    file.download = fn
-    let win = file.click()
-    win.close()
+    if (window.confirm('確定下載此考古題嗎？')) {
+      let file = document.createElement('a')
+      file.href = url
+      file.target = '_blank'
+      file.rel = 'noopener noreferrer'
+      // file.download = fn
+      file.click()
+    }
   }
+
   render () {
     const { file, course, uploader, description } = this.props
     return (
-      <tr className={classNames('clickable', styles.row)} onClick={() => this.download(`${SERVER_URL}${file.url}`)}>
-        <td>
-          { course.name } / { course.teacher.join(',') }
-        </td>
+      <tr
+        className={classNames('clickable', styles.row)}
+        onClick={() => this.download(`${SERVER_URL}${file.url}`)}
+      >
+        <td>{ course.name } / { course.teacher.join(',') }</td>
         <td>{ convertSemesterToString(course.semester) }</td>
         <td>{ description }</td>
         <td>{ uploader }</td>

@@ -1,5 +1,9 @@
 
 import React from 'react'
+import { connect } from 'react-redux'
+import { compose, lifecycle } from 'recompose'
+import moment from 'moment'
+import Layout from 'pages/Layout'
 import {
   SearchPanel,
   SearchPanelButtonGroup,
@@ -7,18 +11,16 @@ import {
   SearchPanelNews,
   SearchPanelNewsFeed
 } from 'components/Search'
-import Layout from 'pages/Layout'
 import * as PastExam from 'components/PastExam'
 import { InputWithButton } from 'components/FormUtils'
 import Spinner from 'components/Spinner'
-
-import { connect } from 'react-redux'
 import actions from 'api/Actions/PastExams'
 import { getPastExams } from 'api/Controllers/pastExams'
-import { compose, lifecycle } from 'recompose'
-import moment from 'moment'
 
-const mapStateToProps = (state) => ({ pastExams: state.pastExams.index, college: state.searchPanel.college })
+const mapStateToProps = (state) => ({
+  pastExams: state.pastExams.index,
+  college: state.searchPanel.college
+})
 const mapDispatchToProps = (dispatch) => ({
   fetchData: (page) => dispatch(getPastExams(page)),
   updateFilters: (filters) => dispatch(actions.pastExams.index.updateFilters(filters)),
@@ -34,7 +36,7 @@ const enhance = compose(
         q: {
           sort: {
             order: 'desc',
-            by: 'id'
+            by: 'created_at'
           },
           filters: {
             custom_search: ''
@@ -43,7 +45,9 @@ const enhance = compose(
       })
     },
     componentDidUpdate (prevProps) {
-      if (this.props.pastExams.page !== prevProps.pastExams.page || this.props.pastExams.filter !== prevProps.pastExams.filter || this.props.college !== prevProps.college) {
+      if (this.props.pastExams.page !== prevProps.pastExams.page ||
+          this.props.pastExams.filter !== prevProps.pastExams.filter ||
+          this.props.college !== prevProps.college) {
         this.props.fetchData({
           page: this.props.pastExams.page,
           q: {
@@ -81,6 +85,7 @@ const Index = ({ pastExams, updatePage, updateFilters }) => (
             <SearchPanelCollegeList />
             <SearchPanelNewsFeed >
               {
+                pastExams.data &&
                 pastExams.data.length
                   ? pastExams.data
                     .slice(0, 10)
@@ -91,9 +96,9 @@ const Index = ({ pastExams, updatePage, updateFilters }) => (
                       >
                         { moment(pastExam.updated_at).fromNow() }
                         { pastExam.uploader}
-                          上傳了
+                        上傳了
                         <strong>{ pastExam.course.name }</strong>
-                          的考古題
+                        的考古題
                       </SearchPanelNews>
                     )
                     )
