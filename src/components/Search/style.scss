@@ -1,16 +1,17 @@
 
 @import "~assets/styles/_common";
 
-.searchCourse{
-	margin: auto;
-	.searchBar{ width: 212px; }
-	.checkbox{
-		margin-left: 10px;
-		vertical-align: 30px;
-	}
+.searchCourse {
+  margin: auto;
+  .searchBar { width: 212px; }
+
+  .checkbox {
+    margin-left: 10px;
+    vertical-align: 30px;
+  }
 }
 
-.searchPanel{
+.searchPanel {
 	position: fixed;
 	left: -300px;
 	top: 56px;
@@ -21,13 +22,14 @@
 	padding: 20px;
 	margin: 0;
 	z-index: 100;
-	&:global(.show){
+  
+	&:global(.show) {
 		transition: .2s ease-in;
 		left: 0;
 		overflow: auto;
 	}
 
-	.panelOpen{
+	.panelOpen {
 		position: absolute;
 		left: 300px;
 		top: 5%;
@@ -43,18 +45,22 @@
 		border-radius:  0 100px 100px 0 ;
 		transition: .2s ease-in;
 		cursor: pointer;
-		&:hover{
+    
+		&:hover {
 			width: 60px;
 		}
-		&:global(.show){
+    
+		&:global(.show) {
 			display: none;
 		}
 	}
-	.panelClose{
+  
+	.panelClose {
 		opacity: 0;
 		left: 0px;
 		transition: .2s ease-in;
-		&:global(.show){
+    
+		&:global(.show) {
 			opacity: 1;
 			background: rgba(0,0,0,.75);
 			width: 100vw;
@@ -67,11 +73,13 @@
 			z-index: 10;
 		}
 	}
-	.collegeGroup{
+  
+	.collegeGroup {
 		padding-bottom: 20px;
 		margin-left: -15px;
 		margin-right: -15px;
-		.college{
+    
+		.college {
 			padding-left: 0;
 			padding-right: 0;
 			width: 50%;

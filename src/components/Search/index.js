@@ -120,25 +120,27 @@ class SearchCourse extends React.Component {
 }
 
 const SearchPanelNews = (props) => {
-  if (props.status) {
+  const color = props.status ? 'list-group-item-success' : 'list-group-item-light'
+
+  if (props.clickable) {
     return (
-      <div to={props.href} className='list-group-item list-group-item-success'>
+      <Link to={props.href} className={`list-group-item ${color}`}>
         { props.children }
-      </div>
+      </Link>
     )
   } else {
     return (
-      <Link to={props.href} className='list-group-item list-group-item-light'>
+      <div className={`list-group-item ${color}`}>
         { props.children }
-      </Link>
+      </div>
     )
   }
 }
 
 const SearchPanelNewsFeed = (props) => (
   <div>
-    <h4 className={`text-center ${styles.title}`}>最新動態</h4>
-    <div className='row'>
+    <h4 className={`text-center d-none d-lg-block ${styles.title}`}>最新動態</h4>
+    <div className='row d-none d-lg-block'>
       <div className='list-group'>
         { props.children }
       </div>
@@ -160,8 +162,8 @@ const SearchPanelCollegeBtn = connect(mapStateToProps, mapDispatchToProps)((prop
     onClick={() => props.updateCollege(props.value)}>{props.title}</button>
 ))
 
-const SearchPanelCollegeList = () => (
-  <div className={`d-none d-md-block ${styles.collegeGroup}`}>
+const SearchPanelCollegeList = (props) => (
+  <div className={`d-md-block ${styles.collegeGroup}`}>
     <h4 className='text-center'>分類</h4>
     <SearchPanelCollegeBtn title='共同課程' value={0} />
     <SearchPanelCollegeBtn title='資訊學院' value={3} />

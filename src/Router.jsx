@@ -98,8 +98,8 @@ const Router = enhance(({ currentUser }) => {
         {/* discuss route group */}
         <Route exact path='/comments' component={Comments.Index} />
         <Route path='/comments/new' component={loginOnly(Comments.New)} />
-        <Route path='/comments/:id' component={Comments.Show} />
-        <Route path='/comments/:id/edit' component={loginOnly(Comments.Edit)} />
+        <Route exact path='/comments/:id' component={Comments.Show} />
+        <Route exact path='/comments/:id/edit' component={loginOnly(Comments.Edit)} />
 
         {/* past exam route group */}
         <Route exact path='/past_exams' component={PastExams.Index} />
