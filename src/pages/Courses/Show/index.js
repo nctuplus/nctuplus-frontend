@@ -22,10 +22,6 @@ class Show extends React.Component {
   constructor (props) {
     super(props)
 
-    this.ratings = this.props.ratings || {}
-    // workaround
-    this.chartData = this.props.chartData || []
-
     this.state = { anchor: 1 }
     this.scrollTo = this.scrollTo.bind(this)
     this.anchors = Array(7).fill(0).map(React.createRef)
@@ -42,6 +38,8 @@ class Show extends React.Component {
   }
 
   render () {
+    const ratings = this.props.ratings || {};
+    const chartData = this.props.chartData || []
     return (
       <Layout>
         <Sidebar >
@@ -87,7 +85,7 @@ class Show extends React.Component {
                   <Section domref={this.anchors[0]} >
                     <div className='row'>
                       <div className='col-12 col-md-7'>
-                        <Ratings rating={this.ratings} />
+                        <Ratings rating={ratings} />
                       </div>
                       {/* <div className='col-12 col-md-5'>
                         <PersonalRating />
@@ -123,7 +121,7 @@ class Show extends React.Component {
                     domref={this.anchors[3]}
                     title={<span><i className='fa fa-align-left mx-2' />歷年統計</span>}
                   >
-                    <Course.StatisticCharts chart_data={this.chartData} />
+                    <Course.StatisticCharts chart_data={chartData} />
                   </Section>
 
                   <hr />

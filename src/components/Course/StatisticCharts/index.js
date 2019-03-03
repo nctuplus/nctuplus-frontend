@@ -8,11 +8,13 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-  Bar
+  Bar,
+  Label
 } from 'recharts'
-
+import styles from './style.scss';
+import testData from './testData';
 const StatisticBlock = ({ value, children }) => (
-  <div className='col-md-2 text-center bg-white p-3 m-3 '>
+  <div className='col-md-2 text-center bg-white p-3 mx-3 '>
     <h1><strong>{ value }</strong></h1>
     <span>{ children }</span>
   </div>
@@ -21,11 +23,14 @@ const StatisticBlock = ({ value, children }) => (
 // @todo: connect API
 const StatisticCharts = (props) => (
   <div>
-    <div className='chart-wrapper'>
-      <ResponsiveContainer width='100%' height='100%'>
-        <BarChart data={props.chart_data}>
-          <XAxis dataKey='name' />
-          <YAxis />
+    <div className={`chart-wrapper ${styles.chartWrapper}`}>
+      <h5>歷年選課人數統計</h5>
+      <ResponsiveContainer width='100%' height={350}>
+        <BarChart data={props.chart_people}>
+          <XAxis dataKey='semester' />
+          <YAxis domain={[0,'dataMax - 5']}>
+            <Label value="人數" position="insideLeft" angle={-90} />
+          </YAxis>
           <CartesianGrid strokeDasharray='3 3' />
           <Tooltip />
           <Legend />
@@ -35,12 +40,14 @@ const StatisticCharts = (props) => (
         </BarChart>
       </ResponsiveContainer>
     </div>
-    <br />
-    <div className='chart-wrapper'>
-      <ResponsiveContainer width='100%' height='100%'>
-        <BarChart data={props.chart_data}>
-          <XAxis dataKey='name' />
-          <YAxis />
+    <div className={`chart-wrapper ${styles.chartWrapper}`}>
+      <h5>歷年修課平均分數</h5>
+      <ResponsiveContainer width='100%' height={350}>
+        <BarChart data={props.chart_avg}>
+          <XAxis dataKey='semester' />
+          <YAxis domain={[0,100]}>
+            <Label value="分" position="insideLeft" angle={-90} />
+          </YAxis>
           <CartesianGrid strokeDasharray='3 3' />
           <Tooltip />
           <Legend />
