@@ -15,16 +15,18 @@ import * as PastExam from 'components/PastExam'
 import { InputWithButton } from 'components/FormUtils'
 import Spinner from 'components/Spinner'
 import actions from 'api/Actions/PastExams'
-import { getPastExams } from 'api/Controllers/pastExams'
+import { getPastExams, getPastExamsLatestNews } from 'api/Controllers/pastExams'
 
 const mapStateToProps = (state) => ({
   pastExams: state.pastExams.index,
-  college: state.searchPanel.college
+  college: state.searchPanel.college,
+  latestNews: state.pastExams.latestNews
 })
 const mapDispatchToProps = (dispatch) => ({
   fetchData: (page) => dispatch(getPastExams(page)),
   updateFilters: (filters) => dispatch(actions.pastExams.index.updateFilters(filters)),
-  updatePage: (page) => dispatch(actions.pastExams.index.updatePage(page))
+  updatePage: (page) => dispatch(actions.pastExams.index.updatePage(page)),
+  fetchLatestNews: (payload) => dispatch(getPastExamsLatestNews(payload))
 })
 
 const enhance = compose(
@@ -43,6 +45,15 @@ const enhance = compose(
           }
         }
       })
+      this.props.fetchLatestNews({
+        page: 1,
+        q: {
+          sort: {
+            order: 'desc',
+            by: 'created_at'
+          }
+        }
+      })
     },
     componentDidUpdate (prevProps) {
       if (this.props.pastExams.page !== prevProps.pastExams.page ||
@@ -51,9 +62,22 @@ const enhance = compose(
         this.props.fetchData({
           page: this.props.pastExams.page,
           q: {
+            sort: {
+              order: 'desc',
+              by: 'created_at'
+            },
             filters: {
               custom_search: this.props.pastExams.filter.search_by,
               class: this.props.college
+            }
+          }
+        })
+        this.props.fetchLatestNews({
+          page: 1,
+          q: {
+            sort: {
+              order: 'desc',
+              by: 'created_at'
             }
           }
         })
@@ -62,7 +86,7 @@ const enhance = compose(
   })
 )
 
-const Index = ({ pastExams, updatePage, updateFilters }) => (
+const Index = ({ pastExams, latestNews, updatePage, updateFilters }) => (
   <Layout>
     <div className='container pt-3'>
       <div className='row'>
@@ -85,23 +109,22 @@ const Index = ({ pastExams, updatePage, updateFilters }) => (
             <SearchPanelCollegeList />
             <SearchPanelNewsFeed >
               {
-                pastExams.data &&
-                pastExams.data.length
-                  ? pastExams.data
+                latestNews.data &&
+                latestNews.data.length
+                  ? latestNews.data
                     .slice(0, 10)
                     .map((pastExam, index) => (
                       <SearchPanelNews
                         href={`/past_exams/${pastExam.id}`}
-                        key={index}
+                        key={pastExam.id}
                       >
-                        { moment(pastExam.updated_at).fromNow() }
+                        { moment(pastExam.created_at).fromNow() }
                         { pastExam.uploader}
                         上傳了
                         <strong>{ pastExam.course.name }</strong>
                         的考古題
                       </SearchPanelNews>
-                    )
-                    )
+                    ))
                   : <div className='text-center'>
                     <Spinner size={32} color='grey' />
                   </div>

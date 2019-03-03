@@ -9,6 +9,10 @@ const initialState = {
     filter: { search_by: '' },
     page: 1,
     maxPage: 1
+  },
+  latestNews: {
+    data: [],
+    status: FETCHING_STATUS.IDLE
   }
 }
 
@@ -22,6 +26,10 @@ export default handleActions({
       },
       UPDATE_PAGE: (state, action) => ({ ...state, index: { ...state.index, page: action.payload } }),
       UPDATE_FILTERS: (state, action) => ({ ...state, index: { ...state.index, filter: { ...state.index.filters, ...action.payload } } })
+    },
+    LATEST_NEWS: {
+      SET_STATUS: (state, action) => ({ ...state, latestNews: { ...state.latestNews, status: action.payload } }),
+      STORE: (state, action) => ({ ...state, latestNews: { ...state.latestNews, data: action.payload.data } })
     }
   }
 }, initialState)
