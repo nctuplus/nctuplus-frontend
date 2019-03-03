@@ -21,7 +21,7 @@ class Info extends React.Component {
             <tbody>
               <tr>
                 <td>當期課號：<strong>{當期課號}</strong></td>
-                <td>學分：<strong>{this.props.permanent_course.credit}</strong></td>
+                <td>學分：<strong>{courseInfos[0].credit}</strong></td>
               </tr>
               <tr>
                 <td>
@@ -62,19 +62,20 @@ class Info extends React.Component {
                 return (
                   <tr key={index} className={trStyle}>
                     <td>{convertSemesterToString(item.semester)}</td>
-                    <td>{item.department}</td>
+                    <td>{item.department.name}</td>
                     <td>{item.code}</td>
                     <td>{item.requirement_type}</td>
                     <td className='text-center'>{item.registration_count}/{item.registration_limit}</td>
                     <td>{convertTimeSlotsToString(item.time_slots)}</td>
                     <td>{item.classroom}</td>
+                    <td>{item.credit}</td>
                     <td>{item.grade}</td>
-                    <td>{item.remark}</td>
+                    <td>{item.remarks}</td>
                   </tr>
                 )
               })}
-              <tr>
-                <td>{convertSemesterToString(this.props.semester)}</td>
+              {/* <tr>
+                <td>{convertSemesterToString(courseInfos[0].semester)}</td>
                 <td>{this.props.department}</td>
                 <td>
                   <a href={this.props.href} target='_blank'>{this.props.code}</a>
@@ -86,19 +87,22 @@ class Info extends React.Component {
                 <td>{this.props.credit}</td>
                 <td>{this.props.grade}</td>
                 <td>{this.props.remark}</td>
-              </tr>
+              </tr> */}
             </tbody>
           </table>
         </div>
-        <div className={styles.moreIcon}>
-          <div>
-            <span>查看往年資訊</span>
-            <div className={styles.angleContainer}>
-              <span>&#65088;</span>
-              <span className={styles.downAngle}>&#65088;</span>
+        {courseInfos.length > 1?
+          <div className={styles.moreIcon}>
+            <div>
+              <span>查看往年資訊</span>
+              <div className={styles.angleContainer}>
+                <span>&#65088;</span>
+                <span className={styles.downAngle}>&#65088;</span>
+              </div>
             </div>
-          </div>
-        </div>
+          </div> : null
+        }
+
       </div>
     )
   }
