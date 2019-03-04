@@ -91,8 +91,8 @@ class Info extends React.Component {
             </tbody>
           </table>
         </div>
-        {courseInfos.length > 1?
-          <div className={styles.moreIcon}>
+        {courseInfos.length > 1
+          ? <div className={styles.moreIcon}>
             <div>
               <span>查看往年資訊</span>
               <div className={styles.angleContainer}>

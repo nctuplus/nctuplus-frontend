@@ -11,7 +11,7 @@ import scrollToComponent from 'react-scroll-to-component'
 import { connect } from 'react-redux'
 import { getCourse } from 'api/Controllers/courses'
 
-import {testData} from './testData';
+import { testData } from './testData'
 
 const Section = (props) => (
   <div className='py-4' ref={props.domref}>
@@ -40,8 +40,8 @@ class Show extends React.Component {
   }
 
   render () {
-    const ratings = this.props.ratings || {};
-    const chartData = this.props.chartData || testData;
+    const ratings = this.props.ratings || {}
+    const chartData = this.props.chartData || testData
 
     return (
       <Layout>

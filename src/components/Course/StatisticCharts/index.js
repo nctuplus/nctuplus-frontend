@@ -11,8 +11,8 @@ import {
   Bar,
   Label
 } from 'recharts'
-import randomColor from 'randomcolor';
-import styles from './style.scss';
+import randomColor from 'randomcolor'
+import styles from './style.scss'
 
 const StatisticBlock = ({ value, children }) => (
   <div className='col-md-2 text-center bg-white p-3 mx-3 '>
@@ -26,7 +26,7 @@ const StatisticCharts = (props) => {
   const color = randomColor({
     count: Object.keys(props.chart_people[0]).length,
     seed: 'NCTU+ is Gooood',
-    luminosity:'bright'
+    luminosity: 'bright'
   })
   return (
     <div>
@@ -35,16 +35,14 @@ const StatisticCharts = (props) => {
         <ResponsiveContainer width='100%' height={350}>
           <BarChart data={props.chart_people}>
             <XAxis dataKey='semester' />
-            <YAxis domain={[0,'dataMax + 5']}>
-              <Label value="人數" position="insideLeft" angle={-90} />
+            <YAxis domain={[0, 'dataMax + 5']}>
+              <Label value='人數' position='insideLeft' angle={-90} />
             </YAxis>
             <CartesianGrid strokeDasharray='3 3' />
             <Tooltip />
             <Legend />
-            {Object.keys(props.chart_people[0]).map((item, index)=>{
-              if(item !== 'semester')
-                return <Bar key={index} dataKey={item} fill={color[index]} />
-              else return null
+            {Object.keys(props.chart_people[0]).map((item, index) => {
+              if (item !== 'semester') { return <Bar key={index} dataKey={item} fill={color[index]} /> } else return null
             })}
           </BarChart>
         </ResponsiveContainer>
@@ -54,16 +52,14 @@ const StatisticCharts = (props) => {
         <ResponsiveContainer width='100%' height={350}>
           <BarChart data={props.chart_avg}>
             <XAxis dataKey='semester' />
-            <YAxis domain={[0,100]}>
-              <Label value="分" position="insideLeft" angle={-90} />
+            <YAxis domain={[0, 100]}>
+              <Label value='分' position='insideLeft' angle={-90} />
             </YAxis>
             <CartesianGrid strokeDasharray='3 3' />
             <Tooltip />
             <Legend />
-            {Object.keys(props.chart_avg[0]).map((item, index)=>{
-              if(item !== 'semester')
-                return <Bar key={index} dataKey={item} fill={color[index]} />
-              else return null
+            {Object.keys(props.chart_avg[0]).map((item, index) => {
+              if (item !== 'semester') { return <Bar key={index} dataKey={item} fill={color[index]} /> } else return null
             })}
           </BarChart>
         </ResponsiveContainer>
