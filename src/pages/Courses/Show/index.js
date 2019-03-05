@@ -48,9 +48,9 @@ class Show extends React.Component {
           <SidebarItem active={this.state.anchor === 1} onClick={this.scrollTo(1)}>
             課程資訊
           </SidebarItem>
-          <SidebarItem active={this.state.anchor === 2} onClick={this.scrollTo(2)}>
+          {/* <SidebarItem active={this.state.anchor === 2} onClick={this.scrollTo(2)}>
             課程攻略
-          </SidebarItem>
+          </SidebarItem> */}
           <SidebarItem active={this.state.anchor === 3} onClick={this.scrollTo(3)}>
             歷年統計
           </SidebarItem>
@@ -110,14 +110,14 @@ class Show extends React.Component {
 
                   <hr />
 
-                  <Section
+                  {/* <Section
                     domref={this.anchors[2]}
                     title={<span><i className='fa fa-gamepad mx-2' />課程攻略</span>}
                   >
                     <Course.Tips />
                   </Section>
 
-                  <hr />
+                  <hr /> */}
 
                   <Section
                     domref={this.anchors[3]}
@@ -160,7 +160,6 @@ class Show extends React.Component {
 
                   <Section domref={this.anchors[6]} title='考古題區'>
                     <PastExam.FileList />
-                    <PastExam.Upload />
                   </Section>
                 </div>
             }
