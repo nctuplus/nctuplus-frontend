@@ -5,16 +5,18 @@
   width: 120px;
   min-height: 120px;
   margin: 15px;
+  // border: 1px solid black;
+  flex: 0 1 120px;
+  text-align: center;
 
   @include media-breakpoint-up(lg) {
-    width: 110px;
-    min-height: 110px;
     margin: 10px;
   }
 
   .people {
     width: 100%;
     color: #455a64;
+    margin-top: 5px;
   }
 }
 
@@ -34,5 +36,13 @@
   .myRating {
     font-size: 20px;
     margin: 10px;
+  }
+}
+
+.starRating {
+  & > span {
+    display: block;
+    font-size: 60px;
+    line-height: 1.1em;
   }
 }

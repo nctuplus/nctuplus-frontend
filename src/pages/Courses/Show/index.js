@@ -40,7 +40,6 @@ class Show extends React.Component {
   }
 
   render () {
-    const ratings = this.props.ratings || {}
     const chartData = this.props.chartData || testData
 
     return (
@@ -87,8 +86,8 @@ class Show extends React.Component {
 
                   <Section domref={this.anchors[0]} >
                     <div className='row'>
-                      <div className='col-12 col-md-7'>
-                        <Ratings rating={ratings} />
+                      <div className='col'>
+                        <Ratings rating={this.props.rating} />
                       </div>
                       {/* <div className='col-12 col-md-5'>
                         <PersonalRating />
