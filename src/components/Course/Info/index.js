@@ -28,7 +28,7 @@ class Info extends React.Component {
                   永久課號：<strong>{this.props.permanent_course.code}</strong>
                 </td>
                 <td>
-                  <a href={this.props.href} target='_blank'>課程綱要 <i className='fas fa-external-link-alt' /></a>
+                  <a href={this.props.href} target='_blank' rel='noopener noreferrer'>課程綱要 <i className='fas fa-external-link-alt' /></a>
                 </td>
 
               </tr>
