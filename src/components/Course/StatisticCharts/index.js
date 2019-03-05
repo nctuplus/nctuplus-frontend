@@ -15,7 +15,7 @@ import randomColor from 'randomcolor'
 import styles from './style.scss'
 
 const StatisticBlock = ({ value, children }) => (
-  <div className='col-md-2 text-center bg-white p-3 mx-3 '>
+  <div className='text-center bg-white p-3'>
     <h1><strong>{ value }</strong></h1>
     <span>{ children }</span>
   </div>
@@ -64,7 +64,7 @@ const StatisticCharts = (props) => {
           </BarChart>
         </ResponsiveContainer>
       </div>
-      <div className='row' style={{ paddingLeft: '5%' }}>
+      <div className={styles.staticBlockWrapper}>
         <StatisticBlock value={props.avg_score}>本課程平均成績</StatisticBlock>
         <StatisticBlock value={props.highest_avg_score}>同類課程最高成績</StatisticBlock>
         <StatisticBlock value={props.highest_avg_teacher}>同類課程最高分老師</StatisticBlock>

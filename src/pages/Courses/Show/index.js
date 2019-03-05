@@ -65,7 +65,7 @@ class Show extends React.Component {
           </SidebarItem>
         </Sidebar>
         <div className='container'>
-          <div className='offset-2 py-4'>
+          <div className='offset-md-2 py-4'>
             {
               this.props.fetching.status !== 2
                 ? <div className='text-center pt-3'><Spinner size={64} color='grey' /></div>
@@ -75,7 +75,7 @@ class Show extends React.Component {
                       <h1>{ this.props.course.permanent_course.name }</h1>
                       <small>最後同步時間 { this.props.course.updated_at }</small>
                     </div>
-                    <div className='col-md-2 pull-right mt-5'>
+                    <div className='col-md-2 pull-right mt-md-5 mt-3'>
                       <button className='btn btn-info m-1 d-flex justify-content-center align-items-center' >
                         <i className='fa fa-star' /><span className='ml-1'>收藏課程</span>
                       </button>
