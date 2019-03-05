@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import Pagination from 'components/Pagination'
 import { convertTimeSlotsToString, convertSemesterToString } from 'utilities'
 
-const Row = withRouter((props) => (
+const _Row = (props) => (
   <tr
     id={props.id}
     className='clickable'
@@ -20,7 +20,7 @@ const Row = withRouter((props) => (
       }
     </td>
     <td className='d-none d-table-cell' width='260px'>
-      {props.department}{props.remarks ? ` / ${props.remarks}` : '' }
+      {props.department.name}{props.remarks ? ` / ${props.remarks}` : '' }
       <br />
       <span className='badge badge-success mr-1' data-toggle='tooltip' data-placement='bottom' title='自然/基礎(96 )'> 自然/基礎</span>
       <span className='badge badge-secondary mr-1' data-toggle='tooltip' data-placement='bottom' title='自然/基礎(96 )'> 通識校基本</span>
@@ -30,7 +30,9 @@ const Row = withRouter((props) => (
     <td width='80px'>{props.grade}</td>
     <td width='80px'><i className='fa fa-2x cart-control fa-square-o mx-auto' style={{ color: 'lightseagreen' }} /></td>
   </tr>
-))
+)
+
+const Row = withRouter(_Row)
 
 const Table = ({ data, page, maxPage, updatePage }) => (
   <div>
