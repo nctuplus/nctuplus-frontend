@@ -65,17 +65,17 @@ const Ratings = (props) => {
   return (
     <div className='d-flex'>
       <div className={`${styles.rating}`}>
-        <StarRatingWithScore score={rating[0].stars || 0} color='#1BE7FF' />
-        <div className={`${styles.people} text-center`}>涼度({ rating[0].people || 0 }人)</div>
+        <StarRatingWithScore score={rating[0].stars || 4.2} color='#4EDB66' />
+        <div className={`${styles.people} text-center`}>涼度</div>
       </div>
       <div className={`${styles.rating}`}>
-        <StarRatingWithScore score={rating[1].stars || 0} color='#6EEB83' />
-        <div className={`${styles.people} text-center`}>甜度({ rating[1].people || 0 }人)</div>
+        <StarRatingWithScore score={rating[1].stars || 1.7} color='#FFC042' />
+        <div className={`${styles.people} text-center`}>甜度</div>
 
       </div>
       <div className={`${styles.rating}`}>
-        <StarRatingWithScore score={rating[2].stars || 0} color='#FDCA40' />
-        <div className={`${styles.people} text-center`}>深度({ rating[2].people || 0 }人)</div>
+        <StarRatingWithScore score={rating[2].stars || 3.7} color='#2E86AB' />
+        <div className={`${styles.people} text-center`}>深度</div>
       </div>
     </div>
   )
