@@ -22,6 +22,18 @@
   }
 }
 
+.btnLike {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-end;
+  height: 40px;
+
+  span {
+    line-height: 1em;
+  }
+}
+
 .CircularProgressbar {
   /*
  * This fixes an issue where the CircularProgressbar svg has

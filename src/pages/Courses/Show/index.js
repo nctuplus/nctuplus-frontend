@@ -10,7 +10,7 @@ import Spinner from 'components/Spinner'
 import scrollToComponent from 'react-scroll-to-component'
 import { connect } from 'react-redux'
 import { getCourse } from 'api/Controllers/courses'
-
+import styles from './style.scss'
 import { testData } from './testData'
 
 const Section = (props) => (
@@ -73,10 +73,10 @@ class Show extends React.Component {
                   <div className='row'>
                     <div className='col-md-10'>
                       <h1>{ this.props.course.permanent_course.name }</h1>
-                      <small>最後同步時間 { this.props.course.updated_at }</small>
+                      <small className=''>最後同步時間 { this.props.course.updated_at }</small>
                     </div>
-                    <div className='col-md-2 pull-right mt-md-5 mt-3'>
-                      <button className='btn btn-info m-1 d-flex justify-content-center align-items-center' >
+                    <div className='col-md-2 d-flex mt-md-0 mt-2 justify-content-md-end align-item-end'>
+                      <button className={`btn btn-info ${styles.btnLike}`} >
                         <i className='fa fa-star' /><span className='ml-1'>收藏課程</span>
                       </button>
                     </div>

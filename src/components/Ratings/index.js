@@ -61,22 +61,25 @@ const StarRatingWithScore = (props) => {
 }
 
 const Ratings = (props) => {
-  const rating = props.rating || [{}, {}, {}]
+  const stars = props.rating ? props.rating.stars : [0, 0, 0]
+  const people = props.rating ? props.rating.people : 0
   return (
-    <div className='d-flex'>
-      <div className={`${styles.rating}`}>
-        <StarRatingWithScore score={rating[0].stars || 4.2} color='#4EDB66' />
-        <div className={`${styles.people} text-center`}>涼度</div>
+    <div className={styles.container}>
+      <div className='d-flex'>
+        <div className={`${styles.rating}`}>
+          <StarRatingWithScore score={stars[0]} color='#4EDB66' />
+          <div className={`${styles.people} text-center`}>涼度</div>
+        </div>
+        <div className={`${styles.rating}`}>
+          <StarRatingWithScore score={stars[1]} color='#FFC042' />
+          <div className={`${styles.people} text-center`}>甜度</div>
+        </div>
+        <div className={`${styles.rating}`}>
+          <StarRatingWithScore score={stars[2]} color='#2E86AB' />
+          <div className={`${styles.people} text-center`}>深度</div>
+        </div>
       </div>
-      <div className={`${styles.rating}`}>
-        <StarRatingWithScore score={rating[1].stars || 1.7} color='#FFC042' />
-        <div className={`${styles.people} text-center`}>甜度</div>
-
-      </div>
-      <div className={`${styles.rating}`}>
-        <StarRatingWithScore score={rating[2].stars || 3.7} color='#2E86AB' />
-        <div className={`${styles.people} text-center`}>深度</div>
-      </div>
+      <div className={styles.totalPeople}><span><i className='fas fa-user' /> {people} 人 </span></div>
     </div>
   )
 }
