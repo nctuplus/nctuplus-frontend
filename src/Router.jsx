@@ -103,7 +103,7 @@ const Router = enhance(({ currentUser }) => {
 
         {/* past exam route group */}
         <Route exact path='/past_exams' component={PastExams.Index} />
-        <Route exact path='/past_exams/upload' component={loginOnly(PastExams.Upload)} />
+        <Route exact path='/past_exams/new' component={loginOnly(PastExams.New)} />
         <Route exact path='/past_exams/:id' component={loginOnly(PastExams.Index)} />
 
         {/* book route group */}

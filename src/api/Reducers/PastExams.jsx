@@ -10,6 +10,9 @@ const initialState = {
     page: 1,
     maxPage: 1
   },
+  new: {
+    status: FETCHING_STATUS.IDLE
+  },
   latestNews: {
     data: [],
     status: FETCHING_STATUS.IDLE
@@ -26,6 +29,9 @@ export default handleActions({
       },
       UPDATE_PAGE: (state, action) => ({ ...state, index: { ...state.index, page: action.payload } }),
       UPDATE_FILTERS: (state, action) => ({ ...state, index: { ...state.index, filter: { ...state.index.filters, ...action.payload } } })
+    },
+    NEW: {
+      SET_STATUS: (state, action) => ({ ...state, new: { ...state.new, status: action.payload } })
     },
     LATEST_NEWS: {
       SET_STATUS: (state, action) => ({ ...state, latestNews: { ...state.latestNews, status: action.payload } }),

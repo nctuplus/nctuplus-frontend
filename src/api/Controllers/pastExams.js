@@ -15,6 +15,14 @@ export const getPastExams = (payload) => dispatch => {
     .catch(() => dispatch(actions.pastExams.index.setStatus(FETCHING_STATUS.FAIL)))
 }
 
+export const postPastExam = (payload) => dispatch => {
+  dispatch(actions.pastExams.new.setStatus(FETCHING_STATUS.FETCHING))
+  server.protected
+    .post('/api/v1/past_exams/', payload)
+    .then(() => dispatch(actions.pastExams.new.setStatus(FETCHING_STATUS.DONE)))
+    .catch(() => dispatch(actions.pastExams.new.setStatus(FETCHING_STATUS.FAIL)))
+}
+
 export const getPastExamsLatestNews = (payload) => dispatch => {
   dispatch(actions.pastExams.latestNews.setStatus(FETCHING_STATUS.FETCHING))
   server.public

@@ -100,7 +100,7 @@ const Index = ({ pastExams, latestNews, updatePage, updateFilters }) => (
             />
             <SearchPanelButtonGroup
               new_title='上傳考古題'
-              new_link='/past_exams/upload'
+              new_link='/past_exams/new'
               new_btn_type='info'
               mine_title='我的考古題'
               mine_link='/past_exams/?mine=true'
