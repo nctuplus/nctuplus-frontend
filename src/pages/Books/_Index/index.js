@@ -1,5 +1,8 @@
 
 import React from 'react'
+import { connect } from 'react-redux'
+import moment from 'moment'
+import Layout from 'pages/Layout'
 import {
   SearchPanel,
   SearchPanelButtonGroup,
@@ -7,34 +10,32 @@ import {
   SearchPanelNews,
   SearchPanelNewsFeed
 } from 'components/Search'
-import Layout from 'pages/Layout'
 import * as Books from 'components/Book'
 import { InputWithButton } from 'components/FormUtils'
 import { toast, ToastWrapper } from 'components/Toast'
-import moment from 'moment'
-import styles from './style.scss'
-
-import { connect } from 'react-redux'
 import { getBooks, getBooksLatestNews } from 'api/Controllers/books'
 import actions from 'api/Actions/Books'
+import styles from './style.scss'
 
 class Index extends React.Component {
   componentDidMount () {
     // 判斷是不是從售出完成後導向過來的
     if (this.props.location.state && this.props.location.state.sell) {
       toast('成功售出!', { type: 'success' })
+
+      // 清除 location state
+      this.props.history.replace({
+        pathname: '/books/',
+        state: {}
+      })
     }
 
-    let books = this.props.books
     this.props.fetchData({
-      page: books.page,
+      page: 1,
       q: {
         sort: {
-          order: books.filters.descend ? 'desc' : 'asc',
-          by: books.filters.sort_by
-        },
-        filters: {
-          custom_search: books.filters.search_by
+          order: 'desc',
+          by: 'created_at'
         }
       }
     })
@@ -61,7 +62,6 @@ class Index extends React.Component {
   }
 
   componentWillUnmount () {
-    this.props.updatePage(1)
     this.props.updateFilters({ sort_by: 'created_at' })
     this.props.updateFilters({ descend: true })
     this.props.updateFilters({ search_by: '' })
@@ -139,8 +139,12 @@ class Index extends React.Component {
                 </SearchPanelNewsFeed>
               </SearchPanel>
             </div>
-            <div className='col-md-12 col-lg-9'>
-              <Books.Table {...this.props.books} updatePage={this.props.updatePage.bind(this)} />
+            <div className='col-12'>
+              <Books.Table
+                {...this.props.books}
+                currentUser={this.props.currentUser}
+                updatePage={this.props.updatePage.bind(this)}
+              />
             </div>
           </div>
         </div>
@@ -150,6 +154,7 @@ class Index extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
   books: state.books.index,
   latestNews: state.books.latestNews
 })

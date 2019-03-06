@@ -2,14 +2,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { base64encode } from 'utilities'
-import { FETCHING_STATUS } from 'utilities/constants'
-import { postBook } from 'api/Controllers/books'
-import actions from 'api/Actions/Books'
-
 import Form from 'components/Book/Form'
 import { SearchListMultiple } from 'components/Course/SearchList'
 import { modal } from 'components/Modal'
+import { postBook } from 'api/Controllers/books'
+import actions from 'api/Actions/Books'
+import { base64encode } from 'utilities'
+import { FETCHING_STATUS } from 'utilities/constants'
 
 const mapStateToProps = (state) => ({
   book: state.books.new.data,

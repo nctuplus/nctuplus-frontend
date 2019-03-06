@@ -2,13 +2,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { base64encode } from 'utilities'
-import { FETCHING_STATUS } from 'utilities/constants'
-import { getBook, patchBook, sellBook } from 'api/Controllers/books'
-import actions from 'api/Actions/Books'
 import Form from 'components/Book/Form'
 import { SearchListMultiple } from 'components/Course/SearchList'
 import { modal } from 'components/Modal'
+import { getBook, patchBook, sellBook } from 'api/Controllers/books'
+import actions from 'api/Actions/Books'
+import { base64encode } from 'utilities'
+import { FETCHING_STATUS } from 'utilities/constants'
 
 const mapStateToProps = (state) => ({
   book: state.books.show.data,
@@ -120,7 +120,9 @@ class Edit extends React.Component {
   }
 
   onSell () {
-    this.props.sellBook(this.props.match.params.id)
+    if (window.confirm('確定刪除此書嗎?')) {
+      this.props.sellBook(this.props.match.params.id)
+    }
   }
 
   addSearchCourse (course) {
