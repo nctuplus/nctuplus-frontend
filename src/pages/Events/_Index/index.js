@@ -35,9 +35,9 @@ const NavFooter = (props) => (
         <div className={`col-md-9 ${styles.myActivityLink}`}>
           {
             props.data.map((event, index) =>
-              <div key={index}>
-                <span className='mr-3'>{event.begin_time ? event.begin_time.slice(0, 10) : ''}</span>
-                <span>{event.title}</span>
+              <div key={event.id}>
+                <span className='mr-3'>{ event.begin_time && event.begin_time.substr(0, 10) }</span>
+                <span>{ event.title }</span>
               </div>
             )
           }
@@ -65,12 +65,12 @@ const enhance = compose(
   withState('visible', 'setVisible', false),
   lifecycle({
     componentDidMount: function () {
-      let events = this.props.events
       this.props.fetchData({
-        page: events.page,
+        page: 1,
         q: {
-          filters: {
-            custom_search: events.filters.search_by
+          sort: {
+            order: 'desc',
+            by: 'created_at'
           }
         }
       })
@@ -82,16 +82,16 @@ const enhance = compose(
         this.props.fetchData({
           page: events.page,
           q: {
+            sort: {
+              order: 'desc',
+              by: 'created_at'
+            },
             filters: {
               custom_search: events.filters.search_by
             }
           }
         })
       }
-    },
-    componentWillUnmount () {
-      this.props.updatePage(1)
-      this.props.updateFilters({ search_by: '' })
     }
   })
 )
@@ -114,7 +114,7 @@ const Index = enhance((props) =>
             props.events.data
               .filter(event => moment().isBetween(event.begin_time, event.end_time))
               .map((event, index) =>
-                <div key={index}>
+                <div key={event.id}>
                   <Link to={`/events/${event.id}`}>
                     <img
                       alt='banner'
@@ -124,7 +124,7 @@ const Index = enhance((props) =>
                     />
                   </Link>
                   <h3 className={`text-center text-white ${styles.title}`}>
-                    {event.title}
+                    { event.title }
                   </h3>
                 </div>
               )
@@ -162,7 +162,7 @@ const Index = enhance((props) =>
         {
           props.events.data
             .filter(event => moment().isBetween(event.begin_time, event.end_time))
-            .map((event, index) => <Preview {...event} key={index} />)
+            .map((event, index) => <Preview {...event} key={event.id} />)
         }
       </div>
 
@@ -173,7 +173,7 @@ const Index = enhance((props) =>
         {
           props.events.data
             .filter(event => moment().isAfter(event.end_time))
-            .map((event, index) => <Preview {...event} key={index} />)
+            .map((event, index) => <Preview {...event} key={event.id} />)
         }
       </div>
       <div className='text-center'>

@@ -15,9 +15,15 @@ class Show extends React.Component {
   }
 
   componentDidUpdate () {
-    if (this.props.eventDeleteStatus === FETCHING_STATUS.DONE) {
+    if (this.props.deleteStatus === FETCHING_STATUS.DONE) {
       this.props.deleteEventReset()
       this.props.history.push('/events')
+    }
+  }
+
+  deleteEvent (id) {
+    if (window.confirm('確定刪除此活動嗎?')) {
+      this.props.deleteEvent(id)
     }
   }
 
@@ -60,18 +66,18 @@ class Show extends React.Component {
               src={event.cover_image && `${SERVER_URL}${event.cover_image.url}`}
             />
           </div>
-          <span className={styles.eventTitle}>[{type}] {event.title}</span>
+          <span className={styles.eventTitle}>[{ type }] { event.title }</span>
           <div className={`${styles.eventInfoWrapper} bg-white`}>
             <div className='row'>
               <div className='col-12 col-lg-8'>
-                <p><i className='fa fa-calendar' /> 時間: <strong>{event.begin_time} ~ {event.end_time}</strong></p>
-                <p><i className='fa fa-cubes' /> 主辦單位: {event.organization}</p>
-                <p><i className='fa fa-location-arrow' /> 地點: {event.location}</p>
-                <p><i className='fa fa-share-alt' /> 活動網址: <a href={event.url} target='blank'>點這裡</a></p>
+                <p><i className='fa fa-calendar' /> 時間: <strong>{ event.begin_time } ~ { event.end_time }</strong></p>
+                <p><i className='fa fa-cubes' /> 主辦單位: { event.organization }</p>
+                <p><i className='fa fa-location-arrow' /> 地點: { event.location }</p>
+                <p><i className='fa fa-share-alt' /> 活動網址: <a href={event.url} target='_blank' rel='noopener noreferrer'>點這裡</a></p>
               </div>
               <div className='col-12 col-lg-4'>
-                <p className={styles.infoBox}><i className='fa fa-eye' /> 觀看次數: <strong>{event.view_count}</strong></p>
-                <p className={styles.infoBox}><i className='fa fa-rss' /> 關注人數: <strong>{event.follow_count}</strong>
+                <p className={styles.infoBox}><i className='fa fa-eye' /> 觀看次數: <strong>{ event.view_count }</strong></p>
+                <p className={styles.infoBox}><i className='fa fa-rss' /> 關注人數: <strong>{ event.follow_count }</strong>
                 </p>
               </div>
             </div>
@@ -83,7 +89,7 @@ class Show extends React.Component {
           </div>
           <div className='row mx-0 py-3'>
             <div className={`${styles.fixedMenu}`}>
-              { // 這裡先直接顯示 之後要改成判斷是否為自己的活動
+              { // TODO: 這裡先直接顯示 之後要改成判斷是否為自己的活動
                 <div className='pull-left'>
                   <Link to={`/events/${this.props.match.params.id}/edit`} className='flat-link'>
                     <button className='btn btn-primary nav-button' >
@@ -117,17 +123,13 @@ class Show extends React.Component {
 const mapStateToProps = (state) => ({
   event: state.events.show.data,
   status: state.events.show.status,
-  eventDeleteStatus: state.events.delete.status,
+  deleteStatus: state.events.delete.status,
   followEvents: state.events.follow.data
 })
 
 const mapDispatchToProps = (dispatch) => ({
   getEvent: (id) => dispatch(getEvent(id)),
-  deleteEvent: (id) => {
-    if (window.confirm('確定刪除此活動嗎?')) {
-      dispatch(deleteEvent(id))
-    }
-  },
+  deleteEvent: (id) => dispatch(deleteEvent(id)),
   deleteEventReset: () => dispatch(actions.events.delete.setStatus(FETCHING_STATUS.IDLE)),
   follow: (id, events) => dispatch(updateFollowEvents(id, events)),
   cancelFollow: (id, pos, events) => dispatch(deleteFollowEvents(id, pos, events))
