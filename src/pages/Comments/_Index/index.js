@@ -18,16 +18,12 @@ import actions from 'api/Actions/Comments'
 
 class Index extends React.Component {
   componentDidMount () {
-    let comments = this.props.comments
     this.props.fetchData({
-      page: comments.page,
+      page: 1,
       q: {
         sort: {
           order: 'desc',
           by: 'created_at'
-        },
-        filters: {
-          custom_search: comments.filters.search_by
         }
       }
     })
@@ -40,17 +36,16 @@ class Index extends React.Component {
       this.props.fetchData({
         page: comments.page,
         q: {
+          sort: {
+            order: 'desc',
+            by: 'created_at'
+          },
           filters: {
             custom_search: comments.filters.search_by
           }
         }
       })
     }
-  }
-
-  componentWillUnmount () {
-    this.props.updatePage(1)
-    this.props.updateFilters({ search_by: '' })
   }
 
   render () {
@@ -101,7 +96,7 @@ class Index extends React.Component {
                 </SearchPanelNewsFeed>
               </SearchPanel>
             </div>
-            <div className='col-md-12 col-lg-9'>
+            <div className='col-12'>
               <Comments.Table {...this.props.comments} updatePage={this.props.updatePage.bind(this)} />
             </div>
           </div>

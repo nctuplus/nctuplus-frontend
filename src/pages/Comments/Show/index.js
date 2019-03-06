@@ -54,7 +54,7 @@ class Show extends React.Component {
                   <div>
                     { comment.anonymity ? '匿名' : (comment.user && comment.user.name) }
                     <br />
-                    { comment.created_at && comment.created_at.slice(0, 10) }
+                    { comment.created_at && comment.created_at.substr(0, 10) }
                   </div>
                 </div>
                 <div className='col-lg-8 col-md-6 col-12'>
