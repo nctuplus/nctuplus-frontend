@@ -7,6 +7,7 @@ import styles from './style.scss'
 
 const Form = props => (
   <Layout scroll={false}>
+    <ModalWrapper />
     <div className='container bg-white p-3 p-md-4'>
       <div className='row'>
         <div className='col-12 col-md-8 offset-md-2'>
@@ -121,13 +122,12 @@ const Form = props => (
                       className='fa fa-times mx-2 text-blue pointer'
                       onClick={() => props.removeSearchCourse(course.course_id)}
                     />
-                    {course.course_name}
+                    { course.course_name }
                   </div>
                 </div>
               ))
             }
           </form>
-          <ModalWrapper />
 
           <div className='col-12 my-4'><hr /></div>
           <div className={styles.fixedMenu}>
@@ -135,15 +135,14 @@ const Form = props => (
               <button type='submit' className='btn btn-primary' onClick={props.onSubmit}>立即刊登</button>
               {
                 // 編輯表單才會有售出按鈕
-                props.formType === 'edit'
-                  ? <button
-                    className='btn btn-danger'
-                    disabled={props.payload.sold_at !== null}
-                    onClick={props.onSell}
-                  >
-                    售出
-                  </button>
-                  : ''
+                props.formType === 'edit' &&
+                <button
+                  className='btn btn-danger'
+                  disabled={props.payload.sold_at !== null}
+                  onClick={props.onSell}
+                >
+                  售出
+                </button>
               }
             </div>
           </div>

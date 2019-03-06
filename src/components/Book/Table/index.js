@@ -1,22 +1,27 @@
 
 import React from 'react'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter } from 'react-router'
+import { Link } from 'react-router-dom'
 import Pagination from 'components/Pagination'
 import styles from './style.scss'
 
 const Item = withRouter((props) => {
   return (
-    <div className='col-sm-6 col-md-4 mb-3' onClick={() => props.history.push(`/books/${props.id}`)}>
+    <div
+      className='col-sm-6 col-md-4 col-lg-3 mb-3'
+      onClick={() => props.history.push(`/books/${props.id}`)}
+    >
       <div className={`${styles.bookItem} card clickable`} >
         <div className='p-1'>
           {
-            props.sold_at === null
-              ? <div className='position-absolute'>
-                <Link to={`/books/${props.id}/edit`} onClick={(e) => e.stopPropagation()}>
-                  <button className='btn btn-warning btn-sm'><i className='fa fa-pencil' /></button>
-                </Link>
-              </div>
-              : ''
+            props.sold_at === null &&
+            props.currentUser && props.user &&
+            props.currentUser.id === props.user.id &&
+            <div className='position-absolute'>
+              <Link to={`/books/${props.id}/edit`} onClick={(e) => e.stopPropagation()}>
+                <button className='btn btn-warning btn-sm'><i className='fa fa-pencil' /></button>
+              </Link>
+            </div>
           }
           <div className='text-center'>
             <img
@@ -28,8 +33,8 @@ const Item = withRouter((props) => {
           </div>
         </div>
         <div className='card-body text-center'>
-          <div className='ellipsis'>{props.name}</div>
-          <div className='ellipsis'>作者: {props.authors}</div>
+          <div className='ellipsis'>{ props.name }</div>
+          <div className='ellipsis'>作者: { props.authors }</div>
           <div className='ellipsis'>
             課程: {
               props.courses &&
@@ -41,9 +46,10 @@ const Item = withRouter((props) => {
         </div>
 
         <div className='card-footer mt-1 p-2' >
-          <span>{props.created_at.slice(0, 10)}</span>
+          <span>{ props.created_at.substr(0, 10) }</span>
           <span className={`pull-right bold ${styles.price}`}>
-            <i className='fa fa-dollar' />{ props.price }
+            <i className='fa fa-dollar' />
+            { props.price }
           </span>
         </div>
       </div>
@@ -54,7 +60,11 @@ const Item = withRouter((props) => {
 const Table = (props) => (
   <div>
     <div className='row'>
-      { props.data.map(book => (<Item key={book.id} {...book} />)) }
+      {
+        props.data.map(book => (
+          <Item key={book.id} {...book} currentUser={props.currentUser} />
+        ))
+      }
     </div>
     <div className='text-center'>
       <Pagination page={props.page} maxPage={props.maxPage} to={props.updatePage} />

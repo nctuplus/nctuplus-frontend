@@ -1,17 +1,16 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-import { getBulletins } from 'api/Controllers/bulletins'
 import { withRouter } from 'react-router-dom'
 import { lifecycle, compose } from 'recompose'
-
+import classNames from 'classnames'
 import Layout from 'pages/Layout'
 import Cover from 'components/Cover'
 import About from 'components/About'
 import BulletinBoard from 'components/Bulletin'
+import { getBulletins } from 'api/Controllers/bulletins'
 import styles from './style.scss'
 import coverStyles from 'components/Cover/style.scss'
-import classNames from 'classnames'
 
 const CoverImageUrls = [
   'https://plus.nctu.edu.tw/backgrounds/%E8%95%AD%E7%AB%8B%E5%93%81-1.jpg',

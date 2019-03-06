@@ -19,14 +19,14 @@ const CommentsTableRow = withRouter((props) => (
       }
     </td>
     <td>{props.title}</td>
-    <td className='d-none d-table-cell'>{props.anonymity ? '匿名' : props.user.name}</td>
-    <td className='d-none d-table-cell'>{props.created_at && props.created_at.slice(0, 10)}</td>
+    <td className='d-none d-table-cell'>{ props.anonymity ? '匿名' : props.user.name }</td>
+    <td className='d-none d-table-cell'>{ props.created_at && props.created_at.substr(0, 10) }</td>
   </tr>
 ))
 
 const CommentsTable = (props) => (
   <div>
-    <table className='table table-sm table-hover bg-white'>
+    <table className='table table-hover bg-white'>
       <thead>
         <tr className='clickable'>
           <th>課程/教授</th>

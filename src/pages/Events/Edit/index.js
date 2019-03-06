@@ -3,16 +3,16 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { compose, withState, lifecycle, withHandlers, withProps } from 'recompose'
-import { base64encode } from 'utilities'
+import Form from 'components/Event/Form'
 import { getEvent, patchEvent } from 'api/Controllers/events'
 import actions from 'api/Actions/Events'
+import { base64encode } from 'utilities'
 import { FETCHING_STATUS } from 'utilities/constants'
-import Form from 'components/Event/Form'
 
 const mapStateToProps = (state) => ({
   event: state.events.show.data,
   status: state.events.show.status,
-  eventUpdateStatus: state.events.edit.status
+  updateStatus: state.events.edit.status
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -77,7 +77,7 @@ const enhance = compose(
         }
         props.setSynced(true)
       }
-      if (props.eventUpdateStatus === FETCHING_STATUS.DONE) {
+      if (props.updateStatus === FETCHING_STATUS.DONE) {
         props.patchEventReset()
         props.history.push(`/events/${props.payload.id}`)
       }
