@@ -1,5 +1,6 @@
 
 import React from 'react'
+import classNames from 'classnames'
 import Spinner from 'components/Spinner'
 import styles from './style.scss'
 
@@ -19,19 +20,19 @@ class BulletinBoard extends React.Component {
     super(props)
     this.state = { tab: TAB_UPDATE_LOG }
   }
+
   render () {
     return (
       <div className={styles.bulletinBoard}>
-        <hr />
         <div className={styles.tabs}>
           <button
-            className={this.state.tab === TAB_NEWS ? styles.active : ''}
+            className={classNames('text-white', this.state.tab === TAB_NEWS && styles.active)}
             onClick={() => this.setState({ tab: TAB_NEWS })}
           >
             最新消息
           </button>
           <button
-            className={this.state.tab === TAB_UPDATE_LOG ? styles.active : ''}
+            className={classNames('text-white', this.state.tab === TAB_UPDATE_LOG && styles.active)}
             onClick={() => this.setState({ tab: TAB_UPDATE_LOG })}
           >
             網站改版
