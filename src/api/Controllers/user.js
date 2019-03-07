@@ -11,7 +11,6 @@ export const login = data => dispatch =>
 
 export const logout = () => dispatch =>
   server.protected
-
     .delete('/auth/sign_out')
     .then(() => dispatch(actions.user.auth.logout()))
     .catch(() => dispatch(actions.user.auth.setStatus(FETCHING_STATUS.FAIL)))
@@ -29,6 +28,8 @@ export const validateToken = () => dispatch => {
       .catch(() => dispatch(actions.user.auth.setStatus(FETCHING_STATUS.FAIL)))
   }
 }
+
+// 個人頁面假資料，現在頁面改版暫時disable
 var tempData = {
   'id': 654,
   'email': 'test@abcde.com',

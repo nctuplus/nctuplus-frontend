@@ -1,6 +1,4 @@
 import React from 'react'
-// 我知道要把map放在td那裏，但是我之前放了沒有用?
-// 不太確定要怎麼寫
 
 const Collections = (props) => {
   return (
@@ -80,7 +78,6 @@ const Collections = (props) => {
 }
 
 const Users = [
-
   {
     people: [
       {
@@ -116,7 +113,6 @@ const Users = [
       }
     ]
   }
-
 ]
 
 const CollectionsTable = (props) => (
