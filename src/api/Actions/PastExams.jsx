@@ -8,6 +8,13 @@ export default createActions({
       STORE: null,
       UPDATE_PAGE: null,
       UPDATE_FILTERS: null
+    },
+    NEW: {
+      SET_STATUS: null
+    },
+    LATEST_NEWS: {
+      SET_STATUS: null,
+      STORE: null
     }
   }
 })

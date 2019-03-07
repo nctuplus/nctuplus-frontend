@@ -1,22 +1,24 @@
-.container{
-	border-radius: 3px;
-	background-color: white;
+.container {
+  border-radius: 3px;
+  background-color: white;
 }
 
-.input{
-	border: 1px solid grey;
-	background: #f1f1f1;
-	border-radius: 3px;
+.input {
+  border: 1px solid grey;
+  background: #f1f1f1;
+  border-radius: 3px;
 }
-.searchBtn{
-	background: #2196F3;
-	color: white;
-	font-size: 17px;
-	border: 1px solid grey;
-	border-left: none; /* Prevent double borders */
-	cursor: pointer;
-	border-radius: 3px;
-	&:hover{
-		background: #0b7dda;
-	}
-}	
+
+.searchBtn {
+  background: #2196f3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+  border-radius: 3px;
+
+  &:hover {
+    background: #0b7dda;
+  }
+}

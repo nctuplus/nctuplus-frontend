@@ -1,47 +1,56 @@
 
-.photo{
-	display: inline-block;
+.photo {
+  display: inline-block;
 }
-.card{
-	display: flex;
-	background-color: #e9eaed;
+
+.card {
+  display: flex;
+  background-color: #e9eaed;
 }
-.cardbody{
-	font-size: 14px;
-	line-height: 30px;
+
+.cardbody {
+  font-size: 14px;
+  line-height: 30px;
 }
-.cardFooter{
-	float: left;
+
+.cardFooter {
+  float: left;
 }
-.cardbtn{
-	width: 90px;
-	height: 31px;
+
+.cardbtn {
+  width: 90px;
+  height: 31px;
 }
-.cardbtntext{
-	width: 85px;
-	color: white;
+
+.cardbtntext {
+  width: 85px;
+  color: white;
 }
-.cardLeft{
-	background-color: #e9eaed; 
+
+.cardLeft {
+  background-color: #e9eaed;
 }
-.cardRight{
-	background-color: white;
+
+.cardRight {
+  background-color: white;
 }
-.btnCustomPrimary{
-	padding: 1px 5px;
-    font-size: 12px;
-    line-height: 1.5;
-	border-radius: 3px;
-	color: #fff;
-    background-color: #337ab7;
-    border-color: #2e6da4;
+
+.btnCustomPrimary {
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
 }
-.btnCustomWarning{
-	padding: 1px 5px;
-    font-size: 12px;
-    line-height: 1.5;
-	border-radius: 3px;
-	color: #fff;
-    background-color: #f0ad4e;
-    border-color: #f0ad4e;
+
+.btnCustomWarning {
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+  color: #fff;
+  background-color: #f0ad4e;
+  border-color: #f0ad4e;
 }
