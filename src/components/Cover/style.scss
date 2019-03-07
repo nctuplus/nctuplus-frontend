@@ -1,31 +1,39 @@
 
 @import '~assets/styles/_common';
 
-.cover{
-	height: calc(100vh - #{$navbar-height});
-	width: 100vw;
-	.container {
-		padding-top: 25vh;
-		color: white;
-		h1{
-			font-size: 65px;
-			font-weight: 800;
-		}
-		h1, h3{
-			text-shadow: 2px 2px 10px rgba(0,0,0,0.7);;
-		}
-		h4{
-			width: 200px;
-			height: auto;
-			padding: 4px;
-			transform: skew(-20deg);
-			background: $theme-color;
-			display: block;
-			font-weight: 600;
-			font-size: 16px;
-			text-align: center;
-		}
-	}
-}
+.cover {
+  height: calc(100vh - #{$navbar-height});
+  width: 100%;
 
-	
+  .container {
+    // min-width: 100%;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+
+    h1 {
+      font-size: 65px;
+      font-weight: 800;
+    }
+
+    h1,
+    h3 {
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+    }
+
+    h4 {
+      width: 200px;
+      height: auto;
+      padding: 4px;
+      transform: skew(-20deg);
+      background: $theme-color;
+      display: block;
+      font-weight: 600;
+      font-size: 16px;
+      text-align: center;
+    }
+  }
+}

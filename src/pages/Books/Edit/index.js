@@ -2,24 +2,27 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
+import Form from 'components/Book/Form'
+import { SearchListMultiple } from 'components/Course/SearchList'
+import { modal } from 'components/Modal'
+import { getBook, patchBook, sellBook } from 'api/Controllers/books'
+import actions from 'api/Actions/Books'
 import { base64encode } from 'utilities'
 import { FETCHING_STATUS } from 'utilities/constants'
-import { getBook, patchBook } from 'api/Controllers/books'
-import actions from 'api/Actions/Books'
-import Form from 'components/Book/Form'
-import SearchList from 'components/Course/SearchList'
-import { modal } from 'components/Modal'
 
 const mapStateToProps = (state) => ({
   book: state.books.show.data,
   status: state.books.show.status,
-  bookUpdateStatus: state.books.edit.status
+  bookUpdateStatus: state.books.edit.status,
+  bookSellStatus: state.books.sell.status
 })
 
 const mapDispatchToProps = (dispatch) => ({
   getBook: (id) => dispatch(getBook(id)),
   patchBook: (payload, id) => dispatch(patchBook(payload, id)),
-  patchBookReset: () => dispatch(actions.books.edit.setStatus(FETCHING_STATUS.IDLE))
+  patchBookReset: () => dispatch(actions.books.edit.setStatus(FETCHING_STATUS.IDLE)),
+  sellBook: (id) => dispatch(sellBook(id)),
+  sellBookReset: () => dispatch(actions.books.sell.setStatus(FETCHING_STATUS.IDLE))
 })
 
 class Edit extends React.Component {
@@ -34,7 +37,8 @@ class Edit extends React.Component {
         cover_image: '',
         info: '',
         contact_way: '',
-        courses: []
+        courses: [],
+        sold_at: ''
       },
       courseSearchWord: '',
       synced: false,
@@ -59,9 +63,19 @@ class Edit extends React.Component {
       this.setState({ synced: true })
     }
 
+    // 編輯完成
     if (this.props.bookUpdateStatus === FETCHING_STATUS.DONE) {
       this.props.patchBookReset()
       this.props.history.push(`/books/${this.props.book.id}`)
+    }
+
+    // 售出完成
+    if (this.props.bookSellStatus === FETCHING_STATUS.DONE) {
+      this.props.sellBookReset()
+      this.props.history.push({
+        pathname: '/books/',
+        state: { sell: true }
+      })
     }
   }
 
@@ -79,7 +93,14 @@ class Edit extends React.Component {
   onSearch (event) {
     if (this.state.courseSearchWord) {
       event.preventDefault()
-      modal(<SearchList data={this.props.courses} />)
+      modal(
+        <SearchListMultiple
+          searchWord={this.state.courseSearchWord}
+          addSearchCourse={(course) => this.addSearchCourse(course)}
+          removeSearchCourse={(id) => this.removeSearchCourse(id)}
+          findSearchCourse={(id) => this.findSearchCourse(id)}
+        />
+      )
     }
   }
 
@@ -98,10 +119,35 @@ class Edit extends React.Component {
     }
   }
 
+  onSell () {
+    if (window.confirm('確定刪除此書嗎?')) {
+      this.props.sellBook(this.props.match.params.id)
+    }
+  }
+
+  addSearchCourse (course) {
+    let newCourses = [...this.state.payload.courses]
+    newCourses.push(course)
+    this.setState({ payload: { ...this.state.payload, courses: newCourses } })
+  }
+
+  removeSearchCourse (id) {
+    let newCourses = [...this.state.payload.courses]
+    let index = newCourses.findIndex(course => course.id === id)
+    newCourses.splice(index, 1)
+    this.setState({ payload: { ...this.state.payload, courses: newCourses } })
+  }
+
+  findSearchCourse (id) {
+    let index = this.state.payload.courses.findIndex(course => course.id === id)
+    return index !== -1
+  }
+
   render () {
     return (
       <Form
         {...this.state}
+        formType='edit'
         formRef={this.formRef}
         imageUploadRef={this.imageUploadRef}
         updatePayload={(payload) => this.setState({ payload: { ...this.state.payload, ...payload } })}
@@ -109,6 +155,8 @@ class Edit extends React.Component {
         updateSearchWord={(word) => this.setState({ courseSearchWord: word })}
         onSearch={(event) => this.onSearch(event)}
         onSubmit={(event) => this.onSubmit(event)}
+        onSell={() => this.onSell()}
+        removeSearchCourse={(id) => this.removeSearchCourse(id)}
       />
     )
   }

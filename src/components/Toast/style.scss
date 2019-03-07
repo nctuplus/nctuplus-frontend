@@ -3,75 +3,84 @@ $info:#17a2b8;
 $warning: #ffc107;
 $danger: #dc3545;
 
-@keyframes fadeInLeft{
-    from{
-        opacity: 0;
-        left: -300px;
-    }
-    to{
-        opacity: 0.9;
-        left: 0;
-    }
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    left: -300px;
+  }
+
+  to {
+    opacity: 0.9;
+    left: 0;
+  }
 }
 
-@keyframes shrinking{
-    from{
-        width: 100%;
-    }
-    to{
-        width: 0;
-    }
+@keyframes shrinking {
+  from {
+    width: 100%;
+  }
+
+  to {
+    width: 0;
+  }
 }
 
 @mixin paint($color) {
-    &::after{
-        content: '';
-        background-color: $color;
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 5px;
-        animation: shrinking 5s;
-    }
-    background-color: lighten($color,50);
-    color: $color;
+  &::after {
+    content: '';
+    background-color: $color;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 5px;
+    animation: shrinking 5s;
+  }
+
+  background-color: lighten($color, 50);
+  color: $color;
 }
 
-.toastWrapper{
-    position: fixed;
-    top: calc(56px + 1em);
-    left: 1em;
-    .toast{
-        position: relative;
-        top: 0;
-        z-index: 11;
-        width: 280px;
-        height: 58px;
-        border-radius: 2px;
-        user-select: none;
-        line-height: 58px;
-        font-size: 15px;
-        padding: 0 8%;
-        margin-bottom: 5%;
-        cursor: pointer;
-        box-shadow: 1px 1px 5px rgba(0,0,0,.17);
-        transition: .2s;
-        animation: fadeInLeft .2s;
-        &:hover{
-            border-top:0;
-            opacity: 1;
-        }
+.toastWrapper {
+  position: fixed;
+  top: calc(56px + 1em);
+  left: 1em;
+  z-index: 10;
+
+  .toast {
+    position: relative;
+    top: 0;
+    width: 280px;
+    height: 58px;
+    border-radius: 2px;
+    user-select: none;
+    line-height: 58px;
+    font-size: 15px;
+    padding: 0 8%;
+    margin-bottom: 5%;
+    cursor: pointer;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.17);
+    transition: 0.2s;
+    animation: fadeInLeft 0.2s;
+
+    &:hover {
+      border-top: 0;
+      opacity: 1;
     }
-    .toast-info{
-        @include paint($info);
-    }
-    .toast-success{
-        @include paint($success);
-    }
-    .toast-warning{
-        @include paint($warning);
-    }
-    .toast-danger{
-        @include paint($danger);
-    }
+  }
+
+  .toast-info {
+    @include paint($info);
+  }
+
+  .toast-success {
+    @include paint($success);
+  }
+
+  .toast-warning {
+    @include paint($warning);
+  }
+
+  .toast-danger {
+    @include paint($danger);
+  }
 }

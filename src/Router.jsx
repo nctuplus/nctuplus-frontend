@@ -71,9 +71,13 @@ const Router = enhance(({ currentUser }) => {
 
         {/* admin background route group */}
         <Route exact path='/admin/background' component={adminOnly(Admin.Background.Index)} />
+        <Route path='/admin/background/new' component={adminOnly(Admin.Background.New)} />
 
         {/* admin user route */}
         <Route path='/admin/users' component={adminOnly(Admin.Users)} />
+
+        {/* admin statistics route */}
+        <Route path='/admin/statistics' component={Admin.Statistics} />
 
         {/* admin department route group */}
         <Route exact path='/admin/departments' component={adminOnly(Admin.Departments.Index)} />
@@ -94,8 +98,8 @@ const Router = enhance(({ currentUser }) => {
         {/* discuss route group */}
         <Route exact path='/comments' component={Comments.Index} />
         <Route path='/comments/new' component={loginOnly(Comments.New)} />
-        <Route path='/comments/:id' component={Comments.Show} />
-        <Route path='/comments/:id/edit' component={loginOnly(Comments.Edit)} />
+        <Route exact path='/comments/:id' component={Comments.Show} />
+        <Route exact path='/comments/:id/edit' component={loginOnly(Comments.Edit)} />
 
         {/* past exam route group */}
         <Route exact path='/past_exams' component={PastExams.Index} />

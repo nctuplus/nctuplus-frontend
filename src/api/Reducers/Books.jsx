@@ -27,6 +27,13 @@ const initialState = {
   },
   delete: {
     status: FETCHING_STATUS.IDLE
+  },
+  sell: {
+    status: FETCHING_STATUS.IDLE
+  },
+  latestNews: {
+    data: [],
+    status: FETCHING_STATUS.IDLE
   }
 }
 
@@ -34,7 +41,10 @@ export default handleActions({
   BOOKS: {
     INDEX: {
       SET_STATUS: (state, action) => ({ ...state, index: { ...state.index, status: action.payload } }),
-      STORE: (state, action) => ({ ...state, index: { ...state.index, data: action.payload.data, maxPage: action.payload.total_pages } }),
+      STORE: (state, action) => {
+        const { data, current_page: page, total_pages: maxPage } = action.payload
+        return { ...state, index: { ...state.index, data, page, maxPage } }
+      },
       UPDATE_PAGE: (state, action) => ({ ...state, index: { ...state.index, page: action.payload } }),
       UPDATE_FILTERS: (state, action) => ({ ...state, index: { ...state.index, filters: { ...state.index.filters, ...action.payload } } })
     },
@@ -51,6 +61,13 @@ export default handleActions({
     },
     DELETE: {
       SET_STATUS: (state, action) => ({ ...state, delete: { ...state.delete, status: action.payload } })
+    },
+    SELL: {
+      SET_STATUS: (state, action) => ({ ...state, sell: { ...state.sell, status: action.payload } })
+    },
+    LATEST_NEWS: {
+      SET_STATUS: (state, action) => ({ ...state, latestNews: { ...state.latestNews, status: action.payload } }),
+      STORE: (state, action) => ({ ...state, latestNews: { ...state.latestNews, data: action.payload } })
     }
   }
 }, initialState)

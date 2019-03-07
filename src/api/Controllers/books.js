@@ -52,3 +52,23 @@ export const deleteBook = (id) => dispatch => {
     .then(() => dispatch(actions.books.delete.setStatus(FETCHING_STATUS.DONE)))
     .catch(() => dispatch(actions.books.delete.setStatus(FETCHING_STATUS.FAIL)))
 }
+
+export const sellBook = (id) => dispatch => {
+  dispatch(actions.books.sell.setStatus(FETCHING_STATUS.FETCHING))
+  server.protected
+    .patch(`/api/v1/books/${id}/status`)
+    .then(() => dispatch(actions.books.sell.setStatus(FETCHING_STATUS.DONE)))
+    .catch(() => dispatch(actions.books.sell.setStatus(FETCHING_STATUS.FAIL)))
+}
+
+export const getBooksLatestNews = () => dispatch => {
+  dispatch(actions.books.latestNews.setStatus(FETCHING_STATUS.FETCHING))
+  server.public
+    .get('/api/v1/books/latest_news')
+    .then(({ data: books }) => {
+      // console.log(books)
+      dispatch(actions.books.latestNews.store(books))
+      dispatch(actions.books.latestNews.setStatus(FETCHING_STATUS.DONE))
+    })
+    .catch(() => dispatch(actions.books.lastestNews.setStatus(FETCHING_STATUS.FAIL)))
+}

@@ -1,0 +1,36 @@
+
+@import "~assets/styles/_common";
+
+.chartWrapper {
+  padding: 20px !important;
+  height: auto !important;
+  margin-bottom: 30px !important;
+
+  h5 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+}
+
+.staticBlockWrapper {
+  display: flex;
+  margin: auto;
+
+  @include media-breakpoint-up(xs) { width: 90%; }
+
+  @include media-breakpoint-only(md) { width: 90%; }
+
+  @include media-breakpoint-only(xl) { width: 100%; }
+
+  @include media-breakpoint-only(lg) { width: 90%; }
+
+  @include media-breakpoint-down(md) { justify-content: center; }
+
+  & > div {
+    flex: 0 1 200px;
+  }
+
+  & > div:not(:last-child) {
+    margin-right: 30px;
+  }
+}

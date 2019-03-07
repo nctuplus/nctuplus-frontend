@@ -6,39 +6,6 @@ import Pagination from 'components/Pagination'
 import { getSearchCourses } from 'api/Controllers/courses'
 import actions from 'api/Actions/Courses'
 
-const SearchList = props => (
-  <div>
-    <div className='modal-header'>
-      <h5 className='modal-title'>選擇適用課程及老師</h5>
-    </div>
-    <div className='modal-body'>
-      <table className='table table-hover'>
-        <tbody>
-          <tr>
-            <td />
-            <th>課程</th>
-            <th>老師</th>
-          </tr>
-          {
-            props.courses.data.map((course, index) => (
-              <tr key={index}>
-                <td><input type='checkbox' /></td>
-                <td>{course.permanent_course.name}</td>
-                <td>{course.teacher}</td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
-      <Pagination
-        page={props.courses.page}
-        maxPage={props.courses.maxPage}
-        to={(page) => props.updatePage(page)}
-      />
-    </div>
-  </div>
-)
-
 const mapStateToProps = (state) => ({
   courses: state.courses.search
 })
@@ -62,4 +29,95 @@ const enhance = compose(
   })
 )
 
-export default enhance(SearchList)
+const SearchListMultiple = enhance(props => (
+  <div>
+    <div className='modal-header'>
+      <h5 className='modal-title'>選擇適用課程及老師</h5>
+    </div>
+    <div className='modal-body'>
+      <table className='table table-hover'>
+        <thead>
+          <tr>
+            <th />
+            <th>課程</th>
+            <th>老師</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            props.courses.data.map((course, index) => (
+              <tr key={course.id}>
+                <td className='py-0 align-middle'>
+                  <input
+                    type='checkbox'
+                    id={course.id}
+                    defaultChecked={props.findSearchCourse(course.id)}
+                    onClick={() => props.findSearchCourse(course.id)
+                      ? props.removeSearchCourse(course.id)
+                      : props.addSearchCourse({ course_id: course.id, course_name: course.permanent_course.name })}
+                  />
+                </td>
+                <td className='p-0 align-middle'>
+                  <label className='p-2 m-0 w-100' htmlFor={course.id}>{course.permanent_course.name}</label>
+                </td>
+                <td className='p-0 align-middle'>
+                  <label className='p-2 m-0 w-100' htmlFor={course.id}>
+                    { course.teachers[0].name }
+                    { course.teachers.slice(1).map((teacher) => `,${teacher.name}`) }
+                  </label>
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+      <Pagination
+        page={props.courses.page}
+        maxPage={props.courses.maxPage}
+        to={(page) => props.updatePage(page)}
+      />
+    </div>
+  </div>
+))
+
+const SearchListSingle = enhance(props => (
+  <div>
+    <div className='modal-header'>
+      <h5 className='modal-title'>選擇適用課程及老師</h5>
+    </div>
+    <div className='modal-body'>
+      <table className='table table-hover'>
+        <thead>
+          <tr>
+            <th>課程</th>
+            <th>老師</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            props.courses.data.map((course, index) => (
+              <tr key={course.id} onClick={() => { props.chooseSearchCourse(course) }}>
+                <td className='p-0 align-middle'>
+                  <label className='p-2 m-0 w-100' htmlFor={course.id}>{course.permanent_course.name}</label>
+                </td>
+                <td className='p-0 align-middle'>
+                  <label className='p-2 m-0 w-100' htmlFor={course.id}>
+                    { course.teachers[0].name }
+                    { course.teachers.slice(1).map((teacher) => `,${teacher.name}`) }
+                  </label>
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+      <Pagination
+        page={props.courses.page}
+        maxPage={props.courses.maxPage}
+        to={(page) => props.updatePage(page)}
+      />
+    </div>
+  </div>
+))
+
+export { SearchListMultiple, SearchListSingle }

@@ -1,8 +1,8 @@
 
 @import "~assets/styles/_common";
 
-.pageWrapper{ 
+.pageWrapper {
   min-height: calc(100vh - #{$navbar-height} - #{$footer-height});
   margin-top: $navbar-height;
-	background-color: #e9eaed;
+  background-color: #e9eaed;
 }

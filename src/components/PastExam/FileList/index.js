@@ -17,6 +17,9 @@ const FileList = ({ children }) => (
     </thead>
     <tbody className='files' >
       { children || <tr ><td colSpan='8' className='text-center'>尚無檔案!</td></tr> }
+      <tr ><td colSpan='8' className='px-3'>
+        <a href=''><i className='fas fa-plus' /> 上傳考古題</a>
+      </td></tr>
     </tbody>
   </table>
 )
