@@ -1,20 +1,44 @@
 
 @import "~assets/styles/_common";
 
-.rating {
-  width: 120px;
-  height: 120px;
-  margin: 15px;
+.container {
+  position: relative;
+  padding: 0;
+  display: flex;
 
-  @include media-breakpoint-up(lg) {
-    width: 110px;
-    height: 110px;
-    margin: 10px;
+  @include media-breakpoint-down(xs) { justify-content: center; }
+}
+
+.totalPeople {
+  display: flex;
+  justify-content: flex-start;
+  position: absolute;
+  right: 0;
+  bottom: -35px;
+
+  span,
+  i {
+    font-size: 12px;
+    color: #455a64;
   }
+}
+
+.rating {
+  width: 100px;
+  min-height: 120px;
+  flex: 0 0 100px;
+  text-align: center;
+
+  @include media-breakpoint-up(xs) { margin: 5px; }
+
+  @include media-breakpoint-up(sm) { margin: 10px; }
+
+  @include media-breakpoint-up(md) { margin: 15px; }
 
   .people {
     width: 100%;
     color: #455a64;
+    margin-top: 5px;
   }
 }
 
@@ -34,5 +58,13 @@
   .myRating {
     font-size: 20px;
     margin: 10px;
+  }
+}
+
+.starRating {
+  & > span {
+    display: block;
+    font-size: 60px;
+    line-height: 1.1em;
   }
 }

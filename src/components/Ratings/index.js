@@ -1,8 +1,9 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-import CircularProgressbar from 'react-circular-progressbar'
+// import CircularProgressbar from 'react-circular-progressbar'
 import styles from './style.scss'
+import StarRatings from 'react-star-ratings'
 
 class PersonalRatingBar extends React.Component {
   render () {
@@ -41,33 +42,46 @@ class PersonalRating extends React.Component {
   }
 }
 
-const Ratings = (props) => (
-  <div className='d-flex'>
-    <div className={`${styles.rating} col`}>
-      <CircularProgressbar
-        percentage={props.loading || 0}
-        initialAnimation
+const StarRatingWithScore = (props) => {
+  const color = props.color || '#f0a90d'
+  return (
+    <div className={styles.starRating}>
+      <span style={{ color: color }}>{props.score}</span>
+      <StarRatings
+        rating={props.score}
+        starRatedColor={color}
+        numberOfStars={5}
+        name='rating'
+        starDimension='15px'
+        starSpacing='2px'
+        svgIconPath='m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z'
       />
-      <div className={`${styles.people} text-center`}>涼度({ props.loading_people || 0 }人)</div>
     </div>
-    <div className={`${styles.rating} col`}>
-      <CircularProgressbar
-        className='green'
-        percentage={props.easiness || 0}
-        initialAnimation
-      />
-      <div className={`${styles.people} text-center`}>甜度({ props.easiness_people || 0 }人)</div>
+  )
+}
 
+const Ratings = (props) => {
+  const stars = props.rating ? props.rating.stars : [0, 0, 0]
+  const people = props.rating ? props.rating.people : 0
+  return (
+    <div className={styles.container}>
+      <div className='d-flex'>
+        <div className={`${styles.rating}`}>
+          <StarRatingWithScore score={stars[0]} color='#4EDB66' />
+          <div className={`${styles.people} text-center`}>涼度</div>
+        </div>
+        <div className={`${styles.rating}`}>
+          <StarRatingWithScore score={stars[1]} color='#FFC042' />
+          <div className={`${styles.people} text-center`}>甜度</div>
+        </div>
+        <div className={`${styles.rating}`}>
+          <StarRatingWithScore score={stars[2]} color='#2E86AB' />
+          <div className={`${styles.people} text-center`}>深度</div>
+        </div>
+      </div>
+      <div className={styles.totalPeople}><span><i className='fas fa-user' /> {people} 人 </span></div>
     </div>
-    <div className={`${styles.rating} col`}>
-      <CircularProgressbar
-        className='orange'
-        percentage={props.depth || 0}
-        initialAnimation
-      />
-      <div className={`${styles.people} text-center`}>深度({ props.depth_people || 0 }人)</div>
-    </div>
-  </div>
-)
+  )
+}
 
 export { PersonalRating, PersonalRatingBar, Ratings }

@@ -14,6 +14,7 @@ class Form extends React.Component {
     const { payload } = this.props
     return (
       <Layout scroll={false}>
+        <ModalWrapper />
         <ToastWrapper />
         <div className='container bg-white p-3 p-md-4'>
           <div className='row'>
@@ -43,12 +44,11 @@ class Form extends React.Component {
                   <div className='row m-0'>
                     <div className='col-12 col-md-9 col-lg-10 offset-md-3 offset-lg-2'>
                       <i className='fa fa-check-circle mx-2' />
-                      {payload.course.name}
+                      { payload.course.name }
                     </div>
                   </div>
                 }
               </form>
-              <ModalWrapper />
 
               <h4 className='mt-4 mx-3'>Step2.輸入標題以及內容</h4>
               <form ref={this.props.formRef}>
@@ -122,19 +122,18 @@ class Form extends React.Component {
 
               <div className='col-md-12 text-right mt-4'>
                 {
-                  this.props.formType === 'new' && (
-                    <div className='d-inline-block mx-1'>
-                      <label>
-                        <input
-                          checked={payload.anonymity}
-                          onChange={e => this.props.updatePayload({ anonymity: !payload.anonymity })}
-                          className='mx-2'
-                          type='checkbox'
-                        />
-                        匿名
-                      </label>
-                    </div>
-                  )
+                  this.props.formType === 'new' &&
+                  <div className='d-inline-block mx-1'>
+                    <label>
+                      <input
+                        checked={payload.anonymity}
+                        onChange={e => this.props.updatePayload({ anonymity: !payload.anonymity })}
+                        className='mx-2'
+                        type='checkbox'
+                      />
+                      匿名
+                    </label>
+                  </div>
                 }
                 <button className='btn btn-success btn-large mx-1'>預覽</button>
                 <button type='submit' className='btn btn-primary btn-large mx-1' onClick={this.props.onSubmit}>送出</button>

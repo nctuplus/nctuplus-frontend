@@ -38,21 +38,20 @@ class Index extends React.Component {
             <div>
               { data.anonymity ? '匿名' : (data.user && data.user.name) }
               <br />
-              { data.created_at && data.created_at.slice(0, 10) }
+              { data.created_at && data.created_at.substr(0, 10) }
             </div>
           </div>
           {
             // 是當前使用者的回覆 才會有刪除按鈕
             this.props.currentUser && data.user &&
-            this.props.currentUser.id === data.user.id && (
-              <div className='col-lg-8 col-md-6 col-12'>
-                <div className={style.btnBar}>
-                  <button className='btn btn-danger m-1' onClick={this.handleDeleteClick}>
-                    <i className='fa fa-trash' />刪除
-                  </button>
-                </div>
+            this.props.currentUser.id === data.user.id &&
+            <div className='col-lg-8 col-md-6 col-12'>
+              <div className={style.btnBar}>
+                <button className='btn btn-danger m-1' onClick={this.handleDeleteClick}>
+                  <i className='fa fa-trash mr-1' />刪除
+                </button>
               </div>
-            )
+            </div>
           }
         </div>
         <div className='row mt-3'>

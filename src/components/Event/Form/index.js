@@ -10,15 +10,15 @@ const Form = props => (
     <div className='container bg-white pt-5'>
       <div className='row'>
         <div className='col-md-9 offset-1'>
-          <div className='h3 offset-md-1'>
-            新增活動
-          </div>
+          <div className='h3 offset-md-1'>新增活動</div>
           <form ref={props.formRef}>
             <LabeledInput label='圖片'>
               <input
                 ref={props.imageUploadRef}
-                accept='image/*' type='file' hidden
                 onChange={props.onFileUpload}
+                accept='image/*'
+                type='file'
+                hidden
               />
               <div
                 className={`text-center clickable ${styles.uploadPicture} p-5`}
@@ -31,6 +31,7 @@ const Form = props => (
                 }
               </div>
             </LabeledInput>
+
             <LabeledInput label='類型/名稱'>
               <div className='input-group'>
                 <div className='input-group-prepend'>
@@ -58,6 +59,7 @@ const Form = props => (
                 />
               </div>
             </LabeledInput>
+
             <LabeledInput label='活動網址'>
               <input
                 value={props.payload.url}
@@ -67,12 +69,13 @@ const Form = props => (
                 type='text'
               />
             </LabeledInput>
+
             <div className='form-group'>
               <div className='row'>
-                <label className='col-4 col-md-3 col-lg-2 text-md-right align-self-center' >主辦單位</label>
+                <label className='col-4 col-md-3 col-lg-2 text-md-right align-self-center'>主辦單位</label>
                 <div className='col-12 col-md-9 col-lg-4'>
                   <input
-                    value={props.payload.organization || ''}
+                    value={props.payload.organization}
                     onChange={e => props.updatePayload({ organization: e.target.value })}
                     className='form-control'
                     placeholder='必填'
@@ -83,7 +86,7 @@ const Form = props => (
                 <label className='col-4 col-md-3 col-lg-2 mt-3 mt-lg-0 text-md-right align-self-center'>地點</label>
                 <div className='col-12 col-md-9 col-lg-4 mt-md-3 mt-lg-0'>
                   <input
-                    value={props.payload.location || ''}
+                    value={props.payload.location}
                     onChange={e => props.updatePayload({ location: e.target.value })}
                     className='form-control'
                     placeholder='必填'
@@ -93,12 +96,13 @@ const Form = props => (
                 </div>
               </div>
             </div>
+
             <div className='form-group'>
               <div className='row'>
                 <label className='col-4 col-md-3 col-lg-2 text-md-right align-self-center'>開始時間</label>
                 <div className='col-12 col-md-9 col-lg-4'>
                   <input
-                    value={props.payload.begin_time || ''}
+                    value={props.payload.begin_time}
                     onChange={e => props.updatePayload({ begin_time: e.target.value })}
                     className='form-control'
                     placeholder='必填'
@@ -109,7 +113,7 @@ const Form = props => (
                 <label className='col-4 col-md-3 col-lg-2 mt-3 mt-lg-0 text-md-right align-self-center'>結束時間</label>
                 <div className='col-12 col-md-9 col-lg-4 mt-md-3 mt-lg-0'>
                   <input
-                    value={props.payload.end_time || ''}
+                    value={props.payload.end_time}
                     onChange={e => props.updatePayload({ end_time: e.target.value })}
                     className='form-control'
                     placeholder='必填'
@@ -119,13 +123,15 @@ const Form = props => (
                 </div>
               </div>
             </div>
+
             <LabeledInput label='內容'>
               <CKEditor
                 activeClass='p10'
-                content={props.payload.content || ''}
+                content={props.payload.content}
                 events={{ change: (e) => props.updatePayload({ content: e.editor.getData() }) }}
               />
             </LabeledInput>
+
             <div className='col-12 text-right'>
               <button type='submit' className='btn btn-success btn-large' onClick={props.onSubmit}>送出</button>
             </div>

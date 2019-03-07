@@ -3,7 +3,7 @@ nctuplus-frontend
 ===
 
 ### 安裝套件
-- npm install
+- yarn install
 
 ### linter
 使用 `standard` 和 `stylelint` 這兩個 linter

@@ -1,10 +1,9 @@
 
 import React from 'react'
-import Layout from 'pages/Layout'
-
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
+import Layout from 'pages/Layout'
 import { getBook } from 'api/Controllers/books'
 import style from './style.scss'
 
@@ -52,7 +51,7 @@ class Show extends React.Component {
                           {
                             book.contact_way && book.contact_way.includes('@')
                               ? book.contact_way
-                              : <a href={book.contact_way}>Facebook</a>
+                              : <a href={book.contact_way} target='_blank' rel='noopener noreferrer'>Facebook</a>
                           }
                         </td>
                       </tr>
@@ -86,19 +85,20 @@ class Show extends React.Component {
             </div>
           </div>
           {
-            book.sold_at === null
-              ? <div className='row'>
-                <div className={style.fixedMenu}>
-                  <div className='pull-right'>
-                    <Link to={`/books/${this.props.match.params.id}/edit`} className='flat-link'>
-                      <button className='btn btn-primary'>
-                        編輯
-                      </button>
-                    </Link>
-                  </div>
+            book.sold_at === null &&
+            this.props.currentUser && book.user &&
+            this.props.currentUser.id === book.user.id &&
+            <div className='row'>
+              <div className={style.fixedMenu}>
+                <div className='pull-right'>
+                  <Link to={`/books/${this.props.match.params.id}/edit`} className='flat-link'>
+                    <button className='btn btn-primary'>
+                      編輯
+                    </button>
+                  </Link>
                 </div>
               </div>
-              : ''
+            </div>
           }
         </div>
       </Layout>
@@ -107,6 +107,7 @@ class Show extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
   book: state.books.show.data,
   status: state.books.show.status
 })

@@ -1,7 +1,7 @@
 
 import React from 'react'
-import classNames from 'classnames'
 import { Link } from 'react-router-dom'
+import classNames from 'classnames'
 import moment from 'moment'
 import style from './style.scss'
 
@@ -11,11 +11,10 @@ const Preview = (props) => (
       <div className='text-right'>
         <span className={classNames('bold', 'date', moment().isBetween(props.begin_time, props.end_time) ? 'text-red' : 'text-grey')}>
           {
-            (props.begin_time && props.end_time)
-              ? (moment().isBetween(props.begin_time, props.end_time)
-                ? '進行中'
-                : props.begin_time.slice(0, 10))
-              : '?????'
+            props.begin_time && props.end_time &&
+            moment().isBetween(props.begin_time, props.end_time)
+              ? '進行中'
+              : props.begin_time.substr(0, 10)
           }
         </span>
       </div>

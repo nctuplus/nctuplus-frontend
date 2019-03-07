@@ -1,0 +1,33 @@
+.row {
+  border: 1px solid grey;
+  border-radius: 3px;
+  background: white;
+  color: #178200;
+  font-size: 17px;
+  cursor: pointer;
+
+  &:hover {
+    background: #d7ffce;
+  }
+
+  &:active {
+    background-color: #92c487;
+  }
+}
+
+.rowPicked {
+  background-color: #d7ffce;
+  border: 1px solid grey;
+  border-radius: 3px;
+  color: #178200;
+  font-size: 17px;
+  cursor: pointer;
+
+  &:hover {
+    background: #d7ffce;
+  }
+
+  &:active {
+    background: #92c487;
+  }
+}
