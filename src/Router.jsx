@@ -136,6 +136,7 @@ const Router = enhance(({ currentUser }) => {
             <Route path='/user/edit' component={User.Edit} />
             <Route path='/user/courses' component={User.Courses} />
             <Route path='/user/collections' component={User.Collections} />
+            <Route path='/user/GPA' component={User.GPA} />
           </User.Index>
         )} />
 
