@@ -5,7 +5,7 @@ import { withRouter } from 'react-router'
 import { deleteCommentReply, getComment } from 'api/Controllers/comments'
 import actions from 'api/Actions/Comments'
 import { FETCHING_STATUS } from 'utilities/constants'
-import style from './style.scss'
+import styles from './style.scss'
 
 class Index extends React.Component {
   constructor (props) {
@@ -29,36 +29,25 @@ class Index extends React.Component {
   render () {
     const { data } = this.props
     return (
-      <div className='mt-4'>
-        <div className='row align-items-end'>
-          <div className='col-lg-1 col-sm-2 col-4'>
-            <img alt='' src={this.props.userImage} height='50' width='50' />
-          </div>
-          <div className='col-lg-3 col-sm-4 col-8'>
-            <div>
-              { data.anonymity ? '匿名' : (data.user && data.user.name) }
-              <br />
-              { data.created_at && data.created_at.substr(0, 10) }
-            </div>
+      <div className={styles.container}>
+        <div className={styles.header}>
+          {/* <img alt='u_img' src={this.props.userImage} height='40' width='40' /> */}
+          <img alt='u_img' src='https://plus.nctu.edu.tw/assets/anonymous-bfbb219640bb7de2c9cb7fc1a7f4960e.jpg' height='40' width='40' />
+          <div className={styles.userInfo}>
+            <div className={styles.userName}>{ data.anonymity ? '匿名' : (data.user && data.user.name) }</div>
+            <div className={`text-muted ${styles.time}`}>{ data.created_at && data.created_at.substr(0, 10) }</div>
           </div>
           {
             // 是當前使用者的回覆 才會有刪除按鈕
-            this.props.currentUser && data.user &&
-            this.props.currentUser.id === data.user.id &&
-            <div className='col-lg-8 col-md-6 col-12'>
-              <div className={style.btnBar}>
-                <button className='btn btn-danger m-1' onClick={this.handleDeleteClick}>
-                  <i className='fa fa-trash mr-1' />刪除
-                </button>
-              </div>
+            this.props.currentUser && this.props.currentUser.id === data.user.id &&
+            <div className={styles.btnBar}>
+              <button className='btn btn-danger' onClick={this.handleDeleteClick}>
+                <i className='fa fa-trash mr-2' />刪除
+              </button>
             </div>
           }
         </div>
-        <div className='row mt-3'>
-          <div className='col-md-12'>
-            <span className={style.content}>{ data.content }</span>
-          </div>
-        </div>
+        <div className={styles.content}>{ data.content }</div>
       </div>
     )
   }

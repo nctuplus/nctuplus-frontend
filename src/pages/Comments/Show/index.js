@@ -3,7 +3,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import Layout from 'pages/Layout'
 import * as Comments from 'components/Comment'
 import { getComment, deleteComment } from 'api/Controllers/comments'
 import actions from 'api/Actions/Comments'
@@ -21,15 +20,15 @@ class Show extends React.Component {
 
   componentDidMount () {
     this.props.getComment(this.props.match.params.id)
-    const documentWidth = document.documentElement.clientWidth;
-    const windowWidth = window.innerWidth;
-    const scrollBarWidth = windowWidth - documentWidth;
-    document.body.style.overflowY = 'hidden';
-    document.body.style.paddingRight = `${scrollBarWidth}px`;
+    const documentWidth = document.documentElement.clientWidth
+    const windowWidth = window.innerWidth
+    const scrollBarWidth = windowWidth - documentWidth
+    document.body.style.overflowY = 'hidden'
+    document.body.style.paddingRight = `${scrollBarWidth}px`
   }
-  componentWillUnmount (){
-    document.body.style.overflowY = 'auto';
-    document.body.style.paddingRight = '0';
+  componentWillUnmount () {
+    document.body.style.overflowY = 'auto'
+    document.body.style.paddingRight = '0'
   }
   componentDidUpdate () {
     if (this.props.deleteStatus === FETCHING_STATUS.DONE) {
@@ -48,66 +47,60 @@ class Show extends React.Component {
     this.setState({ replyOpen: !this.state.replyOpen })
   }
 
-  clickOnDimmer(e){
-    console.log('clickOnDimmer');
+  clickOnDimmer (e) {
+    console.log('clickOnDimmer')
     this.props.history.push('/comments')
   }
   render () {
-    const { comment, fetchingStatus } = this.props;
+    const { comment, fetchingStatus } = this.props
     // console.log(comment);
-    let userName;
-    let commentTime;
-    let courseAndTeacher;
-    let commentTitle;
-    let commentContent;
-    let replies;
-    if(fetchingStatus === FETCHING_STATUS.DONE){
-      userName = comment.anonymity ? '匿名' : comment.user.name;
-      commentTime = comment.created_at.substr(0, 10);
+    let userName
+    let commentTime
+    let courseAndTeacher
+    let commentTitle
+    let commentContent
+    let replies
+    let courseID
+    if (fetchingStatus === FETCHING_STATUS.DONE) {
+      userName = comment.anonymity ? '匿名' : comment.user.name
+      commentTime = comment.created_at.substr(0, 10)
       courseAndTeacher = `${comment.course.name}/
-      ${comment.course.teachers[0]}${comment.course.teachers.slice(1).map((name)=>`,${name}`)}`
-      commentTitle = comment.title;
+      ${comment.course.teachers[0]}${comment.course.teachers.slice(1).map((name) => `,${name}`)}`
+      commentTitle = comment.title
       commentContent = comment.content
       replies = (
         <React.Fragment>
-        {comment.reply.map((reply) => (
-          <React.Fragment key={reply.id}>
-            <Comments.Reply.Index data={{ ...reply }} />
-            <hr />
-          </React.Fragment>
-        ))}
+          {comment.reply.map((reply) => (
+            <Comments.Reply.Index key={reply.id} data={{ ...reply }} />
+          ))}
         </React.Fragment>
       )
+      courseID = comment.course.id
     }
 
     return (
       <div className={styles.dimmer} onClick={this.clickOnDimmer}>
-        <div className={styles.modal}>
+        <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
           <div className={styles.post}>
-            <div className={`clickable card ${styles.card}`}>
-              <div className='card-body'>
-                <div className={styles.header}>
-                  <div className={`${styles.user}`}>
-                    <i className="fas fa-user-circle mr-2"></i>{userName}
-                  </div>
-                  <div className={` text-muted ${styles.time}`}>
-                    {commentTime}
-                  </div>
-                  <div className={`text-secondary ${styles.cardSubtitle}`}>
-                    {courseAndTeacher}
-                  </div>
+            <div className={styles.card}>
+              <div className={styles.header}>
+                <img className={styles.userImg} alt='u_img' src='https://plus.nctu.edu.tw/assets/anonymous-bfbb219640bb7de2c9cb7fc1a7f4960e.jpg' height='40' width='40' />
+                <div className={styles.info}>
+                  <span className={styles.user}>{userName}</span>
+                  <span className={`text-muted ${styles.time}`}>{commentTime}</span>
                 </div>
-                <h5 className={styles.cardTitle}>{commentTitle}</h5>
-                <div className={`text-muted ${styles.cardText}`}>{commentContent}</div>
+                <div className={`text-secondary ${styles.cardSubtitle}`}>
+                  <Link to={`/courses/${courseID}`}>{courseAndTeacher}</Link>
+                </div>
               </div>
+              <h3 className={styles.cardTitle}>{commentTitle}</h3>
+              <div className={styles.cardText}>{commentContent}</div>
             </div>
           </div>
           <div className={styles.replyContainer}>
             {replies}
           </div>
-          <div className={styles.postFooter}>
-
-          </div>
+          <div className={styles.postFooter} />
         </div>
       </div>
 
@@ -117,7 +110,7 @@ class Show extends React.Component {
 
 const mapStateToProps = (state) => ({
   currentUser: state.user.currentUser,
-  fetchingStatus : state.comments.show.status,
+  fetchingStatus: state.comments.show.status,
   comment: state.comments.show.data,
   deleteStatus: state.comments.delete.status
 })
