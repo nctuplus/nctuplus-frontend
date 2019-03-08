@@ -15,6 +15,7 @@ import { InputWithButton } from 'components/FormUtils'
 import Spinner from 'components/Spinner'
 import { getComments, getCommentsLatestNews } from 'api/Controllers/comments'
 import actions from 'api/Actions/Comments'
+import Show from '../Show'
 
 class Index extends React.Component {
   componentDidMount () {
@@ -50,6 +51,7 @@ class Index extends React.Component {
 
   render () {
     return (
+      <React.Fragment>
       <Layout>
         <div className='container pt-3'>
           <div className='row'>
@@ -102,6 +104,8 @@ class Index extends React.Component {
           </div>
         </div>
       </Layout>
+      {this.props.show && <Show/>}
+      </React.Fragment>
     )
   }
 }
