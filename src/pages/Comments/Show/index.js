@@ -9,12 +9,11 @@ import actions from 'api/Actions/Comments'
 import { FETCHING_STATUS } from 'utilities/constants'
 import styles from './style.scss'
 
-class Show extends React.Component {
+class Show extends React.PureComponent {
   constructor (props) {
     super(props)
     this.state = { replyOpen: false }
     this.handleDeleteClick = this.handleDeleteClick.bind(this)
-    this.handleReplyClick = this.handleReplyClick.bind(this)
     this.clickOnDimmer = this.clickOnDimmer.bind(this)
   }
 
@@ -43,15 +42,12 @@ class Show extends React.Component {
     }
   }
 
-  handleReplyClick () {
-    this.setState({ replyOpen: !this.state.replyOpen })
-  }
-
   clickOnDimmer (e) {
     this.props.history.push('/comments')
   }
+
   render () {
-    const { comment, fetchingStatus } = this.props
+    const { comment } = this.props
     // console.log(comment);
     let userName
     let commentTime
@@ -60,7 +56,7 @@ class Show extends React.Component {
     let commentContent
     let replies
     let courseID
-    if (fetchingStatus === FETCHING_STATUS.DONE) {
+    if (comment.course) {
       userName = comment.anonymity ? '匿名' : comment.user.name
       commentTime = comment.created_at.substr(0, 10)
       courseAndTeacher = `${comment.course.name}/
@@ -89,6 +85,18 @@ class Show extends React.Component {
                   <span className={styles.user}>{userName}</span>
                   <span className={`text-muted ${styles.time}`}>{commentTime}</span>
                 </div>
+                {
+                  // 是當前使用者的心得才會有的按鈕
+                  this.props.currentUser && this.props.currentUser.id === comment.user.id &&
+                  <div className={styles.btnBar}>
+                    <button className='btn' onClick={this.handleDeleteClick}>
+                      <i className='fa fa-trash' /><span>刪除</span>
+                    </button>
+                    <button className='btn' onClick={this.handleDeleteClick}>
+                      <i className='fas fa-edit' /><span>編輯</span>
+                    </button>
+                  </div>
+                }
                 <div className={`text-secondary ${styles.cardSubtitle}`}>
                   <Link to={`/courses/${courseID}`}>{courseAndTeacher}</Link>
                 </div>
@@ -97,10 +105,12 @@ class Show extends React.Component {
               <div className={styles.cardText}>{commentContent}</div>
             </div>
           </div>
+          <div className={styles.postFooter}>
+            <Comments.Reply.New />
+          </div>
           <div className={styles.replyContainer}>
             {replies}
           </div>
-          <div className={styles.postFooter} />
         </div>
       </div>
 
@@ -112,6 +122,7 @@ const mapStateToProps = (state) => ({
   currentUser: state.user.currentUser,
   fetchingStatus: state.comments.show.status,
   comment: state.comments.show.data,
+  // fetchingCommentStatus: state.comments
   deleteStatus: state.comments.delete.status
 })
 
