@@ -41,8 +41,8 @@ class Index extends React.Component {
             // 是當前使用者的回覆 才會有刪除按鈕
             this.props.currentUser && this.props.currentUser.id === data.user.id &&
             <div className={styles.btnBar}>
-              <button className='btn btn-danger' onClick={this.handleDeleteClick}>
-                <i className='fa fa-trash mr-2' />刪除
+              <button className='btn' onClick={this.handleDeleteClick}>
+                <i className='fa fa-trash' /><span>刪除</span>
               </button>
             </div>
           }

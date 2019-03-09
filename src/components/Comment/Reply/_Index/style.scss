@@ -38,6 +38,34 @@
   }
 }
 
+.btnBar {
+  button {
+    background-color: inherit;
+    color: #6c6c6c;
+    // border:1px black solid;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      background-color: $danger;
+      color: #fff;
+    }
+
+    span {
+      display: inline-block;
+      width: 0;
+      overflow: hidden;
+      // border:1px solid black;
+      transition: width 0.2s ease, padding 0.2s ease;
+    }
+
+    &:hover span {
+      padding-left: 5px;
+      width: 40px;
+    }
+  }
+}
+
 .content {
   margin-top: 10px;
   white-space: pre-line;

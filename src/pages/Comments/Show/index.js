@@ -48,7 +48,6 @@ class Show extends React.Component {
   }
 
   clickOnDimmer (e) {
-    console.log('clickOnDimmer')
     this.props.history.push('/comments')
   }
   render () {
@@ -80,6 +79,7 @@ class Show extends React.Component {
 
     return (
       <div className={styles.dimmer} onClick={this.clickOnDimmer}>
+        <i className={`fas fa-times ${styles.exitBtn}`} />
         <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
           <div className={styles.post}>
             <div className={styles.card}>
