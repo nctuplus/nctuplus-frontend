@@ -45,6 +45,7 @@ const enhance = compose(
     componentDidUpdate (prevProps) {
       if (this.props.courses.page !== prevProps.courses.page) {
         this.props.fetchData(this.props.courses.page)
+        window.scroll({ top: 0, left: 0, behavior: 'smooth' })
       }
     }
   })

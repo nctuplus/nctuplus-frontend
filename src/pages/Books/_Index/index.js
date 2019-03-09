@@ -58,6 +58,7 @@ class Index extends React.Component {
         }
       })
       this.props.fetchLatestNews()
+      window.scroll({ top: 0, left: 0, behavior: 'smooth' })
     }
   }
 

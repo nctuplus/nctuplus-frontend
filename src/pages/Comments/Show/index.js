@@ -56,6 +56,7 @@ class Show extends React.PureComponent {
     let commentContent
     let replies
     let courseID
+    let commentUserId
     if (comment.course) {
       userName = comment.anonymity ? '匿名' : comment.user.name
       commentTime = comment.created_at.substr(0, 10)
@@ -71,6 +72,7 @@ class Show extends React.PureComponent {
         </React.Fragment>
       )
       courseID = comment.course.id
+      commentUserId = comment.user.id
     }
 
     return (
@@ -87,7 +89,7 @@ class Show extends React.PureComponent {
                 </div>
                 {
                   // 是當前使用者的心得才會有的按鈕
-                  this.props.currentUser && this.props.currentUser.id === comment.user.id &&
+                  this.props.currentUser && this.props.currentUser.id === commentUserId &&
                   <div className={styles.btnBar}>
                     <button className='btn' onClick={this.handleDeleteClick}>
                       <i className='fa fa-trash' /><span>刪除</span>
