@@ -216,12 +216,17 @@ class SearchPanel extends React.Component {
   }
   toggleOpen (e) {
     this.setState({ open: true })
+    const documentWidth = document.documentElement.clientWidth
+    const windowWidth = window.innerWidth
+    const scrollBarWidth = windowWidth - documentWidth
     document.body.style.overflowY = 'hidden'
+    document.body.style.paddingRight = `${scrollBarWidth}px`
     e.stopPropagation()
   }
   toggleClose (e) {
     this.setState({ open: false })
     document.body.style.overflowY = 'auto'
+    document.body.style.paddingRight = '0'
     e.stopPropagation()
   }
   render () {

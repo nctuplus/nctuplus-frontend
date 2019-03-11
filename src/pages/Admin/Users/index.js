@@ -24,6 +24,7 @@ class Users extends React.Component {
   componentDidUpdate (prevProps) {
     if (this.props.users.page !== prevProps.users.page) {
       this.props.fetchData(this.props.users.page)
+      window.scroll({ top: 0, left: 0, behavior: 'smooth' })
     }
   }
 

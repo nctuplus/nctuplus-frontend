@@ -1,0 +1,54 @@
+.container {
+  border: 1px lightgrey;
+  border-top-style: solid;
+  padding: 15px;
+  background-color: #fff;
+}
+
+.textarea {
+  resize: none;
+  background-color: #f1f0f0;
+  border: 1px lightgrey solid;
+  border-radius: 20px;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+
+  &:focus {
+    border: 1px lightgrey solid;
+    background-color: #e8e8e8;
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+.form {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+
+  label {
+    margin: 0;
+    color: #373737;
+
+    &::before {
+      background-color: #fff;
+      border: 1px solid grey;
+    }
+  }
+}
+
+.submit {
+  // border-top-right-radius: 20px;
+  // border-bottom-right-radius: 20px;
+  // border-top-left-radius: 0;
+  // border-bottom-left-radius: 0;
+  // margin:-1px;
+  // padding-right: 15px;
+}

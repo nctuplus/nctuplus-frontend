@@ -15,6 +15,7 @@ import { InputWithButton } from 'components/FormUtils'
 import Spinner from 'components/Spinner'
 import { getComments, getCommentsLatestNews } from 'api/Controllers/comments'
 import actions from 'api/Actions/Comments'
+import Show from '../Show'
 
 class Index extends React.Component {
   componentDidMount () {
@@ -45,63 +46,67 @@ class Index extends React.Component {
           }
         }
       })
+      window.scroll({ top: 0, left: 0, behavior: 'smooth' })
     }
   }
 
   render () {
     return (
-      <Layout>
-        <div className='container pt-3'>
-          <div className='row'>
-            <div className='col-md-12 col-lg-3'>
-              <SearchPanel>
-                <InputWithButton
-                  placeholder='課名/老師/標題'
-                  button_style='primary'
-                  button_content={<i className='fa fa-search' />}
-                  onClick={(value) => this.props.updateFilters({ search_by: value })}
-                />
-                <SearchPanelButtonGroup
-                  new_title='新增文章'
-                  new_link='/comments/new'
-                  new_btn_type='info'
-                  mine_title='我的文章'
-                  mine_link='/comments/?mine=true'
-                  mine_btn_type='primary'
-                />
-                <SearchPanelCollegeList />
-                <SearchPanelNewsFeed>
-                  {
-                    this.props.latestNews.data &&
+      <React.Fragment>
+        <Layout>
+          <div className='container pt-3'>
+            <div className='row'>
+              <div className='col-md-12 col-lg-3'>
+                <SearchPanel>
+                  <InputWithButton
+                    placeholder='課名/老師/標題'
+                    button_style='primary'
+                    button_content={<i className='fa fa-search' />}
+                    onClick={(value) => this.props.updateFilters({ search_by: value })}
+                  />
+                  <SearchPanelButtonGroup
+                    new_title='新增文章'
+                    new_link='/comments/new'
+                    new_btn_type='info'
+                    mine_title='我的文章'
+                    mine_link='/comments/?mine=true'
+                    mine_btn_type='primary'
+                  />
+                  <SearchPanelCollegeList />
+                  <SearchPanelNewsFeed>
+                    {
+                      this.props.latestNews.data &&
                     this.props.latestNews.data.length
-                      ? this.props.latestNews.data.map((comment, index) => (
+                        ? this.props.latestNews.data.map((comment, index) => (
                         // 這裡因為最新動態可能會有同一篇心得的新增和回覆，所以key不能用comment id
-                        <SearchPanelNews
-                          href={`/comments/${comment.id}`}
-                          status={comment.status}
-                          clickable
-                          key={index}
-                        >
-                          { moment(comment.time).fromNow() }
-                          { comment.anonymity ? '匿名' : comment.user.name }
-                          { comment.status ? '回覆了' : '新增了' }
-                          <strong>{ comment.course.name }</strong>
+                          <SearchPanelNews
+                            href={`/comments/${comment.id}`}
+                            status={comment.status}
+                            clickable
+                            key={index}
+                          >
+                            { moment(comment.time).fromNow() }
+                            { comment.anonymity ? '匿名' : comment.user.name }
+                            { comment.status ? '回覆了' : '新增了' }
+                            <strong>{ comment.course.name }</strong>
                           的文章-{ comment.title }
-                        </SearchPanelNews>
-                      ))
-                      : <div className='text-center'>
-                        <Spinner size={32} color='grey' />
-                      </div>
-                  }
-                </SearchPanelNewsFeed>
-              </SearchPanel>
-            </div>
-            <div className='col-12'>
-              <Comments.Table {...this.props.comments} updatePage={this.props.updatePage.bind(this)} />
+                          </SearchPanelNews>
+                        ))
+                        : <div className='text-center'>
+                          <Spinner size={32} color='grey' />
+                        </div>
+                    }
+                  </SearchPanelNewsFeed>
+                </SearchPanel>
+              </div>
+              <div className='col-12'>
+                <Comments.Table {...this.props.comments} updatePage={this.props.updatePage.bind(this)} />
+              </div>
             </div>
           </div>
-        </div>
-      </Layout>
+        </Layout>
+        {this.props.show && <Show />}
+      </React.Fragment>
     )
   }
 }

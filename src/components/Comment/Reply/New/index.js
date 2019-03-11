@@ -29,7 +29,6 @@ class New extends React.Component {
     this.formRef = React.createRef()
     this.updatePayload = this.updatePayload.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
-    this.onCancel = this.onCancel.bind(this)
   }
 
   componentDidUpdate () {
@@ -37,7 +36,6 @@ class New extends React.Component {
       // POST回覆完成後 重新GET該心得 回覆才會更新
       this.props.postReplyReset()
       this.props.getComment(this.props.match.params.id)
-      this.props.handleReplyClose()
     }
   }
 
@@ -51,32 +49,27 @@ class New extends React.Component {
   }
 
   onSubmit (event) {
+    // 讓表單不要照預設方法送出
+    event.preventDefault()
     let payload = this.state.payload
 
     // only works on chrome, but who care others? ;)
     this.formRef.current.reportValidity()
 
-    if (payload.content) {
-      // 讓表單不要照預設方法送出
-      event.preventDefault()
+    if (payload.content && this.props.postStatus !== FETCHING_STATUS.FETCHING) {
+      this.updatePayload({ content: '' })
       this.props.postReply(payload, this.props.match.params.id)
     }
-  }
-
-  onCancel (event) {
-    event.preventDefault()
-    this.props.handleReplyClose()
   }
 
   render () {
     return (
       <Comments.Reply.Form
         {...this.state}
-        formType='new'
         formRef={this.formRef}
         updatePayload={(payload) => this.setState({ payload: { ...this.state.payload, ...payload } })}
         onSubmit={this.onSubmit}
-        onCancel={this.onCancel}
+        fetchingStatus={this.props.postStatus}
       />
     )
   }

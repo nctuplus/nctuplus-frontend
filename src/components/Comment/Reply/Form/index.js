@@ -1,45 +1,42 @@
 
 import React from 'react'
+import TextareaAutosize from 'react-textarea-autosize'
+import styles from './style.scss'
+import { FETCHING_STATUS } from 'utilities/constants'
 
-const Form = props => (
-  <form className='py-5' ref={props.formRef}>
-    <div>
-      <textarea
-        className='form-control'
-        placeholder='內容...'
-        rows='5'
-        value={props.payload.content}
-        onChange={e => props.updatePayload({ content: e.target.value })}
-        required
-      />
-    </div>
-    <div className='my-3 pull-right'>
-      <div className='d-inline-block m-1' >
-        <label>
-          <input
+const Form = props => {
+  const disable = (props.fetchingStatus === FETCHING_STATUS.FETCHING).toString()
+  return (
+    <form className={styles.container} ref={props.formRef} onSubmit={props.onSubmit}>
+      <div className={styles.form}>
+        <TextareaAutosize
+          className={`${styles.textarea}`}
+          maxRows={3}
+          minRows={1}
+          placeholder='內容...'
+          onChange={e => props.updatePayload({ content: e.target.value })}
+          value={props.payload.content}
+          required
+          disable={disable}
+        />
+        <div className={`custom-control custom-checkbox mx-2 ${styles.checkbox}`}>
+          <input type='checkbox' className='custom-control-input' id='newReplyCheckBox'
             checked={props.payload.anonymity}
             onChange={e => props.updatePayload({ anonymity: !props.payload.anonymity })}
-            className='mx-1'
-            type='checkbox'
+            disable={disable}
           />
-          匿名
-        </label>
+          <label className='custom-control-label' htmlFor='newReplyCheckBox'>匿名</label>
+        </div>
+        <button
+          type='submit'
+          className={`btn btn-primary ${styles.submit}`}
+          disable={disable}
+        >
+          送出
+        </button>
       </div>
-      <button
-        type='submit'
-        className='btn btn-primary m-1'
-        onClick={props.onSubmit}
-      >
-        送出
-      </button>
-      <button
-        className='btn btn-default m-1'
-        onClick={props.onCancel}
-      >
-        取消
-      </button>
-    </div>
-  </form>
-)
+    </form>
+  )
+}
 
 export default Form

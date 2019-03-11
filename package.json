@@ -60,6 +60,7 @@
     "react-scroll-to-component": "^1.0.2",
     "react-slick": "^0.23.1",
     "react-star-ratings": "^2.3.0",
+    "react-textarea-autosize": "^7.1.0",
     "react-toggle-switch": "^3.0.4",
     "react-tooltip": "^3.6.1",
     "react-transition-group": "^2.3.0",

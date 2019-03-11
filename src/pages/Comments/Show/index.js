@@ -3,25 +3,32 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import Layout from 'pages/Layout'
 import * as Comments from 'components/Comment'
 import { getComment, deleteComment } from 'api/Controllers/comments'
 import actions from 'api/Actions/Comments'
 import { FETCHING_STATUS } from 'utilities/constants'
-import style from './style.scss'
+import styles from './style.scss'
 
-class Show extends React.Component {
+class Show extends React.PureComponent {
   constructor (props) {
     super(props)
     this.state = { replyOpen: false }
     this.handleDeleteClick = this.handleDeleteClick.bind(this)
-    this.handleReplyClick = this.handleReplyClick.bind(this)
+    this.clickOnDimmer = this.clickOnDimmer.bind(this)
   }
 
   componentDidMount () {
     this.props.getComment(this.props.match.params.id)
+    const documentWidth = document.documentElement.clientWidth
+    const windowWidth = window.innerWidth
+    const scrollBarWidth = windowWidth - documentWidth
+    document.body.style.overflowY = 'hidden'
+    document.body.style.paddingRight = `${scrollBarWidth}px`
   }
-
+  componentWillUnmount () {
+    document.body.style.overflowY = 'auto'
+    document.body.style.paddingRight = '0'
+  }
   componentDidUpdate () {
     if (this.props.deleteStatus === FETCHING_STATUS.DONE) {
       this.props.deleteCommentReset()
@@ -35,104 +42,89 @@ class Show extends React.Component {
     }
   }
 
-  handleReplyClick () {
-    this.setState({ replyOpen: !this.state.replyOpen })
+  clickOnDimmer (e) {
+    this.props.history.push('/comments')
   }
 
   render () {
     const { comment } = this.props
+    // console.log(comment);
+    let userName
+    let commentTime
+    let courseAndTeacher
+    let commentTitle
+    let commentContent
+    let replies
+    let courseID
+    let commentUserId
+    if (comment.course) {
+      userName = comment.anonymity ? '匿名' : comment.user.name
+      commentTime = comment.created_at.substr(0, 10)
+      courseAndTeacher = `${comment.course.name}/
+      ${comment.course.teachers[0]}${comment.course.teachers.slice(1).map((name) => `,${name}`)}`
+      commentTitle = comment.title
+      commentContent = comment.content
+      replies = (
+        <React.Fragment>
+          {comment.reply.map((reply) => (
+            <Comments.Reply.Index key={reply.id} data={{ ...reply }} />
+          ))}
+        </React.Fragment>
+      )
+      courseID = comment.course.id
+      commentUserId = comment.user.id
+    }
+
     return (
-      <Layout>
-        <div className='container'>
-          <div className='col-md-10 offset-md-1'>
-            <div className='bg-white px-5 py-4'>
-              <div className='row align-items-end'>
-                <div className='col-lg-1 col-sm-2 col-4'>
-                  <img alt='' src={this.props.userImage} height='50' width='50' />
+      <div className={styles.dimmer} onClick={this.clickOnDimmer}>
+        <i className={`fas fa-times ${styles.exitBtn}`} />
+        <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+          <div className={styles.post}>
+            <div className={styles.card}>
+              <div className={styles.header}>
+                <img className={styles.userImg} alt='u_img' src='https://plus.nctu.edu.tw/assets/anonymous-bfbb219640bb7de2c9cb7fc1a7f4960e.jpg' height='40' width='40' />
+                <div className={styles.info}>
+                  <span className={styles.user}>{userName}</span>
+                  <span className={`text-muted ${styles.time}`}>{commentTime}</span>
                 </div>
-                <div className='col-lg-3 col-sm-4 col-8'>
-                  <div>
-                    { comment.anonymity ? '匿名' : (comment.user && comment.user.name) }
-                    <br />
-                    { comment.created_at && comment.created_at.substr(0, 10) }
-                  </div>
-                </div>
-                <div className='col-lg-8 col-md-6 col-12'>
-                  <div className={style.btnBar}>
-                    {
-                      this.props.currentUser && comment.user &&
-                      this.props.currentUser.id === comment.user.id &&
-                      <React.Fragment>
-                        <Link to={`/comments/${comment.id}/edit`}>
-                          <button className='btn btn-info'>
-                            <i className='fa fa-pencil' />編輯
-                          </button>
-                        </Link>
-                        <button className='btn btn-danger m-1' onClick={this.handleDeleteClick}>
-                          <i className='fa fa-trash' />刪除
-                        </button>
-                      </React.Fragment>
-                    }
-                    <button className='btn btn-success' onClick={this.handleReplyClick}>
-                      <i className='fa fa-reply' />回覆
+                {
+                  // 是當前使用者的心得才會有的按鈕
+                  this.props.currentUser && this.props.currentUser.id === commentUserId &&
+                  <div className={styles.btnBar}>
+                    <button className='btn' onClick={this.handleDeleteClick}>
+                      <i className='fa fa-trash' /><span>刪除</span>
+                    </button>
+                    <button className='btn' onClick={this.handleDeleteClick}>
+                      <i className='fas fa-edit' /><span>編輯</span>
                     </button>
                   </div>
+                }
+                <div className={`text-secondary ${styles.cardSubtitle}`}>
+                  <Link to={`/courses/${courseID}`}>{courseAndTeacher}</Link>
                 </div>
               </div>
-
-              <hr />
-
-              <div className='row mt-3'>
-                <div className='col-md-12'>
-                  <h4 className='m-0'>{ comment.title }</h4>
-                  <Link to={`/courses/${comment.course && comment.course.id}`}>
-                    <div className='text-primary'>
-                      { comment.course && comment.course.name }
-                      /
-                      { comment.course &&
-                        comment.course.teachers.length
-                        ? <React.Fragment>
-                          { comment.course.teachers[0] }
-                          { comment.course.teachers.slice(1).map((name) => `,${name}`) }
-                        </React.Fragment>
-                        : 'N/A'
-                      }
-                    </div>
-                  </Link>
-                </div>
-              </div>
-              <div className='row mt-3'>
-                <div className='col-md-12'>
-                  <span className={style.content}>{ comment.content }</span>
-                </div>
-              </div>
-
-              <hr />
-
-              {
-                comment.reply &&
-                comment.reply.map((reply) => (
-                  <div key={reply.id}>
-                    <Comments.Reply.Index data={{ ...reply }} />
-                    <hr />
-                  </div>
-                ))
-              }
-              {
-                this.state.replyOpen &&
-                <Comments.Reply.New handleReplyClose={this.handleReplyClick} />
-              }
+              <h3 className={styles.cardTitle}>{commentTitle}</h3>
+              <div className={styles.cardText}>{commentContent}</div>
             </div>
           </div>
+          <div className={styles.postFooter}>
+            <Comments.Reply.New />
+          </div>
+          <div className={styles.replyContainer}>
+            {replies}
+          </div>
         </div>
-      </Layout>
+      </div>
+
     )
   }
 }
 
 const mapStateToProps = (state) => ({
   currentUser: state.user.currentUser,
+  fetchingStatus: state.comments.show.status,
   comment: state.comments.show.data,
+  // fetchingCommentStatus: state.comments
   deleteStatus: state.comments.delete.status
 })
 
