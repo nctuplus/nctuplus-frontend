@@ -39,9 +39,6 @@ const enhance = compose(
           sort: {
             order: 'desc',
             by: 'created_at'
-          },
-          filters: {
-            custom_search: ''
           }
         }
       })
@@ -67,8 +64,7 @@ const enhance = compose(
               by: 'created_at'
             },
             filters: {
-              custom_search: this.props.pastExams.filter.search_by,
-              class: this.props.college
+              custom_search: this.props.pastExams.filter.search_by
             }
           }
         })
@@ -110,8 +106,7 @@ const Index = ({ pastExams, latestNews, updatePage, updateFilters }) => (
             <SearchPanelCollegeList />
             <SearchPanelNewsFeed >
               {
-                latestNews.data &&
-                latestNews.data.length
+                latestNews.data && latestNews.data.length
                   ? latestNews.data
                     .slice(0, 10)
                     .map((pastExam, index) => (
