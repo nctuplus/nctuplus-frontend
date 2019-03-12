@@ -2,6 +2,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import moment from 'moment'
+import Layout from 'pages/Layout'
+import Show from 'pages/Comments/Show'
 import {
   SearchPanel,
   SearchPanelButtonGroup,
@@ -9,13 +11,11 @@ import {
   SearchPanelNews,
   SearchPanelNewsFeed
 } from 'components/Search'
-import Layout from 'pages/Layout'
 import * as Comments from 'components/Comment'
 import { InputWithButton } from 'components/FormUtils'
 import Spinner from 'components/Spinner'
 import { getComments, getCommentsLatestNews } from 'api/Controllers/comments'
 import actions from 'api/Actions/Comments'
-import Show from '../Show'
 
 class Index extends React.Component {
   componentDidMount () {
@@ -76,7 +76,7 @@ class Index extends React.Component {
                   <SearchPanelNewsFeed>
                     {
                       this.props.latestNews.data &&
-                    this.props.latestNews.data.length
+                      this.props.latestNews.data.length
                         ? this.props.latestNews.data.map((comment, index) => (
                         // 這裡因為最新動態可能會有同一篇心得的新增和回覆，所以key不能用comment id
                           <SearchPanelNews
@@ -89,7 +89,7 @@ class Index extends React.Component {
                             { comment.anonymity ? '匿名' : comment.user.name }
                             { comment.status ? '回覆了' : '新增了' }
                             <strong>{ comment.course.name }</strong>
-                          的文章-{ comment.title }
+                            的文章-{ comment.title }
                           </SearchPanelNews>
                         ))
                         : <div className='text-center'>
