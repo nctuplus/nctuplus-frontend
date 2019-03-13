@@ -33,9 +33,9 @@ const Item = withRouter((props) => {
           </div>
         </div>
         <div className='card-body text-center'>
-          <div className='ellipsis'>{ props.name }</div>
-          <div className='ellipsis'>作者: { props.authors }</div>
-          <div className='ellipsis'>
+          <div className={`ellipsis ${styles.title}`}>{ props.name }</div>
+          <div className={`ellipsis text-secondary ${styles.info}`}>作者: { props.authors }</div>
+          <div className={`ellipsis text-secondary ${styles.info}`}>
             課程: {
               props.courses &&
               props.courses
@@ -46,7 +46,7 @@ const Item = withRouter((props) => {
         </div>
 
         <div className='card-footer mt-1 p-2' >
-          <span>{ props.created_at.substr(0, 10) }</span>
+          <span className='text-secondary'>{ props.created_at.substr(0, 10) }</span>
           <span className={`pull-right bold ${styles.price}`}>
             <i className='fa fa-dollar' />
             { props.price }
