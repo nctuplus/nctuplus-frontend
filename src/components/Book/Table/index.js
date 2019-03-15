@@ -11,8 +11,8 @@ const Item = withRouter((props) => {
       className='col-sm-6 col-md-4 col-lg-3 mb-3'
       onClick={() => props.history.push(`/books/${props.id}`)}
     >
-      <div className={`${styles.bookItem} card clickable`} >
-        <div className='p-1'>
+      <div className={`${styles.bookItem} card clickable pt-4`} >
+        <div>
           {
             props.sold_at === null &&
             props.currentUser && props.user &&
