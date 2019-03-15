@@ -229,6 +229,10 @@ class SearchPanel extends React.Component {
     document.body.style.paddingRight = '0'
     e.stopPropagation()
   }
+  componentWillUnmount () {
+    document.body.style.overflowY = 'auto'
+    document.body.style.paddingRight = '0'
+  }
   render () {
     return (
       <div className={classNames(styles.searchPanel, this.state.open && 'show')} >
