@@ -19,5 +19,34 @@ const Sidebar = (props) => (
     </ul>
   </div>
 )
+/* =====================
 
-export { Sidebar, SidebarItem }
+   A: SidebarWrapper
+   B: SearchPanel
+   C: SidebarPusher
+
+          A
+   _________________
+   |  B        C   |
+   | ---- ---------|
+   | |  | |       ||
+   | |  | |       ||
+   | |  | |       ||
+   | |  | |       ||
+   | ---- ---------|
+   | ______________|
+
+======================= */
+const SidebarWrapper = (props) => (
+  <div className={styles.sidebarWrapper}>
+    {props.children}
+  </div>
+)
+
+const SidebarPusher = (props) => (
+  <div className={styles.sidebarPusher}>
+    {props.children}
+  </div>
+)
+
+export { Sidebar, SidebarItem, SidebarWrapper, SidebarPusher }

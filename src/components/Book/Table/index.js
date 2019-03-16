@@ -8,7 +8,7 @@ import styles from './style.scss'
 const Item = withRouter((props) => {
   return (
     <div
-      className='col-sm-6 col-md-4 col-lg-3 mb-3'
+      className={`col-sm-6 col-md-4 col-lg-3 mb-3 ${styles.bookItemWrapper}`}
       onClick={() => props.history.push(`/books/${props.id}`)}
     >
       <div className={`${styles.bookItem} card clickable pt-4`} >
@@ -59,7 +59,7 @@ const Item = withRouter((props) => {
 
 const Table = (props) => (
   <div>
-    <div className='row'>
+    <div className='row justify-content-center'>
       {
         props.data.map(book => (
           <Item key={book.id} {...book} currentUser={props.currentUser} />

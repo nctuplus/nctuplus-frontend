@@ -12,27 +12,72 @@
 }
 
 .searchPanel {
-  position: fixed;
-  left: -300px;
-  top: 56px;
-  background: #fff;
+  @include media-breakpoint-up(md) {
+    position: relative;
+  }
+
+  @include media-breakpoint-down(sm) {
+    position: fixed;
+  }
+
+  display: flex;
+  justify-content: flex-end;
+  flex: 0 0 0;
+  width: 0;
+  top: 0;
+  left: 0;
   transition: 0.2s ease-in;
-  width: 300px;
-  height: calc(100vh - 56px);
-  padding: 20px;
   margin: 0;
-  z-index: 100;
+  z-index: 8;
+
+  .content {
+    position: fixed;
+    top: 56px;
+    left: -300px;
+    bottom: 0;
+    padding: 20px;
+    width: 300px;
+    z-index: 9;
+    padding-bottom: calc(#{$footer-height} + 20px);
+    overflow-y: auto;
+    background: #fff;
+    transition: left 0.2s ease-in;
+
+    .contentHeader {
+      // border :green 1px solid;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      position: sticky;
+      top: -20px;
+      padding-right: 20px;
+      margin: -20px -20px 10px -20px;
+      z-index: 10;
+      height: 45px;
+      background: #fff;
+      border-bottom: 1px solid #dee2e6;
+
+      i {
+        font-size: 30px;
+        color: #ccc;
+      }
+    }
+  }
 
   &:global(.show) {
-    transition: 0.2s ease-in;
-    left: 0;
     overflow: auto;
+    flex: 0 0 300px;
+    width: 300px;
+
+    .content {
+      left: 0;
+    }
   }
 
   .panelOpen {
-    position: absolute;
-    left: 300px;
-    top: 5%;
+    position: fixed;
+    left: 0;
+    top: 100px;
     width: 50px;
     height: 50px;
     font-size: 22px;
@@ -45,6 +90,7 @@
     border-radius: 0 100px 100px 0;
     transition: 0.2s ease-in;
     cursor: pointer;
+    z-index: 8;
 
     &:hover {
       width: 60px;
@@ -57,20 +103,21 @@
 
   .panelClose {
     opacity: 0;
+    visibility: hidden;
+    background: rgba(0, 0, 0, 0.75);
+    position: fixed;
+    top: 56px;
     left: 0;
+    right: 0;
+    bottom: 0;
     transition: 0.2s ease-in;
+
+    @include media-breakpoint-up(md) { display: none; }
 
     &:global(.show) {
       opacity: 1;
-      background: rgba(0, 0, 0, 0.75);
-      width: 100vw;
-      height: calc(100vh - 56px);
-      position: fixed;
-      top: 56px;
-      left: 300px;
-      margin: 0;
-      padding: 0;
-      z-index: 10;
+      z-index: 8;
+      visibility: visible;
     }
   }
 
