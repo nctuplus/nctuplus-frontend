@@ -99,7 +99,10 @@ class New extends React.Component {
     }
 
     // 檔案還沒上傳並編碼完前不送出
-    if (this.state.fileUploadStatus === 'uploading') return
+    if (this.state.fileUploadStatus === 'uploading') {
+      toast('檔案處理中，請稍候再送出', { type: 'warning' })
+      return
+    }
 
     if (payload.file && payload.course.id) {
       // 讓表單不要照預設方法送出
