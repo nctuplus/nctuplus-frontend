@@ -8,11 +8,11 @@ import styles from './style.scss'
 const Item = withRouter((props) => {
   return (
     <div
-      className='col-sm-6 col-md-4 col-lg-3 mb-3'
+      className={`col-sm-6 col-md-4 col-lg-3 mb-3 ${styles.bookItemWrapper}`}
       onClick={() => props.history.push(`/books/${props.id}`)}
     >
-      <div className={`${styles.bookItem} card clickable`} >
-        <div className='p-1'>
+      <div className={`${styles.bookItem} card clickable pt-4`} >
+        <div>
           {
             props.sold_at === null &&
             props.currentUser && props.user &&
@@ -33,9 +33,9 @@ const Item = withRouter((props) => {
           </div>
         </div>
         <div className='card-body text-center'>
-          <div className='ellipsis'>{ props.name }</div>
-          <div className='ellipsis'>作者: { props.authors }</div>
-          <div className='ellipsis'>
+          <div className={`ellipsis ${styles.title}`}>{ props.name }</div>
+          <div className={`ellipsis text-secondary ${styles.info}`}>作者: { props.authors }</div>
+          <div className={`ellipsis text-secondary ${styles.info}`}>
             課程: {
               props.courses &&
               props.courses.map(course => course.name).join(', ')
@@ -44,7 +44,7 @@ const Item = withRouter((props) => {
         </div>
 
         <div className='card-footer mt-1 p-2' >
-          <span>{ props.created_at.substr(0, 10) }</span>
+          <span className='text-secondary'>{ props.created_at.substr(0, 10) }</span>
           <span className={`pull-right bold ${styles.price}`}>
             <i className='fa fa-dollar' />
             { props.price }
@@ -57,7 +57,7 @@ const Item = withRouter((props) => {
 
 const Table = (props) => (
   <div>
-    <div className='row'>
+    <div className='row justify-content-center'>
       {
         props.data.map(book => (
           <Item key={book.id} {...book} currentUser={props.currentUser} />

@@ -16,6 +16,7 @@ import { toast, ToastWrapper } from 'components/Toast'
 import { getBooks, getBooksLatestNews } from 'api/Controllers/books'
 import actions from 'api/Actions/Books'
 import styles from './style.scss'
+import { SidebarWrapper, SidebarPusher } from 'components/Sidebar'
 
 class Index extends React.Component {
   componentDidMount () {
@@ -73,82 +74,80 @@ class Index extends React.Component {
     return (
       <Layout>
         <ToastWrapper />
-        <div className='container pt-3'>
-          <div className='row'>
-            <div className='col-md-12 col-lg-3'>
-              <SearchPanel>
-                <InputWithButton
-                  placeholder='書名/作者/課名'
-                  button_style='primary'
-                  button_content={<i className='fa fa-search' />}
-                  onClick={(value) => this.props.updateFilters({ search_by: value })}
-                />
-                <SearchPanelButtonGroup
-                  new_title='新增商品'
-                  new_link='/books/new'
-                  new_btn_type='success'
-                  mine_title='我的商品'
-                  mine_link='/books/?mine=true'
-                  mine_btn_type='info'
-                />
-                <div className={`text-center ${styles.filter}`} >
-                  <h4 className='text-center search-panel-title'>排序</h4>
-                  <div className={`btn-group ${styles.filterGroup}`} >
-                    <button
-                      onClick={() => this.props.updateFilters({ sort_by: 'price' })}
-                      className={filters.sort_by === 'price' ? 'btn btn-primary' : 'btn btn-default'}
-                    >
-                      價錢
-                      {
-                        filters.sort_by === 'price' &&
-                        <span onClick={() => this.props.updateFilters({ descend: !filters.descend })}>
-                          { filters.descend ? '▼' : '▲' }
-                        </span>
-                      }
-                    </button>
-                    <button
-                      onClick={() => this.props.updateFilters({ sort_by: 'created_at' })}
-                      className={filters.sort_by === 'created_at' ? 'btn btn-primary' : 'btn btn-default'}
-                    >
-                      日期
-                      {
-                        filters.sort_by === 'created_at' &&
-                        <span onClick={() => this.props.updateFilters({ descend: !filters.descend })}>
-                          { filters.descend ? '▼' : '▲' }
-                        </span>
-                      }
-                    </button>
-                  </div>
-                </div>
-                <SearchPanelCollegeList />
-                <SearchPanelNewsFeed >
+        <SidebarWrapper>
+          <SearchPanel>
+            <InputWithButton
+              placeholder='書名/作者/課名'
+              button_style='primary'
+              button_content={<i className='fa fa-search' />}
+              onClick={(value) => this.props.updateFilters({ search_by: value })}
+            />
+            <SearchPanelButtonGroup
+              new_title='新增商品'
+              new_link='/books/new'
+              new_btn_type='success'
+              mine_title='我的商品'
+              mine_link='/books/?mine=true'
+              mine_btn_type='info'
+            />
+            <div className={`text-center ${styles.filter}`} >
+              <h4 className='text-center search-panel-title'>排序</h4>
+              <div className={`btn-group ${styles.filterGroup}`} >
+                <button
+                  onClick={() => this.props.updateFilters({ sort_by: 'price' })}
+                  className={filters.sort_by === 'price' ? 'btn btn-primary' : 'btn btn-default'}
+                >
+                  價錢
                   {
-                    // 這裡因為最新動態可能會有同一本書的新增和編輯，所以key不能用book id
-                    this.props.latestNews.data.map((book, index) => (
-                      <SearchPanelNews
-                        href={`/books/${book.id}`}
-                        status={book.status}
-                        clickable={book.status === 0}
-                        key={index}
-                      >
-                        { moment(book.time).fromNow() }
-                        { book.status ? '售出了' : '新增了' }
-                        { book.name }
-                      </SearchPanelNews>
-                    ))
+                    filters.sort_by === 'price' &&
+                    <span onClick={() => this.props.updateFilters({ descend: !filters.descend })}>
+                      { filters.descend ? '▼' : '▲' }
+                    </span>
                   }
-                </SearchPanelNewsFeed>
-              </SearchPanel>
+                </button>
+                <button
+                  onClick={() => this.props.updateFilters({ sort_by: 'created_at' })}
+                  className={filters.sort_by === 'created_at' ? 'btn btn-primary' : 'btn btn-default'}
+                >
+                  日期
+                  {
+                    filters.sort_by === 'created_at' &&
+                    <span onClick={() => this.props.updateFilters({ descend: !filters.descend })}>
+                      { filters.descend ? '▼' : '▲' }
+                    </span>
+                  }
+                </button>
+              </div>
             </div>
-            <div className='col-12'>
+            <SearchPanelCollegeList />
+            <SearchPanelNewsFeed >
+              {
+                // 這裡因為最新動態可能會有同一本書的新增和編輯，所以key不能用book id
+                this.props.latestNews.data.map((book, index) => (
+                  <SearchPanelNews
+                    href={`/books/${book.id}`}
+                    status={book.status}
+                    clickable={book.status === 0}
+                    key={index}
+                  >
+                    { moment(book.time).fromNow() }
+                    { book.status ? '售出了' : '新增了' }
+                    { book.name }
+                  </SearchPanelNews>
+                ))
+              }
+            </SearchPanelNewsFeed>
+          </SearchPanel>
+          <SidebarPusher>
+            <div className='container pt-3'>
               <Books.Table
                 {...this.props.books}
                 currentUser={this.props.currentUser}
                 updatePage={this.props.updatePage.bind(this)}
               />
             </div>
-          </div>
-        </div>
+          </SidebarPusher>
+        </SidebarWrapper>
       </Layout>
     )
   }

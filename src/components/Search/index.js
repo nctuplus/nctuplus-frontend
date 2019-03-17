@@ -209,25 +209,35 @@ class SearchPanel extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      open: false
+      open: !(window.innerWidth < 768)
     }
     this.toggleOpen = this.toggleOpen.bind(this)
     this.toggleClose = this.toggleClose.bind(this)
   }
   toggleOpen (e) {
-    this.setState({ open: true })
-    const documentWidth = document.documentElement.clientWidth
-    const windowWidth = window.innerWidth
-    const scrollBarWidth = windowWidth - documentWidth
-    document.body.style.overflowY = 'hidden'
-    document.body.style.paddingRight = `${scrollBarWidth}px`
     e.stopPropagation()
+    this.setState({ open: true })
+    if (window.innerWidth < 768) {
+      const documentWidth = document.documentElement.clientWidth
+      const windowWidth = window.innerWidth
+      const scrollBarWidth = windowWidth - documentWidth
+      document.body.style.overflowY = 'hidden'
+      document.body.style.paddingRight = `${scrollBarWidth}px`
+    }
   }
   toggleClose (e) {
-    this.setState({ open: false })
-    document.body.style.overflowY = 'auto'
-    document.body.style.paddingRight = '0'
     e.stopPropagation()
+    this.setState({ open: false })
+    if (window.innerWidth < 768) {
+      document.body.style.overflowY = 'auto'
+      document.body.style.paddingRight = '0'
+    }
+  }
+  componentWillUnmount () {
+    if (window.innerWidth < 768) {
+      document.body.style.overflowY = 'auto'
+      document.body.style.paddingRight = '0'
+    }
   }
   render () {
     return (
@@ -236,7 +246,10 @@ class SearchPanel extends React.Component {
           <i className='fa fa-filter' />
         </div>
         <div className={classNames(styles.panelClose, this.state.open && 'show')} onClick={this.toggleClose} />
-        { this.props.children }
+        <div className={styles.content}>
+          <div className={styles.contentHeader}><i className='fas fa-arrow-left' onClick={this.toggleClose} /></div>
+          { this.props.children }
+        </div>
       </div>
     )
   }
