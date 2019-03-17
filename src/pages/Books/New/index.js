@@ -34,7 +34,11 @@ class New extends React.Component {
         contact_way: '',
         courses: []
       },
-      courseSearchWord: '',
+      searchFilter: {
+        year: '',
+        term: '',
+        keyword: ''
+      },
       fileUploadStatus: 'none',
       uploadedImageUrl: null
     }
@@ -61,11 +65,11 @@ class New extends React.Component {
   }
 
   onSearch (event) {
-    if (this.state.courseSearchWord) {
+    if (this.state.searchFilter.keyword) {
       event.preventDefault()
       modal(
         <SearchListMultiple
-          searchWord={this.state.courseSearchWord}
+          filter={this.state.searchFilter}
           addSearchCourse={(course) => this.addSearchCourse(course)}
           removeSearchCourse={(id) => this.removeSearchCourse(id)}
           findSearchCourse={(id) => this.findSearchCourse(id)}
@@ -91,23 +95,27 @@ class New extends React.Component {
 
   addSearchCourse (course) {
     let newCourses = [...this.state.payload.courses]
-    newCourses.push(course)
+    newCourses.push({
+      id: course.id,
+      name: course.permanent_course.name
+    })
     this.setState({ payload: { ...this.state.payload, courses: newCourses } })
   }
 
   removeSearchCourse (id) {
     let newCourses = [...this.state.payload.courses]
-    let index = newCourses.findIndex(course => course.course_id === id)
+    let index = newCourses.findIndex(course => course.id === id)
     newCourses.splice(index, 1)
     this.setState({ payload: { ...this.state.payload, courses: newCourses } })
   }
 
   findSearchCourse (id) {
-    let index = this.state.payload.courses.findIndex(course => course.course_id === id)
+    let index = this.state.payload.courses.findIndex(course => course.id === id)
     return index !== -1
   }
 
   render () {
+    console.log(this.state.searchFilter)
     return (
       <Form
         {...this.state}
@@ -116,7 +124,7 @@ class New extends React.Component {
         imageUploadRef={this.imageUploadRef}
         updatePayload={(payload) => this.setState({ payload: { ...this.state.payload, ...payload } })}
         onFileUpload={() => this.onFileUpload()}
-        updateSearchWord={(word) => this.setState({ courseSearchWord: word })}
+        updateSearchFilter={(filter) => this.setState({ searchFilter: { ...this.state.searchFilter, ...filter } })}
         onSearch={(event) => this.onSearch(event)}
         onSubmit={(event) => this.onSubmit(event)}
         removeSearchCourse={(id) => this.removeSearchCourse(id)}

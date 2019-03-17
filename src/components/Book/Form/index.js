@@ -1,7 +1,7 @@
 
 import React from 'react'
 import Layout from 'pages/Layout'
-import { LabeledInput } from 'components/FormUtils'
+import { LabeledInput, SemesterDropdown } from 'components/FormUtils'
 import { ModalWrapper } from 'components/Modal'
 import styles from './style.scss'
 
@@ -103,26 +103,29 @@ const Form = props => (
             <LabeledInput label='適用課程'>
               <div className='input-group'>
                 <input
-                  value={props.courseSearchWord}
-                  onChange={e => props.updateSearchWord(e.target.value)}
+                  value={props.searchFilter.keyword}
+                  onChange={e => props.updateSearchFilter({ keyword: e.target.value })}
                   className='form-control'
                   placeholder='選填 / 搜尋課名（交大專用）'
                   required
                 />
+                <div className='input-group-append'>
+                  <SemesterDropdown updateSearchFilter={props.updateSearchFilter} />
+                </div>
                 <div className='input-group-append'>
                   <button className='btn btn-default' onClick={props.onSearch}>搜尋</button>
                 </div>
               </div>
             </LabeledInput>
             {
-              props.payload.courses.map((course, index) => (
-                <div className='row m-0' key={course.course_id}>
+              props.payload.courses.map((course) => (
+                <div className='row m-0' key={course.id}>
                   <div className='col-12 col-md-9 col-lg-10 offset-md-3 offset-lg-2'>
                     <i
                       className='fa fa-times mx-2 text-blue pointer'
-                      onClick={() => props.removeSearchCourse(course.course_id)}
+                      onClick={() => props.removeSearchCourse(course.id)}
                     />
-                    { course.course_name }
+                    { course.name }
                   </div>
                 </div>
               ))

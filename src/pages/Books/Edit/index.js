@@ -40,7 +40,11 @@ class Edit extends React.Component {
         courses: [],
         sold_at: ''
       },
-      courseSearchWord: '',
+      searchFilter: {
+        year: '',
+        term: '',
+        keyword: ''
+      },
       synced: false,
       fileUploadStatus: 'none',
       uploadedImageUrl: null
@@ -91,11 +95,11 @@ class Edit extends React.Component {
   }
 
   onSearch (event) {
-    if (this.state.courseSearchWord) {
+    if (this.state.searchFilter.keyword) {
       event.preventDefault()
       modal(
         <SearchListMultiple
-          searchWord={this.state.courseSearchWord}
+          filter={this.state.searchFilter}
           addSearchCourse={(course) => this.addSearchCourse(course)}
           removeSearchCourse={(id) => this.removeSearchCourse(id)}
           findSearchCourse={(id) => this.findSearchCourse(id)}
@@ -127,7 +131,10 @@ class Edit extends React.Component {
 
   addSearchCourse (course) {
     let newCourses = [...this.state.payload.courses]
-    newCourses.push(course)
+    newCourses.push({
+      id: course.id,
+      name: course.permanent_course.name
+    })
     this.setState({ payload: { ...this.state.payload, courses: newCourses } })
   }
 
@@ -152,7 +159,7 @@ class Edit extends React.Component {
         imageUploadRef={this.imageUploadRef}
         updatePayload={(payload) => this.setState({ payload: { ...this.state.payload, ...payload } })}
         onFileUpload={() => this.onFileUpload()}
-        updateSearchWord={(word) => this.setState({ courseSearchWord: word })}
+        updateSearchFilter={(filter) => this.setState({ searchFilter: { ...this.state.searchFilter, ...filter } })}
         onSearch={(event) => this.onSearch(event)}
         onSubmit={(event) => this.onSubmit(event)}
         onSell={() => this.onSell()}

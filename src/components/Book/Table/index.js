@@ -38,9 +38,7 @@ const Item = withRouter((props) => {
           <div className={`ellipsis text-secondary ${styles.info}`}>
             課程: {
               props.courses &&
-              props.courses
-                .map(course => course.course_name)
-                .join(', ')
+              props.courses.map(course => course.name).join(', ')
             }
           </div>
         </div>

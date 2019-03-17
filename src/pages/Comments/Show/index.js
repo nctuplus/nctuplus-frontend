@@ -14,6 +14,7 @@ class Show extends React.PureComponent {
     super(props)
     this.state = { replyOpen: false }
     this.handleDeleteClick = this.handleDeleteClick.bind(this)
+    this.handleEditClick = this.handleEditClick.bind(this)
     this.clickOnDimmer = this.clickOnDimmer.bind(this)
   }
 
@@ -25,10 +26,12 @@ class Show extends React.PureComponent {
     document.body.style.overflowY = 'hidden'
     document.body.style.paddingRight = `${scrollBarWidth}px`
   }
+
   componentWillUnmount () {
     document.body.style.overflowY = 'auto'
     document.body.style.paddingRight = '0'
   }
+
   componentDidUpdate () {
     if (this.props.deleteStatus === FETCHING_STATUS.DONE) {
       this.props.deleteCommentReset()
@@ -42,13 +45,16 @@ class Show extends React.PureComponent {
     }
   }
 
+  handleEditClick () {
+    this.props.history.push(`/comments/${this.props.comment.id}/edit`)
+  }
+
   clickOnDimmer (e) {
     this.props.history.push('/comments')
   }
 
   render () {
     const { comment } = this.props
-    // console.log(comment);
     let userName
     let commentTime
     let courseAndTeacher
@@ -60,8 +66,7 @@ class Show extends React.PureComponent {
     if (comment.course) {
       userName = comment.anonymity ? '匿名' : comment.user.name
       commentTime = comment.created_at.substr(0, 10)
-      courseAndTeacher = `${comment.course.name}/
-      ${comment.course.teachers[0]}${comment.course.teachers.slice(1).map((name) => `,${name}`)}`
+      courseAndTeacher = `${comment.course.name}/${comment.course.teachers.join(', ')}`
       commentTitle = comment.title
       commentContent = comment.content
       replies = (
@@ -84,8 +89,8 @@ class Show extends React.PureComponent {
               <div className={styles.header}>
                 <img className={styles.userImg} alt='u_img' src='https://plus.nctu.edu.tw/assets/anonymous-bfbb219640bb7de2c9cb7fc1a7f4960e.jpg' height='40' width='40' />
                 <div className={styles.info}>
-                  <span className={styles.user}>{userName}</span>
-                  <span className={`text-muted ${styles.time}`}>{commentTime}</span>
+                  <span className={styles.user}>{ userName }</span>
+                  <span className={`text-muted ${styles.time}`}>{ commentTime }</span>
                 </div>
                 {
                   // 是當前使用者的心得才會有的按鈕
@@ -94,28 +99,25 @@ class Show extends React.PureComponent {
                     <button className='btn' onClick={this.handleDeleteClick}>
                       <i className='fa fa-trash' /><span>刪除</span>
                     </button>
-                    <button className='btn' onClick={this.handleDeleteClick}>
+                    <button className='btn' onClick={this.handleEditClick}>
                       <i className='fas fa-edit' /><span>編輯</span>
                     </button>
                   </div>
                 }
                 <div className={`text-secondary ${styles.cardSubtitle}`}>
-                  <Link to={`/courses/${courseID}`}>{courseAndTeacher}</Link>
+                  <Link to={`/courses/${courseID}`}>{ courseAndTeacher }</Link>
                 </div>
               </div>
-              <h3 className={styles.cardTitle}>{commentTitle}</h3>
-              <div className={styles.cardText}>{commentContent}</div>
+              <h3 className={styles.cardTitle}>{ commentTitle }</h3>
+              <div className={styles.cardText}>{ commentContent }</div>
             </div>
           </div>
           <div className={styles.postFooter}>
             <Comments.Reply.New />
           </div>
-          <div className={styles.replyContainer}>
-            {replies}
-          </div>
+          <div className={styles.replyContainer}>{ replies }</div>
         </div>
       </div>
-
     )
   }
 }
@@ -124,7 +126,6 @@ const mapStateToProps = (state) => ({
   currentUser: state.user.currentUser,
   fetchingStatus: state.comments.show.status,
   comment: state.comments.show.data,
-  // fetchingCommentStatus: state.comments
   deleteStatus: state.comments.delete.status
 })
 

@@ -11,7 +11,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  getCourses: (page) => dispatch(getSearchCourses(page)),
+  getCourses: (payload) => dispatch(getSearchCourses(payload)),
   updatePage: (page) => dispatch(actions.courses.search.updatePage(page))
 })
 
@@ -19,11 +19,11 @@ const enhance = compose(
   connect(mapStateToProps, mapDispatchToProps),
   lifecycle({
     componentDidMount () {
-      this.props.getCourses(1)
+      this.props.getCourses({ ...this.props.filter, page: 1 })
     },
     componentDidUpdate (prevProps) {
       if (this.props.courses.page !== prevProps.courses.page) {
-        this.props.getCourses(this.props.courses.page)
+        this.props.getCourses({ ...this.props.filter, page: this.props.courses.page })
       }
     }
   })
@@ -45,7 +45,7 @@ const SearchListMultiple = enhance(props => (
         </thead>
         <tbody>
           {
-            props.courses.data.map((course, index) => (
+            props.courses.data.map((course) => (
               <tr key={course.id}>
                 <td className='py-0 align-middle'>
                   <input
@@ -54,7 +54,7 @@ const SearchListMultiple = enhance(props => (
                     defaultChecked={props.findSearchCourse(course.id)}
                     onClick={() => props.findSearchCourse(course.id)
                       ? props.removeSearchCourse(course.id)
-                      : props.addSearchCourse({ course_id: course.id, course_name: course.permanent_course.name })}
+                      : props.addSearchCourse(course)}
                   />
                 </td>
                 <td className='p-0 align-middle'>
@@ -62,8 +62,10 @@ const SearchListMultiple = enhance(props => (
                 </td>
                 <td className='p-0 align-middle'>
                   <label className='p-2 m-0 w-100' htmlFor={course.id}>
-                    { course.teachers[0].name }
-                    { course.teachers.slice(1).map((teacher) => `,${teacher.name}`) }
+                    {
+                      course.teachers &&
+                      course.teachers.map(teacher => teacher.name).join(', ')
+                    }
                   </label>
                 </td>
               </tr>
@@ -96,14 +98,16 @@ const SearchListSingle = enhance(props => (
         <tbody>
           {
             props.courses.data.map((course, index) => (
-              <tr key={course.id} onClick={() => { props.chooseSearchCourse(course) }}>
+              <tr key={course.id} onClick={() => props.chooseSearchCourse(course)}>
                 <td className='p-0 align-middle'>
                   <label className='p-2 m-0 w-100' htmlFor={course.id}>{course.permanent_course.name}</label>
                 </td>
                 <td className='p-0 align-middle'>
                   <label className='p-2 m-0 w-100' htmlFor={course.id}>
-                    { course.teachers[0].name }
-                    { course.teachers.slice(1).map((teacher) => `,${teacher.name}`) }
+                    {
+                      course.teachers &&
+                      course.teachers.map(teacher => teacher.name).join(', ')
+                    }
                   </label>
                 </td>
               </tr>

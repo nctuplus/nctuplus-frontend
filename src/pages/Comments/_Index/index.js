@@ -2,6 +2,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import moment from 'moment'
+import Layout from 'pages/Layout'
+import Show from 'pages/Comments/Show'
 import {
   SearchPanel,
   SearchPanelButtonGroup,
@@ -9,13 +11,11 @@ import {
   SearchPanelNews,
   SearchPanelNewsFeed
 } from 'components/Search'
-import Layout from 'pages/Layout'
 import * as Comments from 'components/Comment'
 import { InputWithButton } from 'components/FormUtils'
 import Spinner from 'components/Spinner'
 import { getComments, getCommentsLatestNews } from 'api/Controllers/comments'
 import actions from 'api/Actions/Comments'
-import Show from '../Show'
 import { SidebarWrapper, SidebarPusher } from 'components/Sidebar'
 
 class Index extends React.Component {
@@ -34,6 +34,20 @@ class Index extends React.Component {
 
   componentDidUpdate (prevProps) {
     let comments = this.props.comments
+    // 從 /comments/:id 回到 /comments 也要重新fetch，因為在Router是用render不是component
+    if (!this.props.show && prevProps.show) {
+      this.props.fetchData({
+        page: 1,
+        q: {
+          sort: {
+            order: 'desc',
+            by: 'created_at'
+          }
+        }
+      })
+      this.props.fetchLatestNews()
+    }
+
     if (comments.page !== prevProps.comments.page || comments.filters !== prevProps.comments.filters) {
       this.props.fetchData({
         page: comments.page,
@@ -75,7 +89,7 @@ class Index extends React.Component {
               <SearchPanelNewsFeed>
                 {
                   this.props.latestNews.data &&
-                this.props.latestNews.data.length
+                  this.props.latestNews.data.length
                     ? this.props.latestNews.data.map((comment, index) => (
                     // 這裡因為最新動態可能會有同一篇心得的新增和回覆，所以key不能用comment id
                       <SearchPanelNews
@@ -104,7 +118,7 @@ class Index extends React.Component {
             </SidebarPusher>
           </SidebarWrapper>
         </Layout>
-        {this.props.show && <Show />}
+        { this.props.show && <Show /> }
       </React.Fragment>
     )
   }

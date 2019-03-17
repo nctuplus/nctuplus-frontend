@@ -1,11 +1,28 @@
 
 import React from 'react'
 import Layout from 'pages/Layout'
-import { LabeledInput } from 'components/FormUtils'
+import * as Comments from 'components/Comment'
+import { LabeledInput, SemesterDropdown } from 'components/FormUtils'
 import { ModalWrapper } from 'components/Modal'
 import { ToastWrapper } from 'components/Toast'
 
 class Form extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = { show: false }
+    this.previewOpen = this.previewOpen.bind(this)
+    this.previewClose = this.previewClose.bind(this)
+    this.checkStarColor = this.checkStarColor.bind(this)
+  }
+
+  previewOpen () {
+    this.setState({ show: true })
+  }
+
+  previewClose () {
+    this.setState({ show: false })
+  }
+
   checkStarColor (rating, ratingIndex, starIndex) {
     return (rating.charAt(ratingIndex) - '0') >= starIndex ? { color: '#ffdd55' } : { color: '#dddddd' }
   }
@@ -28,12 +45,15 @@ class Form extends React.Component {
                 <LabeledInput label='適用課程'>
                   <div className='input-group'>
                     <input
-                      value={this.props.courseSearchWord}
-                      onChange={e => this.props.updateSearchWord(e.target.value)}
+                      value={this.props.searchFilter.keyword}
+                      onChange={e => this.props.updateSearchFilter({ keyword: e.target.value })}
                       className='form-control'
                       placeholder='搜尋課名（交大專用）'
                       required
                     />
+                    <div className='input-group-append'>
+                      <SemesterDropdown updateSearchFilter={this.props.updateSearchFilter} />
+                    </div>
                     <div className='input-group-append'>
                       <button className='btn btn-default' onClick={this.props.onSearch}>搜尋</button>
                     </div>
@@ -135,12 +155,16 @@ class Form extends React.Component {
                     </label>
                   </div>
                 }
-                <button className='btn btn-success btn-large mx-1'>預覽</button>
+                <button className='btn btn-success btn-large mx-1' onClick={this.previewOpen}>預覽</button>
                 <button type='submit' className='btn btn-primary btn-large mx-1' onClick={this.props.onSubmit}>送出</button>
               </div>
             </div>
           </div>
         </div>
+        {
+          this.state.show &&
+          <Comments.FormPreview comment={payload} previewClose={this.previewClose} />
+        }
       </Layout>
     )
   }

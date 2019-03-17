@@ -21,7 +21,11 @@ class New extends React.Component {
         course: '',
         anonymity: false
       },
-      keyword: '',
+      searchFilter: {
+        year: '',
+        term: '',
+        keyword: ''
+      },
       fileInfo: '',
       fileUploadStatus: 'none'
     }
@@ -41,8 +45,8 @@ class New extends React.Component {
   }
 
   chooseSearchCourse (course) {
-    let content = `已選擇${course.permanent_course.name}/${course.teachers[0].name}`
-    content += course.teachers.slice(1).map((teacher) => `,${teacher.name}`)
+    let teachers = course.teachers.map(teacher => teacher.name)
+    let content = `已選擇${course.permanent_course.name}/${teachers.join(', ')}`
 
     this.setState({
       payload: {
@@ -50,7 +54,7 @@ class New extends React.Component {
         course: {
           id: course.id,
           name: course.permanent_course.name,
-          teacher: course.teachers
+          teacher: teachers
         }
       }
     })
@@ -58,11 +62,11 @@ class New extends React.Component {
   }
 
   onSearch (event) {
-    if (this.state.keyword) {
+    if (this.state.searchFilter.keyword) {
       event.preventDefault()
       modal(
         <SearchListSingle
-          searchWord={this.state.keyword}
+          filter={this.state.searchFilter}
           chooseSearchCourse={(course) => this.chooseSearchCourse(course)}
         />
       )
@@ -99,7 +103,10 @@ class New extends React.Component {
     }
 
     // 檔案還沒上傳並編碼完前不送出
-    if (this.state.fileUploadStatus === 'uploading') return
+    if (this.state.fileUploadStatus === 'uploading') {
+      toast('檔案處理中，請稍候再送出', { type: 'warning' })
+      return
+    }
 
     if (payload.file && payload.course.id) {
       // 讓表單不要照預設方法送出
@@ -114,7 +121,7 @@ class New extends React.Component {
         {...this.state}
         fileUploadRef={this.fileUploadRef}
         updatePayload={(payload) => this.setState({ payload: { ...this.state.payload, ...payload } })}
-        updateKeyword={(word) => this.setState({ keyword: word })}
+        updateSearchFilter={(filter) => this.setState({ searchFilter: { ...this.state.searchFilter, ...filter } })}
         onSearch={this.onSearch}
         onFileUpload={this.onFileUpload}
         onSubmit={this.onSubmit}

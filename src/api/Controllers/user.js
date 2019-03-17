@@ -31,12 +31,12 @@ export const validateToken = () => dispatch => {
 
 // 個人頁面假資料，現在頁面改版暫時disable
 var tempData = {
-  'id': 654,
-  'email': 'test@abcde.com',
+  'id': 872,
+  'email': 'admin@abcde.com',
   'provider': 'email',
-  'name': 'test',
+  'name': 'admin',
   'admission_year': 100,
-  'uid': 'test@abcde.com',
+  'uid': 'admin@abcde.com',
   'allow_password_change': false,
   'role': 0,
   'agree_to_term_of_service': false,

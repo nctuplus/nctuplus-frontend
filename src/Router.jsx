@@ -7,8 +7,7 @@ import {
   Redirect
 } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { validateToken } from 'api/Controllers/user'
-
+import { lifecycle, compose } from 'recompose'
 import Index from 'pages/Index'
 import * as Admin from 'pages/Admin'
 import * as Courses from 'pages/Courses'
@@ -20,10 +19,9 @@ import CourseMap from 'pages/CourseMap'
 import { UserNavigation } from 'components/User'
 import * as User from 'pages/User'
 import * as Scores from 'pages/Scores'
-
 import PageNotFound from 'pages/PageNotFound'
 import Login from 'pages/Login'
-import { lifecycle, compose } from 'recompose'
+import { validateToken } from 'api/Controllers/user'
 
 const mapStateToProps = state => ({ currentUser: state.user.currentUser })
 const mapDispatchToProps = dispatch => ({ validateToken: () => dispatch(validateToken()) })
@@ -96,11 +94,9 @@ const Router = enhance(({ currentUser }) => {
         <Route path='/courses/:id' component={Courses.Show} />
 
         {/* discuss route group */}
-        <Route exact path='/comments' render={() => (<Comments.Index />)} />
+        <Route exact path='/comments' render={() => <Comments.Index />} />
         <Route path='/comments/new' component={loginOnly(Comments.New)} />
-        <Route exact path='/comments/:id' render={() => (
-          <Comments.Index show />
-        )} />
+        <Route exact path='/comments/:id' render={() => <Comments.Index show />} />
         <Route exact path='/comments/:id/edit' component={loginOnly(Comments.Edit)} />
 
         {/* past exam route group */}
@@ -133,7 +129,6 @@ const Router = enhance(({ currentUser }) => {
         <Route path='/user' component={loginOnly(() =>
           <User.Index>
             <Route path='/user/:url?' component={UserNavigation} />
-
             <Route path='/user/profile' component={User.Profile} />
             <Route path='/user/edit' component={User.Edit} />
             <Route path='/user/courses' component={User.Courses} />

@@ -33,7 +33,11 @@ class Edit extends React.Component {
         course: '',
         anonymity: false
       },
-      courseSearchWord: '',
+      searchFilter: {
+        year: '',
+        term: '',
+        keyword: ''
+      },
       synced: false
     }
     this.formRef = React.createRef()
@@ -79,8 +83,8 @@ class Edit extends React.Component {
   }
 
   chooseSearchCourse (course) {
-    let content = `已選擇${course.permanent_course.name}/${course.teachers[0].name}`
-    content += course.teachers.slice(1).map((teacher) => `,${teacher.name}`)
+    let teachers = course.teachers.map(teacher => teacher.name)
+    let content = `已選擇${course.permanent_course.name}/${teachers.join(', ')}`
 
     this.setState({
       payload: {
@@ -88,7 +92,7 @@ class Edit extends React.Component {
         course: {
           id: course.id,
           name: course.permanent_course.name,
-          teacher: course.teachers
+          teachers: teachers
         }
       }
     })
@@ -96,11 +100,11 @@ class Edit extends React.Component {
   }
 
   onSearch (event) {
-    if (this.state.courseSearchWord) {
+    if (this.state.searchFilter.keyword) {
       event.preventDefault()
       modal(
         <SearchListSingle
-          searchWord={this.state.courseSearchWord}
+          filter={this.state.searchFilter}
           chooseSearchCourse={(course) => this.chooseSearchCourse(course)}
         />
       )
@@ -133,7 +137,7 @@ class Edit extends React.Component {
         formRef={this.formRef}
         replaceRating={this.replaceRating}
         updatePayload={(payload) => this.setState({ payload: { ...this.state.payload, ...payload } })}
-        updateSearchWord={(word) => this.setState({ courseSearchWord: word })}
+        updateSearchFilter={(filter) => this.setState({ searchFilter: { ...this.state.searchFilter, ...filter } })}
         onSubmit={this.onSubmit}
         onSearch={this.onSearch}
       />

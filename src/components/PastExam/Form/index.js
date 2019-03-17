@@ -2,6 +2,7 @@
 import React from 'react'
 import Layout from 'pages/Layout'
 import * as PastExams from 'components/PastExam'
+import { SemesterDropdown } from 'components/FormUtils'
 import { ModalWrapper } from 'components/Modal'
 import { ToastWrapper } from 'components/Toast'
 
@@ -19,10 +20,13 @@ const Form = (props) => (
           <input
             className='form-control'
             placeholder='搜尋課名（交大專用）'
-            value={props.keyword}
-            onChange={(e) => props.updateKeyword(e.target.value)}
+            value={props.searchFilter.keyword}
+            onChange={e => props.updateSearchFilter({ keyword: e.target.value })}
             required
           />
+          <div className='input-group-append'>
+            <SemesterDropdown updateSearchFilter={props.updateSearchFilter} />
+          </div>
           <div className='input-group-append'>
             <button className='btn btn-default' onClick={props.onSearch}>搜尋</button>
           </div>

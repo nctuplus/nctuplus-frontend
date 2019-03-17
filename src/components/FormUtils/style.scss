@@ -1,0 +1,14 @@
+
+.dropdownMenu {
+  text-align: center;
+  min-width: 70px;
+  padding: 0;
+  top: auto !important;
+  bottom: 100%;
+}
+
+.dropdownItem {
+  &:hover {
+    background-color: #f5f5f5;
+  }
+}

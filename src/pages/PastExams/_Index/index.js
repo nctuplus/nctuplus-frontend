@@ -16,17 +16,21 @@ import { InputWithButton } from 'components/FormUtils'
 import Spinner from 'components/Spinner'
 import actions from 'api/Actions/PastExams'
 import { getPastExams, getPastExamsLatestNews } from 'api/Controllers/pastExams'
+import { FETCHING_STATUS } from 'utilities/constants'
 
 const mapStateToProps = (state) => ({
   pastExams: state.pastExams.index,
   college: state.searchPanel.college,
-  latestNews: state.pastExams.latestNews
+  latestNews: state.pastExams.latestNews,
+  deleteStatus: state.pastExams.delete.status
 })
+
 const mapDispatchToProps = (dispatch) => ({
   fetchData: (page) => dispatch(getPastExams(page)),
   updateFilters: (filters) => dispatch(actions.pastExams.index.updateFilters(filters)),
   updatePage: (page) => dispatch(actions.pastExams.index.updatePage(page)),
-  fetchLatestNews: (payload) => dispatch(getPastExamsLatestNews(payload))
+  fetchLatestNews: (payload) => dispatch(getPastExamsLatestNews(payload)),
+  deletePastExamReset: () => dispatch(actions.pastExams.delete.setStatus(FETCHING_STATUS.IDLE))
 })
 
 const enhance = compose(
@@ -39,9 +43,6 @@ const enhance = compose(
           sort: {
             order: 'desc',
             by: 'created_at'
-          },
-          filters: {
-            custom_search: ''
           }
         }
       })
@@ -56,7 +57,8 @@ const enhance = compose(
       })
     },
     componentDidUpdate (prevProps) {
-      if (this.props.pastExams.page !== prevProps.pastExams.page ||
+      if (this.props.deleteStatus === FETCHING_STATUS.DONE ||
+          this.props.pastExams.page !== prevProps.pastExams.page ||
           this.props.pastExams.filter !== prevProps.pastExams.filter ||
           this.props.college !== prevProps.college) {
         this.props.fetchData({
@@ -67,8 +69,7 @@ const enhance = compose(
               by: 'created_at'
             },
             filters: {
-              custom_search: this.props.pastExams.filter.search_by,
-              class: this.props.college
+              custom_search: this.props.pastExams.filter.search_by
             }
           }
         })
@@ -82,6 +83,11 @@ const enhance = compose(
           }
         })
         window.scroll({ top: 0, left: 0, behavior: 'smooth' })
+      }
+
+      // 刪除完畢要reset status
+      if (this.props.deleteStatus === FETCHING_STATUS.DONE) {
+        this.props.deletePastExamReset()
       }
     }
   })
@@ -110,8 +116,7 @@ const Index = ({ pastExams, latestNews, updatePage, updateFilters }) => (
             <SearchPanelCollegeList />
             <SearchPanelNewsFeed >
               {
-                latestNews.data &&
-                latestNews.data.length
+                latestNews.data && latestNews.data.length
                   ? latestNews.data
                     .slice(0, 10)
                     .map((pastExam, index) => (
@@ -120,7 +125,7 @@ const Index = ({ pastExams, latestNews, updatePage, updateFilters }) => (
                         key={pastExam.id}
                       >
                         { moment(pastExam.created_at).fromNow() }
-                        { pastExam.uploader}
+                        { pastExam.uploader.name }
                         上傳了
                         <strong>{ pastExam.course.name }</strong>
                         的考古題

@@ -1,19 +1,4 @@
 
-@import '~assets/styles/common';
-
-@include media-breakpoint-up(md) {
-  .btnBar {
-    float: right !important;
-  }
-}
-
-@include media-breakpoint-down(md) {
-  .btnBar {
-    margin-top: 10px;
-    float: left !important;
-  }
-}
-
 .card {
   .cardText {
     width: 100%;
@@ -64,41 +49,6 @@
   .time {
     font-size: 14px;
     line-height: 1em;
-  }
-
-  .btnBar {
-    margin: 0;
-    display: flex;
-
-    button {
-      background-color: inherit;
-      color: #6c6c6c;
-      // border:1px black solid;
-      display: flex;
-      align-items: center;
-
-      &:hover {
-        background-color: $danger;
-        color: #fff;
-      }
-
-      &:hover:nth-child(2) {
-        background-color: $info;
-      }
-
-      span {
-        display: inline-block;
-        width: 0;
-        overflow: hidden;
-        // border:1px solid black;
-        transition: width 0.2s ease, padding 0.2s ease;
-      }
-
-      &:hover span {
-        padding-left: 5px;
-        width: 40px;
-      }
-    }
   }
 
   .cardSubtitle {
@@ -156,8 +106,4 @@
 
 .post {
   padding: 1.25rem;
-}
-
-.replyContainer {
-  background-color: #f5f5f5;
 }

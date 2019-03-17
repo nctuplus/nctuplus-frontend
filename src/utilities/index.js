@@ -1,3 +1,4 @@
+
 import { withProps } from 'recompose'
 
 function base64encode (file) {
@@ -16,6 +17,7 @@ function queryBuilder (payload, controller) {
   let params = '?'
   let customSearchField = ''
 
+  // 各個頁面的搜尋對應的ransack欄位
   switch (controller) {
     case 'Book':
       customSearchField = 'name_or_authors_cont'
@@ -27,7 +29,7 @@ function queryBuilder (payload, controller) {
       customSearchField = 'title_or_permanent_course_name_or_teachers_name_cont'
       break
     case 'PastExam':
-      customSearchField = 'course_permanent_course_cont_or_course_teachers_name_cont'
+      customSearchField = 'permanent_course_name_or_teachers_name_cont'
       break
     case 'Event':
       customSearchField = 'title_or_location_or_organization_cont'
@@ -37,7 +39,7 @@ function queryBuilder (payload, controller) {
   }
 
   Object.entries(payload).forEach(([key, value]) => {
-    if (key === 'q') { // for ransack
+    if (key === 'q') { // for ransack parse
       Object.entries(value).forEach(([key, value]) => {
         if (key === 'sort') {
           if ((++num) > 1) params += '&'
@@ -47,13 +49,13 @@ function queryBuilder (payload, controller) {
           Object.entries(value).forEach(([key, value]) => {
             if ((++num) > 1) params += '&'
             switch (key) {
-              case 'custom_search': // 二手書、心得、活動吧等頁面的輸入搜尋
+              case 'custom_search': // 二手書、心得、考古題、活動吧等頁面的輸入搜尋
                 params += `q[${customSearchField}]=${value}`
                 break
-              case 'class': // 二手書、心得等頁面的系/院分類
+              case 'class': // 二手書、心得、考古題等頁面的系/院分類
                 params += `q[college_id_eq]=${value}`
                 break
-              case 'category': // for bulletin
+              case 'category': // 公布欄的最新消息和網站改版分類
                 params += `q[category_eq]=${value}`
                 break
               default:
