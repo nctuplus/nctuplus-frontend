@@ -1,6 +1,7 @@
 
 import React from 'react'
 import classNames from 'classnames'
+import styles from './style.scss'
 
 class InputWithButton extends React.Component {
   constructor (props) {
@@ -42,4 +43,66 @@ const LabeledInput = (props) => (
   </div>
 )
 
-export { LabeledInput, InputWithButton }
+class SemesterDropdown extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      option: '107下',
+      show: false
+    }
+    this.onClick = this.onClick.bind(this)
+    this.onSelect = this.onSelect.bind(this)
+  }
+
+  // 把預設的選項更新到上層component的filter
+  componentDidMount () {
+    const { option } = this.state
+    this.props.updateSearchFilter({
+      year: parseInt(option.substr(0, 3), 10),
+      term: option.charAt(4) === '上' ? 0 : 1
+    })
+  }
+
+  onClick (event) {
+    event.preventDefault()
+    this.setState({
+      show: !this.state.show
+    })
+  }
+
+  onSelect (option) {
+    this.props.updateSearchFilter({
+      year: parseInt(option.substr(0, 3), 10),
+      term: option.charAt(4) === '上' ? 0 : 1
+    })
+
+    this.setState({
+      option: option,
+      show: false
+    })
+  }
+
+  render () {
+    const options = ['107下', '107上', '106下', '106上', '105下', '105上', '104下', '104上', '103下', '103上', '99下']
+    return (
+      <div className='dropdown'>
+        <button className='btn btn-default dropdown-toggle' onClick={this.onClick}>{this.state.option}</button>
+        <div className={classNames('dropdown-menu', styles.dropdownMenu, this.state.show && 'show')}>
+          {
+            options.map(option => (
+              <div
+                className={classNames('dropdown-item', styles.dropdownItem)}
+                onClick={() => this.onSelect(option)}
+                key={option}
+              >
+                {option}
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    )
+  }
+}
+
+export { LabeledInput, InputWithButton, SemesterDropdown }
