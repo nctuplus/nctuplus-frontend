@@ -14,6 +14,7 @@ class Show extends React.PureComponent {
     super(props)
     this.state = { replyOpen: false }
     this.handleDeleteClick = this.handleDeleteClick.bind(this)
+    this.handleEditClick = this.handleEditClick.bind(this)
     this.clickOnDimmer = this.clickOnDimmer.bind(this)
   }
 
@@ -42,6 +43,10 @@ class Show extends React.PureComponent {
     if (window.confirm('確定刪除此心得嗎?')) {
       this.props.deleteComment(this.props.comment.id)
     }
+  }
+
+  handleEditClick () {
+    this.props.history.push(`/comments/${this.props.comment.id}/edit`)
   }
 
   clickOnDimmer (e) {
@@ -95,7 +100,7 @@ class Show extends React.PureComponent {
                     <button className='btn' onClick={this.handleDeleteClick}>
                       <i className='fa fa-trash' /><span>刪除</span>
                     </button>
-                    <button className='btn' onClick={this.handleDeleteClick}>
+                    <button className='btn' onClick={this.handleEditClick}>
                       <i className='fas fa-edit' /><span>編輯</span>
                     </button>
                   </div>

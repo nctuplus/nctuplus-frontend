@@ -33,7 +33,11 @@ class Edit extends React.Component {
         course: '',
         anonymity: false
       },
-      courseSearchWord: '',
+      searchFilter: {
+        year: '',
+        term: '',
+        keyword: ''
+      },
       synced: false
     }
     this.formRef = React.createRef()
@@ -96,11 +100,11 @@ class Edit extends React.Component {
   }
 
   onSearch (event) {
-    if (this.state.courseSearchWord) {
+    if (this.state.searchFilter.keyword) {
       event.preventDefault()
       modal(
         <SearchListSingle
-          searchWord={this.state.courseSearchWord}
+          filter={this.state.searchFilter}
           chooseSearchCourse={(course) => this.chooseSearchCourse(course)}
         />
       )
@@ -133,7 +137,7 @@ class Edit extends React.Component {
         formRef={this.formRef}
         replaceRating={this.replaceRating}
         updatePayload={(payload) => this.setState({ payload: { ...this.state.payload, ...payload } })}
-        updateSearchWord={(word) => this.setState({ courseSearchWord: word })}
+        updateSearchFilter={(filter) => this.setState({ searchFilter: { ...this.state.searchFilter, ...filter } })}
         onSubmit={this.onSubmit}
         onSearch={this.onSearch}
       />
