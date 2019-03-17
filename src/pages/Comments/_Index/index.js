@@ -33,6 +33,20 @@ class Index extends React.Component {
 
   componentDidUpdate (prevProps) {
     let comments = this.props.comments
+    // 從 /comments/:id 回到 /comments 也要重新fetch，因為在Router是用render不是component
+    if (!this.props.show && prevProps.show) {
+      this.props.fetchData({
+        page: 1,
+        q: {
+          sort: {
+            order: 'desc',
+            by: 'created_at'
+          }
+        }
+      })
+      this.props.fetchLatestNews()
+    }
+
     if (comments.page !== prevProps.comments.page || comments.filters !== prevProps.comments.filters) {
       this.props.fetchData({
         page: comments.page,
