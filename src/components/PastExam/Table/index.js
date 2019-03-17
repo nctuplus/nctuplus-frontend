@@ -34,7 +34,7 @@ class _Row extends React.Component {
     const { course, uploader, description, anonymity, currentUser } = this.props
     return (
       <tr className={styles.row}>
-        <td>{ course.name } / { course.teacher.join(',') }</td>
+        <td>{ course.name } / { course.teacher.join(', ') }</td>
         <td>{ convertSemesterToString(course.semester) }</td>
         <td>{ description }</td>
         <td>{ anonymity ? '匿名' : uploader.name }</td>

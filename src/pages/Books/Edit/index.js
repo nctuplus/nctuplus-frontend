@@ -131,7 +131,10 @@ class Edit extends React.Component {
 
   addSearchCourse (course) {
     let newCourses = [...this.state.payload.courses]
-    newCourses.push(course)
+    newCourses.push({
+      id: course.id,
+      name: course.permanent_course.name
+    })
     this.setState({ payload: { ...this.state.payload, courses: newCourses } })
   }
 

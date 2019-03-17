@@ -66,8 +66,7 @@ class Show extends React.PureComponent {
     if (comment.course) {
       userName = comment.anonymity ? '匿名' : comment.user.name
       commentTime = comment.created_at.substr(0, 10)
-      courseAndTeacher = `${comment.course.name}/
-      ${comment.course.teachers[0]}${comment.course.teachers.slice(1).map((name) => `,${name}`)}`
+      courseAndTeacher = `${comment.course.name}/${comment.course.teachers.join(', ')}`
       commentTitle = comment.title
       commentContent = comment.content
       replies = (

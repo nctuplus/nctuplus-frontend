@@ -103,7 +103,7 @@ const Form = props => (
             <LabeledInput label='適用課程'>
               <div className='input-group'>
                 <input
-                  value={props.courseSearchWord}
+                  value={props.searchFilter.keyword}
                   onChange={e => props.updateSearchFilter({ keyword: e.target.value })}
                   className='form-control'
                   placeholder='選填 / 搜尋課名（交大專用）'
@@ -118,14 +118,14 @@ const Form = props => (
               </div>
             </LabeledInput>
             {
-              props.payload.courses.map((course, index) => (
-                <div className='row m-0' key={course.course_id}>
+              props.payload.courses.map((course) => (
+                <div className='row m-0' key={course.id}>
                   <div className='col-12 col-md-9 col-lg-10 offset-md-3 offset-lg-2'>
                     <i
                       className='fa fa-times mx-2 text-blue pointer'
-                      onClick={() => props.removeSearchCourse(course.course_id)}
+                      onClick={() => props.removeSearchCourse(course.id)}
                     />
-                    { course.course_name }
+                    { course.name }
                   </div>
                 </div>
               ))

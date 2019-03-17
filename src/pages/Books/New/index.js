@@ -95,19 +95,22 @@ class New extends React.Component {
 
   addSearchCourse (course) {
     let newCourses = [...this.state.payload.courses]
-    newCourses.push(course)
+    newCourses.push({
+      id: course.id,
+      name: course.permanent_course.name
+    })
     this.setState({ payload: { ...this.state.payload, courses: newCourses } })
   }
 
   removeSearchCourse (id) {
     let newCourses = [...this.state.payload.courses]
-    let index = newCourses.findIndex(course => course.course_id === id)
+    let index = newCourses.findIndex(course => course.id === id)
     newCourses.splice(index, 1)
     this.setState({ payload: { ...this.state.payload, courses: newCourses } })
   }
 
   findSearchCourse (id) {
-    let index = this.state.payload.courses.findIndex(course => course.course_id === id)
+    let index = this.state.payload.courses.findIndex(course => course.id === id)
     return index !== -1
   }
 

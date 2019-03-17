@@ -17,13 +17,9 @@ const CommentsCard = withRouter((props) => (
         <div className={`text-secondary ${styles.cardSubtitle}`}>
           { props.course && props.course.name }
           /
-          { props.course &&
-            props.course.teachers.length
-            ? <React.Fragment>
-              { props.course.teachers[0] }
-              { props.course.teachers.slice(1).map((name) => `,${name}`) }
-            </React.Fragment>
-            : 'N/A'
+          {
+            props.course && props.course.teachers &&
+            props.course.teachers.join(', ')
           }
         </div>
       </div>

@@ -72,8 +72,8 @@ class Show extends React.Component {
                         <td>
                           {
                             book.courses &&
-                            book.courses.map((course, index) =>
-                              <div key={index}>{course.course_name}</div>
+                            book.courses.map((course) =>
+                              <div key={course.id}>{course.name}</div>
                             )
                           }
                         </td>
@@ -92,9 +92,7 @@ class Show extends React.Component {
               <div className={style.fixedMenu}>
                 <div className='pull-right'>
                   <Link to={`/books/${this.props.match.params.id}/edit`} className='flat-link'>
-                    <button className='btn btn-primary'>
-                      編輯
-                    </button>
+                    <button className='btn btn-primary'>編輯</button>
                   </Link>
                 </div>
               </div>

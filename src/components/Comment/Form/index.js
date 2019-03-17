@@ -28,7 +28,7 @@ class Form extends React.Component {
                 <LabeledInput label='適用課程'>
                   <div className='input-group'>
                     <input
-                      value={this.props.courseSearchWord}
+                      value={this.props.searchFilter.keyword}
                       onChange={e => this.props.updateSearchFilter({ keyword: e.target.value })}
                       className='form-control'
                       placeholder='搜尋課名（交大專用）'
