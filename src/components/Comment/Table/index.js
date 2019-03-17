@@ -12,7 +12,7 @@ const CommentsCard = withRouter((props) => (
         <img className={styles.userImg} alt='u_img' src='https://plus.nctu.edu.tw/assets/anonymous-bfbb219640bb7de2c9cb7fc1a7f4960e.jpg' height='40' width='40' />
         <div className={styles.info}>
           <span className={`${styles.user}`}>{ props.anonymity ? '匿名' : props.user.name }</span>
-          <span className={` text-muted ${styles.time}`}>{ props.created_at && props.created_at.substr(0, 10) }</span>
+          <span className={`text-muted ${styles.time}`}>{ props.created_at && props.created_at.substr(0, 10) }</span>
         </div>
         <div className={`text-secondary ${styles.cardSubtitle}`}>
           { props.course && props.course.name }
@@ -24,7 +24,6 @@ const CommentsCard = withRouter((props) => (
         </div>
       </div>
       <h5 className={styles.cardTitle}>{props.title}</h5>
-      <div className={`text-muted ${styles.cardText}`}>{props.content}</div>
       <div className='text-secondary mt-3'>
         <div>
           <i className='far fa-comment-alt' /> {props.reply.length}

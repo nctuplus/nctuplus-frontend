@@ -18,7 +18,7 @@
   .cardText {
     width: 100%;
     max-width: 800px;
-    white-space: nowrap;
+    white-space: pre-line;
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 20px;
