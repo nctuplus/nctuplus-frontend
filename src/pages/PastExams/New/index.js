@@ -21,7 +21,11 @@ class New extends React.Component {
         course: '',
         anonymity: false
       },
-      keyword: '',
+      searchFilter: {
+        year: '',
+        term: '',
+        keyword: ''
+      },
       fileInfo: '',
       fileUploadStatus: 'none'
     }
@@ -58,11 +62,11 @@ class New extends React.Component {
   }
 
   onSearch (event) {
-    if (this.state.keyword) {
+    if (this.state.searchFilter.keyword) {
       event.preventDefault()
       modal(
         <SearchListSingle
-          searchWord={this.state.keyword}
+          filter={this.state.searchFilter}
           chooseSearchCourse={(course) => this.chooseSearchCourse(course)}
         />
       )
@@ -117,7 +121,7 @@ class New extends React.Component {
         {...this.state}
         fileUploadRef={this.fileUploadRef}
         updatePayload={(payload) => this.setState({ payload: { ...this.state.payload, ...payload } })}
-        updateKeyword={(word) => this.setState({ keyword: word })}
+        updateSearchFilter={(filter) => this.setState({ searchFilter: { ...this.state.searchFilter, ...filter } })}
         onSearch={this.onSearch}
         onFileUpload={this.onFileUpload}
         onSubmit={this.onSubmit}
