@@ -1,11 +1,28 @@
 
 import React from 'react'
 import Layout from 'pages/Layout'
+import * as Comments from 'components/Comment'
 import { LabeledInput, SemesterDropdown } from 'components/FormUtils'
 import { ModalWrapper } from 'components/Modal'
 import { ToastWrapper } from 'components/Toast'
 
 class Form extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = { show: false }
+    this.previewOpen = this.previewOpen.bind(this)
+    this.previewClose = this.previewClose.bind(this)
+    this.checkStarColor = this.checkStarColor.bind(this)
+  }
+
+  previewOpen () {
+    this.setState({ show: true })
+  }
+
+  previewClose () {
+    this.setState({ show: false })
+  }
+
   checkStarColor (rating, ratingIndex, starIndex) {
     return (rating.charAt(ratingIndex) - '0') >= starIndex ? { color: '#ffdd55' } : { color: '#dddddd' }
   }
@@ -138,12 +155,16 @@ class Form extends React.Component {
                     </label>
                   </div>
                 }
-                <button className='btn btn-success btn-large mx-1'>預覽</button>
+                <button className='btn btn-success btn-large mx-1' onClick={this.previewOpen}>預覽</button>
                 <button type='submit' className='btn btn-primary btn-large mx-1' onClick={this.props.onSubmit}>送出</button>
               </div>
             </div>
           </div>
         </div>
+        {
+          this.state.show &&
+          <Comments.FormPreview comment={payload} previewClose={this.previewClose} />
+        }
       </Layout>
     )
   }

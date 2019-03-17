@@ -1,0 +1,109 @@
+
+.card {
+  .cardText {
+    width: 100%;
+    max-width: 800px;
+    white-space: pre-line;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 20px;
+  }
+
+  .cardTitle {
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .header {
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 40px minmax(auto, 100%) auto;
+    grid-template-rows: 40px auto;
+    margin-bottom: 10px;
+  }
+
+  .userImg {
+    grid-row: 1/2;
+    grid-column: 1/2;
+  }
+
+  .info {
+    grid-row: 1/2;
+    grid-column: 2/3;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .user {
+    color: #414141;
+    display: flex;
+    align-items: center;
+    line-height: 1em;
+    margin-bottom: 5px;
+  }
+
+  .time {
+    font-size: 14px;
+    line-height: 1em;
+  }
+
+  .cardSubtitle {
+    grid-row: 2/3;
+    grid-column: 1/-1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 18px;
+    margin-top: 5px;
+  }
+}
+
+.dimmer {
+  background-color: rgba(#000, 0.67);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  // justify-content: center;
+  flex-direction: column;
+  z-index: 100;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  overflow-y: auto;
+}
+
+.exitBtn {
+  font-size: 40px;
+  color: #f4f4f4;
+  position: fixed;
+  right: 50px;
+  top: 30px;
+  cursor: pointer;
+
+  &:hover {
+    color: #fff;
+  }
+}
+
+.modal {
+  width: 90%;
+  max-width: 700px;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  box-shadow: 2px 2px 4px 0 rgba(#000, 0.38);
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+}
+
+.post {
+  padding: 1.25rem;
+}

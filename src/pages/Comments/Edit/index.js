@@ -83,8 +83,8 @@ class Edit extends React.Component {
   }
 
   chooseSearchCourse (course) {
-    let content = `已選擇${course.permanent_course.name}/${course.teachers[0].name}`
-    content += course.teachers.slice(1).map((teacher) => `,${teacher.name}`)
+    let teachers = course.teachers.map(teacher => teacher.name)
+    let content = `已選擇${course.permanent_course.name}/${teachers.join(', ')}`
 
     this.setState({
       payload: {
@@ -92,7 +92,7 @@ class Edit extends React.Component {
         course: {
           id: course.id,
           name: course.permanent_course.name,
-          teacher: course.teachers
+          teachers: teachers
         }
       }
     })
