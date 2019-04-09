@@ -20,12 +20,12 @@ const CoursesYearlyStatistic = (props) => (
             <tr>
               <td >{course.name} | {course.type}</td>
               <td >
-                <button className='btn-warning mr-1 ' type='button'>
+                <button className='btn btn-sm btn-warning mr-1 ' type='button'>
                   <Link className='flat-link text-white' to='/user/edit'>
                     評論
                   </Link>
                 </button>
-                <button className='btn-primary' type='button'>
+                <button className='btn btn-sm btn-primary' type='button'>
                   <Link className='flat-link text-white' to='/user/edit'>
                     上傳考古
                   </Link>
