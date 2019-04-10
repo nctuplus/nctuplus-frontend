@@ -5,10 +5,10 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import Layout from 'pages/Layout'
 import CourseMapsTable from 'components/Admin/CourseMapsTable'
-import { fetchCourseMaps } from 'api/Actions/CourseMaps'
+import { fetchCourseMaps } from 'api/Controllers/courseMaps'
 
 const mapStateToProps = (state) => ({
-  courseMaps: state.courseMaps.all
+  courseMaps: state.courseMaps.index
 })
 
 const mapDispatchToProps = (dispatch) => ({

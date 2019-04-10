@@ -5,10 +5,10 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import Layout from 'pages/Layout'
 import DepartmentsTable from 'components/Admin/DepartmentsTable'
-import { fetchDepartments } from 'api/Actions/Departments'
+import { fetchDepartments } from 'api/Controllers/departments'
 
 const mapStateToProps = (state) => ({
-  departments: state.departments.all
+  departments: state.departments.index
 })
 
 const mapDispatchToProps = (dispatch) => ({
