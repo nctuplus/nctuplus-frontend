@@ -34,6 +34,9 @@ function queryBuilder (payload, controller) {
     case 'Event':
       customSearchField = 'title_or_location_or_organization_cont'
       break
+    case 'Users':
+      customSearchField = 'name_cont'
+      break
     default:
       break
   }

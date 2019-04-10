@@ -38,7 +38,7 @@ var tempData = {
   'admission_year': 100,
   'uid': 'admin@abcde.com',
   'allow_password_change': false,
-  'role': 0,
+  'role': 1,
   'agree_to_term_of_service': false,
   'agree_to_share_course_table': false,
   'major': '資工系',

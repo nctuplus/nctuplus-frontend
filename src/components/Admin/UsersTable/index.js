@@ -30,7 +30,7 @@ const UsersTable = props => (
               <td className='col-1'>{ user.admission_year }</td>
               <td className='col-1'>{ user.credit }</td>
               <td className='col-2 text-center'>
-                <select className='form-control' value={user.role}>
+                <select className='form-control' defaultValue={user.role}>
                   <option value='0'>一般使用者</option>
                   <option value='1'>學校系辦單位</option>
                   <option value='2'>系統管理員</option>

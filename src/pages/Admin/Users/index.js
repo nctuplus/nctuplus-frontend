@@ -4,32 +4,39 @@ import { connect } from 'react-redux'
 import Layout from 'pages/Layout'
 import { InputWithButton } from 'components/FormUtils'
 import UsersTable from 'components/Admin/UsersTable'
-import { fetchUsers, updateUsersPage, resetUsersPage } from 'api/Actions/Users'
+import { fetchUsers } from 'api/Controllers/users'
+import actions from 'api/Actions/Users'
 
 const mapStateToProps = (state) => ({
-  users: state.users
+  users: state.users.index
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchData: (page) => dispatch(fetchUsers(page)),
-  updatePage: (page) => dispatch(updateUsersPage(page)),
-  resetPage: () => dispatch(resetUsersPage())
+  fetchData: (payload) => dispatch(fetchUsers(payload)),
+  updatePage: (page) => dispatch(actions.users.index.updatePage(page)),
+  updateFilters: (filters) => dispatch(actions.users.index.updateFilters(filters))
 })
 
 class Users extends React.Component {
   componentDidMount () {
-    this.props.fetchData(1)
+    this.props.fetchData({
+      page: 1
+    })
   }
 
   componentDidUpdate (prevProps) {
-    if (this.props.users.page !== prevProps.users.page) {
-      this.props.fetchData(this.props.users.page)
+    let { users } = this.props
+    if (users.page !== prevProps.users.page || users.filters !== prevProps.users.filters) {
+      this.props.fetchData({
+        page: this.props.users.page,
+        q: {
+          filters: {
+            custom_search: users.filters.search_by
+          }
+        }
+      })
       window.scroll({ top: 0, left: 0, behavior: 'smooth' })
     }
-  }
-
-  componentWillUnmount () {
-    this.props.resetPage()
   }
 
   render () {
@@ -42,6 +49,7 @@ class Users extends React.Component {
                 placeholder='搜尋使用者'
                 button_style='primary'
                 button_content='搜尋'
+                onClick={(value) => this.props.updateFilters({ search_by: value })}
               />
             </div>
             <div className='col-2'>
