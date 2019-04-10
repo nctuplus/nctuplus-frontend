@@ -26,11 +26,11 @@ export const getDepartment = (id) => dispatch => {
 }
 
 export const postDepartment = (payload) => dispatch => {
-  dispatch(actions.departments.edit.setStatus(FETCHING_STATUS.FETCHING))
+  dispatch(actions.departments.new.setStatus(FETCHING_STATUS.FETCHING))
   server.protected
     .post('/api/v1/departments/', payload)
-    .then(() => dispatch(actions.departments.edit.setStatus(FETCHING_STATUS.DONE)))
-    .catch(() => dispatch(actions.departments.edit.setStatus(FETCHING_STATUS.FAIL)))
+    .then(() => dispatch(actions.departments.new.setStatus(FETCHING_STATUS.DONE)))
+    .catch(() => dispatch(actions.departments.new.setStatus(FETCHING_STATUS.FAIL)))
 }
 
 export const patchDepartment = (payload, id) => dispatch => {

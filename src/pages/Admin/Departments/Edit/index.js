@@ -9,7 +9,7 @@ import { FETCHING_STATUS } from 'utilities/constants'
 
 const mapStateToProps = (state) => ({
   department: state.departments.show.data,
-  getStatus: state.departments.show.status,
+  fetchStatus: state.departments.show.status,
   updateStatus: state.departments.edit.status
 })
 
@@ -31,7 +31,7 @@ const enhance = compose(
   }),
   lifecycle({
     componentDidUpdate: function () {
-      if (this.props.status === FETCHING_STATUS.DONE) {
+      if (this.props.fetchStatus === FETCHING_STATUS.DONE) {
         this.props.patchDepartmentReset()
         this.props.history.push('/admin/departments/')
       }
