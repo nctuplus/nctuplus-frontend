@@ -2,20 +2,21 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { compose, withState, withProps, withHandlers, lifecycle } from 'recompose'
-import { getDepartment, patchDepartment, patchDepartmentReset } from 'api/Actions/Departments'
-import { FETCHING_STATUS } from 'utilities/constants'
 import Form from 'components/Admin/Department/Form'
+import { getDepartment, patchDepartment } from 'api/Controllers/departments'
+import actions from 'api/Actions/Departments'
+import { FETCHING_STATUS } from 'utilities/constants'
 
 const mapStateToProps = (state) => ({
   department: state.departments.show.data,
-  status: state.departments.show.status,
-  departmentUpdateStatus: state.departments.patch.status
+  getStatus: state.departments.show.status,
+  updateStatus: state.departments.edit.status
 })
 
 const mapDispatchToProps = (dispatch) => ({
   getDepartment: (id) => dispatch(getDepartment(id)),
-  patchDepartment: (payload) => dispatch(patchDepartment(payload)),
-  patchDepartmentReset: () => dispatch(patchDepartmentReset)
+  patchDepartment: (payload, id) => dispatch(patchDepartment(payload, id)),
+  patchDepartmentReset: () => dispatch(actions.departments.edit.setStatus(FETCHING_STATUS.IDLE))
 })
 
 const enhance = compose(
