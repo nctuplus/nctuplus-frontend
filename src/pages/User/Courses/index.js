@@ -1,11 +1,35 @@
-
 import React from 'react'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames'
-import styles from './index.scss'
+
+const Courses = (props) => (
+  <div>
+    <div className='row mx-2 mt-3 mb-0 bg-white'>
+      <p className='pt-2 pl-4 pb-3' style={{ color: '#333'}}>
+        看不到歷年課程嗎？趕快先去匯入成績吧！
+        <Link to='/scores/import'>請點我</Link>
+      </p>
+    </div>
+    <div className='row m-2 mt-3'>
+      {
+        // props.yearlyStatistics &&
+        // props.yearlyStatistics.map((data, index) => (
+        //   <CoursesYearlyStatistic {...data} key={index} />
+        // ))
+      }
+      {
+        tempCourses &&
+         tempCourses.map((data, index) => (
+           <CoursesYearlyStatistic {...data} key={index} />
+         ))
+      }
+    </div>
+  </div>
+)
+
 const CoursesYearlyStatistic = (props) => (
-  <div className={classNames('mt-5 ml-4', styles.table)}>
-    <table className={classNames('table table-bordered border-thick-gray', styles.table)}>
+  <div className='col-6 bg-white'>
+    <table className={classNames('mt-5 table table-bordered border-thick-gray')}>
       <thead>
         <tr>
           <td className='text-center'>{ props.semester }</td>
@@ -21,12 +45,12 @@ const CoursesYearlyStatistic = (props) => (
               <td >{course.name} | {course.type}</td>
               <td >
                 <button className='btn btn-sm btn-warning mr-1 ' type='button'>
-                  <Link className='flat-link text-white' to='/user/edit'>
+                  <Link className='flat-link text-white' to='/user/courses'>
                     評論
                   </Link>
                 </button>
                 <button className='btn btn-sm btn-primary' type='button'>
-                  <Link className='flat-link text-white' to='/user/edit'>
+                  <Link className='flat-link text-white' to='/user/courses'>
                     上傳考古
                   </Link>
                 </button>
@@ -187,24 +211,5 @@ const tempCourses =
       ]
     }
   ]
-
-const Courses = (props) => (
-  <div className={classNames('bg-white', styles.index)}>
-    <div className='row no-margin' >
-      {
-        // props.yearlyStatistics &&
-        // props.yearlyStatistics.map((data, index) => (
-        //   <CoursesYearlyStatistic {...data} key={index} />
-        // ))
-      }
-      {
-        tempCourses &&
-         tempCourses.map((data, index) => (
-           <CoursesYearlyStatistic {...data} key={index} />
-         ))
-      }
-    </div>
-  </div>
-)
 
 export default Courses

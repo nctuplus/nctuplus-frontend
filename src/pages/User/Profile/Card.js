@@ -7,7 +7,7 @@ import styles from './Card.scss'
 const Card = ({ user }) => (
   <div className={classNames('ml-3', styles.card)}>
     <div className='row'>
-      <div className={classNames('p-2 ml-4', styles.cardLeft)}>
+      <div className={classNames('p-2 ml-4 pb-3', styles.cardLeft)}>
         <div className={classNames('mx-auto pl-2 pt-2', styles.cardbody)} >
           系級&emsp;&emsp;&emsp;&emsp;{ user.major } { user.admission_year } 級 <br />
           信箱&emsp;&emsp;&emsp;&emsp;{ user.email }<br />
@@ -18,7 +18,7 @@ const Card = ({ user }) => (
           註冊日期：{ user.start_time } */}
         </div>
 
-        <div className={classNames(styles.cardFooter, 'm-auto pt-3 pb-2')}>
+        <div className={classNames(styles.cardFooter, 'm-auto pt-3')}>
           {/* <button className={classNames(styles.btnCustomPrimary, 'mx-1 ml-1 w-auto')}>
             <Link className='flat-link text-white' to='/user/edit'>
               <i className='fa fa-pencil mx-1' />編輯檔案
@@ -41,15 +41,16 @@ const Card = ({ user }) => (
             </Link>
           </button> */}
           <div className='row mx-auto'>
-            <div className={classNames('col text-center', styles.rightLine, styles.bottomLine)}>
+            <div className={classNames('col text-center', styles.rightLine)}>
               歷年平均
               <h5 className='bold'>{ user.avg_score }</h5>
             </div>
-            <div className={classNames('col text-center', styles.bottomLine)}>
+            <div className={classNames('col text-center')}>
               本學期學分
               <h5 className='bold'>{ user.now_credit }</h5>
             </div>
           </div>
+          <hr color='#333333' />
           <div className='row mx-auto'>
             <div className={classNames('col text-center', styles.rightLine)}>
               畢業倒數
