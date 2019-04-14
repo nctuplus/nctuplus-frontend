@@ -13,6 +13,12 @@ export default createActions({
         SET_STATUS: null,
         STORE: null
       }
+    },
+    GPA: {
+      SHOW: {
+        SET_STATUS: null,
+        STORE: null
+      }
     }
   }
 })

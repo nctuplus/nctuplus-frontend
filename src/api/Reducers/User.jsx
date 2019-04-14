@@ -8,6 +8,10 @@ const initialState = {
   past_course: {
     data: {},
     status: FETCHING_STATUS.IDLE
+  },
+  gpa: {
+    data: {},
+    status: FETCHING_STATUS.IDLE
   }
 }
 
@@ -22,6 +26,12 @@ export default handleActions({
       SHOW: {
         SET_STATUS: (state, action) => ({ ...state, past_course: { ...state.past_course, status: action.payload } }),
         STORE: (state, action) => ({ ...state, past_course: { ...state.past_course, data: action.payload } })
+      }
+    },
+    GPA: {
+      SHOW: {
+        SET_STATUS: (state, action) => ({ ...state, gpa: { ...state.gpa, status: action.payload } }),
+        STORE: (state, action) => ({ ...state, gpa: { ...state.gpa, data: action.payload } })
       }
     }
   }

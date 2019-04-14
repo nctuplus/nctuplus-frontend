@@ -29,7 +29,6 @@ export const validateToken = () => dispatch => {
   }
 }
 
-// WIP
 export const getPastCos = () => dispatch => {
   dispatch(actions.user.pastCourse.show.setStatus(FETCHING_STATUS.FETCHING))
   server.protected
@@ -46,7 +45,61 @@ export const getPastCos = () => dispatch => {
     })
 }
 
-// 歷年修課假資料
+export const getGPA = () => dispatch => {
+  dispatch(actions.user.gpa.show.setStatus(FETCHING_STATUS.FETCHING))
+  server.protected
+    .get(`/api/v1/user/GPA`)
+    .then(({ data: gpa }) => {
+      dispatch(actions.user.gpa.show.store(gpa))
+      dispatch(actions.user.gpa.show.setStatus(FETCHING_STATUS.DONE))
+    })
+    .catch(() => {
+      dispatch(actions.user.gpa.show.setStatus(FETCHING_STATUS.FAIL))
+      // fake data
+      dispatch(actions.user.gpa.show.store(tempGPA))
+      dispatch(actions.user.gpa.show.setStatus(FETCHING_STATUS.DONE))
+    })
+}
+
+// GPA
+const tempGPA =
+{
+  'sem_score': [
+    { 'semester': '一上', 'grade': 90 },
+    { 'semester': '一下', 'grade': 82.5 },
+    { 'semester': '二上', 'grade': 87 },
+    { 'semester': '二下', 'grade': 83 },
+    { 'semester': '三上', 'grade': 92.1 },
+    { 'semester': '三下', 'grade': 'NULL' },
+    { 'semester': '四上', 'grade': 'NULL' },
+    { 'semester': '四下', 'grade': 'NULL' }
+  ],
+  'picked': [
+    {
+      'country': '美國',
+      'school': 'UCLA',
+      'department': '資工',
+      'overall': 3.87,
+      'last60': 4.0
+    },
+    {
+      'country': '台灣',
+      'school': 'NCTU',
+      'department': '資工',
+      'overall': 3.87,
+      'last60': 3.57
+    },
+    {
+      'country': '中國',
+      'school': '上海交大',
+      'department': '資工',
+      'overall': 3.87,
+      'last60': 3.33
+    }
+  ]
+}
+
+// 歷年修課
 const tempCourses =
 [
   {
