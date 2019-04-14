@@ -7,6 +7,12 @@ export default createActions({
       LOGIN: null,
       LOGOUT: null,
       SET_STATUS: null
+    },
+    PAST_COURSE: {
+      SHOW: {
+        SET_STATUS: null,
+        STORE: null
+      }
     }
   }
 })

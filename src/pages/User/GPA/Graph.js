@@ -3,6 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styles from './Graph.scss'
 import Chart from './Chart.js'
+
 class Graph extends React.Component {
   constructor (props) {
     super(props)
@@ -37,19 +38,21 @@ class Graph extends React.Component {
   }
   render () {
     return (
-      <div className={classNames('col p-4', styles.container)}>
+      <div className={classNames('col pl-0', styles.container)}>
         <h2><i className='fa fa-check-circle' /> GPA計算機</h2>
-        <div className={classNames(styles.prompt, 'row pb-3 pl-3 pt-1 mb-4')}>若還未匯入成績，請先到<Link to='/scores/import'>匯入成績</Link></div>
-        <h3 className='text-center'>歷年成績</h3>
-        <Chart />
+        <p className='bg-white pt-2 pl-3 pb-3' style={{ color: '#333' }}>
+          看不到歷年課程嗎？趕快先去匯入成績吧！<Link to='/scores/import'>匯入成績</Link>
+        </p>
+        <div className='bg-white'>
+          <h3 className='text-center'>歷年成績</h3>
+          <Chart />
+        </div>
         <PickedBoard picked={this.state.picked} />
         <div className='row mt-4 ' />
       </div>
     )
   }
 }
-
-export default Graph
 
 class PickedBoard extends React.Component {
   render () {
@@ -85,3 +88,5 @@ class Picked extends React.Component {
     )
   }
 }
+
+export default Graph

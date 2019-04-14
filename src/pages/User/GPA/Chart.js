@@ -1,5 +1,5 @@
 import React from 'react'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts'
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 
 class Chart extends React.Component {
   constructor (props) {
@@ -19,13 +19,12 @@ class Chart extends React.Component {
   }
   render () {
     return (
-      <LineChart width={600} height={300} data={this.state.data} style={{ margin: '0 auto' }}>
+      <LineChart width={800} height={300} data={this.state.data} style={{ margin: '0 auto' }}>
         <XAxis dataKey='semester' />
         <YAxis />
         <CartesianGrid strokeDasharray='3 3' fill='white' />
         <Tooltip />
-        <Legend />
-        <Line type='monotone' dataKey='grade' stroke='#FD9727' />
+        <Line type='linear' dataKey='grade' stroke='#FD9727' />
       </LineChart>
     )
   }
