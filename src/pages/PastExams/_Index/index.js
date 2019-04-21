@@ -17,6 +17,7 @@ import Spinner from 'components/Spinner'
 import actions from 'api/Actions/PastExams'
 import { getPastExams, getPastExamsLatestNews } from 'api/Controllers/pastExams'
 import { FETCHING_STATUS } from 'utilities/constants'
+import { SidebarWrapper, SidebarPusher } from 'components/Sidebar'
 
 const mapStateToProps = (state) => ({
   pastExams: state.pastExams.index,
@@ -95,54 +96,52 @@ const enhance = compose(
 
 const Index = ({ pastExams, latestNews, updatePage, updateFilters }) => (
   <Layout>
-    <div className='container pt-3'>
-      <div className='row'>
-        <div className='col-12 col-md-3'>
-          <SearchPanel>
-            <InputWithButton
-              placeholder='課名/老師'
-              button_style='primary'
-              button_content={<i className='fa fa-search' />}
-              onClick={(value) => updateFilters({ search_by: value })}
-            />
-            <SearchPanelButtonGroup
-              new_title='上傳考古題'
-              new_link='/past_exams/new'
-              new_btn_type='info'
-              mine_title='我的考古題'
-              mine_link='/past_exams/?mine=true'
-              mine_btn_type='primary'
-            />
-            <SearchPanelCollegeList />
-            <SearchPanelNewsFeed >
-              {
-                latestNews.data && latestNews.data.length
-                  ? latestNews.data
-                    .slice(0, 10)
-                    .map((pastExam, index) => (
-                      <SearchPanelNews
-                        href={`/past_exams/${pastExam.id}`}
-                        key={pastExam.id}
-                      >
-                        { moment(pastExam.created_at).fromNow() }
-                        { pastExam.uploader.name }
-                        上傳了
-                        <strong>{ pastExam.course.name }</strong>
-                        的考古題
-                      </SearchPanelNews>
-                    ))
-                  : <div className='text-center'>
-                    <Spinner size={32} color='grey' />
-                  </div>
-              }
-            </SearchPanelNewsFeed>
-          </SearchPanel>
-        </div>
-        <div className='col-12'>
+    <SidebarWrapper>
+      <SearchPanel>
+        <InputWithButton
+          placeholder='課名/老師'
+          button_style='primary'
+          button_content={<i className='fa fa-search' />}
+          onClick={(value) => updateFilters({ search_by: value })}
+        />
+        <SearchPanelButtonGroup
+          new_title='上傳考古題'
+          new_link='/past_exams/new'
+          new_btn_type='info'
+          mine_title='我的考古題'
+          mine_link='/past_exams/?mine=true'
+          mine_btn_type='primary'
+        />
+        <SearchPanelCollegeList />
+        <SearchPanelNewsFeed >
+          {
+            latestNews.data && latestNews.data.length
+              ? latestNews.data
+                .slice(0, 10)
+                .map((pastExam, index) => (
+                  <SearchPanelNews
+                    href={`/past_exams/${pastExam.id}`}
+                    key={pastExam.id}
+                  >
+                    { moment(pastExam.created_at).fromNow() }
+                    { pastExam.uploader.name }
+                    上傳了
+                    <strong>{ pastExam.course.name }</strong>
+                    的考古題
+                  </SearchPanelNews>
+                ))
+              : <div className='text-center'>
+                <Spinner size={32} color='grey' />
+              </div>
+          }
+        </SearchPanelNewsFeed>
+      </SearchPanel>
+      <SidebarPusher>
+        <div className='container pt-3'>
           <PastExam.Table {...pastExams} updatePage={updatePage} />
         </div>
-      </div>
-    </div>
+      </SidebarPusher>
+    </SidebarWrapper>
   </Layout>
 )
 
