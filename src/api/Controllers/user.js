@@ -61,6 +61,87 @@ export const getGPA = () => dispatch => {
     })
 }
 
+export const getFriends = () => dispatch => {
+  dispatch(actions.user.friend.show.setStatus(FETCHING_STATUS.FETCHING))
+  server.protected
+    .get(`/api/v1/user/friends`)
+    .then(({ data: friends }) => {
+      dispatch(actions.user.friend.show.store(friends))
+      dispatch(actions.user.friend.show.setStatus(FETCHING_STATUS.DONE))
+    })
+    .catch(() => {
+      dispatch(actions.user.friend.show.setStatus(FETCHING_STATUS.FAIL))
+      // fake data
+      dispatch(actions.user.friend.show.store(tempUsers))
+      dispatch(actions.user.friend.show.setStatus(FETCHING_STATUS.DONE))
+    })
+}
+
+export const getInvites = () => dispatch => {
+  dispatch(actions.user.friend.invite.setStatus(FETCHING_STATUS.FETCHING))
+  server.protected
+    .get(`/api/v1/user/invites`)
+    .then(({ data: invites }) => {
+      dispatch(actions.user.friend.invite.store(invites))
+      dispatch(actions.user.friend.invite.setStatus(FETCHING_STATUS.DONE))
+    })
+    .catch(() => {
+      dispatch(actions.user.friend.invite.setStatus(FETCHING_STATUS.FAIL))
+      // fake data
+      dispatch(actions.user.friend.invite.store(tmpInvite))
+      dispatch(actions.user.friend.invite.setStatus(FETCHING_STATUS.DONE))
+    })
+}
+
+const tmpInvite = [
+  {
+    'name': '邊緣人',
+    'department': '資工系'
+  },
+  {
+    'name': '夯',
+    'department': '傳科系'
+  }
+]
+
+const tempUsers = [
+  {
+    people: [
+      {
+        'id': 1,
+        'name': '白白',
+        'department': '資工系',
+        'semester': '107下'
+
+      },
+      {
+        'id': 2,
+        'name': '阿旦',
+        'department': '電機系',
+        'semester': '106下'
+      },
+      {
+        'id': 3,
+        'name': '嘿嘿',
+        'department': '傳科系',
+        'semester': '107上'
+      },
+      {
+        'id': 4,
+        'name': '嘿嘿哈哈',
+        'department': '電工系',
+        'semester': '105上'
+      },
+      {
+        'id': 5,
+        'name': '台中花博真心推',
+        'department': '業配系',
+        'semester': '107下'
+      }
+    ]
+  }
+]
+
 // GPA
 const tempGPA =
 {

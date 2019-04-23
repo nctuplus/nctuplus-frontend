@@ -19,6 +19,20 @@ export default createActions({
         SET_STATUS: null,
         STORE: null
       }
+    },
+    FRIEND: {
+      SHOW: {
+        SET_STATUS: null,
+        STORE: null
+      },
+      NEW: {
+        SET_STATUS: null,
+        STORE: null
+      },
+      INVITE: {
+        SET_STATUS: null,
+        STORE: null
+      }
     }
   }
 })
