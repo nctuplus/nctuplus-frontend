@@ -1,20 +1,20 @@
-
 .photo {
   display: inline-block;
 }
 
 .card {
-  display: flex;
   background-color: #e9eaed;
 }
 
 .cardbody {
   font-size: 14px;
-  line-height: 30px;
+  line-height: 20px;
+  color: #333;
 }
 
 .cardFooter {
-  float: left;
+  font-size: 14px;
+  color: #333;
 }
 
 .cardbtn {
@@ -27,11 +27,12 @@
   color: white;
 }
 
-.cardLeft {
+.cardRight {
   background-color: #e9eaed;
 }
 
-.cardRight {
+.cardLeft {
+  width: 50%;
   background-color: white;
 }
 
@@ -53,4 +54,20 @@
   color: #fff;
   background-color: #f0ad4e;
   border-color: #f0ad4e;
+}
+
+.rightLine {
+  border-right: 1px solid black;
+}
+
+.bottomLine {
+  border-bottom: 1px solid black;
+}
+
+.curriculum {
+  background-color: white;
+}
+
+.tab {
+  // padding-right: 5em;
 }
