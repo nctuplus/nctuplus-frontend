@@ -1,0 +1,18 @@
+version: "3"
+services:
+  staging-plus-nctu-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.staging
+    image: staging-plus-nctu-frontend-webapp
+    environment:
+      - LOCAL_USER_ID=1000
+    entrypoint: "/usr/local/bin/entrypoint.sh"
+    ports:
+      - "443:443"
+      - "80:80"
+    volumes:
+      - ".:/home/nctuplus/frontend"
+      - "./staging/nginx/nginx.conf:/etc/nginx/nginx.conf"
+      - "./staging/nginx/sites-available:/etc/nginx/sites-available"
+      - "./staging/nginx/sites-enabled:/etc/nginx/sites-enabled"
