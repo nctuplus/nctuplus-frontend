@@ -1,0 +1,17 @@
+version: "3"
+services:
+  plus-nctu-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    image: plus-nctu-frontend-webapp
+    environment:
+      - LOCAL_USER_ID=1000
+    entrypoint: "/usr/local/bin/entrypoint.sh"
+    ports:
+      - "80:80"
+    volumes:
+      - ".:/home/nctuplus/frontend"
+      - "./production/nginx/nginx.conf:/etc/nginx/nginx.conf"
+      - "./production/nginx/sites-available:/etc/nginx/sites-available"
+      - "./production/nginx/sites-enabled:/etc/nginx/sites-enabled"
