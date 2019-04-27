@@ -9,6 +9,7 @@ services:
       - LOCAL_USER_ID=1000
     entrypoint: "/usr/local/bin/entrypoint.sh"
     ports:
+      - "443:443"
       - "80:80"
     volumes:
       - ".:/home/nctuplus/frontend"
