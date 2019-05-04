@@ -4,7 +4,7 @@ import Cover from 'components/Cover'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { compose, lifecycle } from 'recompose'
-import * as mock from 'api/mock'
+// import * as mock from 'api/mock'
 import { login } from 'api/Controllers/user'
 import Layout from 'pages/Layout'
 import styles from './style.scss'
@@ -40,7 +40,7 @@ class Login extends React.Component {
     }
   }
   render () {
-    const { login } = this.props
+    // const { login } = this.props
     return (
       <Layout className='mt-0'>
         <ToastWrapper />
@@ -53,12 +53,12 @@ class Login extends React.Component {
                   <small className='text-white'>是交大學生嗎？請用單一入口登入享用完整功能。</small>
                 </div>
                 <div className='w-25 m-auto'>
-                  <button
+                  <a
                     className='btn btn-success btn-block'
-                    onClick={() => login(mock.login('admin'))}
+                    href={`${SERVER_URL}/auth/nctu`}
                   >
                     交大單一入口登入
-                  </button>
+                  </a>
                   <h6 className='text-white m-3'>or</h6>
                   <button className={`btn ${styles.btnFb} w-50`}>
                     Facebook登入

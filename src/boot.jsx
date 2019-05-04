@@ -13,13 +13,24 @@ let store = createStore(Reducer, applyMiddleware(thunk))
 moment.locale('zh-tw')
 
 // global get cookie method
-window.getCookie = function (name) {
+window.getCookie = (name) => {
   let match = document.cookie.match(new RegExp(`(^| )${name}=([^;]+)`))
   if (match) return match[2]
 }
 
 if (typeof (document) !== 'undefined' && window) {
   window.onload = () => {
+    // set token from cookie to local storage
+    const token = window.getCookie('access-token')
+    const client = window.getCookie('client')
+    const uid = window.getCookie('uid')
+    if (token && uid && client) {
+      const storage = window.localStorage
+      storage.setItem('token', token)
+      storage.setItem('client', client)
+      storage.setItem('uid', uid)
+    }
+
     return render(
       <Provider store={store}>
         <Router />
