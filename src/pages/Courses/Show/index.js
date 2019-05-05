@@ -1,17 +1,19 @@
 
 import React from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import scrollToComponent from 'react-scroll-to-component'
 import Layout from 'pages/Layout'
 import { Sidebar, SidebarItem } from 'components/Sidebar'
-import * as Course from 'components/Course'
 import { Ratings } from 'components/Ratings'
-import * as PastExam from 'components/PastExam'
+import * as Courses from 'components/Course'
+import * as Comments from 'components/Comment'
+import * as PastExams from 'components/PastExam'
 import Spinner from 'components/Spinner'
-
-import scrollToComponent from 'react-scroll-to-component'
-import { connect } from 'react-redux'
-import { getCourse } from 'api/Controllers/courses'
+import { getCourse, getCourseComments, getCoursePastExams } from 'api/Controllers/courses'
+import { FETCHING_STATUS } from 'utilities/constants'
 import styles from './style.scss'
-import { testData } from './testData'
+// import { testData } from './testData'
 
 const Section = (props) => (
   <div className='py-4' ref={props.domref}>
@@ -23,15 +25,18 @@ const Section = (props) => (
 class Show extends React.Component {
   constructor (props) {
     super(props)
-
     this.state = { anchor: 1 }
-    this.scrollTo = this.scrollTo.bind(this)
     this.anchors = Array(7).fill(0).map(React.createRef)
+    this.scrollTo = this.scrollTo.bind(this)
   }
+
   componentDidMount () {
-    const { match, fetchData } = this.props
-    fetchData(match.params.id)
+    const id = this.props.match.params.id
+    this.props.getCourse(id)
+    this.props.getComments(id)
+    this.props.getPastExams(id)
   }
+
   scrollTo (index) {
     return () => {
       scrollToComponent(this.anchors[index].current, { align: 'top', offset: -20, duration: 500 })
@@ -40,7 +45,7 @@ class Show extends React.Component {
   }
 
   render () {
-    const chartData = this.props.chartData || testData
+    const { course, status, comments, pastExams } = this.props
 
     return (
       <Layout>
@@ -64,16 +69,17 @@ class Show extends React.Component {
             考古題
           </SidebarItem>
         </Sidebar>
+
         <div className='container'>
           <div className='offset-md-2 py-4'>
             {
-              this.props.fetching.status !== 2
+              status !== FETCHING_STATUS.DONE
                 ? <div className='text-center pt-3'><Spinner size={64} color='grey' /></div>
                 : <div>
                   <div className='row'>
                     <div className='col-md-10'>
                       <h1>{ this.props.course.permanent_course.name }</h1>
-                      <small className=''>最後同步時間 { this.props.course.updated_at }</small>
+                      <small className=''>最後同步時間 { course.updated_at && course.updated_at.substr(0, 10) }</small>
                     </div>
                     <div className='col-md-2 d-flex mt-md-0 mt-2 justify-content-md-end align-item-end'>
                       <button className={`btn btn-info ${styles.btnLike}`} >
@@ -84,14 +90,14 @@ class Show extends React.Component {
 
                   <hr />
 
-                  <Section domref={this.anchors[0]} >
+                  <Section
+                    domref={this.anchors[0]}
+                    title={<span><i className='fas fa-star mx-2' />課程評分</span>}
+                  >
                     <div className='row'>
                       <div className='col'>
-                        <Ratings rating={this.props.rating} />
+                        <Ratings rating={course.rating} />
                       </div>
-                      {/* <div className='col-12 col-md-5'>
-                        <PersonalRating />
-                      </div> */}
                     </div>
                   </Section>
 
@@ -101,16 +107,13 @@ class Show extends React.Component {
                     domref={this.anchors[1]}
                     title={<span><i className='fa fa-book mx-2' />課程資訊</span>}
                   >
-                    <Course.Info {...this.props.course} />
+                    <Courses.Info {...this.props.course} />
                   </Section>
 
                   <hr />
 
-                  <Section title={<span><i className='fa fa-cube mx-2' />修了這堂課的人，也修了...</span>} />
-
-                  <hr />
-
-                  {/* <Section
+                  {/*
+                  <Section
                     domref={this.anchors[2]}
                     title={<span><i className='fa fa-gamepad mx-2' />課程攻略</span>}
                   >
@@ -123,7 +126,7 @@ class Show extends React.Component {
                     domref={this.anchors[3]}
                     title={<span><i className='fa fa-align-left mx-2' />歷年統計</span>}
                   >
-                    <Course.StatisticCharts {...chartData} />
+                    <Courses.StatisticCharts {...course.chart_data} />
                   </Section>
 
                   <hr />
@@ -154,12 +157,32 @@ class Show extends React.Component {
 
                   <hr />
 
-                  <Section domref={this.anchors[5]}>
-                    <Course.Forum />
+                  <Section
+                    domref={this.anchors[5]}
+                    title={
+                      <span>
+                        <i className='fa fa-comment-o mx-2' />課程心得
+                        <h5 className='d-inline-block mx-2'>
+                          <Link className='text-blue' to='/comments/new'>我要發文</Link>
+                        </h5>
+                      </span>
+                    }
+                  >
+                    <Comments.Table {...comments} fromCoursePage />
                   </Section>
 
-                  <Section domref={this.anchors[6]} title='考古題區'>
-                    <PastExam.FileList />
+                  <Section
+                    domref={this.anchors[6]}
+                    title={
+                      <span>
+                        <i className='fas fa-paste mx-2' />考古題區
+                        <h5 className='d-inline-block mx-2'>
+                          <Link className='text-blue' to='/past_exams/new'>我要上傳</Link>
+                        </h5>
+                      </span>
+                    }
+                  >
+                    <PastExams.Table {...pastExams} fromCoursePage />
                   </Section>
                 </div>
             }
@@ -172,13 +195,15 @@ class Show extends React.Component {
 
 const mapStateToProps = (state) => ({
   course: state.courses.show.data,
-  fetching: {
-    status: state.courses.show.status
-  }
+  status: state.courses.show.status,
+  comments: state.courses.comments,
+  pastExams: state.courses.pastExams
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchData: (id) => dispatch(getCourse(id))
+  getCourse: (id) => dispatch(getCourse(id)),
+  getComments: (id) => dispatch(getCourseComments(id)),
+  getPastExams: (id) => dispatch(getCoursePastExams(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Show)
