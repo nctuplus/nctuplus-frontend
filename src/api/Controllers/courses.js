@@ -36,6 +36,17 @@ export const getCourseComments = (id) => dispatch => {
     .catch(() => dispatch(actions.courses.comments.setStatus(FETCHING_STATUS.FAIL)))
 }
 
+export const getCoursePastExams = (id) => dispatch => {
+  dispatch(actions.courses.pastExams.setStatus(FETCHING_STATUS.FETCHING))
+  server.public
+    .get(`/api/v1/courses/${id}/past_exams`)
+    .then(({ data: pastExams }) => {
+      dispatch(actions.courses.pastExams.store(pastExams))
+      dispatch(actions.courses.pastExams.setStatus(FETCHING_STATUS.DONE))
+    })
+    .catch(() => dispatch(actions.courses.pastExams.setStatus(FETCHING_STATUS.FAIL)))
+}
+
 export const getSearchCourses = (payload) => dispatch => {
   dispatch(actions.courses.search.setStatus(FETCHING_STATUS.FETCHING))
   server.protected

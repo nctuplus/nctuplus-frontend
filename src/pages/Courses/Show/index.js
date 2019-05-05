@@ -10,7 +10,7 @@ import * as Courses from 'components/Course'
 import * as Comments from 'components/Comment'
 import * as PastExams from 'components/PastExam'
 import Spinner from 'components/Spinner'
-import { getCourse, getCourseComments } from 'api/Controllers/courses'
+import { getCourse, getCourseComments, getCoursePastExams } from 'api/Controllers/courses'
 import styles from './style.scss'
 // import { testData } from './testData'
 
@@ -33,6 +33,7 @@ class Show extends React.Component {
     const id = this.props.match.params.id
     this.props.getCourse(id)
     this.props.getComments(id)
+    this.props.getPastExams(id)
   }
 
   scrollTo (index) {
@@ -43,8 +44,8 @@ class Show extends React.Component {
   }
 
   render () {
-    const { course, comments } = this.props
-    console.log(comments)
+    const { course, comments, pastExams } = this.props
+
     return (
       <Layout>
         <Sidebar >
@@ -88,7 +89,10 @@ class Show extends React.Component {
 
                   <hr />
 
-                  <Section domref={this.anchors[0]} >
+                  <Section
+                    domref={this.anchors[0]}
+                    title={<span><i className='fas fa-star mx-2' />課程評分</span>}
+                  >
                     <div className='row'>
                       <div className='col'>
                         <Ratings rating={course.rating} />
@@ -174,8 +178,18 @@ class Show extends React.Component {
                     }
                   </Section>
 
-                  <Section domref={this.anchors[6]} title='考古題區'>
-                    <PastExams.FileList />
+                  <Section
+                    domref={this.anchors[6]}
+                    title={
+                      <span>
+                        <i className='fas fa-paste mx-2' />考古題區
+                        <h5 className='d-inline-block mx-2'>
+                          <Link className='text-blue' to='/past_exams/new'>我要上傳</Link>
+                        </h5>
+                      </span>
+                    }
+                  >
+                    <PastExams.Table data={pastExams} fromCoursePage />
                   </Section>
                 </div>
             }
@@ -189,12 +203,14 @@ class Show extends React.Component {
 const mapStateToProps = (state) => ({
   course: state.courses.show.data,
   status: state.courses.show.status,
-  comments: state.courses.comments.data
+  comments: state.courses.comments.data,
+  pastExams: state.courses.pastExams.data
 })
 
 const mapDispatchToProps = (dispatch) => ({
   getCourse: (id) => dispatch(getCourse(id)),
-  getComments: (id) => dispatch(getCourseComments(id))
+  getComments: (id) => dispatch(getCourseComments(id)),
+  getPastExams: (id) => dispatch(getCoursePastExams(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Show)

@@ -17,6 +17,10 @@ const initialState = {
     status: FETCHING_STATUS.IDLE,
     data: []
   },
+  pastExams: {
+    status: FETCHING_STATUS.IDLE,
+    data: []
+  },
   search: {
     status: FETCHING_STATUS.IDLE,
     data: [],
@@ -42,6 +46,10 @@ export default handleActions({
     COMMENTS: {
       SET_STATUS: (state, action) => ({ ...state, comments: { ...state.comments, status: action.payload } }),
       STORE: (state, action) => ({ ...state, comments: { ...state.comments, data: action.payload } })
+    },
+    PAST_EXAMS: {
+      SET_STATUS: (state, action) => ({ ...state, pastExams: { ...state.pastExams, status: action.payload } }),
+      STORE: (state, action) => ({ ...state, pastExams: { ...state.pastExams, data: action.payload } })
     },
     SEARCH: {
       SET_STATUS: (state, action) => ({ ...state, search: { ...state.search, status: action.payload } }),

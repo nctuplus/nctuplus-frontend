@@ -16,6 +16,10 @@ export default createActions({
       SET_STATUS: null,
       STORE: null
     },
+    PAST_EXAMS: {
+      SET_STATUS: null,
+      STORE: null
+    },
     SEARCH: {
       SET_STATUS: null,
       STORE: null,
