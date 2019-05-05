@@ -63,19 +63,20 @@ const StarRatingWithScore = (props) => {
 const Ratings = (props) => {
   const stars = props.rating ? props.rating.stars : [0, 0, 0]
   const people = props.rating ? props.rating.people : 0
+
   return (
     <div className={styles.container}>
       <div className='d-flex'>
         <div className={`${styles.rating}`}>
-          <StarRatingWithScore score={stars[0]} color='#4EDB66' />
+          <StarRatingWithScore score={parseFloat(stars[0].toFixed(1))} color='#4EDB66' />
           <div className={`${styles.people} text-center`}>涼度</div>
         </div>
         <div className={`${styles.rating}`}>
-          <StarRatingWithScore score={stars[1]} color='#FFC042' />
+          <StarRatingWithScore score={parseFloat(stars[1].toFixed(1))} color='#FFC042' />
           <div className={`${styles.people} text-center`}>甜度</div>
         </div>
         <div className={`${styles.rating}`}>
-          <StarRatingWithScore score={stars[2]} color='#2E86AB' />
+          <StarRatingWithScore score={parseFloat(stars[2].toFixed(1))} color='#2E86AB' />
           <div className={`${styles.people} text-center`}>深度</div>
         </div>
       </div>

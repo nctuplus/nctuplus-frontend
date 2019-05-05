@@ -3,6 +3,7 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import Pagination from 'components/Pagination'
 import Spinner from 'components/Spinner'
+import { FETCHING_STATUS } from 'utilities/constants'
 import styles from './style.scss'
 
 const CommentsCard = withRouter((props) => (
@@ -26,30 +27,32 @@ const CommentsCard = withRouter((props) => (
       <h5 className={styles.cardTitle}>{props.title}</h5>
       <div className='text-secondary mt-3'>
         <div>
-          <i className='far fa-comment-alt' /> {0/* props.reply.length */}
+          <i className='far fa-comment-alt' /> {props.reply.length}
         </div>
       </div>
     </div>
   </div>
 ))
 
-const CommentsTable = (props) => (
-  <div>
-    <div className='container mb-3'>
-      {
-        props.data.length
-          ? props.data.map((comment) => (
+const CommentsTable = (props) => {
+  return props.status !== FETCHING_STATUS.DONE
+    ? <div className='text-center'><Spinner size={48} color='grey' /></div>
+    : <div>
+      <div className='container mb-3'>
+        {
+          props.data.map((comment) => (
             <CommentsCard key={comment.id} {...comment} />
           ))
-          : <div className='text-center'>
-            <Spinner size={48} color='grey' />
-          </div>
+        }
+      </div>
+      {
+        // 如果是課程頁面的心得table 則不需要分頁
+        props.fromCoursePage ||
+        <div className='text-center'>
+          <Pagination page={props.page} maxPage={props.maxPage} to={props.updatePage} />
+        </div>
       }
     </div>
-    <div className='text-center'>
-      <Pagination page={props.page} maxPage={props.maxPage} to={props.updatePage} />
-    </div>
-  </div>
-)
+}
 
 export { CommentsTable, CommentsCard }

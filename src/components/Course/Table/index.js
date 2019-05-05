@@ -2,7 +2,9 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import Pagination from 'components/Pagination'
+import Spinner from 'components/Spinner'
 import { convertTimeSlotsToString, convertSemesterToString } from 'utilities'
+import { FETCHING_STATUS } from 'utilities/constants'
 
 const _Row = (props) => (
   <tr
@@ -34,31 +36,33 @@ const _Row = (props) => (
 
 const Row = withRouter(_Row)
 
-const Table = ({ data, page, maxPage, updatePage }) => (
-  <div>
-    <table className='table table-sm table-hover bg-white'>
-      <thead>
-        <tr>
-          <th className='pl-2'>學期</th>
-          <th>課名</th>
-          <th>老師</th>
-          <th className='d-none d-table-cell'>系所/摘要</th>
-          <th>學分</th>
-          <th>時間</th>
-          <th>年級</th>
-          <th>收藏</th>
-        </tr>
-      </thead>
-      <tbody>
-        {
-          data.map((course) => (<Row key={course.id} {...course} />))
-        }
-      </tbody>
-    </table>
-    <div className='text-center'>
-      <Pagination page={page} maxPage={maxPage} to={updatePage} />
+const Table = ({ data, status, page, maxPage, updatePage }) => {
+  return status !== FETCHING_STATUS.DONE
+    ? <div className='text-center'><Spinner size={48} color='grey' /></div>
+    : <div>
+      <table className='table table-sm table-hover bg-white'>
+        <thead>
+          <tr>
+            <th className='pl-2'>學期</th>
+            <th>課名</th>
+            <th>老師</th>
+            <th className='d-none d-table-cell'>系所/摘要</th>
+            <th>學分</th>
+            <th>時間</th>
+            <th>年級</th>
+            <th>收藏</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            data.map((course) => (<Row key={course.id} {...course} />))
+          }
+        </tbody>
+      </table>
+      <div className='text-center'>
+        <Pagination page={page} maxPage={maxPage} to={updatePage} />
+      </div>
     </div>
-  </div>
-)
+}
 
 export default Table

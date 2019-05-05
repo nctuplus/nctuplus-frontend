@@ -1,16 +1,14 @@
 
 import React from 'react'
+import { connect } from 'react-redux'
+import { compose, lifecycle } from 'recompose'
+import classNames from 'classnames'
 import Layout from 'pages/Layout'
 import { SearchCourse } from 'components/Search'
 import * as Course from 'components/Course'
-import Spinner from 'components/Spinner'
-import classNames from 'classnames'
-import styles from './style.scss'
-
-import { connect } from 'react-redux'
 import courseActions from 'api/Actions/Courses'
 import { getCourses } from 'api/Controllers/courses'
-import { compose, lifecycle } from 'recompose'
+import styles from './style.scss'
 
 const Index = ({ courses, updatePage }) => (
   <Layout className={styles.course}>
@@ -18,11 +16,7 @@ const Index = ({ courses, updatePage }) => (
       <div className={classNames('text-center', styles.searchWrapper)}>
         <SearchCourse show_semester />
       </div>
-      {
-        courses.status
-          ? <Course.Table {...courses} updatePage={updatePage} />
-          : <div className='text-center'><Spinner size={48} color='grey' /></div>
-      }
+      <Course.Table {...courses} updatePage={updatePage} />
     </div>
   </Layout>
 )

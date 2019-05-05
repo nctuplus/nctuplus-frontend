@@ -5,6 +5,7 @@ import Pagination from 'components/Pagination'
 import Spinner from 'components/Spinner'
 import { deletePastExam } from 'api/Controllers/pastExams'
 import { convertSemesterToString } from 'utilities'
+import { FETCHING_STATUS } from 'utilities/constants'
 import styles from './styles.scss'
 
 class _Row extends React.Component {
@@ -39,11 +40,7 @@ class _Row extends React.Component {
           this.props.fromCoursePage ||
           <td>{ course.name } / { course.teacher.join(', ') }</td>
         }
-        {
-          // 如果是課程頁面的考古題table 則不需要此欄位
-          this.props.fromCoursePage ||
-          <td>{ convertSemesterToString(course.semester) }</td>
-        }
+        <td>{ convertSemesterToString(course.semester) }</td>
         <td>{ description }</td>
         <td>{ anonymity ? '匿名' : uploader.name }</td>
         <td className='d-inline-block'>
@@ -72,46 +69,40 @@ const mapDispatchToProps = (dispatch) => ({
 
 const Row = connect(mapStateToProps, mapDispatchToProps)(_Row)
 
-const Table = (props) => (
-  <div>
-    <table className='table bg-white'>
-      <thead>
-        <tr>
-          {
-            // 如果是課程頁面的考古題table 則不需要此欄位
-            props.fromCoursePage ||
-            <th>課程/教授</th>
-          }
-          {
-            // 如果是課程頁面的考古題table 則不需要此欄位
-            props.fromCoursePage ||
+const Table = (props) => {
+  return props.status !== FETCHING_STATUS.DONE
+    ? <div className='text-center'><Spinner size={48} color='grey' /></div>
+    : <div>
+      <table className='table bg-white'>
+        <thead>
+          <tr>
+            {
+              // 如果是課程頁面的考古題table 則不需要此欄位
+              props.fromCoursePage ||
+              <th>課程/教授</th>
+            }
             <th>學期</th>
+            <th>描述</th>
+            <th>上傳者</th>
+            <th />
+          </tr>
+        </thead>
+        <tbody>
+          {
+            props.data.map(pastExam => (
+              <Row {...pastExam} key={pastExam.id} fromCoursePage={props.fromCoursePage} />
+            ))
           }
-          <th>描述</th>
-          <th>上傳者</th>
-          <th />
-        </tr>
-      </thead>
-      <tbody>
-        {
-          props.data.length
-            ? props.data.map(pastExam => <Row {...pastExam} key={pastExam.id} fromCoursePage={props.fromCoursePage} />)
-            : <tr className='text-center'>
-              <td colSpan='5'>
-                <Spinner size={48} color='grey' />
-              </td>
-            </tr>
-        }
-      </tbody>
-    </table>
-    {
-      // 如果是課程頁面的考古題table 則不需要分頁
-      props.fromCoursePage ||
-      <div className='text-center'>
-        <Pagination page={props.page} maxPage={props.maxPage} to={props.updatePage} />
-      </div>
-    }
-  </div>
-)
+        </tbody>
+      </table>
+      {
+        // 如果是課程頁面的考古題table 則不需要分頁
+        props.fromCoursePage ||
+        <div className='text-center'>
+          <Pagination page={props.page} maxPage={props.maxPage} to={props.updatePage} />
+        </div>
+      }
+    </div>
+}
 
 export default Table

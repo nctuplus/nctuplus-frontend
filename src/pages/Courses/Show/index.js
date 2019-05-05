@@ -11,6 +11,7 @@ import * as Comments from 'components/Comment'
 import * as PastExams from 'components/PastExam'
 import Spinner from 'components/Spinner'
 import { getCourse, getCourseComments, getCoursePastExams } from 'api/Controllers/courses'
+import { FETCHING_STATUS } from 'utilities/constants'
 import styles from './style.scss'
 // import { testData } from './testData'
 
@@ -44,7 +45,7 @@ class Show extends React.Component {
   }
 
   render () {
-    const { course, comments, pastExams } = this.props
+    const { course, status, comments, pastExams } = this.props
 
     return (
       <Layout>
@@ -72,7 +73,7 @@ class Show extends React.Component {
         <div className='container'>
           <div className='offset-md-2 py-4'>
             {
-              this.props.status !== 2
+              status !== FETCHING_STATUS.DONE
                 ? <div className='text-center pt-3'><Spinner size={64} color='grey' /></div>
                 : <div>
                   <div className='row'>
@@ -112,10 +113,6 @@ class Show extends React.Component {
                   <hr />
 
                   {/*
-                  <Section title={<span><i className='fa fa-cube mx-2' />修了這堂課的人，也修了...</span>} />
-
-                  <hr />
-
                   <Section
                     domref={this.anchors[2]}
                     title={<span><i className='fa fa-gamepad mx-2' />課程攻略</span>}
@@ -164,18 +161,14 @@ class Show extends React.Component {
                     domref={this.anchors[5]}
                     title={
                       <span>
-                        <i className='fa fa-comment-o mx-2' />課程心得/討論
+                        <i className='fa fa-comment-o mx-2' />課程心得
                         <h5 className='d-inline-block mx-2'>
                           <Link className='text-blue' to='/comments/new'>我要發文</Link>
                         </h5>
                       </span>
                     }
                   >
-                    {
-                      comments.map((comment) => (
-                        <Comments.Card key={comment.id} {...comment} />
-                      ))
-                    }
+                    <Comments.Table {...comments} fromCoursePage />
                   </Section>
 
                   <Section
@@ -189,7 +182,7 @@ class Show extends React.Component {
                       </span>
                     }
                   >
-                    <PastExams.Table data={pastExams} fromCoursePage />
+                    <PastExams.Table {...pastExams} fromCoursePage />
                   </Section>
                 </div>
             }
@@ -203,8 +196,8 @@ class Show extends React.Component {
 const mapStateToProps = (state) => ({
   course: state.courses.show.data,
   status: state.courses.show.status,
-  comments: state.courses.comments.data,
-  pastExams: state.courses.pastExams.data
+  comments: state.courses.comments,
+  pastExams: state.courses.pastExams
 })
 
 const mapDispatchToProps = (dispatch) => ({
