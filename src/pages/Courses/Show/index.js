@@ -1,14 +1,16 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import scrollToComponent from 'react-scroll-to-component'
 import Layout from 'pages/Layout'
 import { Sidebar, SidebarItem } from 'components/Sidebar'
-import * as Course from 'components/Course'
 import { Ratings } from 'components/Ratings'
-import * as PastExam from 'components/PastExam'
+import * as Courses from 'components/Course'
+import * as Comments from 'components/Comment'
+import * as PastExams from 'components/PastExam'
 import Spinner from 'components/Spinner'
-import { getCourse } from 'api/Controllers/courses'
+import { getCourse, getCourseComments } from 'api/Controllers/courses'
 import styles from './style.scss'
 // import { testData } from './testData'
 
@@ -28,8 +30,9 @@ class Show extends React.Component {
   }
 
   componentDidMount () {
-    const { match, fetchData } = this.props
-    fetchData(match.params.id)
+    const id = this.props.match.params.id
+    this.props.getCourse(id)
+    this.props.getComments(id)
   }
 
   scrollTo (index) {
@@ -40,8 +43,8 @@ class Show extends React.Component {
   }
 
   render () {
-    const { course } = this.props
-
+    const { course, comments } = this.props
+    console.log(comments)
     return (
       <Layout>
         <Sidebar >
@@ -99,7 +102,7 @@ class Show extends React.Component {
                     domref={this.anchors[1]}
                     title={<span><i className='fa fa-book mx-2' />課程資訊</span>}
                   >
-                    <Course.Info {...this.props.course} />
+                    <Courses.Info {...this.props.course} />
                   </Section>
 
                   <hr />
@@ -122,7 +125,7 @@ class Show extends React.Component {
                     domref={this.anchors[3]}
                     title={<span><i className='fa fa-align-left mx-2' />歷年統計</span>}
                   >
-                    <Course.StatisticCharts {...course.chart_data} />
+                    <Courses.StatisticCharts {...course.chart_data} />
                   </Section>
 
                   <hr />
@@ -153,12 +156,26 @@ class Show extends React.Component {
 
                   <hr />
 
-                  <Section domref={this.anchors[5]}>
-                    <Course.Forum />
+                  <Section
+                    domref={this.anchors[5]}
+                    title={
+                      <span>
+                        <i className='fa fa-comment-o mx-2' />課程心得/討論
+                        <h5 className='d-inline-block mx-2'>
+                          <Link className='text-blue' to='/comments/new'>我要發文</Link>
+                        </h5>
+                      </span>
+                    }
+                  >
+                    {
+                      comments.map((comment) => (
+                        <Comments.Card key={comment.id} {...comment} />
+                      ))
+                    }
                   </Section>
 
                   <Section domref={this.anchors[6]} title='考古題區'>
-                    <PastExam.FileList />
+                    <PastExams.FileList />
                   </Section>
                 </div>
             }
@@ -171,11 +188,13 @@ class Show extends React.Component {
 
 const mapStateToProps = (state) => ({
   course: state.courses.show.data,
-  status: state.courses.show.status
+  status: state.courses.show.status,
+  comments: state.courses.comments.data
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchData: (id) => dispatch(getCourse(id))
+  getCourse: (id) => dispatch(getCourse(id)),
+  getComments: (id) => dispatch(getCourseComments(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Show)

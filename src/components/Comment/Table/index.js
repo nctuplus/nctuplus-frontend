@@ -26,7 +26,7 @@ const CommentsCard = withRouter((props) => (
       <h5 className={styles.cardTitle}>{props.title}</h5>
       <div className='text-secondary mt-3'>
         <div>
-          <i className='far fa-comment-alt' /> {props.reply.length}
+          <i className='far fa-comment-alt' /> {0/* props.reply.length */}
         </div>
       </div>
     </div>
@@ -52,4 +52,4 @@ const CommentsTable = (props) => (
   </div>
 )
 
-export default CommentsTable
+export { CommentsTable, CommentsCard }
