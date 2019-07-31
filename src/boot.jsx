@@ -1,3 +1,4 @@
+
 import React from 'react'
 import { render } from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
@@ -10,6 +11,11 @@ import 'moment/locale/zh-tw'
 import 'assets/styles/main.scss'
 
 let store = createStore(Reducer, applyMiddleware(thunk))
+// set HMR for Redux
+if (module.hot) {
+  module.hot.accept('api/Reducers', () => store.replaceReducer(Reducer))
+}
+
 moment.locale('zh-tw')
 
 // global get cookie method

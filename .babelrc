@@ -1,23 +1,15 @@
 {
-  "presets": ["es2015", "react"],
+  "presets": ["@babel/preset-env", "@babel/preset-react"],
   "env": {
     "development": {
       "plugins": [
-        ["react-transform", {
-          "transforms": [{
-            "transform": "react-transform-hmr",
-            // change this to react-native if writing react-native
-            "imports": ["react"],
-            "locals": ["module"]
-          }]
-        }],
-        "transform-object-rest-spread",
-        ["module-resolver", { "root": ["./src"] }]
+        "react-hot-loader/babel",
+        "@babel/plugin-proposal-object-rest-spread"
       ]
     },
     "production": {
       "plugins": [
-        "transform-object-rest-spread",
+        "@babel/plugin-proposal-object-rest-spread"
       ]
     }
   }
