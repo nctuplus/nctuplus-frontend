@@ -70,5 +70,5 @@ export const getBooksLatestNews = () => dispatch => {
       dispatch(actions.books.latestNews.store(books))
       dispatch(actions.books.latestNews.setStatus(FETCHING_STATUS.DONE))
     })
-    .catch(() => dispatch(actions.books.lastestNews.setStatus(FETCHING_STATUS.FAIL)))
+    .catch(() => dispatch(actions.books.latestNews.setStatus(FETCHING_STATUS.FAIL)))
 }

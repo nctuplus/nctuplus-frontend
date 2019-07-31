@@ -9,8 +9,8 @@ const env = process.env.NODE_ENV
 const plugins = [
   new webpack.DefinePlugin({
     SERVER_URL: env === 'production'
-      ? '"https://plus.nctu.edu.tw/api"'
-      : '"http://plus-test-1.haohao.in:3000"'
+      ? '"https://plus-test-1.haohao.in"'
+      : '"https://plus-test-1.haohao.in"'
   }),
   new webpack.NoEmitOnErrorsPlugin(),
   new WebpackNotifierPlugin(),
@@ -31,7 +31,10 @@ if (env === 'production') {
 }
 
 module.exports = {
-  entry: Path.resolve(__dirname, 'src/boot.jsx'),
+  entry: [
+    'react-hot-loader/patch',
+    Path.resolve(__dirname, 'src/boot.jsx')
+  ],
   output: {
     path: Path.join(__dirname, 'build'),
     filename: 'bundle.js'
@@ -62,8 +65,10 @@ module.exports = {
             loader: 'css-loader',
             options: {
               importLoaders: 1,
-              modules: true,
-              localIdentName: '[name]__[local]___[hash:base64:5]'
+              modules: {
+                mode: 'local',
+                localIdentName: '[name]__[local]___[hash:base64:5]'
+              }
             }
           },
           {

@@ -5,7 +5,7 @@ import { withRouter } from 'react-router'
 import Layout from 'pages/Layout'
 import CourseListDiagram from 'components/CourseMap/CourseListDiagram'
 import CourseListText from 'components/CourseMap/CourseListText'
-import { getCourseMap } from 'api/Actions/CourseMaps'
+import { getCourseMap } from 'api/Controllers/courseMaps'
 
 const mapStateToProps = (state) => ({
   courseMap: state.courseMaps.show.data,

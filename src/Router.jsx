@@ -1,4 +1,5 @@
 
+import { hot } from 'react-hot-loader/root'
 import React from 'react'
 import {
   BrowserRouter,
@@ -144,4 +145,4 @@ const Router = enhance(({ currentUser }) => {
   )
 })
 
-export default Router
+export default hot(Router)
