@@ -85,5 +85,5 @@ export const getCommentsLatestNews = () => dispatch => {
       dispatch(actions.comments.latestNews.store(comments))
       dispatch(actions.comments.latestNews.setStatus(FETCHING_STATUS.DONE))
     })
-    .catch(() => dispatch(actions.comments.lastestNews.setStatus(FETCHING_STATUS.FAIL)))
+    .catch(() => dispatch(actions.comments.latestNews.setStatus(FETCHING_STATUS.FAIL)))
 }
