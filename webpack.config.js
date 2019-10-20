@@ -5,10 +5,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const env = process.env.NODE_ENV
+const isProd = env === 'production'
 
 const plugins = [
   new webpack.DefinePlugin({
-    SERVER_URL: env === 'production'
+    SERVER_URL: isProd
       ? '"https://plus-test-1.haohao.in"'
       : '"https://plus-test-1.haohao.in"'
   }),
@@ -20,13 +21,13 @@ const plugins = [
   })
 ]
 
-if (env === 'development') {
+if (!isProd) {
   plugins.push(new webpack.HotModuleReplacementPlugin())
 }
-if (env === 'production') {
+if (isProd) {
   plugins.push(new MiniCssExtractPlugin({
-    filename: '[name].css',
-    chunkFilename: '[id].css'
+    filename: '[name]-[contenthash].css',
+    chunkFilename: '[id]-[contenthash].css'
   }))
 }
 
@@ -60,7 +61,7 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          env === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
+          isProd ? MiniCssExtractPlugin.loader : 'style-loader',
           {
             loader: 'css-loader',
             options: {
@@ -82,7 +83,7 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          env === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
+          isProd ? MiniCssExtractPlugin.loader : 'style-loader',
           { loader: 'css-loader' },
           {
             loader: 'postcss-loader',
