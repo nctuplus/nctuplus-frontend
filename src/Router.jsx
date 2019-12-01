@@ -23,6 +23,7 @@ import * as Scores from 'pages/Scores'
 import PageNotFound from 'pages/PageNotFound'
 import Login from 'pages/Login'
 import { validateToken } from 'api/Controllers/user'
+import Calender from 'pages/Test/Calendar'
 
 const mapStateToProps = state => ({ currentUser: state.user.currentUser })
 const mapDispatchToProps = dispatch => ({ validateToken: () => dispatch(validateToken()) })
@@ -137,6 +138,9 @@ const Router = enhance(({ currentUser }) => {
             <Route path='/user/GPA' component={User.GPA} />
           </User.Index>
         )} />
+
+        {/* test page calendar */}
+        <Route path='/test' component={loginOnly(Calender)} />
 
         {/* 404 not found */}
         <Route component={PageNotFound} />

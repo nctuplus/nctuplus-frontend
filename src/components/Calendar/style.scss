@@ -1,0 +1,23 @@
+.cldbody{
+    //display: flex;
+    width: 50%;
+    height: 500px;
+    justify-content: center;
+    align-content: center;
+    border: 1px solid blue;
+    text-align: left;
+}
+body{
+    margin: 0px auto;
+    //padding: 10%;
+}
+.cldOutline{
+    border: 1px solid red;
+    height: 80%;
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    li{
+        border: 1px solid purple;
+    }
+}
