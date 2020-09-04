@@ -42,7 +42,7 @@
     "html2canvas": "^1.0.0-alpha.12",
     "isomorphic-fetch": "^2.2.1",
     "moment": "^2.22.2",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.13.1",
     "prop-types": "^15.6.1",
     "randomcolor": "^0.5.4",
     "react": "^16.4.2",
